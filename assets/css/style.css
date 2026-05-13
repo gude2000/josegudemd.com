@@ -397,3 +397,17 @@ footer ul {
 .chord .note { color: var(--gold); }
 .chord .note.alt { color: var(--teal); }
 .chord .note.violet { color: var(--violet); }
+
+/* Webb fractal embed */
+.fractal-frame {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--bg-soft);
+  margin: 32px 0;
+}
+@media (max-width: 640px) {
+  .fractal-frame { height: 340px; }
+}
