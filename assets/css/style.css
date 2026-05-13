@@ -181,11 +181,15 @@ blockquote cite {
   padding: 100px 0 70px 0;
   text-align: left;
 }
-.hero h1 { font-size: 64px; }
+.hero h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.1;
+  white-space: nowrap;
+}
 .hero .lede { font-size: 23px; max-width: 32em; }
 @media (max-width: 640px) {
   .hero { padding: 60px 0 40px 0; }
-  .hero h1 { font-size: 40px; }
+  .hero h1 { font-size: 28px; white-space: normal; }  /* allow wrap on small screens */
   .hero .lede { font-size: 18px; }
 }
 
