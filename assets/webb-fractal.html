@@ -96,13 +96,26 @@
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x0a0e1a);
 
+  const FOV = 45;
   const camera = new THREE.PerspectiveCamera(
-    45, window.innerWidth / window.innerHeight, 0.1, 1000
+    FOV, window.innerWidth / window.innerHeight, 0.1, 1000
   );
-  // Default camera distance — chosen so the seed tetrahedron's bounding
-  // sphere (radius ≈ 1.16) fills the iframe with a small margin while still
-  // accommodating rotation.
-  const BASE_Z = 3.1;
+
+  // The seed tetrahedron's bounding sphere has radius ≈ 1.16; we want the
+  // sphere to fill the iframe with a small margin in WHICHEVER direction is
+  // smaller (so the structure stays maximally large regardless of aspect).
+  const BOUNDING_R = 1.16;
+  const MARGIN = 1.05;  // 5 % margin from the closest edge
+
+  function fitDistance() {
+    const aspect = window.innerWidth / window.innerHeight;
+    const tanV = Math.tan((FOV * Math.PI) / 360);  // half vFOV
+    const tanH = tanV * aspect;
+    const tan = Math.min(tanV, tanH);  // limiting axis
+    return (BOUNDING_R * MARGIN) / tan;
+  }
+
+  let BASE_Z = fitDistance();
   camera.position.set(0, 0, BASE_Z);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -315,6 +328,9 @@
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    // Re-fit camera distance for the new aspect ratio
+    BASE_Z = fitDistance();
+    camera.position.z = BASE_Z / zoom;
   });
 
   // Initial tilt
