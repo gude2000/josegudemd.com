@@ -32,11 +32,60 @@
     color: rgba(185, 176, 155, 0.45);
     pointer-events: none;
   }
+  /* Depth toggle */
+  .depth-toggle {
+    position: absolute;
+    bottom: 44px; left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    user-select: none;
+  }
+  .depth-toggle .label {
+    font-size: 10px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: rgba(185, 176, 155, 0.55);
+    align-self: center;
+    margin-right: 14px;
+  }
+  .depth-toggle button {
+    background: transparent;
+    border: 1px solid rgba(218, 160, 85, 0.4);
+    color: rgba(218, 160, 85, 0.85);
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    margin: 0 -1px 0 0;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .depth-toggle button:first-of-type { border-radius: 2px 0 0 2px; }
+  .depth-toggle button:last-of-type  { border-radius: 0 2px 2px 0; }
+  .depth-toggle button:hover {
+    color: #e8e0ce;
+    border-color: rgba(218, 160, 85, 0.7);
+  }
+  .depth-toggle button.active {
+    background: rgba(218, 160, 85, 0.18);
+    color: #e8e0ce;
+    border-color: #daa055;
+  }
 </style>
 </head>
 <body>
 <div id="scene"></div>
 <div class="hint">drag · scroll</div>
+
+<div class="depth-toggle">
+  <span class="label">Recursion</span>
+  <button data-depth="1">Depth 1</button>
+  <button data-depth="2" class="active">Depth 2</button>
+  <button data-depth="3">Depth 3</button>
+</div>
+
 <div class="caption">The Webb fractal &nbsp;·&nbsp; 34.38° &nbsp;·&nbsp; 55.62° &nbsp;·&nbsp; 90.00°</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -57,149 +106,151 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
 
-  // ---------- Geometry: the Webb fractal ----------
-  // Base right triangle with angles 34.38° (A), 55.62° (B), 90° (C).
-  // φ = 1.618033988...; the legs satisfy the golden ratio.
+  // ---------- The Webb fractal geometry ----------
+  // Seed: right triangle with angles 34.38° · 55.62° · 90°. The legs satisfy
+  // the golden ratio (φ = 1.618...). We lift this triangle into 3D by adding
+  // an apex above its centroid, forming a tetrahedron — and then apply
+  // Sierpinski-style recursive subdivision: each tetrahedron is replaced
+  // by four corner tetrahedra at half scale, leaving an octahedral void.
   const PHI = (1 + Math.sqrt(5)) / 2;
 
-  // Build the seed triangle in the XY plane.
-  // Right angle at C = (0,0,0). A along +X, B along +Y.
-  // Tan(34.38°) ≈ 0.6826; we set BC = 1 (opposite A), AC = BC / tan(34.38°)
   const A = new THREE.Vector3( PHI, 0, 0 );
-  const B = new THREE.Vector3( 0, 1,    0 );
-  const C = new THREE.Vector3( 0, 0,    0 );
+  const B = new THREE.Vector3( 0,   1, 0 );
+  const C = new THREE.Vector3( 0,   0, 0 );
 
-  // We build a tetrahedral structure by reflecting the seed triangle across
-  // each of its edges into 3D. The result is a 3-D piece-wise lattice that
-  // captures the spirit of the cover's 3-D fractal triangle.
-  const seedPoints = [A.clone(), B.clone(), C.clone()];
-
-  // Make a fourth apex above the centroid to lift into 3D
-  const centroid = new THREE.Vector3()
+  const centroidXY = new THREE.Vector3()
     .add(A).add(B).add(C).multiplyScalar(1/3);
-  const apex = centroid.clone().add(new THREE.Vector3(0, 0, 0.95));
+  const apex = centroidXY.clone().add(new THREE.Vector3(0, 0, 1.05));
 
-  // Build the full vertex set (base triangle + apex), then recenter the
-  // entire structure on its centroid so that group rotation pivots from
-  // the geometric center.
-  const verts = [
-    A.clone(), B.clone(), C.clone(),
-    apex.clone(),
-  ];
-  const meanCentroid = verts
+  // Center the seed tetrahedron on its own centroid
+  const seedVerts = [A.clone(), B.clone(), C.clone(), apex.clone()];
+  const seedCentroid = seedVerts
     .reduce((acc, v) => acc.add(v), new THREE.Vector3())
-    .multiplyScalar(1 / verts.length);
-  verts.forEach(v => v.sub(meanCentroid));
+    .multiplyScalar(1 / 4);
+  seedVerts.forEach(v => v.sub(seedCentroid));
 
-  // Edges of the outer tetrahedron
-  const baseEdges = [
-    [0,1],[1,2],[2,0],   // base triangle
-    [0,3],[1,3],[2,3],   // sides to apex
+  // ---------- Color palettes ----------
+  const lineColors = [
+    { color: 0xc48c42, opacity: 0.85 },  // depth 0 — outer gold
+    { color: 0xe8e0ce, opacity: 0.55 },  // depth 1 — cream
+    { color: 0xb9b09b, opacity: 0.35 },  // depth 2 — dim cream
+    { color: 0x78c8b4, opacity: 0.40 },  // depth 3 — teal accent
   ];
-
-  // Recursive subdivision: each edge gets a midpoint sphere, and each
-  // mid-triangle becomes a smaller wireframe (one level of recursion).
-  function midpoint(p, q) {
-    return new THREE.Vector3()
-      .add(p).add(q).multiplyScalar(0.5);
-  }
-
-  const mids = [];
-  baseEdges.forEach(([i,j]) => mids.push(midpoint(verts[i], verts[j])));
-
-  // Sub-triangles: each face of the tetrahedron yields 4 sub-triangles when
-  // we connect midpoints, but we just visualize the midpoint frame.
-  // We'll create edges between mids that share a face.
-  const faces = [
-    [0,1,2],   // base
-    [0,1,3],   // side 1
-    [1,2,3],   // side 2
-    [0,2,3],   // side 3
+  const sphereColors = [
+    0xe8e0ce, 0xdaa055, 0x78c8b4, 0xb4a0e6
   ];
+  const sphereRadii = [0.075, 0.050, 0.035, 0.022];
 
-  // For each face, find the indices into mids[] for its three edges
-  function edgeIdx(i, j) {
-    return baseEdges.findIndex(([a,b]) => (a===i&&b===j) || (a===j&&b===i));
-  }
-
-  const subEdges = [];
-  faces.forEach(([i,j,k]) => {
-    const e_ij = edgeIdx(i,j);
-    const e_jk = edgeIdx(j,k);
-    const e_ki = edgeIdx(k,i);
-    subEdges.push([e_ij, e_jk]);
-    subEdges.push([e_jk, e_ki]);
-    subEdges.push([e_ki, e_ij]);
-  });
-
-  // ---------- Build the meshes ----------
+  // ---------- Group + (re)builder ----------
   const group = new THREE.Group();
   scene.add(group);
 
-  // Outer wireframe (golden, slim)
-  const goldMat = new THREE.LineBasicMaterial({
-    color: 0xc48c42, transparent: true, opacity: 0.85,
-  });
-  const baseGeom = new THREE.BufferGeometry();
-  const basePositions = [];
-  baseEdges.forEach(([i,j]) => {
-    basePositions.push(verts[i].x, verts[i].y, verts[i].z);
-    basePositions.push(verts[j].x, verts[j].y, verts[j].z);
-  });
-  baseGeom.setAttribute('position', new THREE.Float32BufferAttribute(basePositions, 3));
-  group.add(new THREE.LineSegments(baseGeom, goldMat));
+  function mid(p, q) {
+    return new THREE.Vector3().add(p).add(q).multiplyScalar(0.5);
+  }
 
-  // Inner wireframe (cream, fainter)
-  const creamMat = new THREE.LineBasicMaterial({
-    color: 0xe8e0ce, transparent: true, opacity: 0.40,
-  });
-  const subGeom = new THREE.BufferGeometry();
-  const subPositions = [];
-  subEdges.forEach(([i,j]) => {
-    subPositions.push(mids[i].x, mids[i].y, mids[i].z);
-    subPositions.push(mids[j].x, mids[j].y, mids[j].z);
-  });
-  subGeom.setAttribute('position', new THREE.Float32BufferAttribute(subPositions, 3));
-  group.add(new THREE.LineSegments(subGeom, creamMat));
+  function clearGroup() {
+    while (group.children.length) {
+      const child = group.children.pop();
+      if (child.geometry) child.geometry.dispose();
+      if (child.material) child.material.dispose();
+    }
+  }
 
-  // Outer vertices: large pale spheres
-  const sphereGeom = new THREE.SphereGeometry(0.075, 24, 16);
-  const palette = {
-    outer: 0xe8e0ce,
-    apex:  0xdaa055,
-    midA:  0xc48c42,    // gold
-    midB:  0x78c8b4,    // teal
-    midC:  0xb4a0e6,    // violet
-  };
+  function buildFractal(DEPTH) {
+    clearGroup();
 
-  verts.forEach((v, idx) => {
-    const mat = new THREE.MeshBasicMaterial({
-      color: idx === 3 ? palette.apex : palette.outer
+    const levels = Array.from({ length: DEPTH + 1 }, () => ({
+      edges: [], nodes: [],
+    }));
+
+    function sierpinski(verts, depth, levelIdx) {
+      const t = verts;
+      const tetraEdges = [
+        [t[0], t[1]], [t[1], t[2]], [t[2], t[0]],
+        [t[0], t[3]], [t[1], t[3]], [t[2], t[3]],
+      ];
+      tetraEdges.forEach(e => levels[levelIdx].edges.push(e));
+      t.forEach(v => levels[levelIdx].nodes.push(v.clone()));
+      if (depth === 0) return;
+      const m01 = mid(t[0], t[1]);
+      const m02 = mid(t[0], t[2]);
+      const m03 = mid(t[0], t[3]);
+      const m12 = mid(t[1], t[2]);
+      const m13 = mid(t[1], t[3]);
+      const m23 = mid(t[2], t[3]);
+      sierpinski([t[0], m01, m02, m03], depth - 1, levelIdx + 1);
+      sierpinski([t[1], m01, m12, m13], depth - 1, levelIdx + 1);
+      sierpinski([t[2], m02, m12, m23], depth - 1, levelIdx + 1);
+      sierpinski([t[3], m03, m13, m23], depth - 1, levelIdx + 1);
+    }
+
+    sierpinski(seedVerts, DEPTH, 0);
+
+    // Wireframes by level
+    levels.forEach((level, i) => {
+      if (i >= lineColors.length || level.edges.length === 0) return;
+      const geom = new THREE.BufferGeometry();
+      const positions = [];
+      level.edges.forEach(([p, q]) => {
+        positions.push(p.x, p.y, p.z, q.x, q.y, q.z);
+      });
+      geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      const mat = new THREE.LineBasicMaterial({
+        color: lineColors[i].color,
+        transparent: true,
+        opacity: lineColors[i].opacity,
+      });
+      group.add(new THREE.LineSegments(geom, mat));
     });
-    const s = new THREE.Mesh(sphereGeom, mat);
-    s.position.copy(v);
-    s.scale.setScalar(idx === 3 ? 0.9 : 1.0);
-    group.add(s);
-  });
 
-  // Midpoint vertices: small accent spheres (rotating gold / teal / violet)
-  const midSphereGeom = new THREE.SphereGeometry(0.045, 18, 12);
-  mids.forEach((m, idx) => {
-    const color = [palette.midA, palette.midB, palette.midC][idx % 3];
-    const mat = new THREE.MeshBasicMaterial({ color });
-    const s = new THREE.Mesh(midSphereGeom, mat);
-    s.position.copy(m);
-    group.add(s);
-  });
+    // Spheres at all unique node positions (deduplicated)
+    const seen = new Set();
+    const uniqueNodes = [];
+    const SNAP = 1e4;
+    levels.forEach((level, depth) => {
+      level.nodes.forEach(v => {
+        const key = [
+          Math.round(v.x * SNAP),
+          Math.round(v.y * SNAP),
+          Math.round(v.z * SNAP),
+        ].join('|');
+        if (!seen.has(key)) {
+          seen.add(key);
+          uniqueNodes.push({ pos: v, depth });
+        }
+      });
+    });
+    const sphereGeoms = sphereRadii.map(r => new THREE.SphereGeometry(r, 18, 12));
+    uniqueNodes.forEach(({ pos, depth }) => {
+      const d = Math.min(depth, sphereColors.length - 1);
+      const mat = new THREE.MeshBasicMaterial({ color: sphereColors[d] });
+      const s = new THREE.Mesh(sphereGeoms[d], mat);
+      s.position.copy(pos);
+      group.add(s);
+    });
+  }
 
-  // Geometry is already pre-centered on the centroid of the four vertices,
-  // so the group rotates around its true center — spheres and wireframes
-  // stay locked together.
+  // Build at default depth
+  let currentDepth = 2;
+  buildFractal(currentDepth);
+
+  // ---------- Depth toggle wiring ----------
+  document.querySelectorAll('.depth-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const d = parseInt(btn.dataset.depth, 10);
+      if (d === currentDepth) return;
+      currentDepth = d;
+      document.querySelectorAll('.depth-toggle button')
+        .forEach(b => b.classList.toggle('active', b === btn));
+      buildFractal(d);
+    });
+  });
 
   // ---------- Interaction ----------
   let isDragging = false;
   let lastX = 0, lastY = 0;
-  let velX = 0.002, velY = 0.0006;  // gentle auto-spin
+  let velX = 0.0018, velY = 0.0005;
   let zoom = 1;
   const minZoom = 0.5, maxZoom = 2.5;
 
