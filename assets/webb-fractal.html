@@ -99,7 +99,11 @@
   const camera = new THREE.PerspectiveCamera(
     45, window.innerWidth / window.innerHeight, 0.1, 1000
   );
-  camera.position.set(0, 0, 7);
+  // Default camera distance — chosen so the seed tetrahedron's bounding
+  // sphere (radius ≈ 1.16) fills the iframe with a small margin while still
+  // accommodating rotation.
+  const BASE_Z = 3.1;
+  camera.position.set(0, 0, BASE_Z);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -271,7 +275,7 @@
     e.preventDefault();
     const factor = e.deltaY > 0 ? 1.05 : 0.95;
     zoom = Math.max(minZoom, Math.min(maxZoom, zoom * factor));
-    camera.position.z = 7 / zoom;
+    camera.position.z = BASE_Z / zoom;
   }, { passive: false });
 
   // Touch
