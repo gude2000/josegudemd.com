@@ -79,11 +79,17 @@
     .add(A).add(B).add(C).multiplyScalar(1/3);
   const apex = centroid.clone().add(new THREE.Vector3(0, 0, 0.95));
 
-  // Build the full vertex set (base triangle + apex)
+  // Build the full vertex set (base triangle + apex), then recenter the
+  // entire structure on its centroid so that group rotation pivots from
+  // the geometric center.
   const verts = [
     A.clone(), B.clone(), C.clone(),
     apex.clone(),
   ];
+  const meanCentroid = verts
+    .reduce((acc, v) => acc.add(v), new THREE.Vector3())
+    .multiplyScalar(1 / verts.length);
+  verts.forEach(v => v.sub(meanCentroid));
 
   // Edges of the outer tetrahedron
   const baseEdges = [
@@ -186,26 +192,9 @@
     group.add(s);
   });
 
-  // Center the geometry on the origin of the group
-  const bbox = new THREE.Box3().setFromObject(group);
-  const center = new THREE.Vector3();
-  bbox.getCenter(center);
-  group.children.forEach(child => child.position.sub(center));
-  // Re-translate the vertices in baseGeom and subGeom buffers
-  const recenter = (geom) => {
-    const arr = geom.attributes.position.array;
-    for (let i = 0; i < arr.length; i += 3) {
-      arr[i]   -= center.x;
-      arr[i+1] -= center.y;
-      arr[i+2] -= center.z;
-    }
-    geom.attributes.position.needsUpdate = true;
-  };
-  recenter(baseGeom);
-  recenter(subGeom);
-
-  // Soft ambient glow via a couple of tinted points-of-light implied by colors
-  // (using basic materials, no actual lighting setup needed)
+  // Geometry is already pre-centered on the centroid of the four vertices,
+  // so the group rotates around its true center — spheres and wireframes
+  // stay locked together.
 
   // ---------- Interaction ----------
   let isDragging = false;
