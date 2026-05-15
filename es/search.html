@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buscar &mdash; José Gude MD</title>
+  <meta name="description" content="Busca en el sitio — cada página, cada guía, la bibliografía, la síntesis.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .search-box { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 4px; padding: 4px; display: flex; align-items: center; gap: 0; margin: 28px 0; }
+    .search-box input[type=text] { flex: 1; background: transparent; border: 0; outline: 0; padding: 14px 16px; font-family: var(--serif); font-size: 18px; color: var(--cream); }
+    .search-box input[type=text]::placeholder { color: var(--cream-mute); font-style: italic; }
+    .search-meta { font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream-mute); margin-bottom: 12px; }
+    .search-results { list-style: none; padding: 0; margin: 0; }
+    .search-result { padding: 18px 0; border-bottom: 1px solid var(--rule-soft); }
+    .search-result a.r-title { display: block; color: var(--gold); font-size: 17px; font-family: var(--serif); letter-spacing: 0.01em; border-bottom: 0; margin-bottom: 2px; }
+    .search-result a.r-title:hover { color: var(--cream); }
+    .search-result .r-eyebrow { font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream-mute); margin: 0 0 4px 0; }
+    .search-result .r-snippet { color: var(--cream-dim); font-size: 14px; line-height: 1.55; margin: 0; }
+    .search-result mark { background: rgba(218, 160, 85, 0.32); color: var(--cream); padding: 0 2px; border-radius: 2px; }
+    .search-empty { color: var(--cream-mute); font-style: italic; padding: 18px 0; }
+    .search-hint { color: var(--cream-mute); font-size: 13px; margin-top: 16px; }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Libros</a></li>
+      <li><a href="reading.html">Lecturas</a></li>
+      <li><a href="watch.html">Ver y Escuchar</a></li>
+      <li><a href="explore.html">Explorar</a></li>
+      <li><a href="the-evidence.html">Síntesis</a></li>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="search.html">Buscar</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><a href="../search.html">EN</a> <span style="opacity:0.4;">|</span> <span style="color:var(--gold);">ES</span></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">Buscar en el sitio</p>
+  <h1>Buscar</h1>
+  <p class="lede">Cada página del sitio &mdash; los cuatro libros, el ensayo de síntesis, las guías, la bibliografía, las entradas de Ver y Escuchar &mdash; con búsqueda por título, descripción y los primeros ~600 caracteres del texto. Coincidencia por subcadena en todos los términos.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <div class="search-box">
+    <input type="text" id="q" placeholder="lucidez terminal · teorema de Bell · Teresa · afinado en φ · Carhart-Harris …" autocomplete="off" autofocus>
+  </div>
+  <div class="search-meta" id="meta">escribe para buscar · o pasa <code>?q=término</code> en la URL</div>
+  <ul class="search-results" id="results"></ul>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim search-hint">La búsqueda es totalmente del lado del cliente &mdash; tu consulta nunca sale de tu navegador. El índice cubre la edición en español del sitio (53 páginas, ~51 KB). Para la edición paralela en inglés, usa la página de búsqueda EN.</p>
+  <a href="index.html" class="read-more">← Volver a los libros</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Herramientas del lector:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Empieza aquí</a> &middot;
+      <a href="glossary.html">Glosario</a> &middot;
+      <a href="the-evidence.html">Síntesis</a> &middot;
+      <a href="explore.html">Explorar</a> &middot;
+    <a href="search.html">Buscar</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="../assets/js/search.js"></script>
+<script>
+  window.runSearch && window.runSearch({
+    indexUrl: '../assets/data/search-index-es.json',
+    placeholderLang: 'es'
+  });
+</script>
+
+</body>
+</html>

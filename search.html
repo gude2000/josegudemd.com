@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search &mdash; José Gude MD</title>
+  <meta name="description" content="Search the site — every page, every explainer, the bibliography, the synthesis.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .search-box {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 28px 0;
+    }
+    .search-box input[type=text] {
+      flex: 1;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      padding: 14px 16px;
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--cream);
+    }
+    .search-box input[type=text]::placeholder { color: var(--cream-mute); font-style: italic; }
+    .search-meta {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cream-mute);
+      margin-bottom: 12px;
+    }
+    .search-results { list-style: none; padding: 0; margin: 0; }
+    .search-result {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .search-result a.r-title {
+      display: block;
+      color: var(--gold);
+      font-size: 17px;
+      font-family: var(--serif);
+      letter-spacing: 0.01em;
+      border-bottom: 0;
+      margin-bottom: 2px;
+    }
+    .search-result a.r-title:hover { color: var(--cream); }
+    .search-result .r-eyebrow {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-mute);
+      margin: 0 0 4px 0;
+    }
+    .search-result .r-snippet {
+      color: var(--cream-dim);
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .search-result mark {
+      background: rgba(218, 160, 85, 0.32);
+      color: var(--cream);
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    .search-empty { color: var(--cream-mute); font-style: italic; padding: 18px 0; }
+    .search-hint {
+      color: var(--cream-mute);
+      font-size: 13px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Books</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="watch.html">Watch &amp; Listen</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="the-evidence.html">Synthesis</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><span style="color:var(--gold);">EN</span> <span style="opacity:0.4;">|</span> <a href="es/search.html">ES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">Search the site</p>
+  <h1>Search</h1>
+  <p class="lede">Every page on the site — the four books, the synthesis essay, the explainers, the bibliography, the Watch &amp; Listen entries — searched across title, description, and the first ~600 characters of text. Substring match across all terms.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <div class="search-box">
+    <input type="text" id="q" placeholder="terminal lucidity · Bell theorem · Teresa · phi-tuned · Carhart-Harris …" autocomplete="off" autofocus>
+  </div>
+  <div class="search-meta" id="meta">type to search · or pass <code>?q=term</code> in the URL</div>
+  <ul class="search-results" id="results"></ul>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim search-hint">Search is fully client-side — your query never leaves your browser. The index covers the English edition of the site (53 pages, ~50 KB). For the Spanish parallel, use the ES search page.</p>
+  <a href="index.html" class="read-more">← Back to the books</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Reader's tools:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Start here</a> &middot;
+      <a href="glossary.html">Glossary</a> &middot;
+      <a href="the-evidence.html">Synthesis</a> &middot;
+      <a href="explore.html">Explore</a> &middot;
+    <a href="search.html">Search</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="assets/js/search.js"></script>
+<script>
+  window.runSearch && window.runSearch({
+    indexUrl: 'assets/data/search-index-en.json',
+    placeholderLang: 'en'
+  });
+</script>
+
+</body>
+</html>
