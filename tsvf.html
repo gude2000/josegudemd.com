@@ -82,6 +82,67 @@
 </section>
 
 <section>
+  <h2>A worked example: the three-box paradox</h2>
+  <p>The cleanest way to feel what TSVF actually <em>does</em> is to walk through a famous worked example. One ball. Three boxes &mdash; A, B, and C.</p>
+
+  <h3>Setup</h3>
+  <p>Quantum preparation puts the ball in a superposition, "spread" over all three boxes at once. Later, you will do a special final check (postselection) that only keeps runs where a certain condition is satisfied &mdash; roughly, a particular pattern of how the ball is distributed across the boxes. Between preparation and final check, an experimenter is allowed to open exactly one box (say A <em>or</em> B) and see whether the ball is there.</p>
+
+  <h3>The weird claim</h3>
+  <p>For the carefully chosen initial and final states, quantum theory says:</p>
+  <ul>
+    <li>If you open box A in the middle, you will find the ball there <em>with certainty</em>, in all the runs that later pass the final check.</li>
+    <li>If instead you open box B in the middle, you will also find the ball there <em>with certainty</em>, in all the runs that later pass the same final check.</li>
+  </ul>
+  <p>You are not allowed to open both A and B in the same run, so you never directly see A and B both occupied at once. But counterfactually it sounds like:</p>
+  <ul>
+    <li>"Had you looked in A, it would certainly have been in A."</li>
+    <li>"Had you looked in B, it would certainly have been in B."</li>
+  </ul>
+  <p>Yet we started with just one ball. That is the paradoxical flavor.</p>
+
+  <h3>How TSVF tells the story</h3>
+  <p>In ordinary (one-vector) quantum mechanics, we describe the situation at the intermediate time using only the initial preparation and unitary evolution. That makes the above claims look like strange conditional probabilities attached to "what if we had opened A vs B."</p>
+  <p>In TSVF, for this pre- and post-selected ensemble, the system in the middle is described by <em>two</em> state vectors:</p>
+  <ul>
+    <li>One evolving <em>forward</em> from the preparation.</li>
+    <li>One evolving <em>backward</em> from the successful final check.</li>
+  </ul>
+  <p>At the intermediate time, the combination of these two states encodes strong constraints on where the ball can be found in the runs that satisfy <em>both</em> boundary conditions. Intuitively:</p>
+  <ul>
+    <li>The forward state says, "The ball has nonzero amplitude in A, B, and C."</li>
+    <li>The backward state (from the future) favors those configurations that are consistent with the final check.</li>
+  </ul>
+  <p>When you ask "if I open A, what happens?" you are really probing the overlap between the forward amplitude in A from the past and the backward amplitude in A from the future. For the specially tuned pre- and post-selection, that overlap is 100% for A &mdash; hence certainty of finding the ball in A. Likewise, the overlap for B is also 100% if you choose to open B instead.</p>
+  <blockquote style="font-style:italic;border-left:3px solid var(--gold);padding-left:1.2em;margin:1em 0;color:var(--cream);">
+    Given both what we did at the start and what we end up accepting at the end, the "middle description" is such that box A is guaranteed-occupied if you look there, and box B is also guaranteed-occupied if instead you look there. This is not the same as saying the ball is simultaneously in A and B in an ordinary classical sense; it is saying that the joint past-and-future constraints force these two different counterfactual measurement scenarios to both have certainty.
+  </blockquote>
+
+  <h3>Weak measurements as a gentle probe</h3>
+  <p>If you try to check "is the ball in A and B at once?" with normal, strong measurements that actually open boxes, you inevitably disturb the system so much that you destroy the delicate pre- and post-selected ensemble. Weak measurements give you a workaround:</p>
+  <ul>
+    <li>You couple extremely gently to "occupation of A" and "occupation of B," so each single reading is noisy, but you barely disturb the quantum state.</li>
+    <li>Then you postselect on the same special final condition and average over many runs.</li>
+  </ul>
+  <p>In this three-box setup, the weak measurement averages &mdash; the weak values &mdash; come out as if:</p>
+  <ul>
+    <li>Box A has occupation <em>1</em>.</li>
+    <li>Box B also has occupation <em>1</em>.</li>
+    <li>Box C has occupation <em>&minus;1</em> &mdash; a bizarre, negative "presence."</li>
+  </ul>
+  <p>TSVF treats these as perfectly natural: they are the numbers you get when you combine the forward and backward states into a weak value formula. They are not ordinary "how many balls" counts, but they accurately predict how a very weakly coupled probe will shift in each box.</p>
+  <p>Metaphorically: the universe seems to "behave as if" one ball is in A, one ball is in B, and minus one ball in C, in terms of how a gentle measurement device responds &mdash; because both past and future constraints are steering the system.</p>
+
+  <h3>Why this matters conceptually</h3>
+  <p>From a TSVF, lay-language perspective, the three-box example suggests three things:</p>
+  <ul>
+    <li>The "reality" of a quantum system between measurements is not fixed solely by its past; it is jointly shaped by both past and future boundary conditions.</li>
+    <li>Apparent paradoxes &mdash; like one ball seemingly being certainly in A and certainly in B depending on what you choose to look at &mdash; are expressions of that two-sided constraint, not contradictions in the theory.</li>
+    <li>Weak measurements give operational access to these two-state features, producing strange but experimentally testable averages that match the TSVF predictions.</li>
+  </ul>
+</section>
+
+<section>
   <h2>How it differs from textbook quantum mechanics</h2>
   <p>The standard story is: <em>to know the system now, trace the wave function forward from the past.</em></p>
   <p>The TSVF story, for pre- and post-selected systems, is: <em>to know the system now, trace one state forward from preparation and another backward from the future measurement; the pair is the full description.</em></p>
