@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manning 2015 &mdash; Elección retardada con un solo átomo &mdash; José Gude MD</title>
+  <meta name="description" content="Guía de lectura del artículo de Manning et al. 2015 en Nature Physics que realiza el experimento de elección retardada de Wheeler con un solo átomo de helio metaestable — extendiendo la complementariedad onda-corpúsculo de los fotones a las partículas masivas.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Libros</a></li>
+      <li><a href="reading.html">Lecturas</a></li>
+      <li><a href="watch.html">Ver y Escuchar</a></li>
+      <li><a href="the-evidence.html">Síntesis</a></li>
+      <li><a href="about.html">Autor</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><a href="../manning-2015-atom.html">EN</a> <span style="opacity:0.4;">|</span> <span style="color:var(--gold);">ES</span></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">La investigación &middot; Manning et al. &middot; Nature Physics &middot; 2015</p>
+  <h1>Manning 2015 &mdash; Elección retardada con un solo átomo</h1>
+  <p class="lede">El artículo de Manning, Khakimov, Dall y Truscott de 2015 en <em>Nature Physics</em> &mdash; <a href="https://www.nature.com/articles/nphys3343" target="_blank" rel="noopener"><em>Wheeler's delayed-choice gedanken experiment with a single atom</em></a> &mdash; realiza el experimento mental de Wheeler no con fotones sino con un único átomo de helio metaestable ultrafrío en un interferómetro de ondas de materia. El resultado extiende la complementariedad onda-corpúsculo de la luz a las partículas masivas, y muestra que atribuir comportamiento de «onda» o «partícula» al átomo <em>antes de</em> la medición carece de sentido físico en el marco cuántico estándar.</p>
+  <p class="dim">Guía de lectura para una entrada de la bibliografía. Léase junto con <a href="wheeler-delayed-choice.html">la guía sobre la versión fotónica de Jacques 2007</a>: los dos artículos se entienden mejor juntos.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>La idea central de la elección retardada de Wheeler</h2>
+  <p>La propuesta de Wheeler considera un cuanto (originalmente un fotón) enviado a través de un interferómetro Mach&ndash;Zehnder, donde el experimentador decide <em>después</em> de que haya entrado si el interferómetro está «abierto» (información de camino, comportamiento corpuscular) o «cerrado» (caminos recombinados, interferencia, comportamiento ondulatorio). El punto conceptual clave es que la elección tardía de la configuración de medida parece decidir retroactivamente si el cuanto «era una onda» o «era una partícula» en el pasado, lo que desafía los retratos realistas ingenuos de su trayectoria.</p>
+  <p>Para el montaje completo y la implementación fotónica de Jacques y colegas (2007), véase <a href="wheeler-delayed-choice.html">la guía sobre la elección retardada de Wheeler</a>. Lo que añaden Manning y colegas es la respuesta más directa posible a una pregunta natural de seguimiento: ¿es este comportamiento extraño peculiar de la luz, o se generaliza a partículas con masa en reposo?</p>
+</section>
+
+<section>
+  <h2>Lo que hicieron Manning y colegas</h2>
+  <p>Manning y colaboradores implementaron el esquema de Wheeler con un único átomo de helio metaestable atravesando un interferómetro Mach&ndash;Zehnder de ondas de materia formado por pulsos coherentes de división de haz y de espejo. El montaje:</p>
+  <ul>
+    <li>Una <strong>fuente ultrafría (sub-nanokelvin)</strong> de átomos individuales, liberados de una trampa óptica dipolar y cayendo bajo gravedad sobre un detector de línea de retardo que registra átomos individuales de He* con información espacial y temporal en 3D completa.</li>
+    <li>Los dos «brazos» del interferómetro se realizan mediante <strong>división y recombinación coherente en el espacio de momentos</strong> de la función de onda atómica, usando pulsos de luz tipo Bragg o Raman que actúan como divisores y espejos de ondas de materia.</li>
+    <li>Programando estos pulsos adecuadamente, <em>cierran</em> el interferómetro y recombinan los caminos (interferencia posible) o lo <em>dejan abierto</em> de modo que el resultado de detección revela qué camino tomó el átomo (sin interferencia).</li>
+  </ul>
+  <p>El principio es idéntico al del experimento fotónico. La implementación, con partículas masivas en lugar de luz, es la novedad conceptualmente impactante.</p>
+</section>
+
+<section>
+  <h2>La elección retardada y la aleatoriedad</h2>
+  <p>La «elección retardada» en este experimento se implementa activando un generador de números aleatorios sólo <em>después</em> de que el átomo haya pasado el primer divisor de haz (el pulso de división inicial). Ese bit aleatorio determina entonces si la configuración del pulso final cerrará el interferómetro (permitiendo interferencia) o lo dejará abierto (proporcionando información de camino), asegurando que el átomo no tenga acceso causal a la elección futura bajo supuestos relativistas ordinarios.</p>
+  <p>Como los átomos se mueven mucho más despacio que la luz, los experimentadores tienen una <em>ventana temporal extendida</em> &mdash; comparada con los experimentos fotónicos &mdash; para realizar e implementar la elección aleatoria entre las dos configuraciones de medida. Este régimen lento de partículas masivas hace la realización atómica conceptualmente limpia y técnicamente flexible en comparación con tests ópticos anteriores a gran escala. El resquicio de la elección retardada tiene más holgura cuando el portador del cuanto no corre a la velocidad de la luz.</p>
+</section>
+
+<section>
+  <h2>Resultados: interferencia frente a información de camino</h2>
+  <p>Cuando el interferómetro está <strong>cerrado</strong>, los átomos detectados muestran franjas de interferencia de alta visibilidad en función de la fase relativa entre los dos brazos, exhibiendo de forma inequívoca comportamiento ondulatorio del átomo individual. Cuando el interferómetro se deja <strong>abierto</strong>, el patrón de interferencia dependiente de la fase desaparece, y las detecciones se correlacionan con uno u otro brazo, correspondiendo a información de camino de tipo corpuscular.</p>
+  <blockquote style="font-style:italic;border-left:3px solid var(--gold);padding-left:1.2em;margin:1em 0;color:var(--cream);">
+    Crucialmente, cuál de estos dos comportamientos aparece está decidido por la elección retardada y aleatoria que ocurre <em>después</em> de que el átomo ya haya entrado en el interferómetro &mdash; en acuerdo con el experimento mental original de Wheeler. Las estadísticas observadas coinciden con la predicción cuántica estándar de que el contexto de medida determina completamente si emerge la interferencia, sin necesidad de postular ninguna influencia retrocausal ni carácter «onda» o «partícula» preexistente.
+  </blockquote>
+</section>
+
+<section>
+  <h2>Lectura conceptual y la visión de Bohr</h2>
+  <p>Los autores subrayan que sus datos apoyan la visión de complementariedad de Bohr: sencillamente no tiene sentido atribuir comportamiento de «onda» o «partícula» al átomo independientemente del arreglo de medida. En otras palabras, preguntar «¿qué estaba haciendo realmente el átomo entre la fuente y el detector?» en términos clásicos es un error categorial; sólo el contexto experimental completo y los resultados subsiguientes tienen un significado físico bien definido.</p>
+  <p>Su realización demuestra también el esquema de elección retardada de Wheeler para partículas masivas, extendiendo tales tests más allá de los fotones y subrayando que la dualidad onda-corpúsculo y el comportamiento dependiente del contexto no están restringidos a la luz. Esto es alentador para experimentos posteriores con entrelazamiento, tests de Bell y fenómenos cuánticos macroscópicos con sistemas masivos, donde se pueden sondear argumentos similares de elección retardada y contextualidad.</p>
+</section>
+
+<section>
+  <h2>Por qué importa para la trilogía</h2>
+  <p>El resultado de Manning es la forma experimental más limpia de la pregunta que <em>Limen</em> hace sobre el tiempo. Si el experimento fotónico de Jacques deja margen a la objeción «pero los fotones no tienen <em>masa</em> &mdash; quizá la rareza sea específica de la luz», Manning cierra esa salida. Los átomos masivos se comportan del mismo modo. La elección de medida retardada determina si el átomo era una onda o una partícula. El patrón de comportamiento es una característica de los sistemas cuánticos en general, no una rareza de la radiación electromagnética.</p>
+  <p>Leído junto a la guía sobre la versión fotónica y al <a href="tsvf.html">formalismo del vector de dos estados</a>, el resultado de Manning ancla la afirmación central de la trilogía sobre el tiempo: que el presente se construye en la interfaz entre restricciones cuánticas que se propagan hacia adelante y hacia atrás. Los huecos simétricos de 300 milisegundos de la trilogía &mdash; el potencial de disposición de Libet en el lado del pasado, la ventana cimática pre-evento de Lucía Reyes en el lado del futuro &mdash; no son adornos ficticios. Son exactamente el tipo de fenómeno que la mecánica cuántica contemporánea, tomada en serio tanto para fotones como para partículas masivas, lleva cuarenta años mostrándonos cómo pensar.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">Para el artículo original de 2015, véase <a href="https://www.nature.com/articles/nphys3343" target="_blank" rel="noopener">Nature Physics 11, 539&ndash;542</a>. Para la implementación fotónica que inició el programa empírico, véase la <a href="wheeler-delayed-choice.html">guía sobre Jacques 2007</a>. Para el lenguaje formal que organiza estos resultados, véase la <a href="tsvf.html">guía sobre el formalismo del vector de dos estados</a>. Para la síntesis, véase <a href="the-evidence.html">Qué muestra la evidencia hasta ahora</a>.</p>
+  <a href="reading.html" class="read-more">← Lecturas y referencias</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

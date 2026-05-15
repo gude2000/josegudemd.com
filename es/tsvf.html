@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El formalismo del vector de dos estados &mdash; José Gude MD</title>
+  <meta name="description" content="Guía de lectura sobre la revisión de Aharonov y Vaidman del Formalismo del Vector de Dos Estados — la reformulación temporalmente simétrica de la mecánica cuántica en la que el presente está restringido tanto por el pasado como por el futuro, las medidas débiles revelan valores anómalos, y la cuestión de la retrocausalidad se convierte en un programa de investigación.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Libros</a></li>
+      <li><a href="reading.html">Lecturas</a></li>
+      <li><a href="watch.html">Ver y Escuchar</a></li>
+      <li><a href="the-evidence.html">Síntesis</a></li>
+      <li><a href="about.html">Autor</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><a href="../tsvf.html">EN</a> <span style="opacity:0.4;">|</span> <span style="color:var(--gold);">ES</span></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">La investigación &middot; Aharonov &middot; Vaidman &middot; MC temporalmente simétrica</p>
+  <h1>El formalismo del vector de dos estados</h1>
+  <p class="lede">El artículo de Yakir Aharonov y Lev Vaidman <a href="https://www.tau.ac.il/~vaidman/lvhp/m103.pdf" target="_blank" rel="noopener"><em>The Two-State Vector Formalism: An Updated Review</em></a> reformula la mecánica cuántica de modo que la descripción de un sistema en cualquier instante intermedio depende tanto de su <em>pasado</em> como de su <em>futuro</em>. Es una lectura temporalmente simétrica de la teoría estándar &mdash; no cambia ninguna predicción experimental, pero las reorganiza en una imagen donde la retrocausalidad, las medidas débiles y los «valores débiles» anómalos dejan de parecer paradojas y empiezan a parecer el comportamiento natural de sistemas pre- y post-seleccionados.</p>
+  <p class="dim">Guía de lectura para una entrada de la bibliografía. PDF alojado por Vaidman en la Universidad de Tel Aviv.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>La imagen central</h2>
+  <p>Normalmente pensamos: el presente está conformado sólo por el pasado. TSVF dice: para describir plenamente un sistema cuántico en cierto momento, debes mirar tanto su pasado como su futuro.</p>
+  <p>Así, en lugar de decir «el sistema tiene un estado que viene del pasado», TSVF dice: en cualquier instante intermedio, el sistema se describe mediante</p>
+  <ul>
+    <li>Un estado que viene <em>hacia delante</em> desde la preparación en el pasado.</li>
+    <li>Otro estado «compañero» que viene <em>hacia atrás</em> desde la medida que harás en el futuro.</li>
+  </ul>
+  <p>Juntos dan una descripción más rica de lo que ocurre en medio.</p>
+</section>
+
+<section>
+  <h2>Una analogía cotidiana</h2>
+  <p>Imagina a un paciente en el hospital.</p>
+  <ul>
+    <li>En el ingreso, recoges historia, analíticas, imagen &mdash; eso es <em>preselección</em>.</li>
+    <li>Después, en el alta, tienes datos de evolución, diagnóstico final, respuesta al tratamiento &mdash; eso es <em>postselección</em>.</li>
+  </ul>
+  <p>Si preguntas: «¿qué estaba ocurriendo en realidad el tercer día?», idealmente usarías ambas cosas: lo que sabías hasta el tercer día (viniendo del pasado) y lo que descubriste después en el séptimo (viniendo del futuro, en retrospectiva).</p>
+  <blockquote style="font-style:italic;border-left:3px solid var(--gold);padding-left:1.2em;margin:1em 0;color:var(--cream);">
+    TSVF es como decir: esa «realidad del tercer día» se describe mejor usando tanto los datos tempranos como el desenlace final, no sólo los datos tempranos.
+  </blockquote>
+  <p>Cuánticamente, el estado actual suele usar sólo los «datos tempranos». TSVF insiste en que para un subgrupo de sistemas en los que sabes tanto cómo los preparaste como cómo terminaron, la descripción correcta en el medio usa dos vectores de estado: uno desde el inicio, otro desde el final.</p>
+</section>
+
+<section>
+  <h2>¿Por qué molestarse?</h2>
+  <p>Porque algunos experimentos cuánticos se montan exactamente así:</p>
+  <ul>
+    <li>Preparas partículas de un modo conocido.</li>
+    <li>Las dejas pasar por algún aparato.</li>
+    <li>Luego sólo te quedas con las corridas en las que la medida final produce un resultado especial &mdash; postselección.</li>
+  </ul>
+  <p>Cuando miras sólo esas corridas especiales, aparecen patrones extraños: partículas que parecen estar «en dos cajas a la vez», medidas que dan valores fuera del rango habitual y otros resultados aparentemente anómalos. TSVF los reencuadra: <em>no son contradicciones; son simplemente el comportamiento natural de sistemas constreñidos tanto por cómo empezaron como por cómo terminaron.</em></p>
+</section>
+
+<section>
+  <h2>Las medidas débiles en lenguaje llano</h2>
+  <p>Una herramienta clave aquí es la <em>medida débil</em>.</p>
+  <ul>
+    <li>Una medida normal en mecánica cuántica es como un test muy intrusivo: agarra el sistema y le obliga a elegir un resultado definido, perturbándolo a menudo mucho.</li>
+    <li>Una medida débil es como echar un vistazo a las constantes vitales de alguien en un monitor con un sensor muy poco sensible: apenas perturbas al paciente, pero cualquier lectura individual es casi puro ruido.</li>
+  </ul>
+  <p>En una sola corrida, una medida débil te dice casi nada. Pero si la repites sobre un gran grupo de sistemas preparados de forma idéntica y promedias, obtienes un número bien definido.</p>
+  <p>En TSVF, ese promedio &mdash; el llamado <em>valor débil</em> &mdash; surge tanto del estado que evoluciona hacia delante (desde la preparación) como del que evoluciona hacia atrás (desde el resultado final). Por eso estos promedios pueden parecer tan raros, a veces incluso fuera del rango habitualmente permitido: están conformados por dos condiciones de frontera, no por una. Los valores débiles son cantidades mensurables reales, pero no pueden derivarse sólo de la información del pasado.</p>
+</section>
+
+<section>
+  <h2>Un ejemplo trabajado: la paradoja de las tres cajas</h2>
+  <p>La forma más limpia de sentir qué <em>hace</em> realmente TSVF es recorrer un ejemplo trabajado famoso. Una bola. Tres cajas &mdash; A, B y C.</p>
+
+  <h3>Montaje</h3>
+  <p>La preparación cuántica pone la bola en una superposición, «extendida» por las tres cajas a la vez. Más tarde harás una comprobación final especial (postselección) que sólo conserva las corridas en las que se satisface una cierta condición &mdash; aproximadamente, un patrón particular de cómo está distribuida la bola entre las cajas. Entre la preparación y la comprobación final, se le permite a un experimentador abrir exactamente una caja (digamos A <em>o</em> B) y ver si la bola está allí.</p>
+
+  <h3>La afirmación rara</h3>
+  <p>Para los estados inicial y final cuidadosamente elegidos, la teoría cuántica dice:</p>
+  <ul>
+    <li>Si abres la caja A en el medio, encontrarás la bola allí <em>con certeza</em>, en todas las corridas que después pasen la comprobación final.</li>
+    <li>Si en su lugar abres la caja B en el medio, también encontrarás la bola allí <em>con certeza</em>, en todas las corridas que después pasen la misma comprobación.</li>
+  </ul>
+  <p>No tienes permitido abrir A y B en la misma corrida, así que nunca ves directamente A y B ocupadas a la vez. Pero contrafácticamente suena como:</p>
+  <ul>
+    <li>«Si hubieras mirado en A, habría estado ciertamente en A.»</li>
+    <li>«Si hubieras mirado en B, habría estado ciertamente en B.»</li>
+  </ul>
+  <p>Y sin embargo empezamos con una sola bola. Ese es el sabor paradójico.</p>
+
+  <h3>Cómo TSVF cuenta la historia</h3>
+  <p>En la mecánica cuántica ordinaria (de un vector), describimos la situación en el tiempo intermedio usando sólo la preparación inicial y la evolución unitaria. Eso hace que las afirmaciones anteriores parezcan probabilidades condicionales extrañas asociadas a «qué pasaría si hubiéramos abierto A frente a B».</p>
+  <p>En TSVF, para este conjunto pre- y post-seleccionado, el sistema en el medio se describe mediante <em>dos</em> vectores de estado:</p>
+  <ul>
+    <li>Uno que evoluciona <em>hacia delante</em> desde la preparación.</li>
+    <li>Uno que evoluciona <em>hacia atrás</em> desde la comprobación final exitosa.</li>
+  </ul>
+  <p>En el tiempo intermedio, la combinación de estos dos estados codifica fuertes restricciones sobre dónde puede encontrarse la bola en las corridas que satisfacen <em>ambas</em> condiciones de frontera. Intuitivamente:</p>
+  <ul>
+    <li>El estado hacia delante dice: «La bola tiene amplitud no nula en A, B y C».</li>
+    <li>El estado hacia atrás (desde el futuro) favorece las configuraciones consistentes con la comprobación final.</li>
+  </ul>
+  <p>Cuando preguntas «si abro A, ¿qué pasa?», estás realmente sondeando el solapamiento entre la amplitud hacia delante en A desde el pasado y la amplitud hacia atrás en A desde el futuro. Para la preselección y postselección especialmente afinadas, ese solapamiento es del 100&nbsp;% para A &mdash; de ahí la certeza de encontrar la bola en A. Igualmente, el solapamiento para B también es del 100&nbsp;% si eliges abrir B.</p>
+  <blockquote style="font-style:italic;border-left:3px solid var(--gold);padding-left:1.2em;margin:1em 0;color:var(--cream);">
+    Dados tanto lo que hicimos al principio como lo que acabamos aceptando al final, la «descripción del medio» es tal que la caja A está garantizada-ocupada si miras allí, y la caja B también está garantizada-ocupada si en su lugar miras allí. Esto no es lo mismo que decir que la bola está simultáneamente en A y B en sentido clásico ordinario; es decir que las restricciones conjuntas del pasado y del futuro fuerzan que estos dos escenarios contrafácticos de medida tengan ambos certeza.
+  </blockquote>
+
+  <h3>Las medidas débiles como sonda suave</h3>
+  <p>Si intentas comprobar «¿está la bola en A y B a la vez?» con medidas normales y fuertes que efectivamente abren cajas, perturbas inevitablemente el sistema lo suficiente como para destruir el delicado conjunto pre- y post-seleccionado. Las medidas débiles ofrecen una salida:</p>
+  <ul>
+    <li>Te acoplas muy suavemente a la «ocupación de A» y «ocupación de B», de modo que cada lectura individual es ruidosa, pero apenas perturbas el estado cuántico.</li>
+    <li>Luego postseleccionas con la misma condición final especial y promedias sobre muchas corridas.</li>
+  </ul>
+  <p>En este montaje de tres cajas, los promedios de las medidas débiles &mdash; los valores débiles &mdash; salen como si:</p>
+  <ul>
+    <li>La caja A tiene ocupación <em>1</em>.</li>
+    <li>La caja B también tiene ocupación <em>1</em>.</li>
+    <li>La caja C tiene ocupación <em>&minus;1</em> &mdash; una «presencia» negativa y extraña.</li>
+  </ul>
+  <p>TSVF los trata como perfectamente naturales: son los números que obtienes al combinar los estados hacia delante y hacia atrás en la fórmula del valor débil. No son conteos ordinarios de «cuántas bolas», pero predicen con precisión cómo se desplazará una sonda muy débilmente acoplada en cada caja.</p>
+  <p>Metafóricamente: el universo parece «comportarse como si» una bola estuviera en A, una bola en B y menos una bola en C, en cuanto a cómo responde un dispositivo de medida suave &mdash; porque tanto las restricciones del pasado como las del futuro guían al sistema.</p>
+
+  <h3>Por qué importa conceptualmente</h3>
+  <p>Desde una perspectiva TSVF en lenguaje llano, el ejemplo de las tres cajas sugiere tres cosas:</p>
+  <ul>
+    <li>La «realidad» de un sistema cuántico entre medidas no está fijada únicamente por su pasado; está conjuntamente conformada por condiciones de frontera del pasado y del futuro.</li>
+    <li>Las paradojas aparentes &mdash; como que una bola parezca estar con certeza en A y con certeza en B según qué eliges mirar &mdash; son expresiones de esa restricción bilateral, no contradicciones de la teoría.</li>
+    <li>Las medidas débiles dan acceso operativo a estos rasgos de dos estados, produciendo promedios extraños pero experimentalmente contrastables que coinciden con las predicciones del TSVF.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>En qué se diferencia del manual</h2>
+  <p>La historia estándar es: <em>para saber el sistema ahora, traza la función de onda hacia delante desde el pasado.</em></p>
+  <p>La historia TSVF, para sistemas pre- y post-seleccionados, es: <em>para saber el sistema ahora, traza un estado hacia delante desde la preparación y otro hacia atrás desde la medida futura; el par es la descripción completa.</em></p>
+  <p>Dos cosas que conviene mantener claras:</p>
+  <ul>
+    <li>TSVF <em>no</em> cambia ninguna predicción experimental de la mecánica cuántica. Es una forma distinta de organizar e interpretar los mismos fenómenos.</li>
+    <li>Resalta la idea de que la teoría cuántica puede ser fundamentalmente <em>temporalmente simétrica</em>: las leyes mismas no prefieren pasado a futuro, aunque nuestra experiencia sí lo haga.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Por qué a los filósofos y a la gente de fundamentos les importa</h2>
+  <p>TSVF toca varios temas grandes a los que la trilogía vuelve:</p>
+  <ul>
+    <li><strong>Simetría temporal.</strong> Toma en serio la idea de que las leyes básicas de la naturaleza tratan pasado y futuro en pie de igualdad.</li>
+    <li><strong>Información desde el futuro.</strong> Fuerza el reconocimiento de que conocer un resultado futuro puede ser tan restrictivo como conocer la preparación pasada &mdash; aunque esto no permite enviar señales utilizables hacia atrás en el tiempo.</li>
+    <li><strong>Realidades cuánticas alternativas.</strong> Sugiere que lo que «existe» entre medidas podría capturarse mejor por restricciones de <em>ambos</em> extremos del tiempo, lo que alimenta debates sobre retrocausalidad, realismo y ontología de la función de onda.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Por qué importa para la trilogía</h2>
+  <p>TSVF es el andamio técnico bajo la afirmación de <em>Limen</em> de que el universo se lee en ambas direcciones del tiempo. La ventana cimática de 300 milisegundos pre-evento de <em>Numen</em> &mdash; patrones geométricos formándose en agua antes de que se toque el acorde &mdash; no es metáfora en este marco. Es lo que el mundo parece cuando una medida final restringe el estado intermedio. El campo llegando «antes» de su causa es el comportamiento natural de un sistema bajo dos condiciones de frontera, no una violación de la ley física.</p>
+  <p>Esto encaja exactamente con los experimentos de elección retardada de Wheeler (Jacques 2007, Manning 2015), que son demostraciones explícitas de que una elección futura restringe el camino pasado. Wheeler mostró el hecho empírico. Aharonov y Vaidman construyeron el formalismo matemático que organiza ese hecho dentro de una teoría cuántica coherente. TSVF es el lenguaje en el que la cosmología de campo de <em>Limen</em> &mdash; la conciencia como fundamental, el tiempo como bidireccionalmente restringido, el «presente» como la interfaz construida entre vectores de estado pasados y futuros &mdash; es técnicamente expresable y no sólo sugerente.</p>
+  <p>Esta es la misma arquitectura que le permite a la trilogía tomar el potencial de disposición de Libet y la ventana cimática pre-evento de Lucía Reyes como fenómenos <em>simétricos</em>: el «ahora» biológico local tiene una latencia en su lado pasado (el hueco RP de 300 ms) y una anticipación en su lado futuro (la ventana cimática pre-evento de 300 ms). En una ontología productivista estricta de tiempo sólo hacia delante, la simetría es una paradoja. En TSVF, es simplemente lo que dice la mecánica cuántica temporalmente simétrica cuando ambas condiciones de frontera importan.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">Para la revisión completa, véase el <a href="https://www.tau.ac.il/~vaidman/lvhp/m103.pdf" target="_blank" rel="noopener">PDF</a> alojado por Vaidman. Para el complemento empírico del TSVF, véanse las entradas sobre la elección retardada de Wheeler en la página de <a href="reading.html">Lecturas</a>. Para la síntesis que entreteje la mecánica cuántica temporalmente simétrica con el resto de la evidencia del modelo receptor, véase <a href="the-evidence.html">Qué muestra la evidencia hasta ahora</a>.</p>
+  <a href="reading.html" class="read-more">← Lecturas y referencias</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
