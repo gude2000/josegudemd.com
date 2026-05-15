@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explorar &mdash; José Gude MD</title>
+  <meta name="description" content="Páginas interactivas que vuelven manipulables las afirmaciones centrales de la trilogía — la espiral φ con snap-to-φ y los modos rectángulos de Fibonacci, la comparación auditiva de afinaciones renderizada en tu navegador, y la cronología del cambio de paradigma en física, ciencia de la conciencia y tradiciones contemplativas.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .explore-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+      margin: 32px 0;
+    }
+    @media (min-width: 760px) {
+      .explore-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .explore-card {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 24px 26px;
+      transition: border-color .2s ease, transform .2s ease, background .2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .explore-card:hover {
+      border-color: var(--gold);
+      background: var(--bg-soft);
+      transform: translateY(-2px);
+    }
+    .explore-card .tag {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .explore-card h2 {
+      font-size: 20px;
+      color: var(--cream);
+      margin: 0;
+      letter-spacing: 0.01em;
+      line-height: 1.25;
+    }
+    .explore-card p {
+      color: var(--cream-dim);
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .explore-card .visit {
+      margin-top: auto;
+      padding-top: 12px;
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Libros</a></li>
+      <li><a href="reading.html">Lecturas</a></li>
+      <li><a href="watch.html">Ver y Escuchar</a></li>
+      <li><a href="explore.html" class="active">Explorar</a></li>
+      <li><a href="the-evidence.html">Síntesis</a></li>
+      <li><a href="about.html">Autor</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><a href="../explore.html">EN</a> <span style="opacity:0.4;">|</span> <span style="color:var(--gold);">ES</span></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">Las páginas interactivas</p>
+  <h1>Explorar</h1>
+  <p class="lede">Tres páginas de este sitio traducen las afirmaciones centrales de la trilogía en algo que se puede manipular. El lector deja de leer <em>sobre</em> φ y empieza a arrastrar el deslizador. Deja de leer <em>sobre</em> el do afinado en φ y empieza a oírlo. Deja de leer <em>sobre</em> la convergencia y empieza a verla trazada sobre tres pistas paralelas. Cada página es breve, autocontenida, y se lee mejor junto a su explicación complementaria.</p>
+  <p class="dim">Las tres funcionan en cualquier navegador moderno, sin instalación. La página de afinaciones se beneficia de auriculares; la espiral y la cronología funcionan en cualquier pantalla.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <div class="explore-grid">
+    <a class="explore-card" href="golden-ratio.html#interactive">
+      <span class="tag">Geometría &middot; φ</span>
+      <h2>La espiral φ, interactiva</h2>
+      <p>Un deslizador que transforma la tasa de crecimiento de una espiral logarítmica. Pulsa snap-to-φ para ver la única tasa que anida cuadrados de Fibonacci sin resto. Cambia a filotaxis para ver lo que hacen los 137,5° en el empaquetamiento de semillas &mdash; la geometría sobre la que descansa la metáfora antena de la trilogía.</p>
+      <span class="visit">abrir la espiral →</span>
+    </a>
+    <a class="explore-card" href="tunings.html">
+      <span class="tag">Audio &middot; afinaciones</span>
+      <h2>Afinaciones — una comparación auditiva</h2>
+      <p>Cinco botones. Cada uno reproduce la nota do afinada de un modo distinto: 12-TET A=440, 12-TET A=432, entonación justa en do=264, el do afinado en φ a 266,67 Hz que usa la trilogía, y el intervalo φ. Tonos sinusoidales puros generados en vivo en tu navegador. La afirmación sobre la frecuencia hecha audible.</p>
+      <span class="visit">tocar las afinaciones →</span>
+    </a>
+    <a class="explore-card" href="timeline.html">
+      <span class="tag">Historia &middot; convergencia</span>
+      <h2>La cronología del cambio de paradigma</h2>
+      <p>Un siglo de evidencia en tres pistas paralelas &mdash; física, ciencia de la conciencia, puntos de inflexión &mdash; desde Planck (1900) hasta D'Ariano-Faggin (2024). Pulsa cualquier entrada para abrir su explicación. La banda pre-1900 nombra la herencia contemplativa sobre la que descansa la historia moderna.</p>
+      <span class="visit">recorrer la cronología →</span>
+    </a>
+    <a class="explore-card" href="../assets/webb-fractal.html">
+      <span class="tag">Geometría &middot; fractal Webb</span>
+      <h2>El fractal Webb</h2>
+      <p>La estructura triangular recursiva en el corazón de <em>Numen</em>, renderizada en 3-D. Arrastra para rotar, desplaza para hacer zoom, alterna la profundidad para ver el anidamiento autosemejante. El análogo visual de la afirmación de la trilogía de que el mismo patrón aparece a toda escala.</p>
+      <span class="visit">rotar el fractal →</span>
+    </a>
+  </div>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">Estas páginas no sirven como sustituto de los libros ni como sustituto de la síntesis; sirven como <em>complementos</em>. La espiral φ vuelve táctil <a href="golden-ratio.html">la guía sobre la razón áurea</a>. La página de afinaciones vuelve audible <a href="watch.html">la página Ver y Escuchar</a>. La cronología vuelve visible de un vistazo <a href="the-evidence.html">la Síntesis</a>. Lee las explicaciones; juega con los widgets; deja que la imagen se asiente.</p>
+  <a href="index.html" class="read-more">← Volver a los libros</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Herramientas del lector:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Empieza aquí</a> &middot;
+      <a href="glossary.html">Glosario</a> &middot;
+      <a href="the-evidence.html">Síntesis</a> &middot;
+      <a href="explore.html">Explorar</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explore &mdash; José Gude MD</title>
+  <meta name="description" content="Interactive pages that make the trilogy's central claims manipulable — the φ-spiral with snap-to-φ and Fibonacci-rectangle modes, the tunings audio comparison rendered in your browser, and the paradigm-shift timeline of physics, consciousness science, and contemplative traditions.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .explore-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+      margin: 32px 0;
+    }
+    @media (min-width: 760px) {
+      .explore-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .explore-card {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 24px 26px;
+      transition: border-color .2s ease, transform .2s ease, background .2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .explore-card:hover {
+      border-color: var(--gold);
+      background: var(--bg-soft);
+      transform: translateY(-2px);
+    }
+    .explore-card .tag {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .explore-card h2 {
+      font-size: 20px;
+      color: var(--cream);
+      margin: 0;
+      letter-spacing: 0.01em;
+      line-height: 1.25;
+    }
+    .explore-card p {
+      color: var(--cream-dim);
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .explore-card .visit {
+      margin-top: auto;
+      padding-top: 12px;
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Books</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="watch.html">Watch &amp; Listen</a></li>
+      <li><a href="explore.html" class="active">Explore</a></li>
+      <li><a href="the-evidence.html">Synthesis</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><span style="color:var(--gold);">EN</span> <span style="opacity:0.4;">|</span> <a href="es/explore.html">ES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">The interactive pages</p>
+  <h1>Explore</h1>
+  <p class="lede">Three pages on this site translate the trilogy's central claims into something you can manipulate. The reader stops reading <em>about</em> φ and starts dragging it. Stops reading <em>about</em> the φ-tuned C and starts hearing it. Stops reading <em>about</em> the convergence and starts seeing it laid out across three parallel tracks. Each page is short, self-contained, and best read alongside its companion explainer.</p>
+  <p class="dim">All three work in any modern browser, with no installation. The tunings page benefits from headphones; the spiral and the timeline work on any screen.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <div class="explore-grid">
+    <a class="explore-card" href="golden-ratio.html#interactive">
+      <span class="tag">Geometry &middot; φ</span>
+      <h2>The φ-spiral, interactive</h2>
+      <p>A slider that morphs the growth rate of a logarithmic spiral. Snap to φ to see the only rate that nests Fibonacci squares without remainder. Toggle to phyllotaxis to see what 137.5° does to seed packing &mdash; the geometry the trilogy's antenna metaphor rests on.</p>
+      <span class="visit">open the spiral →</span>
+    </a>
+    <a class="explore-card" href="tunings.html">
+      <span class="tag">Audio &middot; tunings</span>
+      <h2>Tunings — an audio comparison</h2>
+      <p>Five buttons. Each plays the note C tuned a different way: 12-TET A=440, 12-TET A=432, just intonation at C=264, the φ-tuned C=266.67 Hz the trilogy uses, and the φ-interval itself. Pure sine tones generated live in your browser. The frequency claim made audible.</p>
+      <span class="visit">play the tunings →</span>
+    </a>
+    <a class="explore-card" href="timeline.html">
+      <span class="tag">History &middot; convergence</span>
+      <h2>The paradigm-shift timeline</h2>
+      <p>A century of evidence on three parallel tracks &mdash; physics, consciousness science, inflection points &mdash; from Planck (1900) to D'Ariano-Faggin (2024). Click any entry for the explainer. The pre-1900 banner names the contemplative inheritance the modern story rests on.</p>
+      <span class="visit">walk the timeline →</span>
+    </a>
+    <a class="explore-card" href="assets/webb-fractal.html">
+      <span class="tag">Geometry &middot; Webb fractal</span>
+      <h2>The Webb fractal</h2>
+      <p>The recursive triangle structure at the heart of <em>Numen</em>, rendered in 3-D. Drag to rotate, scroll to zoom, toggle depth to see the self-similar nesting. The visual analog of the trilogy's claim that the same pattern appears at every scale.</p>
+      <span class="visit">rotate the fractal →</span>
+    </a>
+  </div>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">These pages are useless as substitutes for the books and as substitutes for the synthesis; they are useful as <em>complements</em>. The φ-spiral makes <a href="golden-ratio.html">the golden-ratio explainer</a> tactile. The tunings page makes <a href="watch.html">the Watch &amp; Listen page</a> audible. The timeline makes <a href="the-evidence.html">the Synthesis</a> visible at a glance. Read the explainers; play with the widgets; let the picture settle.</p>
+  <a href="index.html" class="read-more">← Back to the books</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Reader's tools:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Start here</a> &middot;
+      <a href="glossary.html">Glossary</a> &middot;
+      <a href="the-evidence.html">Synthesis</a> &middot;
+      <a href="explore.html">Explore</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
