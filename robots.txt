@@ -1,0 +1,5 @@
+# josegudemd.com — robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://josegudemd.com/sitemap.xml
