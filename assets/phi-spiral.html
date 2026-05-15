@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>φ-spiral — interactive</title>
+<style>
+  :root {
+    --bg:        #0a0e1a;
+    --bg-soft:   #11151f;
+    --cream:     #e8e0ce;
+    --cream-dim: #b9b09b;
+    --cream-mute:#7d7868;
+    --gold:      #daa055;
+    --gold-soft: #c48c42;
+    --teal:      #78c8b4;
+    --violet:    #b4a0e6;
+    --rule:      #2a2e3d;
+  }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    color: var(--cream-dim);
+  }
+  #scene { width: 100vw; height: 100vh; display: block; }
+  .hint {
+    position: absolute; top: 14px; right: 16px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(185, 176, 155, 0.45);
+    pointer-events: none;
+    user-select: none;
+  }
+  .readout {
+    position: absolute;
+    top: 14px; left: 16px;
+    color: var(--cream-dim);
+    font-size: 12px;
+    line-height: 1.7;
+    user-select: none;
+    pointer-events: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .readout .label {
+    color: var(--cream-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+  .readout .value {
+    color: var(--cream);
+    font-size: 14px;
+  }
+  .readout .value.phi {
+    color: var(--gold);
+  }
+  .controls {
+    position: absolute;
+    bottom: 56px; left: 0; right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 0 24px;
+    pointer-events: none;
+  }
+  .slider-wrap {
+    width: 100%;
+    max-width: 520px;
+    pointer-events: auto;
+  }
+  .slider-wrap .slider-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(185, 176, 155, 0.55);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    background: transparent;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 2px;
+    background: var(--rule);
+    border-radius: 1px;
+  }
+  input[type=range]::-moz-range-track {
+    height: 2px;
+    background: var(--rule);
+    border-radius: 1px;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: -6px;
+    box-shadow: 0 0 0 2px rgba(218,160,85,0.25);
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: none;
+    box-shadow: 0 0 0 2px rgba(218,160,85,0.25);
+  }
+  .mode-toggle {
+    display: flex;
+    gap: 0;
+    pointer-events: auto;
+  }
+  .mode-toggle button {
+    background: transparent;
+    border: 1px solid rgba(218, 160, 85, 0.4);
+    color: rgba(218, 160, 85, 0.85);
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    margin: 0 -1px 0 0;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .mode-toggle button:first-of-type { border-radius: 2px 0 0 2px; }
+  .mode-toggle button:last-of-type  { border-radius: 0 2px 2px 0; }
+  .mode-toggle button:hover {
+    color: var(--cream);
+    border-color: var(--gold);
+  }
+  .mode-toggle button.active {
+    background: rgba(218, 160, 85, 0.18);
+    color: var(--cream);
+    border-color: var(--gold);
+  }
+  .snap-btn {
+    background: transparent;
+    border: 1px solid rgba(184, 144, 76, 0.55);
+    color: var(--gold);
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    cursor: pointer;
+    border-radius: 2px;
+    pointer-events: auto;
+    transition: background .15s ease, color .15s ease;
+  }
+  .snap-btn:hover {
+    background: rgba(218, 160, 85, 0.18);
+    color: var(--cream);
+  }
+  .caption {
+    position: absolute;
+    bottom: 16px; left: 0; right: 0;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(218, 160, 85, 0.7);
+    pointer-events: none;
+    user-select: none;
+    padding: 0 24px;
+  }
+</style>
+</head>
+<body>
+
+<svg id="scene" xmlns="http://www.w3.org/2000/svg"></svg>
+
+<div class="hint">drag slider</div>
+
+<div class="readout">
+  <div><span class="label">growth / quarter-turn</span><br><span class="value" id="ratio-quarter">1.000</span></div>
+  <div style="margin-top:8px;"><span class="label">growth / full turn</span><br><span class="value" id="ratio-full">1.000</span></div>
+  <div style="margin-top:8px;"><span class="label">parameter b</span><br><span class="value" id="param-b">0.000</span></div>
+</div>
+
+<div class="controls">
+  <div class="slider-wrap">
+    <div class="slider-label" id="slider-caption">growth rate</div>
+    <input type="range" id="growth" min="1.05" max="2.50" step="0.001" value="1.000">
+  </div>
+  <div style="display:flex;gap:12px;align-items:center;">
+    <button class="snap-btn" id="snap-phi">snap to φ</button>
+    <div class="mode-toggle">
+      <button data-mode="spiral" class="active">spiral</button>
+      <button data-mode="rectangles">φ-rectangles</button>
+      <button data-mode="phyllotaxis">phyllotaxis</button>
+    </div>
+  </div>
+</div>
+
+<div class="caption" id="caption">a logarithmic spiral — the only curve that grows without changing shape</div>
+
+<script>
+(function(){
+  const svg = document.getElementById('scene');
+  const slider = document.getElementById('growth');
+  const snapBtn = document.getElementById('snap-phi');
+  const ratioQuarterEl = document.getElementById('ratio-quarter');
+  const ratioFullEl = document.getElementById('ratio-full');
+  const paramBEl = document.getElementById('param-b');
+  const captionEl = document.getElementById('caption');
+  const sliderCap = document.getElementById('slider-caption');
+  const modeButtons = document.querySelectorAll('.mode-toggle button');
+
+  const PHI = (1 + Math.sqrt(5)) / 2;
+  // golden angle in radians (the "phyllotaxis angle"): 360° / φ² = 137.5077…°
+  const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
+  let mode = 'spiral';
+  let W = 0, H = 0;
+  const PHI_EPS = 0.003; // ratio considered "at φ"
+
+  function resize(){
+    W = window.innerWidth;
+    H = window.innerHeight;
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    draw();
+  }
+  window.addEventListener('resize', resize);
+
+  function setMode(newMode){
+    mode = newMode;
+    modeButtons.forEach(b => b.classList.toggle('active', b.dataset.mode === newMode));
+    draw();
+  }
+  modeButtons.forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+
+  slider.addEventListener('input', draw);
+  snapBtn.addEventListener('click', () => {
+    slider.value = PHI.toFixed(3);
+    draw();
+  });
+
+  function clear(){
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+  }
+
+  function svgEl(tag, attrs){
+    const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function drawSpiral(g, cx, cy, b, scale){
+    // r = a * e^(b*θ); choose a so the spiral starts small
+    const a = 2;
+    let d = '';
+    const steps = 720; // 4 full turns @ 0.5° resolution
+    const thetaMax = 4 * 2 * Math.PI;
+    let first = true;
+    for (let i = 0; i <= steps; i++) {
+      const theta = (i / steps) * thetaMax;
+      const r = a * Math.exp(b * theta) * scale;
+      const x = cx + r * Math.cos(theta);
+      const y = cy + r * Math.sin(theta);
+      // clip if off-canvas
+      if (Math.abs(x - cx) > W && Math.abs(y - cy) > H) continue;
+      d += (first ? 'M' : 'L') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
+      first = false;
+    }
+    const path = svgEl('path', {
+      d: d.trim(),
+      fill: 'none',
+      stroke: 'var(--gold)',
+      'stroke-width': 1.5,
+      'stroke-linecap': 'round',
+      opacity: 0.95
+    });
+    g.appendChild(path);
+  }
+
+  function drawRadialMarkers(g, cx, cy, b, scale, growthRatio){
+    // dots at θ = 0, π/2, π, 3π/2, 2π — to make the per-quarter-turn ratio visible
+    const a = 2;
+    for (let i = 0; i <= 8; i++) {
+      const theta = i * Math.PI / 2;
+      const r = a * Math.exp(b * theta) * scale;
+      const x = cx + r * Math.cos(theta);
+      const y = cy + r * Math.sin(theta);
+      if (Math.abs(x) > 2*W || Math.abs(y) > 2*H) continue;
+      const dot = svgEl('circle', {
+        cx: x.toFixed(2),
+        cy: y.toFixed(2),
+        r: 3,
+        fill: i % 4 === 0 ? 'var(--gold)' : 'var(--cream-mute)',
+        opacity: 0.85
+      });
+      g.appendChild(dot);
+    }
+    // faint radial guide lines at the four cardinal angles
+    const rMax = a * Math.exp(b * 4 * 2 * Math.PI) * scale;
+    const rGuide = Math.min(rMax, Math.max(W, H));
+    for (let i = 0; i < 4; i++) {
+      const theta = i * Math.PI / 2;
+      const x2 = cx + rGuide * Math.cos(theta);
+      const y2 = cy + rGuide * Math.sin(theta);
+      const line = svgEl('line', {
+        x1: cx, y1: cy, x2: x2, y2: y2,
+        stroke: 'var(--rule)',
+        'stroke-width': 0.5,
+        'stroke-dasharray': '2,4',
+        opacity: 0.4
+      });
+      g.appendChild(line);
+    }
+  }
+
+  function drawFibonacciRectangles(g, cx, cy, scale){
+    // build a chain of squares whose sides follow Fibonacci: 1,1,2,3,5,8,13,21,34
+    // each square is positioned spirally around the previous block, the union is a φ-rectangle.
+    // we'll build it analytically. Use unit-square offsets: this is the classic construction.
+    const fibs = [1,1,2,3,5,8,13,21,34,55];
+    // recipe: directions cycle right, up, left, down (counter-clockwise)
+    // start with square[0] at (0,0), size 1
+    // square[1] is to the right of square[0]: at (1,0), size 1
+    // square[2] is above the union of [0..1]: at (0,-2), size 2
+    // square[3] is to the left of that union: at (-3,-2), size 3
+    // ... etc
+    let rects = [];
+    let x = 0, y = 0, w = 1, h = 1;
+    rects.push({x:0,y:0,s:1});
+    rects.push({x:1,y:0,s:1});
+    // union bounds after first two: x in [0,2], y in [0,1]
+    let bx = 0, by = 0, bw = 2, bh = 1;
+    const dirs = ['up','left','down','right']; // next square placement direction relative to union
+    let di = 0;
+    for (let i = 2; i < fibs.length; i++) {
+      const s = fibs[i];
+      let nx, ny;
+      const dir = dirs[di % 4];
+      if (dir === 'up')    { nx = bx;            ny = by - s; bh = bh + s; by = ny; bw = Math.max(bw, s); }
+      else if (dir === 'left'){ nx = bx - s;     ny = by;     bw = bw + s; bx = nx; bh = Math.max(bh, s); }
+      else if (dir === 'down'){ nx = bx;         ny = by + bh; bh = bh + s; bw = Math.max(bw, s); }
+      else if (dir === 'right'){ nx = bx + bw;   ny = by;     bw = bw + s; bh = Math.max(bh, s); }
+      rects.push({x:nx, y:ny, s:s});
+      di++;
+    }
+    // bounding box
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const r of rects) {
+      minX = Math.min(minX, r.x); minY = Math.min(minY, r.y);
+      maxX = Math.max(maxX, r.x + r.s); maxY = Math.max(maxY, r.y + r.s);
+    }
+    const totalW = maxX - minX;
+    const totalH = maxY - minY;
+    const targetSize = Math.min(W, H) * 0.78;
+    const k = targetSize / Math.max(totalW, totalH);
+    const offX = cx - (minX + totalW/2) * k;
+    const offY = cy - (minY + totalH/2) * k;
+
+    // draw rectangles
+    rects.forEach((r, idx) => {
+      const rect = svgEl('rect', {
+        x: (offX + r.x * k).toFixed(2),
+        y: (offY + r.y * k).toFixed(2),
+        width: (r.s * k).toFixed(2),
+        height: (r.s * k).toFixed(2),
+        fill: 'none',
+        stroke: 'var(--rule)',
+        'stroke-width': 1,
+        opacity: 0.55
+      });
+      g.appendChild(rect);
+      // label
+      const txt = svgEl('text', {
+        x: (offX + (r.x + r.s/2) * k).toFixed(2),
+        y: (offY + (r.y + r.s/2) * k + 3).toFixed(2),
+        fill: 'var(--cream-mute)',
+        'font-size': Math.max(8, Math.min(16, r.s * k * 0.18)),
+        'text-anchor': 'middle',
+        'font-family': '-apple-system, sans-serif',
+        opacity: 0.6
+      });
+      txt.textContent = r.s;
+      g.appendChild(txt);
+    });
+
+    // draw quarter-circle arcs inside each square — this is the Fibonacci spiral
+    // the arc in each square sweeps 90° from one corner to the adjacent corner
+    // direction of sweep follows the construction direction
+    const arcSweepDir = ['right','up','left','down','right','up','left','down','right','up'];
+    let arcPath = '';
+    rects.forEach((r, idx) => {
+      const cx0 = offX + r.x * k;
+      const cy0 = offY + r.y * k;
+      const sk = r.s * k;
+      // pick start and end corner depending on which direction this square was added
+      // for the classic Fibonacci spiral, arc goes from outer-corner-of-previous to outer-corner-of-this
+      // simpler: each square's arc is a quarter circle inscribed in it, sweeping 90°
+      // we determine which corner pair based on idx
+      let sx, sy, ex, ey, cxArc, cyArc;
+      const pattern = idx % 4;
+      if (pattern === 0) {
+        // start bottom-right -> top-right with center at top-right? simpler: bottom-left -> top-left? let's compute
+        // for idx 0: square at (0,0), size 1. arc should start at bottom-right (1,1) and go to top-right (1,0)? no that's just a vertical line
+        // classic Fibonacci spiral: arcs all share a common touching scheme. Each arc is a quarter circle of radius = square side.
+        // arc center is at one corner of the square, arc goes from one adjacent corner to the other.
+        // The center corner alternates: 0,1,2,3 → BR, BL, TL, TR (clockwise from bottom-right)
+      }
+      // center corner for each square (0-indexed): BR, BL, TL, TR, BR, BL, TL, TR...
+      const corners = ['BR','BL','TL','TR'];
+      const cc = corners[idx % 4];
+      let ccx, ccy;
+      if (cc === 'BR') { ccx = cx0 + sk; ccy = cy0 + sk; sx = cx0;       sy = cy0 + sk; ex = cx0 + sk; ey = cy0; }
+      if (cc === 'BL') { ccx = cx0;      ccy = cy0 + sk; sx = cx0 + sk; sy = cy0 + sk; ex = cx0;      ey = cy0; }
+      if (cc === 'TL') { ccx = cx0;      ccy = cy0;      sx = cx0 + sk; sy = cy0;      ex = cx0;      ey = cy0 + sk; }
+      if (cc === 'TR') { ccx = cx0 + sk; ccy = cy0;      sx = cx0;      sy = cy0;      ex = cx0 + sk; ey = cy0 + sk; }
+      // arc with radius = sk, large-arc-flag=0, sweep-flag=0 (counterclockwise from start to end)
+      arcPath += `M${sx.toFixed(2)},${sy.toFixed(2)} A${sk.toFixed(2)},${sk.toFixed(2)} 0 0 0 ${ex.toFixed(2)},${ey.toFixed(2)} `;
+    });
+    const arc = svgEl('path', {
+      d: arcPath.trim(),
+      fill: 'none',
+      stroke: 'var(--gold)',
+      'stroke-width': 1.8,
+      'stroke-linecap': 'round',
+      opacity: 0.95
+    });
+    g.appendChild(arc);
+
+    // ratio text: in this mode we always show φ
+    const lbl = svgEl('text', {
+      x: cx,
+      y: H - 110,
+      fill: 'var(--gold)',
+      'font-size': 13,
+      'text-anchor': 'middle',
+      'font-family': '-apple-system, sans-serif',
+      'letter-spacing': '0.10em'
+    });
+    lbl.textContent = 'consecutive Fibonacci ratios → φ';
+    g.appendChild(lbl);
+  }
+
+  function drawPhyllotaxis(g, cx, cy, divergenceAngle){
+    // divergence angle is the angle (radians) between successive seeds
+    // The φ-spiral case uses GOLDEN_ANGLE.
+    // here we vary it based on slider position to show what other angles produce
+    const seeds = 700;
+    const scale = Math.min(W, H) * 0.45 / Math.sqrt(seeds);
+    for (let i = 0; i < seeds; i++) {
+      const theta = i * divergenceAngle;
+      const r = scale * Math.sqrt(i);
+      const x = cx + r * Math.cos(theta);
+      const y = cy + r * Math.sin(theta);
+      const isGold = (i % 13 === 0) || (i % 21 === 0); // accent every 13th / 21st seed
+      const dot = svgEl('circle', {
+        cx: x.toFixed(2),
+        cy: y.toFixed(2),
+        r: 2.2,
+        fill: isGold ? 'var(--gold)' : 'var(--cream-mute)',
+        opacity: isGold ? 0.95 : 0.75
+      });
+      g.appendChild(dot);
+    }
+    const lbl = svgEl('text', {
+      x: cx,
+      y: H - 110,
+      fill: 'var(--gold)',
+      'font-size': 13,
+      'text-anchor': 'middle',
+      'font-family': '-apple-system, sans-serif',
+      'letter-spacing': '0.10em'
+    });
+    lbl.textContent = `divergence ${(divergenceAngle * 180 / Math.PI).toFixed(2)}°`;
+    g.appendChild(lbl);
+  }
+
+  function draw(){
+    clear();
+    // build a g group
+    const g = svgEl('g', {});
+    svg.appendChild(g);
+
+    const cx = W / 2;
+    const cy = H / 2;
+    const growthQuarter = parseFloat(slider.value); // per quarter-turn ratio (1.05 – 2.50)
+    // b such that e^(b * π/2) = growthQuarter   =>   b = ln(growthQuarter) / (π/2)
+    const b = Math.log(growthQuarter) / (Math.PI / 2);
+    const growthFull = Math.pow(growthQuarter, 4);
+    const atPhi = Math.abs(growthQuarter - PHI) < PHI_EPS;
+
+    // readouts
+    ratioQuarterEl.textContent = growthQuarter.toFixed(4);
+    ratioQuarterEl.className = atPhi ? 'value phi' : 'value';
+    ratioFullEl.textContent = growthFull.toFixed(3);
+    ratioFullEl.className = atPhi ? 'value phi' : 'value';
+    paramBEl.textContent = b.toFixed(4);
+    paramBEl.className = atPhi ? 'value phi' : 'value';
+
+    if (mode === 'spiral') {
+      sliderCap.textContent = atPhi ? 'growth rate — φ (golden)' : 'growth rate';
+      // scale chosen so 4 turns fit on screen at a generous range
+      // outer radius after 4 turns = a * growthQuarter^16; we want this around min(W,H)*0.45
+      const a = 2;
+      const outer = a * Math.pow(growthQuarter, 16);
+      const scale = Math.min(W, H) * 0.42 / Math.max(outer, 1);
+      drawRadialMarkers(g, cx, cy, b, scale, growthQuarter);
+      drawSpiral(g, cx, cy, b, scale);
+      captionEl.textContent = atPhi
+        ? 'φ-spiral — each quarter-turn the radius multiplies by 1.618…'
+        : `logarithmic spiral — each quarter-turn the radius multiplies by ${growthQuarter.toFixed(3)}`;
+    } else if (mode === 'rectangles') {
+      sliderCap.textContent = 'Fibonacci squares — only φ tiles self-similarly';
+      drawFibonacciRectangles(g, cx, cy, 1);
+      captionEl.textContent = 'Fibonacci squares 1,1,2,3,5,8,13,21,34 — the only ratio that nests like this is φ';
+    } else if (mode === 'phyllotaxis') {
+      // map slider position to divergence angle: 137.0° to 138.0° around the golden value
+      // but allow exploration outside the lock — slider 1.05–2.50 → angle 130°–145°
+      const tNorm = (growthQuarter - 1.05) / (2.50 - 1.05);
+      // make φ (1.618) land on the golden angle
+      const phiNorm = (PHI - 1.05) / (2.50 - 1.05);
+      // piecewise linear so phi snaps to 137.5°
+      let degrees;
+      if (tNorm < phiNorm) {
+        degrees = 130 + (137.5077 - 130) * (tNorm / phiNorm);
+      } else {
+        degrees = 137.5077 + (145 - 137.5077) * ((tNorm - phiNorm) / (1 - phiNorm));
+      }
+      const angle = degrees * Math.PI / 180;
+      sliderCap.textContent = atPhi ? 'divergence — 137.5077° (golden angle)' : 'divergence angle';
+      drawPhyllotaxis(g, cx, cy, angle);
+      captionEl.textContent = atPhi
+        ? 'sunflower at 137.5° — the only angle that packs without overlap or gap'
+        : `sunflower at ${degrees.toFixed(2)}° — gaps and overlaps that the golden angle avoids`;
+    }
+  }
+
+  // initialize slider in the middle of the range, but show φ as the natural target
+  slider.value = PHI.toFixed(3);
+  resize();
+})();
+</script>
+</body>
+</html>

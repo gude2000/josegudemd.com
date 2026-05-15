@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La cronología del cambio de paradigma &mdash; José Gude MD</title>
+  <meta name="description" content="Un siglo de evidencia convergente — física, ciencia de la conciencia y tradiciones contemplativas — trazadas sobre una única línea de tiempo vertical. La misma afirmación recurrente aparece en tres pistas paralelas: que la conciencia es un rasgo de la realidad, no un subproducto del cerebro.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .timeline-wrap { position: relative; margin: 32px 0 48px 0; }
+    .lane-headers { display: grid; grid-template-columns: 60px 1fr 1fr 1fr; gap: 0; padding-bottom: 12px; border-bottom: 1px solid var(--rule); margin-bottom: 18px; }
+    .lane-headers .lane-h { text-align: center; font-size: 11px; letter-spacing: 0.20em; text-transform: uppercase; color: var(--gold); font-family: var(--sans); }
+    .lane-headers .lane-h:first-child { color: var(--cream-mute); text-align: left; padding-left: 6px; }
+    .timeline-grid { display: grid; grid-template-columns: 60px 1fr 1fr 1fr; gap: 0; position: relative; }
+    .years-col { position: relative; border-right: 1px solid var(--rule); }
+    .year-label { position: absolute; right: 8px; font-size: 11px; color: var(--cream-mute); font-family: var(--sans); letter-spacing: 0.04em; transform: translateY(-50%); }
+    .lane { position: relative; border-right: 1px solid var(--rule-soft); }
+    .lane:last-child { border-right: none; }
+    .entry { position: absolute; left: 18px; right: 12px; transform: translateY(-50%); padding: 6px 10px 6px 14px; border-left: 2px solid var(--gold); background: var(--bg-card); border-radius: 0 3px 3px 0; cursor: pointer; transition: background .15s ease, border-color .15s ease; }
+    .entry:hover { background: var(--bg-soft); border-left-color: var(--cream); }
+    .entry .e-year { font-size: 10px; letter-spacing: 0.12em; color: var(--gold); font-family: var(--sans); }
+    .entry .e-name { color: var(--cream); font-size: 13px; font-family: var(--sans); font-weight: 600; letter-spacing: 0.01em; margin-top: 1px; }
+    .entry .e-desc { color: var(--cream-dim); font-size: 12px; line-height: 1.4; margin-top: 4px; font-family: var(--sans); }
+    .entry a { color: var(--gold); font-size: 11px; text-decoration: none; }
+    .entry a:hover { color: var(--cream); }
+    .heritage-banner { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 3px; padding: 14px 18px; margin-bottom: 18px; color: var(--cream-dim); font-size: 13px; }
+    .heritage-banner strong { color: var(--gold); letter-spacing: 0.08em; font-size: 11px; text-transform: uppercase; font-family: var(--sans); }
+    .heritage-banner .h-item { display: inline-block; margin-right: 18px; color: var(--cream); }
+    .heritage-banner .h-item .h-date { color: var(--cream-mute); font-size: 11px; margin-right: 4px; font-family: var(--sans); }
+    .convergence-bar { background: linear-gradient(to right, rgba(218,160,85,0.08), rgba(218,160,85,0.18), rgba(218,160,85,0.08)); border: 1px dashed var(--gold); border-radius: 3px; padding: 16px 20px; margin: 24px 0; text-align: center; color: var(--cream); font-size: 14px; line-height: 1.6; }
+    .convergence-bar strong { color: var(--gold); letter-spacing: 0.10em; text-transform: uppercase; font-size: 11px; font-family: var(--sans); }
+    @media (max-width: 720px) {
+      .lane-headers, .timeline-grid { grid-template-columns: 44px 1fr 1fr 1fr; }
+      .entry { left: 8px; right: 6px; padding: 5px 8px 5px 10px; }
+      .entry .e-name { font-size: 11px; }
+      .entry .e-desc { font-size: 10px; }
+      .entry .e-year { font-size: 9px; }
+      .year-label { font-size: 9px; right: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Libros</a></li>
+      <li><a href="reading.html">Lecturas</a></li>
+      <li><a href="watch.html">Ver y Escuchar</a></li>
+      <li><a href="the-evidence.html">Síntesis</a></li>
+      <li><a href="about.html">Autor</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><a href="../timeline.html">EN</a> <span style="opacity:0.4;">|</span> <span style="color:var(--gold);">ES</span></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">El interactivo &middot; la brújula histórico-intelectual</p>
+  <h1>La cronología del cambio de paradigma</h1>
+  <p class="lede">Un siglo de evidencia convergente en una sola página. Tres pistas paralelas &mdash; física, ciencia de la conciencia y tradiciones contemplativas &mdash; trazadas de 1900 a 2026. La afirmación recurrente es la misma en las tres pistas, alcanzada por métodos muy distintos: <strong>la conciencia es un rasgo de la realidad, no un subproducto del cerebro</strong>. Las pistas no sólo corren en paralelo; se tocan repetidamente. Bohm y Pribram encontrándose en 1980. Penrose y Hameroff en 1996. Faggin y D'Ariano llegando al panpsiquismo de la información cuántica en 2024, casi al mismo tiempo que el laboratorio de Bandyopadhyay confirma la coherencia microtubular a temperatura corporal, casi al mismo tiempo que Carhart-Harris cierra una década de datos sobre psicodélicos, meditación y el cerebro entrópico. La trilogía lee esto como una única hipótesis ascendente que termina por fin su larga convergencia.</p>
+  <p class="dim">Pulsa cualquier entrada para abrir la explicación. Debajo de la línea de tiempo se nombra la herencia contemplativa pre-1900 sobre la que descansa la historia moderna.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <div class="heritage-banner">
+    <strong>La herencia premoderna</strong> &middot; las tradiciones contemplativas cuyas tesis recupera la ciencia contemporánea
+    <div style="margin-top:8px;">
+      <span class="h-item"><span class="h-date">c. 800–900</span><a href="kashmir-shaivism.html" style="color:var(--cream);">Shivaísmo de Cachemira — Vasugupta, Abhinavagupta</a></span>
+      <span class="h-item"><span class="h-date">c. 1273</span>Rumi — <em>Mathnawī</em></span>
+      <span class="h-item"><span class="h-date">c. 1320</span>Maestro Eckhart — sermones</span>
+      <span class="h-item"><span class="h-date">1577</span><a href="teresa-avila.html" style="color:var(--cream);">Teresa de Ávila — Castillo Interior</a></span>
+      <span class="h-item"><span class="h-date">1582</span>Juan de la Cruz — Noche oscura</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="lane-headers">
+    <div class="lane-h">Año</div>
+    <div class="lane-h">Física</div>
+    <div class="lane-h">Mente y conciencia</div>
+    <div class="lane-h">Puntos de inflexión</div>
+  </div>
+
+  <div class="timeline-grid" id="timeline" style="height:2600px;">
+    <div class="years-col" id="years-col"></div>
+    <div class="lane" id="lane-physics"></div>
+    <div class="lane" id="lane-mind"></div>
+    <div class="lane" id="lane-inflect"></div>
+  </div>
+</section>
+
+<section>
+  <div class="convergence-bar">
+    <strong>La convergencia 2024–2026</strong><br>
+    El hecho contemporáneo: en tres campos independientes está ya impresa la misma imagen &mdash; panpsiquismo de la información cuántica (D'Ariano–Faggin), cosmología del campo Φ (Strømme), teoría de la interfaz (Hoffman), coherencia microtubular a temperatura corporal (Bandyopadhyay), el marco del cerebro entrópico (Carhart-Harris) y la morfogénesis teórico-de-campos (Levin). Las tradiciones contemplativas lo dijeron primero; la física tardó más. <a href="the-evidence.html" style="color:var(--gold);">Lee la síntesis →</a>
+  </div>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">La cronología es una curaduría, no una historia exhaustiva; muestra las entradas que inciden directamente en el argumento de la trilogía. La franja pre-1900 de arriba está necesariamente comprimida &mdash; la herencia contemplativa detrás de cualquier marco no fisicalista moderno tiene milenios, no siglos. Para la bibliografía más amplia, ver las <a href="reading.html">Lecturas</a> (200+ entradas, todas enlazadas). Para el ensayo de síntesis que reúne estas entradas en un único argumento, ver <a href="the-evidence.html">La evidencia</a>.</p>
+  <a href="reading.html" class="read-more">← Lecturas y referencias</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Herramientas del lector:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Empieza aquí</a> &middot;
+      <a href="glossary.html">Glosario</a> &middot;
+      <a href="the-evidence.html">Síntesis</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const Y_START = 1900;
+  const Y_END = 2030;
+  const totalHeight = 2600;
+  function yPos(year) { return ((year - Y_START) / (Y_END - Y_START)) * totalHeight; }
+
+  const yearsCol = document.getElementById('years-col');
+  for (let y = 1900; y <= 2025; y += 25) {
+    const div = document.createElement('div');
+    div.className = 'year-label';
+    div.textContent = y;
+    div.style.top = yPos(y) + 'px';
+    yearsCol.appendChild(div);
+  }
+
+  const physics = [
+    { y: 1900, n: 'Planck', d: 'Hipótesis cuántica — la energía viene en paquetes discretos.' },
+    { y: 1925, n: 'Heisenberg', d: 'Mecánica matricial; años después Stapp estudiaría con él.' },
+    { y: 1935, n: 'EPR', d: 'Einstein, Podolsky, Rosen — la objeción del entrelazamiento.' },
+    { y: 1952, n: 'Bohm — onda piloto', d: 'La alternativa de variables ocultas a Copenhague.', link: 'bohm-implicate-order.html' },
+    { y: 1964, n: 'Bell', d: 'El teorema de Bell — el entrelazamiento es real, la localidad falla.', link: 'bell-theorem.html' },
+    { y: 1980, n: 'Bohm — orden implicado', d: 'Wholeness and the Implicate Order.', link: 'bohm-implicate-order.html' },
+    { y: 1991, n: 'Pribram — cerebro holonómico', d: 'La corteza como transformador de Fourier; memoria holográfica.', link: 'pribram-holonomic-brain.html' },
+    { y: 1996, n: 'Penrose–Hameroff', d: 'Orch-OR — coherencia cuántica en microtúbulos en la cognición.' },
+    { y: 2007, n: 'Engel — fotosíntesis', d: 'Coherencia cuántica en el complejo FMO.', link: 'quantum-biology.html' },
+    { y: 2016, n: 'Hore–Mouritsen', d: 'Magnetorrecepción aviar por entrelazamiento de pares de radicales.', link: 'quantum-biology.html' },
+    { y: 2022, n: 'Aspect/Clauser/Zeilinger', d: 'Nobel por los experimentos de Bell — entrelazamiento confirmado.', link: 'bell-theorem.html' },
+    { y: 2022, n: 'Bandyopadhyay (NIMS)', d: 'Coherencia microtubular en kHz–THz a temperatura corporal.', link: 'bandyopadhyay-microtubules.html' },
+    { y: 2024, n: 'D\'Ariano–Faggin', d: 'Panpsiquismo de la información cuántica — el artículo operativo.', link: 'dariano-faggin.html' }
+  ];
+
+  const mind = [
+    { y: 1902, n: 'William James', d: '<em>Las variedades de la experiencia religiosa</em>.' },
+    { y: 1907, n: 'Henri Bergson', d: '<em>La evolución creadora</em> — la vida como devenir creativo.' },
+    { y: 1929, n: 'A. N. Whitehead', d: '<em>Proceso y realidad</em> — la filosofía del proceso.' },
+    { y: 1954, n: 'Aldous Huxley', d: '<em>Las puertas de la percepción</em>; el cerebro como válvula reductora.' },
+    { y: 1966, n: 'Ian Stevenson', d: 'Universidad de Virginia — <em>Twenty Cases Suggestive of Reincarnation</em>.' },
+    { y: 1991, n: 'F. Crick', d: '<em>La hipótesis asombrosa</em> — fija la línea base materialista.' },
+    { y: 1998, n: 'Hoffman — interfaz', d: 'Percepción visual como interfaz de usuario; después: el caso contra la realidad.', link: 'hoffman-interface.html' },
+    { y: 2007, n: 'E. Kelly et al.', d: '<em>Irreducible Mind</em> — compendio de 800 páginas de evidencia anómala.' },
+    { y: 2012, n: 'Carhart-Harris', d: 'La psilocibina disminuye la actividad de la red por defecto.', link: 'carhart-harris-entropic-brain.html' },
+    { y: 2014, n: 'Carhart-Harris', d: 'La hipótesis del cerebro entrópico.', link: 'carhart-harris-entropic-brain.html' },
+    { y: 2019, n: 'Carhart-Harris–Friston', d: 'REBUS — creencias relajadas bajo psicodélicos.', link: 'carhart-harris-entropic-brain.html' },
+    { y: 2021, n: 'Faggin — Irreducible', d: 'Conocer, elegir, sentir — los tres irreducibles.', link: 'dariano-faggin.html' },
+    { y: 2023, n: 'Batthyány', d: '<em>Threshold</em> — lucidez terminal, dossier de casos.', link: 'terminal-lucidity.html' },
+    { y: 2024, n: 'Strømme — campo Φ', d: 'Una ontología teórico-de-campos de la conciencia.', link: 'stromme-phi-field.html' }
+  ];
+
+  const inflect = [
+    { y: 1953, n: 'Watson–Crick', d: 'Estructura del ADN — comienza el paradigma de la biología molecular.' },
+    { y: 1962, n: 'Kuhn', d: '<em>La estructura de las revoluciones científicas</em>.' },
+    { y: 1976, n: 'Stapp empieza', d: 'Comienzan las publicaciones mente-materia (LBNL).', link: 'stapp-mind-matter.html' },
+    { y: 1986, n: 'Resurgir Chladni', d: 'La cimática entra en la investigación conciencia-y-música.', link: 'chladni.html' },
+    { y: 1995, n: 'Chalmers', d: 'Nombra el «problema duro» de la conciencia.' },
+    { y: 2005, n: 'Manoussaki', d: 'La cóclea como resonador en espiral logarítmica (PNAS/PRL).', link: 'golden-ratio.html' },
+    { y: 2009, n: 'Pollack — agua EZ', d: 'La cuarta fase del agua; el programa del agua estructurada.', link: 'ez-water.html' },
+    { y: 2014, n: 'Levin empieza', d: 'Programa de morfogénesis bioeléctrica en Tufts.', link: 'levin-bioelectric.html' },
+    { y: 2020, n: 'Brainoware / wetware', d: 'Primeros biocomputadores in vitro con neuronas humanas.', link: 'wetware-biocomputing.html' },
+    { y: 2024, n: 'Convergencia', d: 'Biología cuántica + cerebro entrópico + cosmología de campo, todos publicados.', link: 'the-evidence.html' }
+  ];
+
+  function render(laneId, data){
+    const lane = document.getElementById(laneId);
+    const placed = [];
+    const minGap = 8;
+    data.forEach(item => {
+      const baseTop = yPos(item.y);
+      const estH = item.d ? 64 : 36;
+      let top = baseTop;
+      let shifted = true;
+      while (shifted) {
+        shifted = false;
+        for (const p of placed) {
+          if (Math.abs(top - p.center) < (estH/2 + p.h/2 + minGap)) {
+            top = p.center + p.h/2 + estH/2 + minGap;
+            shifted = true;
+          }
+        }
+      }
+      placed.push({ center: top, h: estH });
+      const div = document.createElement('div');
+      div.className = 'entry';
+      div.style.top = top + 'px';
+      const linkOpen = item.link ? `<a href="${item.link}">` : '';
+      const linkClose = item.link ? `</a>` : '';
+      div.innerHTML = `
+        <div class="e-year">${item.y}</div>
+        <div class="e-name">${linkOpen}${item.n}${linkClose}</div>
+        <div class="e-desc">${item.d}</div>
+      `;
+      if (item.link) {
+        div.style.cursor = 'pointer';
+        div.addEventListener('click', (e) => {
+          if (e.target.tagName !== 'A') window.location.href = item.link;
+        });
+      }
+      lane.appendChild(div);
+    });
+  }
+
+  render('lane-physics', physics);
+  render('lane-mind', mind);
+  render('lane-inflect', inflect);
+})();
+</script>
+
+</body>
+</html>

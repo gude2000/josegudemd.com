@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tunings &mdash; an audio comparison &mdash; José Gude MD</title>
+  <meta name="description" content="An audio comparison of five different ways to tune the note C — equal-temperament A=440, equal-temperament A=432, just intonation at C=264, the φ-tuned C=266.67 the trilogy uses, and a φ-interval rendered as the 72-TET step Dolores Catherino works in. Built in the browser with the Web Audio API so the math becomes audible.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .tuning-card {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 18px 22px;
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .tuning-card .meta {
+      flex: 1 1 auto;
+      min-width: 260px;
+    }
+    .tuning-card h3 {
+      margin: 0 0 6px 0;
+      color: var(--cream);
+      font-size: 16px;
+      font-family: var(--sans);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .tuning-card .freq {
+      font-family: -apple-system, BlinkMacSystemFont, monospace;
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+    }
+    .tuning-card .desc {
+      color: var(--cream-dim);
+      font-size: 14px;
+      line-height: 1.55;
+      margin-top: 6px;
+    }
+    .tuning-btn {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background .15s ease, color .15s ease;
+      flex-shrink: 0;
+      min-width: 110px;
+    }
+    .tuning-btn:hover {
+      background: rgba(218, 160, 85, 0.15);
+      color: var(--cream);
+    }
+    .tuning-btn.playing {
+      background: rgba(218, 160, 85, 0.28);
+      color: var(--cream);
+      border-color: var(--cream);
+    }
+    .stop-all-wrap {
+      text-align: center;
+      margin: 24px 0 8px 0;
+    }
+    .stop-all {
+      background: transparent;
+      border: 1px solid var(--cream-mute);
+      color: var(--cream-dim);
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .stop-all:hover { color: var(--cream); border-color: var(--gold); }
+    .pair-label {
+      color: var(--cream-mute);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 22px 0 -4px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Books</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="watch.html">Watch &amp; Listen</a></li>
+      <li><a href="the-evidence.html">Synthesis</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><span style="color:var(--gold);">EN</span> <span style="opacity:0.4;">|</span> <a href="es/tunings.html">ES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">The interactive &middot; tunings &middot; an audio comparison</p>
+  <h1>Tunings &mdash; an audio comparison</h1>
+  <p class="lede">The trilogy's claim that the same note can sound profoundly different depending on how it is tuned is easy to make in print and harder to make convincing in print. This page makes the claim audible. Five buttons. Each plays a sustained version of the note C for about five seconds, tuned in a different way. The math behind each is in the caption. The point is not which tuning is "right." The point is that <strong>frequency is not a coordinate on a grid</strong> &mdash; it is a continuous parameter the body responds to, and the body hears the difference the moment the tuning shifts.</p>
+  <p class="dim">Pure sine-wave tones generated in the browser. Use modest volume; sustained pure tones at full volume are unpleasant. Best with headphones &mdash; small speakers under-render low frequencies. The Catherino φ-interval at the bottom of the page requires headphones to hear cleanly.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>The five tunings of C</h2>
+
+  <p class="pair-label">The two standard A=440 vs A=432 versions of C</p>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>12-TET, A=440 — modern standard</h3>
+      <div class="freq">C₄ = 261.626 Hz · 0 cents (reference)</div>
+      <div class="desc">The note your piano plays. Equal temperament divides the octave into twelve mathematically equal steps; A above middle C is fixed at 440 Hz; everything else follows. This has been the global concert standard since the mid-twentieth century. The note you have heard most often in your life is exactly this frequency.</div>
+    </div>
+    <button class="tuning-btn" data-id="t1">play / stop</button>
+  </div>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>12-TET, A=432 — alternative concert pitch</h3>
+      <div class="freq">C₄ = 256.869 Hz · −31.8 cents below A=440 C</div>
+      <div class="desc">Equal temperament shifted down by tuning A to 432 Hz instead of 440. Used historically before the mid-twentieth century in many European traditions; preferred today by parts of the early-music community and by some who claim 432 produces a felt warmth that 440 lacks. The empirical evidence for that felt warmth is weak. The frequency difference is real and audible.</div>
+    </div>
+    <button class="tuning-btn" data-id="t2">play / stop</button>
+  </div>
+
+  <p class="pair-label">Just intonation — C-major triad in the 4:5:6 ratio</p>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>Just intonation at C=264 Hz</h3>
+      <div class="freq">C 264 · E 330 · G 396 Hz · ratios 4 : 5 : 6 exactly</div>
+      <div class="desc">A C-major triad in <em>just intonation</em> — the chord tuned to the exact integer ratios of the harmonic series (4:5:6) rather than to the slightly-detuned approximations of equal temperament. The fifth is a pure 3:2, the major third is a pure 5:4, and the chord locks into a stillness that no equal-temperament chord does. Hold this one against the next.</div>
+    </div>
+    <button class="tuning-btn" data-id="t3">play / stop</button>
+  </div>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>Just intonation at the φ-tuned C = 266.67 Hz</h3>
+      <div class="freq">C 266.67 · E 333.33 · G 400.00 Hz · ratios 4 : 5 : 6 exactly</div>
+      <div class="desc">The same just-intonation 4:5:6 triad — but anchored to C = 266.67 Hz, the frequency the trilogy uses. The fundamental was chosen because 432 × φ ≈ 698.93 lies near the A above it; the C below that A in this scheme falls on 266.67. This is the audible centerpiece of <em>Limen</em>'s chord chapters: a triad whose root sits at the φ-derived C. Roughly +33 cents above the standard C; almost exactly the geometric midpoint of the actual pitches Jeff Buckley sang on the recorded performances of <em>Hallelujah</em>. See the <a href="watch.html" style="color:var(--gold);">Watch &amp; Listen note</a>.</div>
+    </div>
+    <button class="tuning-btn" data-id="t4">play / stop</button>
+  </div>
+
+  <p class="pair-label">The φ interval — the ratio φ : 1 as two tones</p>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>The φ-interval — C = 266.67 Hz with its φ-partner at 431.4 Hz</h3>
+      <div class="freq">low 266.67 Hz · high 431.36 Hz · ratio φ ≈ 1.61803 · 833.10 cents</div>
+      <div class="desc">A two-tone interval at the exact φ ratio. In 12-TET this interval lies between a minor sixth (800 cents) and a major sixth (900 cents) — it does not exist on any standard instrument. In 72-TET (Dolores Catherino's tuning system) it falls on step 50, which sits 833.33 cents above the root: φ to within 0.2 cents. This is the sound the trilogy gestures at when it says the chord refuses to resolve. The interval is mildly dissonant precisely because the human ear has been trained by 400 years of meantone-and-equal-temperament keyboards to expect resolution at the nearest tempered sixth.</div>
+    </div>
+    <button class="tuning-btn" data-id="t5">play / stop</button>
+  </div>
+
+  <div class="stop-all-wrap">
+    <button class="stop-all" id="stop-all">stop all</button>
+  </div>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>What you should hear</h2>
+  <p>The 440 versus 432 comparison is small. The two notes are both Cs in the same temperament; the difference is a thirty-cent shift &mdash; about a third of a semitone. Trained ears notice immediately; most untrained ears feel it as a slight "weight" or "darkness" difference before they hear it as a pitch change. This is the cleanest demonstration that the body responds to frequency below the threshold of conscious recognition.</p>
+  <p>The two just-intonation triads sound similar to each other and noticeably <em>more stable</em> than anything equal temperament can produce. The fifth and major third lock in a way the equivalent equal-tempered intervals never do; the harmonics align cleanly, and a "fused" quality appears that is not present at 440. This is what is meant when the spectral school says equal temperament costs the body something. The cost is real and immediate.</p>
+  <p>The φ interval at the bottom is the hardest. It sits in the no-man's-land between the tempered minor sixth and major sixth. The ear keeps trying to resolve it to one or the other and cannot. This is the harmonic experience the trilogy circles around &mdash; an interval that <em>declines to resolve</em>, that the body has to hold rather than complete. It is the audible signature of the augmented architecture <em>Limen</em>'s chord chapters describe.</p>
+  <p>The deeper claim, in all five cases, is that <strong>the difference is not a matter of opinion</strong>. The pitch difference is an objective physical fact; the harmonic-alignment difference is an objective physical fact; the body's response is measurable. The trilogy's frequency claims are not aesthetic preferences. They are claims about what the body actually does when given different ratios.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">Generated in your browser with the Web Audio API &mdash; pure sine oscillators with a brief fade-in and fade-out to prevent clicks. No audio files; everything is computed live from the frequencies listed. Read <a href="golden-ratio.html">the φ explainer</a> for the geometry that produces these ratios, and <a href="watch.html">the Watch &amp; Listen page</a> for the recorded music that explores them &mdash; particularly Ligeti, Stockhausen's <em>Stimmung</em>, La Monte Young's <em>Well-Tuned Piano</em>, and Catherine Lamb / Dolores Catherino in just intonation and 72-TET.</p>
+  <a href="reading.html" class="read-more">← Reading &amp; References</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Reader's tools:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Start here</a> &middot;
+      <a href="glossary.html">Glossary</a> &middot;
+      <a href="the-evidence.html">Synthesis</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const PHI = (1 + Math.sqrt(5)) / 2;
+  const tunings = {
+    t1: { freqs: [261.626], label: '12-TET A=440 C' },
+    t2: { freqs: [256.869], label: '12-TET A=432 C' },
+    t3: { freqs: [264.0, 330.0, 396.0], label: 'JI C=264 triad' },
+    t4: { freqs: [266.67, 333.33, 400.0], label: 'JI φ-tuned C=266.67 triad' },
+    t5: { freqs: [266.67, 266.67 * PHI], label: 'φ-interval' }
+  };
+
+  let ctx = null;
+  function ensureCtx() {
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    return ctx;
+  }
+
+  const active = new Map(); // id -> { stopFn }
+
+  function startTone(id) {
+    const c = ensureCtx();
+    if (c.state === 'suspended') c.resume();
+    const cfg = tunings[id];
+    if (!cfg) return;
+    stopTone(id); // safe re-call
+
+    const out = c.createGain();
+    out.gain.value = 0;
+    out.connect(c.destination);
+
+    const oscs = cfg.freqs.map((f, i) => {
+      const o = c.createOscillator();
+      o.type = 'sine';
+      o.frequency.value = f;
+      // slight per-voice gain attenuation when stacking
+      const voiceGain = c.createGain();
+      voiceGain.gain.value = 1 / Math.sqrt(cfg.freqs.length);
+      o.connect(voiceGain);
+      voiceGain.connect(out);
+      o.start();
+      return { osc: o, g: voiceGain };
+    });
+
+    const t0 = c.currentTime;
+    const peak = 0.18;
+    out.gain.cancelScheduledValues(t0);
+    out.gain.setValueAtTime(0, t0);
+    out.gain.linearRampToValueAtTime(peak, t0 + 0.06);
+    // sustain
+    out.gain.setValueAtTime(peak, t0 + 5.0);
+    out.gain.linearRampToValueAtTime(0, t0 + 5.4);
+
+    const timeoutId = setTimeout(() => stopTone(id), 5500);
+
+    active.set(id, {
+      stopFn: function(){
+        try {
+          out.gain.cancelScheduledValues(c.currentTime);
+          out.gain.linearRampToValueAtTime(0, c.currentTime + 0.05);
+          setTimeout(() => {
+            oscs.forEach(v => { try { v.osc.stop(); v.osc.disconnect(); v.g.disconnect(); } catch(e){} });
+            try { out.disconnect(); } catch(e){}
+          }, 80);
+        } catch(e){}
+        clearTimeout(timeoutId);
+      }
+    });
+
+    const btn = document.querySelector(`.tuning-btn[data-id="${id}"]`);
+    if (btn) btn.classList.add('playing');
+  }
+
+  function stopTone(id) {
+    const a = active.get(id);
+    if (a) {
+      a.stopFn();
+      active.delete(id);
+      const btn = document.querySelector(`.tuning-btn[data-id="${id}"]`);
+      if (btn) btn.classList.remove('playing');
+    }
+  }
+
+  function stopAll() {
+    Array.from(active.keys()).forEach(stopTone);
+  }
+
+  document.querySelectorAll('.tuning-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      const id = b.dataset.id;
+      if (active.has(id)) stopTone(id);
+      else startTone(id);
+    });
+  });
+  document.getElementById('stop-all').addEventListener('click', stopAll);
+})();
+</script>
+
+</body>
+</html>

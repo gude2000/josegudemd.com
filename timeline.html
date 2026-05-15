@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The paradigm-shift timeline &mdash; José Gude MD</title>
+  <meta name="description" content="A century of converging evidence — physics, consciousness science, and the contemplative traditions, plotted on a single vertical timeline. The same recurring claim shows up on three parallel tracks: that consciousness is a feature of reality, not a by-product of brain.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .timeline-wrap {
+      position: relative;
+      margin: 32px 0 48px 0;
+    }
+    .lane-headers {
+      display: grid;
+      grid-template-columns: 60px 1fr 1fr 1fr;
+      gap: 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 18px;
+    }
+    .lane-headers .lane-h {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: var(--sans);
+    }
+    .lane-headers .lane-h:first-child { color: var(--cream-mute); text-align: left; padding-left: 6px; }
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 60px 1fr 1fr 1fr;
+      gap: 0;
+      position: relative;
+    }
+    .years-col {
+      position: relative;
+      border-right: 1px solid var(--rule);
+    }
+    .year-label {
+      position: absolute;
+      right: 8px;
+      font-size: 11px;
+      color: var(--cream-mute);
+      font-family: var(--sans);
+      letter-spacing: 0.04em;
+      transform: translateY(-50%);
+    }
+    .lane {
+      position: relative;
+      border-right: 1px solid var(--rule-soft);
+    }
+    .lane:last-child { border-right: none; }
+    .entry {
+      position: absolute;
+      left: 18px;
+      right: 12px;
+      transform: translateY(-50%);
+      padding: 6px 10px 6px 14px;
+      border-left: 2px solid var(--gold);
+      background: var(--bg-card);
+      border-radius: 0 3px 3px 0;
+      cursor: pointer;
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .entry:hover {
+      background: var(--bg-soft);
+      border-left-color: var(--cream);
+    }
+    .entry .e-year {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      font-family: var(--sans);
+    }
+    .entry .e-name {
+      color: var(--cream);
+      font-size: 13px;
+      font-family: var(--sans);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      margin-top: 1px;
+    }
+    .entry .e-desc {
+      color: var(--cream-dim);
+      font-size: 12px;
+      line-height: 1.4;
+      margin-top: 4px;
+      font-family: var(--sans);
+    }
+    .entry a {
+      color: var(--gold);
+      font-size: 11px;
+      text-decoration: none;
+    }
+    .entry a:hover { color: var(--cream); }
+    .entry.minor {
+      border-left-color: var(--cream-mute);
+    }
+    .heritage-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      color: var(--cream-dim);
+      font-size: 13px;
+    }
+    .heritage-banner strong { color: var(--gold); letter-spacing: 0.08em; font-size: 11px; text-transform: uppercase; font-family: var(--sans); }
+    .heritage-banner .h-item { display: inline-block; margin-right: 18px; color: var(--cream); }
+    .heritage-banner .h-item .h-date { color: var(--cream-mute); font-size: 11px; margin-right: 4px; font-family: var(--sans); }
+    .convergence-bar {
+      background: linear-gradient(to right, rgba(218,160,85,0.08), rgba(218,160,85,0.18), rgba(218,160,85,0.08));
+      border: 1px dashed var(--gold);
+      border-radius: 3px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      text-align: center;
+      color: var(--cream);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .convergence-bar strong { color: var(--gold); letter-spacing: 0.10em; text-transform: uppercase; font-size: 11px; font-family: var(--sans); }
+    @media (max-width: 720px) {
+      .lane-headers, .timeline-grid {
+        grid-template-columns: 44px 1fr 1fr 1fr;
+      }
+      .entry { left: 8px; right: 6px; padding: 5px 8px 5px 10px; }
+      .entry .e-name { font-size: 11px; }
+      .entry .e-desc { font-size: 10px; }
+      .entry .e-year { font-size: 9px; }
+      .year-label { font-size: 9px; right: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Books</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="watch.html">Watch &amp; Listen</a></li>
+      <li><a href="the-evidence.html">Synthesis</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><span style="color:var(--gold);">EN</span> <span style="opacity:0.4;">|</span> <a href="es/timeline.html">ES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">The interactive &middot; the intellectual-history compass</p>
+  <h1>The paradigm-shift timeline</h1>
+  <p class="lede">A century of converging evidence on a single page. Three parallel tracks &mdash; physics, consciousness science, and the contemplative traditions &mdash; plotted across 1900 to 2026. The recurring claim is the same on all three tracks, arrived at by very different methods: <strong>consciousness is a feature of reality, not a by-product of brain</strong>. The tracks do not merely run in parallel; they touch repeatedly. Bohm and Pribram meeting in 1980. Penrose and Hameroff meeting in 1996. Faggin and D'Ariano arriving at quantum-information panpsychism in 2024, around the same time Bandyopadhyay's lab confirms microtubule coherence at body temperature, around the same time Carhart-Harris finishes a decade of psychedelic-and-meditation entropic-brain data. The trilogy reads this as a single rising hypothesis, finally finishing its long convergence.</p>
+  <p class="dim">Click any entry below for the explainer. The page below the timeline names the pre-1900 contemplative inheritance the modern story rests on.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <div class="heritage-banner">
+    <strong>The pre-modern inheritance</strong> &middot; the contemplative traditions whose claims the contemporary science recovers
+    <div style="margin-top:8px;">
+      <span class="h-item"><span class="h-date">c. 800–900</span><a href="kashmir-shaivism.html" style="color:var(--cream);">Kashmir Shaivism — Vasugupta, Abhinavagupta</a></span>
+      <span class="h-item"><span class="h-date">c. 1273</span>Rumi — <em>Mathnawī</em></span>
+      <span class="h-item"><span class="h-date">c. 1320</span>Meister Eckhart — sermons</span>
+      <span class="h-item"><span class="h-date">1577</span><a href="teresa-avila.html" style="color:var(--cream);">Teresa of Ávila — Interior Castle</a></span>
+      <span class="h-item"><span class="h-date">1582</span>John of the Cross — Dark Night</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="lane-headers">
+    <div class="lane-h">Year</div>
+    <div class="lane-h">Physics</div>
+    <div class="lane-h">Mind &amp; consciousness</div>
+    <div class="lane-h">Inflection points</div>
+  </div>
+
+  <div class="timeline-grid" id="timeline" style="height:2600px;">
+    <div class="years-col" id="years-col"></div>
+    <div class="lane" id="lane-physics"></div>
+    <div class="lane" id="lane-mind"></div>
+    <div class="lane" id="lane-inflect"></div>
+  </div>
+</section>
+
+<section>
+  <div class="convergence-bar">
+    <strong>The 2024–2026 convergence</strong><br>
+    The contemporary fact: across three independent fields, the same picture is now in print &mdash; quantum-information panpsychism (D'Ariano–Faggin), the Φ-field cosmology (Strømme), interface theory (Hoffman), microtubule coherence at body temperature (Bandyopadhyay), the entropic-brain framework (Carhart-Harris), and field-theoretic morphogenesis (Levin). The contemplative traditions said it first; the physics took the longest. <a href="the-evidence.html" style="color:var(--gold);">Read the synthesis →</a>
+  </div>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">The timeline is a curation, not a comprehensive history; it shows the entries that bear directly on the trilogy's argument. The pre-1900 banner above is necessarily compressed &mdash; the contemplative inheritance behind any modern non-physicalist framework is millennia deep, not centuries. For the broader bibliography, see the <a href="reading.html">Reading list</a> (200+ entries, all linked). For the Synthesis essay that assembles these entries into a single argument, see <a href="the-evidence.html">The evidence</a>.</p>
+  <a href="reading.html" class="read-more">← Reading &amp; References</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Reader's tools:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Start here</a> &middot;
+      <a href="glossary.html">Glossary</a> &middot;
+      <a href="the-evidence.html">Synthesis</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Timeline spans 1900 to 2026 ≈ 126 years on 2600px height
+  const Y_START = 1900;
+  const Y_END = 2030;
+  const totalHeight = 2600;
+  function yPos(year) {
+    return ((year - Y_START) / (Y_END - Y_START)) * totalHeight;
+  }
+
+  // Year markers
+  const yearsCol = document.getElementById('years-col');
+  for (let y = 1900; y <= 2025; y += 25) {
+    const div = document.createElement('div');
+    div.className = 'year-label';
+    div.textContent = y;
+    div.style.top = yPos(y) + 'px';
+    yearsCol.appendChild(div);
+  }
+  // intermediate small ticks
+  for (let y = 1910; y <= 2020; y += 10) {
+    if (y % 25 === 0) continue;
+    const div = document.createElement('div');
+    div.className = 'year-label';
+    div.textContent = '';
+    div.style.top = yPos(y) + 'px';
+    div.style.borderTop = '1px solid var(--rule-soft)';
+    div.style.width = '8px';
+    div.style.right = '0';
+    yearsCol.appendChild(div);
+  }
+
+  const physics = [
+    { y: 1900, n: 'Planck', d: 'Quantum hypothesis — energy comes in discrete packets.' },
+    { y: 1925, n: 'Heisenberg', d: 'Matrix mechanics; later studied directly by Stapp.' },
+    { y: 1935, n: 'EPR', d: 'Einstein, Podolsky, Rosen — the entanglement objection.' },
+    { y: 1952, n: 'Bohm — pilot wave', d: 'The hidden-variables alternative to Copenhagen.', link: 'bohm-implicate-order.html' },
+    { y: 1964, n: 'Bell', d: 'Bell\'s theorem — entanglement is real, locality fails.', link: 'bell-theorem.html' },
+    { y: 1980, n: 'Bohm — implicate order', d: 'Wholeness and the Implicate Order.', link: 'bohm-implicate-order.html' },
+    { y: 1991, n: 'Pribram — holonomic brain', d: 'Cortex as Fourier transformer; memory holographic.', link: 'pribram-holonomic-brain.html' },
+    { y: 1996, n: 'Penrose–Hameroff', d: 'Orch-OR — microtubule quantum coherence in cognition.' },
+    { y: 2007, n: 'Engel — photosynthesis', d: 'Quantum coherence in the FMO complex.', link: 'quantum-biology.html' },
+    { y: 2016, n: 'Hore–Mouritsen', d: 'Avian magnetoreception via radical-pair entanglement.', link: 'quantum-biology.html' },
+    { y: 2022, n: 'Aspect/Clauser/Zeilinger', d: 'Nobel Prize for Bell-test experiments — entanglement confirmed.', link: 'bell-theorem.html' },
+    { y: 2022, n: 'Bandyopadhyay (NIMS)', d: 'Microtubule coherence kHz–THz at body temperature.', link: 'bandyopadhyay-microtubules.html' },
+    { y: 2024, n: 'D\'Ariano–Faggin', d: 'Quantum Information Panpsychism — the operational paper.', link: 'dariano-faggin.html' }
+  ];
+
+  const mind = [
+    { y: 1902, n: 'William James', d: '<em>Varieties of Religious Experience</em>.' },
+    { y: 1907, n: 'Henri Bergson', d: '<em>Creative Evolution</em> — life as creative becoming.' },
+    { y: 1929, n: 'A. N. Whitehead', d: '<em>Process and Reality</em> — process philosophy.' },
+    { y: 1954, n: 'Aldous Huxley', d: '<em>The Doors of Perception</em>; brain as reducing valve.' },
+    { y: 1966, n: 'Ian Stevenson', d: 'University of Virginia — <em>Twenty Cases Suggestive of Reincarnation</em>.' },
+    { y: 1991, n: 'F. Crick', d: '<em>The Astonishing Hypothesis</em> — sets the materialist baseline.' },
+    { y: 1998, n: 'Hoffman — interface', d: 'Visual perception as user-interface; later: case against reality.', link: 'hoffman-interface.html' },
+    { y: 2007, n: 'E. Kelly et al.', d: '<em>Irreducible Mind</em> — 800-page anomalous-evidence compendium.' },
+    { y: 2012, n: 'Carhart-Harris', d: 'Psilocybin decreases default-mode network activity.', link: 'carhart-harris-entropic-brain.html' },
+    { y: 2014, n: 'Carhart-Harris', d: 'The entropic-brain hypothesis.', link: 'carhart-harris-entropic-brain.html' },
+    { y: 2019, n: 'Carhart-Harris–Friston', d: 'REBUS — relaxed beliefs under psychedelics.', link: 'carhart-harris-entropic-brain.html' },
+    { y: 2021, n: 'Faggin — Irreducible', d: 'Knowing, choosing, feeling — the three irreducibles.', link: 'dariano-faggin.html' },
+    { y: 2023, n: 'Batthyány', d: '<em>Threshold</em> — terminal lucidity, dossier of cases.', link: 'terminal-lucidity.html' },
+    { y: 2024, n: 'Strømme — Φ-field', d: 'A field-theoretic ontology of consciousness.', link: 'stromme-phi-field.html' }
+  ];
+
+  const inflect = [
+    { y: 1953, n: 'Watson–Crick', d: 'DNA structure — the molecular-biology paradigm begins.' },
+    { y: 1962, n: 'Kuhn', d: '<em>The Structure of Scientific Revolutions</em>.' },
+    { y: 1976, n: 'Stapp begins', d: 'Mind-matter publications start (LBNL).', link: 'stapp-mind-matter.html' },
+    { y: 1986, n: 'Chladni revival', d: 'Cymatic imaging enters consciousness-and-music research.', link: 'chladni.html' },
+    { y: 1995, n: 'Chalmers', d: 'Names the "hard problem" of consciousness.' },
+    { y: 2005, n: 'Manoussaki', d: 'Cochlea as logarithmic-spiral resonator (PNAS/PRL).', link: 'golden-ratio.html' },
+    { y: 2009, n: 'Pollack — EZ water', d: 'Fourth phase of water; structured-water program.', link: 'ez-water.html' },
+    { y: 2014, n: 'Levin begins', d: 'Bioelectric morphogenesis program at Tufts.', link: 'levin-bioelectric.html' },
+    { y: 2020, n: 'Brainoware / wetware', d: 'First in-vitro human-neuron biocomputers.', link: 'wetware-biocomputing.html' },
+    { y: 2024, n: 'Convergence', d: 'Quantum bio + entropic brain + field cosmology in print together.', link: 'the-evidence.html' }
+  ];
+
+  function render(laneId, data){
+    const lane = document.getElementById(laneId);
+    // greedy stacking to avoid overlap
+    const placed = []; // each: {top, bottom}
+    const minGap = 8; // px
+    data.forEach(item => {
+      const baseTop = yPos(item.y);
+      // estimate entry height
+      const estH = item.d ? 64 : 36;
+      let top = baseTop;
+      // find a vertical slot that doesn't overlap with any placed (with same x — but since they're all the same lane, full overlap matters)
+      let shifted = true;
+      while (shifted) {
+        shifted = false;
+        for (const p of placed) {
+          if (Math.abs(top - p.center) < (estH/2 + p.h/2 + minGap)) {
+            top = p.center + p.h/2 + estH/2 + minGap;
+            shifted = true;
+          }
+        }
+      }
+      placed.push({ center: top, h: estH });
+
+      const div = document.createElement('div');
+      div.className = 'entry';
+      div.style.top = top + 'px';
+
+      const linkOpen = item.link ? `<a href="${item.link}">` : '';
+      const linkClose = item.link ? `</a>` : '';
+      div.innerHTML = `
+        <div class="e-year">${item.y}</div>
+        <div class="e-name">${linkOpen}${item.n}${linkClose}</div>
+        <div class="e-desc">${item.d}</div>
+      `;
+      if (item.link) {
+        div.style.cursor = 'pointer';
+        div.addEventListener('click', (e) => {
+          if (e.target.tagName !== 'A') window.location.href = item.link;
+        });
+      }
+      lane.appendChild(div);
+    });
+  }
+
+  render('lane-physics', physics);
+  render('lane-mind', mind);
+  render('lane-inflect', inflect);
+})();
+</script>
+
+</body>
+</html>

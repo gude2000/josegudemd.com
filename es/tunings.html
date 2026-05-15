@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Afinaciones &mdash; una comparación en audio &mdash; José Gude MD</title>
+  <meta name="description" content="Una comparación auditiva de cinco maneras distintas de afinar la nota do — temperamento igual A=440, temperamento igual A=432, entonación justa en do=264, el do afinado en φ a 266,67 que usa la trilogía, y un intervalo φ renderizado como el paso del 72-TET en el que trabaja Dolores Catherino. Construida en el navegador con la Web Audio API para que la matemática se vuelva audible.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .tuning-card {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 18px 22px;
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .tuning-card .meta { flex: 1 1 auto; min-width: 260px; }
+    .tuning-card h3 {
+      margin: 0 0 6px 0;
+      color: var(--cream);
+      font-size: 16px;
+      font-family: var(--sans);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .tuning-card .freq {
+      font-family: -apple-system, BlinkMacSystemFont, monospace;
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+    }
+    .tuning-card .desc { color: var(--cream-dim); font-size: 14px; line-height: 1.55; margin-top: 6px; }
+    .tuning-btn {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background .15s ease, color .15s ease;
+      flex-shrink: 0;
+      min-width: 130px;
+    }
+    .tuning-btn:hover { background: rgba(218, 160, 85, 0.15); color: var(--cream); }
+    .tuning-btn.playing { background: rgba(218, 160, 85, 0.28); color: var(--cream); border-color: var(--cream); }
+    .stop-all-wrap { text-align: center; margin: 24px 0 8px 0; }
+    .stop-all {
+      background: transparent;
+      border: 1px solid var(--cream-mute);
+      color: var(--cream-dim);
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .stop-all:hover { color: var(--cream); border-color: var(--gold); }
+    .pair-label { color: var(--cream-mute); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin: 22px 0 -4px 0; }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Libros</a></li>
+      <li><a href="reading.html">Lecturas</a></li>
+      <li><a href="watch.html">Ver y Escuchar</a></li>
+      <li><a href="the-evidence.html">Síntesis</a></li>
+      <li><a href="about.html">Autor</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><a href="../tunings.html">EN</a> <span style="opacity:0.4;">|</span> <span style="color:var(--gold);">ES</span></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">El interactivo &middot; afinaciones &middot; una comparación auditiva</p>
+  <h1>Afinaciones &mdash; una comparación en audio</h1>
+  <p class="lede">La afirmación de la trilogía de que una misma nota puede sonar profundamente distinta según cómo esté afinada es fácil de hacer por escrito y difícil de hacer convincente por escrito. Esta página la vuelve audible. Cinco botones. Cada uno reproduce durante unos cinco segundos una versión sostenida de la nota do, afinada de una manera diferente. La matemática detrás de cada caso aparece en el pie. La cuestión no es qué afinación es la «correcta». La cuestión es que <strong>la frecuencia no es una coordenada sobre una rejilla</strong> &mdash; es un parámetro continuo al que el cuerpo responde, y el cuerpo escucha la diferencia en el momento en que la afinación cambia.</p>
+  <p class="dim">Tonos sinusoidales puros generados en el navegador. Usa un volumen moderado; los tonos puros sostenidos a volumen alto resultan desagradables. Mejor con auriculares &mdash; los altavoces pequeños no rinden bien las frecuencias graves. El intervalo φ de Catherino al final de la página requiere auriculares para escucharse con limpieza.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>Las cinco afinaciones de do</h2>
+
+  <p class="pair-label">Las dos versiones estándar A=440 frente a A=432 del do</p>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>12-TET, A=440 — estándar moderno</h3>
+      <div class="freq">Do₄ = 261,626 Hz · 0 cents (referencia)</div>
+      <div class="desc">La nota que toca tu piano. El temperamento igual divide la octava en doce pasos matemáticamente iguales; el la sobre el do central queda fijado en 440 Hz; el resto se deduce. Ha sido el estándar global de concierto desde mediados del siglo XX. La nota que más has oído en tu vida tiene exactamente esta frecuencia.</div>
+    </div>
+    <button class="tuning-btn" data-id="t1">tocar / parar</button>
+  </div>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>12-TET, A=432 — altura de concierto alternativa</h3>
+      <div class="freq">Do₄ = 256,869 Hz · −31,8 cents por debajo del do A=440</div>
+      <div class="desc">Temperamento igual desplazado hacia abajo afinando el la en 432 Hz en lugar de 440. Usado históricamente antes de mediados del siglo XX en muchas tradiciones europeas; lo prefiere hoy parte de la comunidad de música antigua y algunos que sostienen que el 432 produce una calidez sentida que el 440 no tiene. La evidencia empírica de esa calidez sentida es débil. La diferencia de frecuencia es real y audible.</div>
+    </div>
+    <button class="tuning-btn" data-id="t2">tocar / parar</button>
+  </div>
+
+  <p class="pair-label">Entonación justa &mdash; acorde mayor de do en la razón 4:5:6</p>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>Entonación justa en do=264 Hz</h3>
+      <div class="freq">do 264 · mi 330 · sol 396 Hz · razones exactas 4 : 5 : 6</div>
+      <div class="desc">Un acorde mayor de do en <em>entonación justa</em> &mdash; el acorde afinado a las razones enteras exactas de la serie armónica (4:5:6) en lugar de a las aproximaciones ligeramente desafinadas del temperamento igual. La quinta es un 3:2 puro, la tercera mayor un 5:4 puro, y el acorde se asienta en una quietud que ningún acorde de temperamento igual produce. Sostén este contra el siguiente.</div>
+    </div>
+    <button class="tuning-btn" data-id="t3">tocar / parar</button>
+  </div>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>Entonación justa en el do afinado en φ = 266,67 Hz</h3>
+      <div class="freq">do 266,67 · mi 333,33 · sol 400,00 Hz · razones exactas 4 : 5 : 6</div>
+      <div class="desc">La misma tríada en 4:5:6 &mdash; pero anclada a do = 266,67 Hz, la frecuencia que usa la trilogía. La fundamental se eligió porque 432 × φ ≈ 698,93 cae cerca del la situado encima; el do por debajo de ese la en este esquema queda en 266,67. Esta es la pieza audible central de los capítulos del acorde de <em>Limen</em>: una tríada cuya raíz se sitúa en el do derivado de φ. Aproximadamente +33 cents por encima del do estándar; casi exactamente el punto medio geométrico de las alturas reales que Jeff Buckley cantó en las grabaciones de <em>Hallelujah</em>. Ver la <a href="watch.html" style="color:var(--gold);">nota de Ver y Escuchar</a>.</div>
+    </div>
+    <button class="tuning-btn" data-id="t4">tocar / parar</button>
+  </div>
+
+  <p class="pair-label">El intervalo φ &mdash; la razón φ : 1 como dos tonos</p>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>El intervalo φ &mdash; do = 266,67 Hz con su compañero φ en 431,4 Hz</h3>
+      <div class="freq">grave 266,67 Hz · agudo 431,36 Hz · razón φ ≈ 1,61803 · 833,10 cents</div>
+      <div class="desc">Un intervalo de dos tonos en la razón exacta φ. En el 12-TET este intervalo cae entre una sexta menor (800 cents) y una sexta mayor (900 cents) &mdash; no existe en ningún instrumento estándar. En el 72-TET (el sistema de afinación de Dolores Catherino) cae en el paso 50, que se sitúa 833,33 cents por encima de la raíz: φ con un margen de 0,2 cents. Este es el sonido al que apunta la trilogía cuando dice que el acorde se niega a resolverse. El intervalo es ligeramente disonante precisamente porque el oído humano ha sido entrenado por 400 años de teclados de temperamento mesotónico e igual para esperar la resolución en la sexta temperada más cercana.</div>
+    </div>
+    <button class="tuning-btn" data-id="t5">tocar / parar</button>
+  </div>
+
+  <div class="stop-all-wrap">
+    <button class="stop-all" id="stop-all">parar todo</button>
+  </div>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>Qué deberías escuchar</h2>
+  <p>La comparación 440 frente a 432 es pequeña. Las dos notas son dos do en el mismo temperamento; la diferencia es un desplazamiento de unos treinta cents &mdash; aproximadamente un tercio de semitono. Los oídos entrenados lo notan de inmediato; la mayoría de los oídos no entrenados lo sienten como una ligera diferencia de «peso» o «oscuridad» antes de oírlo como un cambio de altura. Esta es la demostración más limpia de que el cuerpo responde a la frecuencia por debajo del umbral del reconocimiento consciente.</p>
+  <p>Las dos tríadas en entonación justa suenan parecidas entre sí y notablemente <em>más estables</em> que cualquier cosa que el temperamento igual pueda producir. La quinta y la tercera mayor se asientan de un modo en que los intervalos templados equivalentes nunca lo hacen; los armónicos se alinean limpiamente, y aparece una cualidad «fundida» que no está presente en 440. Esto es lo que se quiere decir cuando la escuela espectral afirma que el temperamento igual le cuesta algo al cuerpo. El coste es real e inmediato.</p>
+  <p>El intervalo φ del final es el más difícil. Se sitúa en la tierra de nadie entre la sexta menor temperada y la sexta mayor. El oído intenta sin cesar resolverlo hacia una u otra y no puede. Esta es la experiencia armónica en torno a la que circula la trilogía &mdash; un intervalo que <em>se niega a resolverse</em>, que el cuerpo tiene que sostener en lugar de completar. Es la firma audible de la arquitectura aumentada que describen los capítulos del acorde de <em>Limen</em>.</p>
+  <p>La afirmación más profunda, en los cinco casos, es que <strong>la diferencia no es cuestión de opinión</strong>. La diferencia de altura es un hecho físico objetivo; la diferencia de alineación armónica es un hecho físico objetivo; la respuesta del cuerpo es medible. Las afirmaciones de la trilogía sobre la frecuencia no son preferencias estéticas. Son afirmaciones acerca de lo que el cuerpo hace de hecho cuando se le ofrecen razones distintas.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">Generado en tu navegador con la Web Audio API &mdash; osciladores sinusoidales puros con un breve fade-in y fade-out para evitar clics. No hay archivos de audio; todo se calcula en vivo a partir de las frecuencias listadas. Lee <a href="golden-ratio.html">la guía sobre φ</a> para la geometría que produce estas razones, y <a href="watch.html">la página Ver y Escuchar</a> para la música grabada que las explora &mdash; en particular Ligeti, <em>Stimmung</em> de Stockhausen, <em>The Well-Tuned Piano</em> de La Monte Young, y Catherine Lamb / Dolores Catherino en entonación justa y 72-TET.</p>
+  <a href="reading.html" class="read-more">← Lecturas y referencias</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Herramientas del lector:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Empieza aquí</a> &middot;
+      <a href="glossary.html">Glosario</a> &middot;
+      <a href="the-evidence.html">Síntesis</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const PHI = (1 + Math.sqrt(5)) / 2;
+  const tunings = {
+    t1: { freqs: [261.626] },
+    t2: { freqs: [256.869] },
+    t3: { freqs: [264.0, 330.0, 396.0] },
+    t4: { freqs: [266.67, 333.33, 400.0] },
+    t5: { freqs: [266.67, 266.67 * PHI] }
+  };
+  let ctx = null;
+  function ensureCtx() { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); return ctx; }
+  const active = new Map();
+  function startTone(id) {
+    const c = ensureCtx(); if (c.state === 'suspended') c.resume();
+    const cfg = tunings[id]; if (!cfg) return;
+    stopTone(id);
+    const out = c.createGain(); out.gain.value = 0; out.connect(c.destination);
+    const oscs = cfg.freqs.map((f) => {
+      const o = c.createOscillator(); o.type = 'sine'; o.frequency.value = f;
+      const g = c.createGain(); g.gain.value = 1 / Math.sqrt(cfg.freqs.length);
+      o.connect(g); g.connect(out); o.start();
+      return { osc: o, g: g };
+    });
+    const t0 = c.currentTime; const peak = 0.18;
+    out.gain.cancelScheduledValues(t0);
+    out.gain.setValueAtTime(0, t0);
+    out.gain.linearRampToValueAtTime(peak, t0 + 0.06);
+    out.gain.setValueAtTime(peak, t0 + 5.0);
+    out.gain.linearRampToValueAtTime(0, t0 + 5.4);
+    const timeoutId = setTimeout(() => stopTone(id), 5500);
+    active.set(id, {
+      stopFn: function(){
+        try {
+          out.gain.cancelScheduledValues(c.currentTime);
+          out.gain.linearRampToValueAtTime(0, c.currentTime + 0.05);
+          setTimeout(() => {
+            oscs.forEach(v => { try { v.osc.stop(); v.osc.disconnect(); v.g.disconnect(); } catch(e){} });
+            try { out.disconnect(); } catch(e){}
+          }, 80);
+        } catch(e){}
+        clearTimeout(timeoutId);
+      }
+    });
+    const btn = document.querySelector(`.tuning-btn[data-id="${id}"]`);
+    if (btn) btn.classList.add('playing');
+  }
+  function stopTone(id) {
+    const a = active.get(id);
+    if (a) {
+      a.stopFn(); active.delete(id);
+      const btn = document.querySelector(`.tuning-btn[data-id="${id}"]`);
+      if (btn) btn.classList.remove('playing');
+    }
+  }
+  function stopAll() { Array.from(active.keys()).forEach(stopTone); }
+  document.querySelectorAll('.tuning-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      const id = b.dataset.id;
+      if (active.has(id)) stopTone(id);
+      else startTone(id);
+    });
+  });
+  document.getElementById('stop-all').addEventListener('click', stopAll);
+})();
+</script>
+
+</body>
+</html>
