@@ -400,18 +400,25 @@
     function startLowChord() { startTone('_sable_low_chord', { duration: 30, peak: 0.09 }); }
     function stopLowChord()  { fadeOutTone('_sable_low_chord', 2.5); }
 
-    let sableBuffer = null, sableLoadAttempted = false;
+    let sableBuffer = null;
     function loadSableAudio() {
-      if (sableLoadAttempted) return Promise.resolve(sableBuffer);
-      sableLoadAttempted = true;
+      if (sableBuffer) return Promise.resolve(sableBuffer);
       const c = ensureCtx();
-      // try the Spanish recording first; fall back to the shared sable.wav if missing
-      return fetch('../assets/audio/sable-es.wav')
-        .then(r => r.ok ? r.arrayBuffer() : Promise.reject())
-        .catch(() => fetch('../assets/audio/sable.wav').then(r => r.ok ? r.arrayBuffer() : Promise.reject()))
+      setStatus('cargando…');
+      // Try Spanish recording (mp3 → wav), fall back to shared English (mp3 → wav)
+      const tryFetch = (url) => fetch(url, { cache: 'no-store' })
+        .then(r => r.ok ? r.arrayBuffer() : Promise.reject(new Error(url + ' → ' + r.status)));
+      return tryFetch('../assets/audio/sable-es.mp3')
+        .catch(() => tryFetch('../assets/audio/sable-es.wav'))
+        .catch(() => tryFetch('../assets/audio/sable.mp3'))
+        .catch(() => tryFetch('../assets/audio/sable.wav'))
         .then(ab => c.decodeAudioData(ab))
         .then(buf => { sableBuffer = buf; return buf; })
-        .catch(() => { sableBuffer = null; return null; });
+        .catch(err => {
+          setStatus('error al cargar audio: ' + err.message, true);
+          sableBuffer = null;
+          return null;
+        });
     }
     function playSableVoice(buffer, onDone) {
       const c = ensureCtx();

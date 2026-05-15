@@ -463,18 +463,26 @@
       fadeOutTone('_sable_low_chord', 2.5);
     }
 
-    // Load the uploaded Sable.wav recording.
+    // Load Sable's recording — MP3 first (10× smaller), WAV fallback. Cached
+    // between clicks since the buffer is reusable.
     let sableBuffer = null;
     let sableLoadAttempted = false;
     function loadSableAudio() {
-      if (sableLoadAttempted) return Promise.resolve(sableBuffer);
+      if (sableBuffer) return Promise.resolve(sableBuffer);
       sableLoadAttempted = true;
       const c = ensureCtx();
-      return fetch('assets/audio/sable.wav')
-        .then(r => r.ok ? r.arrayBuffer() : Promise.reject('no audio'))
+      setStatus('loading…');
+      const tryFetch = (url) => fetch(url, { cache: 'no-store' })
+        .then(r => r.ok ? r.arrayBuffer() : Promise.reject(new Error(url + ' → ' + r.status)));
+      return tryFetch('assets/audio/sable.mp3')
+        .catch(() => tryFetch('assets/audio/sable.wav'))
         .then(ab => c.decodeAudioData(ab))
         .then(buf => { sableBuffer = buf; return buf; })
-        .catch(err => { sableBuffer = null; return null; });
+        .catch(err => {
+          setStatus('audio load failed: ' + err.message, true);
+          sableBuffer = null;
+          return null;
+        });
     }
 
     function playSableVoice(buffer, onDone) {
@@ -496,8 +504,6 @@
     sableBtn.addEventListener('click', () => {
       startLowChord();
       sableBtn.classList.add('playing');
-      setStatus('▶ loading Sable.wav…');
-
       loadSableAudio().then(buf => {
         if (buf) {
           setStatus('▶ Sable speaking · low chord underneath');
