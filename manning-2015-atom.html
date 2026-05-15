@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manning 2015 &mdash; Delayed Choice with a Single Atom &mdash; José Gude MD</title>
+  <meta name="description" content="A reader's companion to Manning et al.'s 2015 Nature Physics paper realizing Wheeler's delayed-choice experiment with a single metastable helium atom — extending wave-particle complementarity from photons to massive particles, and showing that the experimental context, not pre-existing trajectories, determines what the atom 'was doing.'">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Books</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="watch.html">Watch &amp; Listen</a></li>
+      <li><a href="the-evidence.html">Synthesis</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><span style="color:var(--gold);">EN</span> <span style="opacity:0.4;">|</span> <a href="es/manning-2015-atom.html">ES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">The research &middot; Manning et al. &middot; Nature Physics &middot; 2015</p>
+  <h1>Manning 2015 &mdash; Delayed Choice with a Single Atom</h1>
+  <p class="lede">Manning, Khakimov, Dall &amp; Truscott's 2015 paper in <em>Nature Physics</em> &mdash; <a href="https://www.nature.com/articles/nphys3343" target="_blank" rel="noopener"><em>Wheeler's delayed-choice gedanken experiment with a single atom</em></a> &mdash; realizes Wheeler's thought experiment not with photons but with a single ultracold metastable helium atom in a matter-wave interferometer. The result extends wave-particle complementarity from light to massive particles, and shows that assigning "wave" or "particle" behavior to the atom <em>prior to</em> measurement is physically meaningless in the standard quantum framework.</p>
+  <p class="dim">A reader's companion to a single entry in the bibliography. Read alongside <a href="wheeler-delayed-choice.html">the Jacques 2007 photon-version explainer</a> &mdash; the two papers are best understood together.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>The core idea of Wheeler's delayed choice</h2>
+  <p>Wheeler's proposal considers a single quantum (originally a photon) sent through a Mach–Zehnder interferometer, where the experimenter decides <em>after</em> it has entered whether the interferometer is "open" (which-path information, particle-like) or "closed" (recombined paths, interference, wave-like). The key conceptual point is that the late choice of measurement setting appears to retroactively decide whether the quantum "was a wave" or "was a particle" in the past, challenging naive realist pictures of its trajectory.</p>
+  <p>For the full setup and the photon implementation by Jacques and colleagues (2007), see <a href="wheeler-delayed-choice.html">the Wheeler delayed-choice explainer</a>. What Manning and colleagues add is the most direct possible answer to a natural follow-up question: is this strange behavior peculiar to light, or does it generalize to particles with rest mass?</p>
+</section>
+
+<section>
+  <h2>What Manning and colleagues actually did</h2>
+  <p>Manning and collaborators implemented Wheeler's scheme using a single metastable helium atom passing through a matter-wave Mach–Zehnder interferometer formed by coherent beam-splitting and mirror pulses. The setup:</p>
+  <ul>
+    <li>An <strong>ultracold (sub-nanokelvin) source</strong> of single atoms, released from an optical dipole trap and falling under gravity onto a delay-line detector that records individual He* atoms with full 3D spatial and timing information.</li>
+    <li>The two interferometer "arms" are realized by <strong>coherent momentum-space splitting and recombination</strong> of the atomic wavefunction using Bragg or Raman-type light pulses, which act as matter-wave beam splitters and mirrors.</li>
+    <li>By appropriately timing these pulses, they either <em>close</em> the interferometer and recombine the paths (interference possible) or <em>leave it open</em> so that the detection outcome reveals which path the atom took (no interference).</li>
+  </ul>
+  <p>The principle is identical to the photon experiment. The implementation, with massive particles instead of light, is the new and conceptually striking part.</p>
+</section>
+
+<section>
+  <h2>The delayed choice and the randomness</h2>
+  <p>The "delayed choice" in this experiment is implemented by triggering a random number generator only <em>after</em> the atom has passed the first beam splitter (the initial splitting pulse). That random bit then determines whether the final pulse configuration will close the interferometer (enabling interference) or leave it open (providing which-path information), ensuring the atom has no causal access to the future choice under ordinary relativistic assumptions.</p>
+  <p>Because the atoms move far more slowly than light, the experimenters have an <em>extended time window</em> &mdash; compared to photonic experiments &mdash; to make and implement the random choice between the two measurement settings. This slow-massive-particle regime makes the atomic realization conceptually clean and technically flexible in comparison with earlier large-scale optical tests. The delayed-choice loophole has more breathing room when the carrier of the quantum is not racing at the speed of light.</p>
+</section>
+
+<section>
+  <h2>Results: interference vs which-path</h2>
+  <p>When the interferometer is <strong>closed</strong>, the detected atoms show high-visibility interference fringes as a function of the relative phase between the two arms, displaying unambiguously wave-like behavior of the single atom. When the interferometer is left <strong>open</strong>, the phase-dependent interference pattern disappears, and detections correlate with one arm or the other, corresponding to particle-like which-path information.</p>
+  <blockquote style="font-style:italic;border-left:3px solid var(--gold);padding-left:1.2em;margin:1em 0;color:var(--cream);">
+    Crucially, which of these two behaviors appears is decided by the delayed, random choice that occurs <em>after</em> the atom has already entered the interferometer &mdash; in accord with Wheeler's original thought experiment. The observed statistics match the standard quantum prediction that the measurement context completely determines whether interference emerges, with no need to posit any retrocausal influence or pre-existing "wave" or "particle" character.
+  </blockquote>
+</section>
+
+<section>
+  <h2>Conceptual upshot and Bohr's view</h2>
+  <p>The authors emphasize that their data support Bohr's complementarity view: it is simply not meaningful to attribute "wave" or "particle" behavior to the atom independently of the measurement arrangement. In other words, asking "what was the atom really doing between source and detector?" in classical terms is a category error; only the full experimental context and resulting outcomes have well-defined physical meaning.</p>
+  <p>Their realization also demonstrates Wheeler's delayed-choice scheme for massive particles, extending such tests beyond photons and highlighting that wave–particle duality and context-dependent behavior are not restricted to light. This is encouraging for further experiments involving entanglement, Bell tests, and macroscopic quantum phenomena with massive systems, where similar delayed-choice and contextuality arguments can be probed.</p>
+</section>
+
+<section>
+  <h2>Why this matters for the trilogy</h2>
+  <p>The Manning result is the cleanest experimental form of the question <em>Limen</em> asks about time. If the Jacques photon experiment leaves any room for the objection "but photons are not <em>massive</em> &mdash; perhaps the strangeness is specific to light," Manning closes that escape hatch. Massive atoms behave the same way. The delayed measurement choice determines whether the atom was a wave or a particle. The pattern of behavior is a feature of quantum systems generally, not a quirk of electromagnetic radiation.</p>
+  <p>Read together with the photon-version explainer and the <a href="tsvf.html">two-state vector formalism</a>, Manning's result anchors the trilogy's central time-symmetric claim: that the present is constructed at the interface between forward-propagating and backward-propagating quantum constraints. The trilogy's symmetric 300-millisecond gaps &mdash; Libet's readiness potential on the past side, Lucía Reyes's cymatic pre-event window on the future side &mdash; are not fictional flourishes. They are exactly the kind of phenomenon that contemporary quantum mechanics, taken at face value across both photons and massive particles, has been showing us how to think about for forty years.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">For the original 2015 paper, see <a href="https://www.nature.com/articles/nphys3343" target="_blank" rel="noopener">Nature Physics 11, 539–542</a>. For the photon implementation that started the empirical program, see the <a href="wheeler-delayed-choice.html">Jacques 2007 explainer</a>. For the formal language that organizes these results, see the <a href="tsvf.html">two-state vector formalism explainer</a>. For the synthesis, see <a href="the-evidence.html">What the Evidence Shows So Far</a>.</p>
+  <a href="reading.html" class="read-more">← Reading &amp; References</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
