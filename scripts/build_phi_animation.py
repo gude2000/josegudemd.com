@@ -38,7 +38,7 @@ CREAM_DIM= "#b9b09b"
 # We build a 5-step Fibonacci spiral construction. Each step adds a square
 # of side length F(n), placed adjacent to the existing rectangle following
 # the classic golden-rectangle spiral pattern.
-FIB = [1, 1, 2, 3, 5, 8, 13]  # 7 squares — covers the visual nicely
+FIB = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]  # 10 squares — spiral progression is more visible
 
 def build_squares():
     """Return list of (x, y, side, quadrant) for each square in build order.
@@ -109,12 +109,12 @@ def render_animation():
     fig_w, fig_h = 12.8, 7.2  # inches at 100 dpi → 1280×720
     dpi = 100
 
-    # Timing: each square gets ~1 s to appear, then a final 1.5 s to draw the spiral
+    # Timing: tuned so the whole video stays around 12–13 s with 10 squares.
     fps = 30
-    per_square_frames = 22       # ≈ 0.73 s per square fade-in
+    per_square_frames = 18       # ≈ 0.60 s per square fade-in
     settle_frames     = 12       # short pause after all squares are placed
-    spiral_frames     = 80       # ≈ 2.6 s to draw the spiral
-    hold_frames       = 30       # ≈ 1 s hold at the end
+    spiral_frames     = 110      # ≈ 3.7 s to draw the longer spiral
+    hold_frames       = 36       # ≈ 1.2 s hold at the end
     total_frames = per_square_frames * len(squares) + settle_frames + spiral_frames + hold_frames
 
     tmpdir = Path(tempfile.mkdtemp(prefix="phi_anim_"))
@@ -166,10 +166,12 @@ def render_animation():
                                   facecolor='none',
                                   alpha=alpha)
                 ax.add_patch(rect2)
-                # Label the side length
+                # Label the side length — scale by log so the smaller squares
+                # stay readable next to the much bigger 55×55 in the same frame.
                 if alpha > 0.5:
+                    label_size = 9 + 4.5 * math.log2(s + 1)
                     ax.text(x + s/2, y + s/2, f"{s}",
-                            color=CREAM, fontsize=10 + min(s, 8),
+                            color=CREAM, fontsize=label_size,
                             ha='center', va='center',
                             alpha=alpha * 0.85,
                             family='serif')
