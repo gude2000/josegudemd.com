@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espiral φ — interactiva</title>
+<style>
+  :root {
+    --bg:        #0a0e1a;
+    --bg-soft:   #11151f;
+    --cream:     #e8e0ce;
+    --cream-dim: #b9b09b;
+    --cream-mute:#7d7868;
+    --gold:      #daa055;
+    --gold-soft: #c48c42;
+    --teal:      #78c8b4;
+    --violet:    #b4a0e6;
+    --rule:      #2a2e3d;
+  }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    color: var(--cream-dim);
+  }
+  #scene { width: 100vw; height: 100vh; display: block; }
+  .hint {
+    position: absolute; top: 44px; right: 16px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(185, 176, 155, 0.45);
+    pointer-events: none;
+    user-select: none;
+  }
+  /* Back link — visible only standalone (hidden when in iframe) */
+  .back-link {
+    display: none;
+    position: absolute; top: 12px; right: 16px;
+    font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(218, 160, 85, 0.75);
+    text-decoration: none;
+    padding: 4px 10px;
+    border: 1px solid rgba(218, 160, 85, 0.35);
+    border-radius: 2px;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+    z-index: 10;
+  }
+  .back-link:hover {
+    color: var(--cream);
+    border-color: rgba(218, 160, 85, 0.7);
+    background: rgba(218, 160, 85, 0.10);
+  }
+  .readout {
+    position: absolute;
+    top: 14px; left: 16px;
+    color: var(--cream-dim);
+    font-size: 12px;
+    line-height: 1.7;
+    user-select: none;
+    pointer-events: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .readout .label {
+    color: var(--cream-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+  .readout .value {
+    color: var(--cream);
+    font-size: 14px;
+  }
+  .readout .value.phi {
+    color: var(--gold);
+  }
+  .controls {
+    position: absolute;
+    bottom: 50px; left: 0; right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 0 24px;
+    pointer-events: none;
+  }
+  .slider-wrap {
+    width: 100%;
+    max-width: 520px;
+    pointer-events: auto;
+  }
+  .slider-wrap .slider-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(185, 176, 155, 0.55);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    background: transparent;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 2px;
+    background: var(--rule);
+    border-radius: 1px;
+  }
+  input[type=range]::-moz-range-track {
+    height: 2px;
+    background: var(--rule);
+    border-radius: 1px;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: -6px;
+    box-shadow: 0 0 0 2px rgba(218,160,85,0.25);
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: none;
+    box-shadow: 0 0 0 2px rgba(218,160,85,0.25);
+  }
+  .mode-toggle {
+    display: flex;
+    gap: 0;
+    pointer-events: auto;
+  }
+  .mode-toggle button {
+    background: transparent;
+    border: 1px solid rgba(218, 160, 85, 0.4);
+    color: rgba(218, 160, 85, 0.85);
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    margin: 0 -1px 0 0;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .mode-toggle button:first-of-type { border-radius: 2px 0 0 2px; }
+  .mode-toggle button:last-of-type  { border-radius: 0 2px 2px 0; }
+  .mode-toggle button:hover {
+    color: var(--cream);
+    border-color: var(--gold);
+  }
+  .mode-toggle button.active {
+    background: rgba(218, 160, 85, 0.18);
+    color: var(--cream);
+    border-color: var(--gold);
+  }
+  .snap-btn {
+    background: transparent;
+    border: 1px solid rgba(184, 144, 76, 0.55);
+    color: var(--gold);
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    cursor: pointer;
+    border-radius: 2px;
+    pointer-events: auto;
+    transition: background .15s ease, color .15s ease;
+  }
+  .snap-btn:hover {
+    background: rgba(218, 160, 85, 0.18);
+    color: var(--cream);
+  }
+  .caption {
+    position: absolute;
+    bottom: 14px; left: 0; right: 0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(218, 160, 85, 0.78);
+    pointer-events: none;
+    user-select: none;
+    padding: 0 14px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="../es/explore.html">← Volver a Explorar</a>
+<script>
+  if (window.self === window.top) {
+    var bl = document.querySelector('.back-link');
+    if (bl) bl.style.display = 'inline-block';
+  }
+</script>
+
+<svg id="scene" xmlns="http://www.w3.org/2000/svg"></svg>
+
+<div class="hint">arrastra el deslizador</div>
+
+<div class="readout">
+  <div><span class="label">crecimiento / cuarto de vuelta</span><br><span class="value" id="ratio-quarter">1.000</span></div>
+  <div style="margin-top:8px;"><span class="label">crecimiento / vuelta completa</span><br><span class="value" id="ratio-full">1.000</span></div>
+  <div style="margin-top:8px;"><span class="label">parámetro b</span><br><span class="value" id="param-b">0.000</span></div>
+</div>
+
+<div class="controls">
+  <div class="slider-wrap">
+    <div class="slider-label" id="slider-caption">tasa de crecimiento</div>
+    <input type="range" id="growth" min="1.05" max="2.50" step="0.001" value="1.000">
+  </div>
+  <div style="display:flex;gap:12px;align-items:center;">
+    <button class="snap-btn" id="snap-phi">fijar en φ</button>
+    <div class="mode-toggle">
+      <button data-mode="spiral" class="active">espiral</button>
+      <button data-mode="rectangles">rectángulos φ</button>
+      <button data-mode="phyllotaxis">filotaxis</button>
+      <button data-mode="polyhedra">sólidos de Da Vinci</button>
+    </div>
+  </div>
+</div>
+
+<div class="caption" id="caption">una espiral logarítmica — la única curva que crece sin cambiar de forma</div>
+
+<script>
+(function(){
+  const svg = document.getElementById('scene');
+  const slider = document.getElementById('growth');
+  const snapBtn = document.getElementById('snap-phi');
+  const ratioQuarterEl = document.getElementById('ratio-quarter');
+  const ratioFullEl = document.getElementById('ratio-full');
+  const paramBEl = document.getElementById('param-b');
+  const captionEl = document.getElementById('caption');
+  const sliderCap = document.getElementById('slider-caption');
+  const modeButtons = document.querySelectorAll('.mode-toggle button');
+
+  const PHI = (1 + Math.sqrt(5)) / 2;
+  // golden angle in radians (the "phyllotaxis angle"): 360° / φ² = 137.5077…°
+  const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
+  const INV_PHI = 1 / PHI;
+  const SQRT2 = Math.SQRT2;
+  let mode = 'spiral';
+  let W = 0, H = 0;
+  const PHI_EPS = 0.003; // ratio considered "at φ"
+
+  // -- Polyhedra (Option B: Leonardo's drawings for Pacioli, De Divina Proportione 1509) --
+  // Vertex sets are procedural; edge tables are derived by distance threshold.
+  function genCubeV(){ const v=[]; for(let x=-1;x<=1;x+=2) for(let y=-1;y<=1;y+=2) for(let z=-1;z<=1;z+=2) v.push([x,y,z]); return v; }
+  function genIcosaV(){
+    const v=[];
+    for(let a=-1;a<=1;a+=2) for(let b=-1;b<=1;b+=2){
+      v.push([0, a, b*PHI]); v.push([a, b*PHI, 0]); v.push([a*PHI, 0, b]);
+    }
+    return v;
+  }
+  function genDodecaV(){
+    const v = genCubeV(); // 8 cube vertices at (±1,±1,±1)
+    for(let a=-1;a<=1;a+=2) for(let b=-1;b<=1;b+=2){
+      v.push([0, a*INV_PHI, b*PHI]);
+      v.push([a*INV_PHI, b*PHI, 0]);
+      v.push([a*PHI, 0, b*INV_PHI]);
+    }
+    return v; // 20 total
+  }
+  function genRcoV(){
+    const v=[]; const u=1+SQRT2;
+    for(let a=-1;a<=1;a+=2) for(let b=-1;b<=1;b+=2) for(let c=-1;c<=1;c+=2){
+      v.push([a, b, c*u]); v.push([a, b*u, c]); v.push([a*u, b, c]);
+    }
+    return v; // 24 total
+  }
+  function dist3(a,b){ const dx=a[0]-b[0], dy=a[1]-b[1], dz=a[2]-b[2]; return Math.sqrt(dx*dx+dy*dy+dz*dz); }
+  function genEdges(verts, target, tol){
+    tol = tol || 0.001; const e=[];
+    for(let i=0;i<verts.length;i++) for(let j=i+1;j<verts.length;j++)
+      if (Math.abs(dist3(verts[i], verts[j]) - target) < tol) e.push([i,j]);
+    return e;
+  }
+  const tetraV  = [[1,1,1],[1,-1,-1],[-1,1,-1],[-1,-1,1]];
+  const cubeV   = genCubeV();
+  const octaV   = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+  const dodecaV = genDodecaV();
+  const icosaV  = genIcosaV();
+  const rcoV    = genRcoV();
+  //
+  // Phi-edge identification for the gold-highlight overlay:
+  //   • Dodecahedron: the 8 vertices at (±1,±1,±1) form an inscribed cube;
+  //     its 12 edges (length 2 between coord-adjacent vertices) are gold.
+  //     5 such cubes can be inscribed; we show one. The face-diagonal-to-edge
+  //     ratio (the actual phi relationship) is mentioned in the caption.
+  //   • Icosahedron: the 12 vertices partition into three sets of 4 sharing
+  //     a zero coordinate. Each set forms a golden rectangle of sides 2 × 2φ
+  //     in one of the three orthogonal coordinate planes. The 12 perimeter
+  //     segments (4 per rectangle × 3) are gold. Two of the four segments
+  //     per rectangle coincide with actual icosahedron edges (the short
+  //     sides, length 2); the other two are interior diagonals.
+  //
+  const polyhedra = [
+    { name:'Tetraedro',         verts: tetraV,  edges: genEdges(tetraV, Math.sqrt(8)),
+      note: 'Cuatro caras triangulares. El sólido platónico más simple.' },
+    { name:'Cubo',                verts: cubeV,   edges: genEdges(cubeV, 2),
+      note: 'Seis caras cuadradas.' },
+    { name:'Octaedro',          verts: octaV,   edges: genEdges(octaV, Math.SQRT2),
+      note: "Ocho caras triangulares — el dual del cubo." },
+    { name:'Dodecaedro',        verts: dodecaV, edges: genEdges(dodecaV, 2*INV_PHI), phiOverlay: 'inscribedCube',
+      note: 'Doce caras pentagonales · las diagonales de las caras están en razón áurea φ con las aristas. Un cubo inscrito (en dorado) comparte 8 de los 20 vértices.' },
+    { name:'Icosaedro',         verts: icosaV,  edges: genEdges(icosaV, 2), phiOverlay: 'goldenRectangles',
+      note: 'Veinte caras triangulares · los vértices forman tres rectángulos áureos ortogonales (en dorado), cada uno con lados en razón φ:1.' },
+    { name:'Rombicuboctaedro', verts: rcoV,    edges: genEdges(rcoV, 2),
+      note: "Veintiséis caras (18 cuadrados, 8 triángulos) — el poliedro que Leonardo dibujó más célebremente para el tratado de Pacioli de 1509." },
+  ];
+
+  function resize(){
+    W = window.innerWidth;
+    H = window.innerHeight;
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    draw();
+  }
+  window.addEventListener('resize', resize);
+
+  function setMode(newMode){
+    mode = newMode;
+    modeButtons.forEach(b => b.classList.toggle('active', b.dataset.mode === newMode));
+    draw();
+    if (newMode === 'polyhedra') startAnim();
+  }
+  modeButtons.forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+
+  slider.addEventListener('input', draw);
+  snapBtn.addEventListener('click', () => {
+    slider.value = PHI.toFixed(3);
+    draw();
+  });
+
+  function clear(){
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+  }
+
+  function svgEl(tag, attrs){
+    const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function drawSpiral(g, cx, cy, b, scale){
+    // r = a * e^(b*θ); choose a so the spiral starts small
+    const a = 2;
+    let d = '';
+    const steps = 720; // 4 full turns @ 0.5° resolution
+    const thetaMax = 4 * 2 * Math.PI;
+    let first = true;
+    for (let i = 0; i <= steps; i++) {
+      const theta = (i / steps) * thetaMax;
+      const r = a * Math.exp(b * theta) * scale;
+      const x = cx + r * Math.cos(theta);
+      const y = cy + r * Math.sin(theta);
+      // clip if off-canvas
+      if (Math.abs(x - cx) > W && Math.abs(y - cy) > H) continue;
+      d += (first ? 'M' : 'L') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
+      first = false;
+    }
+    const path = svgEl('path', {
+      d: d.trim(),
+      fill: 'none',
+      stroke: 'var(--gold)',
+      'stroke-width': 1.5,
+      'stroke-linecap': 'round',
+      opacity: 0.95
+    });
+    g.appendChild(path);
+  }
+
+  function drawRadialMarkers(g, cx, cy, b, scale, growthRatio){
+    // dots at θ = 0, π/2, π, 3π/2, 2π — to make the per-quarter-turn ratio visible
+    const a = 2;
+    for (let i = 0; i <= 8; i++) {
+      const theta = i * Math.PI / 2;
+      const r = a * Math.exp(b * theta) * scale;
+      const x = cx + r * Math.cos(theta);
+      const y = cy + r * Math.sin(theta);
+      if (Math.abs(x) > 2*W || Math.abs(y) > 2*H) continue;
+      const dot = svgEl('circle', {
+        cx: x.toFixed(2),
+        cy: y.toFixed(2),
+        r: 3,
+        fill: i % 4 === 0 ? 'var(--gold)' : 'var(--cream-mute)',
+        opacity: 0.85
+      });
+      g.appendChild(dot);
+    }
+    // faint radial guide lines at the four cardinal angles
+    const rMax = a * Math.exp(b * 4 * 2 * Math.PI) * scale;
+    const rGuide = Math.min(rMax, Math.max(W, H));
+    for (let i = 0; i < 4; i++) {
+      const theta = i * Math.PI / 2;
+      const x2 = cx + rGuide * Math.cos(theta);
+      const y2 = cy + rGuide * Math.sin(theta);
+      const line = svgEl('line', {
+        x1: cx, y1: cy, x2: x2, y2: y2,
+        stroke: 'var(--rule)',
+        'stroke-width': 0.5,
+        'stroke-dasharray': '2,4',
+        opacity: 0.4
+      });
+      g.appendChild(line);
+    }
+  }
+
+  function drawFibonacciRectangles(g, cx, cy, ratio){
+    // The outer rectangle has aspect ratio = `ratio` (driven by the slider).
+    // At each step we cut the largest square (side = min dimension) from one end
+    // of the current longer side, alternating the cut side in a Left → Top → Right
+    // → Bottom cycle. With ratio = φ exactly, the remaining rectangle after each
+    // cut is a smaller copy of the outer (rotated 90°), so the construction tiles
+    // the rectangle without remainder — the golden spiral. With any other ratio,
+    // the construction terminates leaving a non-square remainder (drawn dashed),
+    // and the inscribed logarithmic spiral overlay (always at growth rate φ per
+    // quarter-turn) drifts visibly away from the square corners. This is the
+    // demonstration that φ is the unique self-similar aspect ratio.
+    let bx = 0, by = 0, bw = ratio, bh = 1;
+    const rects = [];
+    const maxIter = 14;
+    const minSize = 0.002;
+    let dir = (bw >= bh) ? 0 : 1; // 0=L, 1=T, 2=R, 3=B
+    for (let iter = 0; iter < maxIter; iter++) {
+      if (bw < minSize || bh < minSize) break;
+      // rotate dir to align with the current longer dimension
+      let tries = 0;
+      while (tries < 4 && !(((dir === 0 || dir === 2) && bw >= bh) || ((dir === 1 || dir === 3) && bh >= bw))) {
+        dir = (dir + 1) % 4; tries++;
+      }
+      if (tries >= 4) break;
+      let s, rx, ry;
+      if      (dir === 0) { s = bh; rx = bx;          ry = by;          bx += s; bw -= s; }
+      else if (dir === 1) { s = bw; rx = bx;          ry = by;          by += s; bh -= s; }
+      else if (dir === 2) { s = bh; rx = bx + bw - s; ry = by;                   bw -= s; }
+      else                { s = bw; rx = bx;          ry = by + bh - s;          bh -= s; }
+      rects.push({ x: rx, y: ry, s: s, dir: dir });
+      dir = (dir + 1) % 4;
+    }
+    const leftover = (bw > minSize && bh > minSize) ? { x: bx, y: by, w: bw, h: bh } : null;
+
+    // scale to fit ~72% of the viewport — gives the rectangle construction more
+    // room AND lets the spiral grow further before hitting the canvas edge
+    const totalW = ratio, totalH = 1;
+    const targetSize = Math.min(W, H) * 0.72;
+    const k = targetSize / Math.max(totalW, totalH);
+    const offX = cx - totalW * k / 2;
+    const offY = cy - totalH * k / 2;
+
+    // outer rectangle outline (gold)
+    g.appendChild(svgEl('rect', {
+      x: offX.toFixed(2), y: offY.toFixed(2),
+      width:  (totalW * k).toFixed(2),
+      height: (totalH * k).toFixed(2),
+      fill: 'none', stroke: 'var(--gold)',
+      'stroke-width': 1.5, opacity: 0.7
+    }));
+
+    // inner squares
+    rects.forEach((r, idx) => {
+      g.appendChild(svgEl('rect', {
+        x: (offX + r.x * k).toFixed(2),
+        y: (offY + r.y * k).toFixed(2),
+        width:  (r.s * k).toFixed(2),
+        height: (r.s * k).toFixed(2),
+        fill: 'none', stroke: 'var(--rule)',
+        'stroke-width': 1, opacity: 0.75
+      }));
+      if (idx < 6 && r.s * k > 22) {
+        const txt = svgEl('text', {
+          x: (offX + (r.x + r.s/2) * k).toFixed(2),
+          y: (offY + (r.y + r.s/2) * k + 3).toFixed(2),
+          fill: 'var(--cream-mute)',
+          'font-size': Math.max(9, Math.min(14, r.s * k * 0.14)),
+          'text-anchor': 'middle',
+          'font-family': '-apple-system, sans-serif',
+          opacity: 0.55
+        });
+        txt.textContent = r.s.toFixed(3);
+        g.appendChild(txt);
+      }
+    });
+
+    // leftover (only non-empty when ratio ≠ φ) — dashed gold tint
+    if (leftover) {
+      g.appendChild(svgEl('rect', {
+        x: (offX + leftover.x * k).toFixed(2),
+        y: (offY + leftover.y * k).toFixed(2),
+        width:  (leftover.w * k).toFixed(2),
+        height: (leftover.h * k).toFixed(2),
+        fill: 'rgba(218, 160, 85, 0.10)',
+        stroke: 'var(--gold-soft)',
+        'stroke-width': 1,
+        'stroke-dasharray': '4,3',
+        opacity: 0.85
+      }));
+    }
+
+    // φ-rate logarithmic spiral overlay anchored to the deepest square's center
+    // (the limit point of the iterative construction — its "eye", offset from the
+    // rectangle's geometric center toward the smaller-squares region).
+    // r = innerR · e^(b·θ), b = ln(φ) / (π/2): growth rate φ per quarter-turn.
+    //
+    // The spiral is drawn outward from the eye, point-by-point, and stops as
+    // soon as any sample exits the outer rectangle. This guarantees the curve
+    // never overshoots the rectangle in directions where the eye sits close to
+    // an edge (the eye is genuinely off-center — that's the geometry, not a bug),
+    // while still allowing it to extend to corners in directions where the rect
+    // reaches farther.
+    //
+    // At ratio = φ the spiral threads the corner sequence cleanly before exiting;
+    // at other ratios it drifts visibly off the square corners — the
+    // demonstration that φ is the unique self-similar fixed point.
+    if (rects.length > 0) {
+      const PHI_LOC = (1 + Math.sqrt(5)) / 2;
+      const bLog = Math.log(PHI_LOC) / (Math.PI / 2);
+      const last = rects[rects.length - 1];
+      const eyeX = offX + (last.x + last.s / 2) * k;
+      const eyeY = offY + (last.y + last.s / 2) * k;
+      // start the spiral tighter (smaller innerR) so it has more inner turns
+      // visible before reaching the viewport edge
+      const innerR = Math.max(0.5, last.s * k * 0.04);
+      const outerR = rects[0].s * k * 4.5; // generous upper bound; clipping below stops the curve at the viewport edge
+      const thetaMaxNominal = Math.log(outerR / innerR) / bLog;
+      const thetaMax = Math.min(thetaMaxNominal, 10 * Math.PI); // hard cap at 5 full turns
+      // angular start: point toward the OUTER edge of the first (largest) cut,
+      // i.e., away from the rest of the construction. This sends the spiral's
+      // exit through the outer rectangle's open side at ratio = φ.
+      const first = rects[0];
+      const fx = offX + (first.dir === 0 ? first.x : first.dir === 2 ? first.x + first.s : first.x + first.s / 2) * k;
+      const fy = offY + (first.dir === 1 ? first.y : first.dir === 3 ? first.y + first.s : first.y + first.s / 2) * k;
+      const theta0 = Math.atan2(fy - eyeY, fx - eyeX);
+      // clip against the SVG viewport (not the outer rectangle): the spiral is
+      // allowed to extend well outside the rectangle area so its full ~4-turn
+      // shape is visible and the slider's effect on drift is unmistakable.
+      // The natural SVG clip-at-edge handles anything that exits the visible
+      // canvas, so this loop only needs a generous bound for the iteration to
+      // stop early when off-screen.
+      const minX = -W * 0.05, maxX = W * 1.05;
+      const minY = -H * 0.05, maxY = H * 1.05;
+      let d = '';
+      let started = false;
+      const steps = 360;
+      for (let i = 0; i <= steps; i++) {
+        const theta = (i / steps) * thetaMax;
+        const rr = innerR * Math.exp(bLog * theta);
+        // wind visually CCW on screen (matches the default L→T→R→B cut cycle)
+        const x = eyeX + rr * Math.cos(theta0 - theta);
+        const y = eyeY + rr * Math.sin(theta0 - theta);
+        // stop the moment the curve leaves the outer rectangle (plus a small buffer)
+        if (x < minX || x > maxX || y < minY || y > maxY) break;
+        d += (started ? 'L' : 'M') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
+        started = true;
+      }
+      if (started) {
+        g.appendChild(svgEl('path', {
+          d: d.trim(), fill: 'none',
+          stroke: 'var(--gold)', 'stroke-width': 1.8,
+          'stroke-linecap': 'round', opacity: 0.95
+        }));
+      }
+    }
+  }
+
+  function drawPhyllotaxis(g, cx, cy, divergenceAngle){
+    // divergence angle is the angle (radians) between successive seeds
+    // The φ-spiral case uses GOLDEN_ANGLE.
+    // here we vary it based on slider position to show what other angles produce
+    const seeds = 700;
+    const scale = Math.min(W, H) * 0.45 / Math.sqrt(seeds);
+    for (let i = 0; i < seeds; i++) {
+      const theta = i * divergenceAngle;
+      const r = scale * Math.sqrt(i);
+      const x = cx + r * Math.cos(theta);
+      const y = cy + r * Math.sin(theta);
+      const isGold = (i % 13 === 0) || (i % 21 === 0); // accent every 13th / 21st seed
+      const dot = svgEl('circle', {
+        cx: x.toFixed(2),
+        cy: y.toFixed(2),
+        r: 2.2,
+        fill: isGold ? 'var(--gold)' : 'var(--cream-mute)',
+        opacity: isGold ? 0.95 : 0.75
+      });
+      g.appendChild(dot);
+    }
+    const lbl = svgEl('text', {
+      x: cx,
+      y: H - 110,
+      fill: 'var(--gold)',
+      'font-size': 13,
+      'text-anchor': 'middle',
+      'font-family': '-apple-system, sans-serif',
+      'letter-spacing': '0.10em'
+    });
+    lbl.textContent = `divergencia ${(divergenceAngle * 180 / Math.PI).toFixed(2).replace('.', ',')}°`;
+    g.appendChild(lbl);
+  }
+
+  function drawPolyhedra(g, cx, cy, polyIdx, t){
+    const poly = polyhedra[polyIdx];
+    // auto-rotate around vertical (y) axis, with a fixed downward tilt for depth.
+    const yawSpeed = (2 * Math.PI) / 12000; // 12 seconds per revolution
+    const yaw = t * yawSpeed;
+    const ca = Math.cos(yaw), sa = Math.sin(yaw);
+    const pitch = -0.42; // ~24° tilt
+    const cp = Math.cos(pitch), sp = Math.sin(pitch);
+    function project(v){
+      // rotate around Y (yaw)
+      const x1 =  v[0]*ca + v[2]*sa;
+      const z1 = -v[0]*sa + v[2]*ca;
+      const y1 = v[1];
+      // tilt around X (pitch)
+      const y2 = y1*cp - z1*sp;
+      const z2 = y1*sp + z1*cp;
+      return [x1, y2, z2];
+    }
+    const projected = poly.verts.map(project);
+    // scale so the projected bounding circle fits ~32% of min(W, H)
+    let maxR = 0;
+    for (const p of projected){
+      const r = Math.sqrt(p[0]*p[0] + p[1]*p[1]);
+      if (r > maxR) maxR = r;
+    }
+    const scale = (Math.min(W, H) * 0.32) / maxR;
+    function sxc(p){ return cx + p[0]*scale; }
+    function syc(p){ return cy + p[1]*scale; }
+
+    // base polyhedron edges (gray)
+    for (const [i, j] of poly.edges){
+      const a = projected[i], b = projected[j];
+      g.appendChild(svgEl('line', {
+        x1: sxc(a).toFixed(2), y1: syc(a).toFixed(2),
+        x2: sxc(b).toFixed(2), y2: syc(b).toFixed(2),
+        stroke: 'var(--cream-mute)',
+        'stroke-width': 1.1,
+        opacity: 0.65
+      }));
+    }
+    // phi overlay (gold)
+    if (poly.phiOverlay === 'inscribedCube'){
+      const cubeIdx = [];
+      poly.verts.forEach((v, i) => {
+        if (Math.abs(Math.abs(v[0])-1) < 0.01 && Math.abs(Math.abs(v[1])-1) < 0.01 && Math.abs(Math.abs(v[2])-1) < 0.01) cubeIdx.push(i);
+      });
+      for (let a=0;a<cubeIdx.length;a++) for (let b=a+1;b<cubeIdx.length;b++){
+        if (Math.abs(dist3(poly.verts[cubeIdx[a]], poly.verts[cubeIdx[b]]) - 2) < 0.01){
+          const A = projected[cubeIdx[a]], B = projected[cubeIdx[b]];
+          g.appendChild(svgEl('line', {
+            x1: sxc(A).toFixed(2), y1: syc(A).toFixed(2),
+            x2: sxc(B).toFixed(2), y2: syc(B).toFixed(2),
+            stroke: 'var(--gold)', 'stroke-width': 2, opacity: 0.95
+          }));
+        }
+      }
+    } else if (poly.phiOverlay === 'goldenRectangles'){
+      [0,1,2].forEach(axis => {
+        const inPlane = [];
+        poly.verts.forEach((v, i) => { if (Math.abs(v[axis]) < 0.01) inPlane.push(i); });
+        if (inPlane.length !== 4) return;
+        const b = (axis+1)%3, c = (axis+2)%3;
+        inPlane.sort((p, q) => Math.atan2(poly.verts[p][b], poly.verts[p][c]) - Math.atan2(poly.verts[q][b], poly.verts[q][c]));
+        for (let k=0;k<4;k++){
+          const A = projected[inPlane[k]], B = projected[inPlane[(k+1)%4]];
+          g.appendChild(svgEl('line', {
+            x1: sxc(A).toFixed(2), y1: syc(A).toFixed(2),
+            x2: sxc(B).toFixed(2), y2: syc(B).toFixed(2),
+            stroke: 'var(--gold)', 'stroke-width': 2, opacity: 0.95
+          }));
+        }
+      });
+    }
+    // vertex dots
+    for (const p of projected){
+      g.appendChild(svgEl('circle', {
+        cx: sxc(p).toFixed(2), cy: syc(p).toFixed(2),
+        r: 2.2, fill: 'var(--cream)', opacity: 0.6
+      }));
+    }
+    // name label
+    const nameEl = svgEl('text', {
+      x: cx, y: H - 130,
+      fill: 'var(--gold)', 'font-size': 16,
+      'text-anchor': 'middle', 'font-family': '-apple-system, sans-serif',
+      'letter-spacing': '0.08em'
+    });
+    nameEl.textContent = poly.name;
+    g.appendChild(nameEl);
+  }
+
+  // animation loop used only by polyhedra mode
+  let animT = 0;
+  let animLast = 0;
+  let animFrame = null;
+  function tick(now){
+    if (mode !== 'polyhedra'){ animFrame = null; return; }
+    if (!animLast) animLast = now;
+    animT += (now - animLast);
+    animLast = now;
+    draw();
+    animFrame = requestAnimationFrame(tick);
+  }
+  function startAnim(){
+    if (animFrame) return;
+    animLast = 0;
+    animFrame = requestAnimationFrame(tick);
+  }
+
+  function draw(){
+    clear();
+    // build a g group
+    const g = svgEl('g', {});
+    svg.appendChild(g);
+
+    const cx = W / 2;
+    const cy = H / 2;
+    const growthQuarter = parseFloat(slider.value); // per quarter-turn ratio (1.05 – 2.50)
+    // b such that e^(b * π/2) = growthQuarter   =>   b = ln(growthQuarter) / (π/2)
+    const b = Math.log(growthQuarter) / (Math.PI / 2);
+    const growthFull = Math.pow(growthQuarter, 4);
+    const atPhi = Math.abs(growthQuarter - PHI) < PHI_EPS;
+
+    // readouts
+    ratioQuarterEl.textContent = growthQuarter.toFixed(4);
+    ratioQuarterEl.className = atPhi ? 'value phi' : 'value';
+    ratioFullEl.textContent = growthFull.toFixed(3);
+    ratioFullEl.className = atPhi ? 'value phi' : 'value';
+    paramBEl.textContent = b.toFixed(4);
+    paramBEl.className = atPhi ? 'value phi' : 'value';
+
+    if (mode === 'spiral') {
+      sliderCap.textContent = atPhi ? 'tasa de crecimiento — φ (áurea)' : 'tasa de crecimiento';
+      // scale chosen so 4 turns fit on screen at a generous range
+      // outer radius after 4 turns = a * growthQuarter^16; we want this around min(W,H)*0.45
+      const a = 2;
+      const outer = a * Math.pow(growthQuarter, 16);
+      const scale = Math.min(W, H) * 0.42 / Math.max(outer, 1);
+      drawRadialMarkers(g, cx, cy, b, scale, growthQuarter);
+      drawSpiral(g, cx, cy, b, scale);
+      captionEl.textContent = atPhi
+        ? 'espiral φ — en cada cuarto de vuelta el radio se multiplica por 1,618…'
+        : `espiral logarítmica — en cada cuarto de vuelta el radio se multiplica por ${growthQuarter.toFixed(3).replace('.', ',')}`;
+    } else if (mode === 'rectangles') {
+      sliderCap.textContent = atPhi ? 'razón de aspecto — φ (áurea)' : 'razón de aspecto';
+      drawFibonacciRectangles(g, cx, cy, growthQuarter);
+      captionEl.textContent = atPhi
+        ? 'razón de aspecto φ — los cortes cuadrados embaldosan exactamente; la espiral en tasa φ enhebra cada esquina'
+        : `razón de aspecto ${growthQuarter.toFixed(3).replace('.', ',')} — los cortes cuadrados dejan resto (línea dorada discontinua) y la espiral φ se aleja de las esquinas`;
+    } else if (mode === 'phyllotaxis') {
+      // map slider position to divergence angle: 137.0° to 138.0° around the golden value
+      // but allow exploration outside the lock — slider 1.05–2.50 → angle 130°–145°
+      const tNorm = (growthQuarter - 1.05) / (2.50 - 1.05);
+      // make φ (1.618) land on the golden angle
+      const phiNorm = (PHI - 1.05) / (2.50 - 1.05);
+      // piecewise linear so phi snaps to 137.5°
+      let degrees;
+      if (tNorm < phiNorm) {
+        degrees = 130 + (137.5077 - 130) * (tNorm / phiNorm);
+      } else {
+        degrees = 137.5077 + (145 - 137.5077) * ((tNorm - phiNorm) / (1 - phiNorm));
+      }
+      const angle = degrees * Math.PI / 180;
+      sliderCap.textContent = atPhi ? 'divergencia — 137,5077° (ángulo áureo)' : 'ángulo de divergencia';
+      drawPhyllotaxis(g, cx, cy, angle);
+      captionEl.textContent = atPhi
+        ? 'girasol a 137,5° — el único ángulo que empaqueta sin solapamiento ni hueco'
+        : `girasol a ${degrees.toFixed(2).replace('.', ',')}° — huecos y solapamientos que el ángulo áureo evita`;
+    } else if (mode === 'polyhedra') {
+      // map slider position 1.05–2.50 to polyhedron index 0–5
+      const tNorm = (growthQuarter - 1.05) / (2.50 - 1.05);
+      const polyIdx = Math.max(0, Math.min(5, Math.floor(tNorm * 6)));
+      sliderCap.textContent = 'elige sólido';
+      drawPolyhedra(g, cx, cy, polyIdx, animT);
+      captionEl.textContent = polyhedra[polyIdx].note;
+    }
+  }
+
+  // initialize slider in the middle of the range, but show φ as the natural target
+  slider.value = PHI.toFixed(3);
+  resize();
+})();
+</script>
+</body>
+</html>

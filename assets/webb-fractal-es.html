@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fractal Webb — interactivo</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    background: #0a0e1a;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    color: #b9b09b;
+  }
+  #scene { width: 100vw; height: 100vh; cursor: grab; }
+  #scene:active { cursor: grabbing; }
+  .caption {
+    position: absolute; bottom: 14px; left: 0; right: 0;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(218, 160, 85, 0.7);
+    pointer-events: none;
+    user-select: none;
+  }
+  .hint {
+    position: absolute; top: 14px; right: 14px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(185, 176, 155, 0.45);
+    pointer-events: none;
+  }
+  /* Back link — visible only when this page is opened standalone (not in
+     an iframe). The inline script at the bottom of <body> toggles display. */
+  .back-link {
+    display: none;
+    position: absolute; top: 12px; left: 16px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(218, 160, 85, 0.75);
+    text-decoration: none;
+    padding: 4px 10px;
+    border: 1px solid rgba(218, 160, 85, 0.35);
+    border-radius: 2px;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+    z-index: 10;
+  }
+  .back-link:hover {
+    color: #e8e0ce;
+    border-color: rgba(218, 160, 85, 0.7);
+    background: rgba(218, 160, 85, 0.10);
+  }
+  /* Depth toggle */
+  .depth-toggle {
+    position: absolute;
+    bottom: 44px; left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    user-select: none;
+  }
+  .depth-toggle .label {
+    font-size: 10px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: rgba(185, 176, 155, 0.55);
+    align-self: center;
+    margin-right: 14px;
+  }
+  .depth-toggle button {
+    background: transparent;
+    border: 1px solid rgba(218, 160, 85, 0.4);
+    color: rgba(218, 160, 85, 0.85);
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    margin: 0 -1px 0 0;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .depth-toggle button:first-of-type { border-radius: 2px 0 0 2px; }
+  .depth-toggle button:last-of-type  { border-radius: 0 2px 2px 0; }
+  .depth-toggle button:hover {
+    color: #e8e0ce;
+    border-color: rgba(218, 160, 85, 0.7);
+  }
+  .depth-toggle button.active {
+    background: rgba(218, 160, 85, 0.18);
+    color: #e8e0ce;
+    border-color: #daa055;
+  }
+</style>
+</head>
+<body>
+<a class="back-link" href="../es/explore.html">← Volver a Explorar</a>
+<div id="scene"></div>
+<div class="hint">arrastrar · rueda</div>
+<script>
+  // Show the back link only when this page is loaded standalone — when it's
+  // embedded as an iframe (on reading.html), it stays hidden so the
+  // surrounding page navigation is the only chrome.
+  if (window.self === window.top) {
+    var bl = document.querySelector('.back-link');
+    if (bl) bl.style.display = 'inline-block';
+  }
+</script>
+
+<div class="depth-toggle">
+  <span class="label">Recursión</span>
+  <button data-depth="1">Profundidad 1</button>
+  <button data-depth="2" class="active">Profundidad 2</button>
+  <button data-depth="3">Profundidad 3</button>
+</div>
+
+<div class="caption">Fractal Webb &nbsp;·&nbsp; 34,38° &nbsp;·&nbsp; 55,62° &nbsp;·&nbsp; 90,00°</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  // ---------- Three.js scene setup ----------
+  const container = document.getElementById('scene');
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0a0e1a);
+
+  const FOV = 45;
+  const camera = new THREE.PerspectiveCamera(
+    FOV, window.innerWidth / window.innerHeight, 0.1, 1000
+  );
+
+  // The seed tetrahedron's bounding sphere has radius ≈ 1.16; we want the
+  // sphere to fill the iframe with a small margin in WHICHEVER direction is
+  // smaller (so the structure stays maximally large regardless of aspect).
+  const BOUNDING_R = 1.16;
+  const MARGIN = 1.05;  // 5 % margin from the closest edge
+
+  function fitDistance() {
+    const aspect = window.innerWidth / window.innerHeight;
+    const tanV = Math.tan((FOV * Math.PI) / 360);  // half vFOV
+    const tanH = tanV * aspect;
+    const tan = Math.min(tanV, tanH);  // limiting axis
+    return (BOUNDING_R * MARGIN) / tan;
+  }
+
+  let BASE_Z = fitDistance();
+  camera.position.set(0, 0, BASE_Z);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  container.appendChild(renderer.domElement);
+
+  // ---------- The Webb fractal geometry ----------
+  // Seed: right triangle with angles 34.38° · 55.62° · 90°. The legs satisfy
+  // the golden ratio (φ = 1.618...). We lift this triangle into 3D by adding
+  // an apex above its centroid, forming a tetrahedron — and then apply
+  // Sierpinski-style recursive subdivision: each tetrahedron is replaced
+  // by four corner tetrahedra at half scale, leaving an octahedral void.
+  const PHI = (1 + Math.sqrt(5)) / 2;
+
+  const A = new THREE.Vector3( PHI, 0, 0 );
+  const B = new THREE.Vector3( 0,   1, 0 );
+  const C = new THREE.Vector3( 0,   0, 0 );
+
+  const centroidXY = new THREE.Vector3()
+    .add(A).add(B).add(C).multiplyScalar(1/3);
+  const apex = centroidXY.clone().add(new THREE.Vector3(0, 0, 1.05));
+
+  // Center the seed tetrahedron on its own centroid
+  const seedVerts = [A.clone(), B.clone(), C.clone(), apex.clone()];
+  const seedCentroid = seedVerts
+    .reduce((acc, v) => acc.add(v), new THREE.Vector3())
+    .multiplyScalar(1 / 4);
+  seedVerts.forEach(v => v.sub(seedCentroid));
+
+  // ---------- Color palettes ----------
+  const lineColors = [
+    { color: 0xc48c42, opacity: 0.85 },  // depth 0 — outer gold
+    { color: 0xe8e0ce, opacity: 0.55 },  // depth 1 — cream
+    { color: 0xb9b09b, opacity: 0.35 },  // depth 2 — dim cream
+    { color: 0x78c8b4, opacity: 0.40 },  // depth 3 — teal accent
+  ];
+  const sphereColors = [
+    0xe8e0ce, 0xdaa055, 0x78c8b4, 0xb4a0e6
+  ];
+  const sphereRadii = [0.075, 0.050, 0.035, 0.022];
+
+  // ---------- Group + (re)builder ----------
+  const group = new THREE.Group();
+  scene.add(group);
+
+  function mid(p, q) {
+    return new THREE.Vector3().add(p).add(q).multiplyScalar(0.5);
+  }
+
+  function clearGroup() {
+    while (group.children.length) {
+      const child = group.children.pop();
+      if (child.geometry) child.geometry.dispose();
+      if (child.material) child.material.dispose();
+    }
+  }
+
+  function buildFractal(DEPTH) {
+    clearGroup();
+
+    const levels = Array.from({ length: DEPTH + 1 }, () => ({
+      edges: [], nodes: [],
+    }));
+
+    function sierpinski(verts, depth, levelIdx) {
+      const t = verts;
+      const tetraEdges = [
+        [t[0], t[1]], [t[1], t[2]], [t[2], t[0]],
+        [t[0], t[3]], [t[1], t[3]], [t[2], t[3]],
+      ];
+      tetraEdges.forEach(e => levels[levelIdx].edges.push(e));
+      t.forEach(v => levels[levelIdx].nodes.push(v.clone()));
+      if (depth === 0) return;
+      const m01 = mid(t[0], t[1]);
+      const m02 = mid(t[0], t[2]);
+      const m03 = mid(t[0], t[3]);
+      const m12 = mid(t[1], t[2]);
+      const m13 = mid(t[1], t[3]);
+      const m23 = mid(t[2], t[3]);
+      sierpinski([t[0], m01, m02, m03], depth - 1, levelIdx + 1);
+      sierpinski([t[1], m01, m12, m13], depth - 1, levelIdx + 1);
+      sierpinski([t[2], m02, m12, m23], depth - 1, levelIdx + 1);
+      sierpinski([t[3], m03, m13, m23], depth - 1, levelIdx + 1);
+    }
+
+    sierpinski(seedVerts, DEPTH, 0);
+
+    // Wireframes by level
+    levels.forEach((level, i) => {
+      if (i >= lineColors.length || level.edges.length === 0) return;
+      const geom = new THREE.BufferGeometry();
+      const positions = [];
+      level.edges.forEach(([p, q]) => {
+        positions.push(p.x, p.y, p.z, q.x, q.y, q.z);
+      });
+      geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      const mat = new THREE.LineBasicMaterial({
+        color: lineColors[i].color,
+        transparent: true,
+        opacity: lineColors[i].opacity,
+      });
+      group.add(new THREE.LineSegments(geom, mat));
+    });
+
+    // Spheres at all unique node positions (deduplicated)
+    const seen = new Set();
+    const uniqueNodes = [];
+    const SNAP = 1e4;
+    levels.forEach((level, depth) => {
+      level.nodes.forEach(v => {
+        const key = [
+          Math.round(v.x * SNAP),
+          Math.round(v.y * SNAP),
+          Math.round(v.z * SNAP),
+        ].join('|');
+        if (!seen.has(key)) {
+          seen.add(key);
+          uniqueNodes.push({ pos: v, depth });
+        }
+      });
+    });
+    const sphereGeoms = sphereRadii.map(r => new THREE.SphereGeometry(r, 18, 12));
+    uniqueNodes.forEach(({ pos, depth }) => {
+      const d = Math.min(depth, sphereColors.length - 1);
+      const mat = new THREE.MeshBasicMaterial({ color: sphereColors[d] });
+      const s = new THREE.Mesh(sphereGeoms[d], mat);
+      s.position.copy(pos);
+      group.add(s);
+    });
+  }
+
+  // Build at default depth
+  let currentDepth = 2;
+  buildFractal(currentDepth);
+
+  // ---------- Depth toggle wiring ----------
+  document.querySelectorAll('.depth-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const d = parseInt(btn.dataset.depth, 10);
+      if (d === currentDepth) return;
+      currentDepth = d;
+      document.querySelectorAll('.depth-toggle button')
+        .forEach(b => b.classList.toggle('active', b === btn));
+      buildFractal(d);
+    });
+  });
+
+  // ---------- Interaction ----------
+  let isDragging = false;
+  let lastX = 0, lastY = 0;
+  let downX = 0, downY = 0;
+  let dragDist = 0;
+  const DEFAULT_VEL_X = 0.0018, DEFAULT_VEL_Y = 0.0005;
+  let velX = DEFAULT_VEL_X, velY = DEFAULT_VEL_Y;
+  let zoom = 1;
+  const minZoom = 0.5, maxZoom = 2.5;
+  const CLICK_THRESHOLD_PX = 5;  // movement under this counts as a click, not a drag
+
+  container.addEventListener('mousedown', e => {
+    isDragging = true;
+    lastX = e.clientX; lastY = e.clientY;
+    downX = e.clientX; downY = e.clientY;
+    dragDist = 0;
+    velX = 0; velY = 0;
+  });
+  window.addEventListener('mouseup', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    // Treat a small-displacement mouseup as a click: toggle auto-rotation
+    // back on. Big-displacement drags leave the fractal where the user put
+    // it (velocity stays 0). The toggle works in either direction — click
+    // a still fractal to make it spin, click a spinning one to stop it.
+    if (dragDist < CLICK_THRESHOLD_PX) {
+      if (velX === 0 && velY === 0) {
+        velX = DEFAULT_VEL_X; velY = DEFAULT_VEL_Y;
+      } else {
+        velX = 0; velY = 0;
+      }
+    }
+  });
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const dx = (e.clientX - lastX) * 0.005;
+    const dy = (e.clientY - lastY) * 0.005;
+    group.rotation.y += dx;
+    group.rotation.x += dy;
+    lastX = e.clientX; lastY = e.clientY;
+    // Track total displacement so mouseup can distinguish click vs drag
+    dragDist = Math.max(dragDist,
+      Math.hypot(e.clientX - downX, e.clientY - downY));
+  });
+  container.addEventListener('wheel', e => {
+    e.preventDefault();
+    const factor = e.deltaY > 0 ? 1.05 : 0.95;
+    zoom = Math.max(minZoom, Math.min(maxZoom, zoom * factor));
+    camera.position.z = BASE_Z / zoom;
+  }, { passive: false });
+
+  // Touch
+  let touchX = 0, touchY = 0;
+  container.addEventListener('touchstart', e => {
+    if (e.touches.length === 1) {
+      touchX = e.touches[0].clientX;
+      touchY = e.touches[0].clientY;
+      velX = 0; velY = 0;
+    }
+  });
+  container.addEventListener('touchmove', e => {
+    if (e.touches.length === 1) {
+      const dx = (e.touches[0].clientX - touchX) * 0.005;
+      const dy = (e.touches[0].clientY - touchY) * 0.005;
+      group.rotation.y += dx;
+      group.rotation.x += dy;
+      touchX = e.touches[0].clientX;
+      touchY = e.touches[0].clientY;
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // ---------- Animate ----------
+  function animate() {
+    requestAnimationFrame(animate);
+    if (!isDragging) {
+      group.rotation.y += velX;
+      group.rotation.x += velY;
+    }
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // ---------- Resize ----------
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    // Re-fit camera distance for the new aspect ratio
+    BASE_Z = fitDistance();
+    camera.position.z = BASE_Z / zoom;
+  });
+
+  // Initial tilt
+  group.rotation.x = -0.35;
+  group.rotation.y = 0.4;
+})();
+</script>
+</body>
+</html>
