@@ -88,9 +88,39 @@
 
 <div class="caption">The Webb fractal &nbsp;·&nbsp; 34.38° &nbsp;·&nbsp; 55.62° &nbsp;·&nbsp; 90.00°</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- Three.js loader: try the local vendor copy first (works offline, can't be
+     blocked by ad-block / privacy extensions / corporate networks), then fall
+     back to the cdnjs CDN, then to unpkg. Whichever succeeds first calls
+     initWebbFractal(); if all three fail we surface a visible error in the
+     caption rather than leaving the canvas inscrutably empty. -->
 <script>
-(function () {
+(function loadThree() {
+  var urls = [
+    'js/three.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
+    'https://unpkg.com/three@0.128.0/build/three.min.js'
+  ];
+  function tryNext(i) {
+    if (i >= urls.length) {
+      var c = document.querySelector('.caption');
+      if (c) { c.style.color = '#e88'; c.textContent = 'Three.js failed to load from local file and CDNs — fractal cannot render. Check console / network.'; }
+      return;
+    }
+    var s = document.createElement('script');
+    s.src = urls[i];
+    s.onload = function () {
+      if (typeof THREE !== 'undefined' && typeof initWebbFractal === 'function') initWebbFractal();
+      else tryNext(i + 1);
+    };
+    s.onerror = function () { tryNext(i + 1); };
+    document.head.appendChild(s);
+  }
+  tryNext(0);
+})();
+</script>
+<script>
+function initWebbFractal() {
+  if (typeof THREE === 'undefined') return;
   // ---------- Three.js scene setup ----------
   const container = document.getElementById('scene');
   const scene = new THREE.Scene();
@@ -336,7 +366,7 @@
   // Initial tilt
   group.rotation.x = -0.35;
   group.rotation.y = 0.4;
-})();
+}
 </script>
 </body>
 </html>
