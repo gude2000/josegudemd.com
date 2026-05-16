@@ -62,10 +62,11 @@ or strike if not interesting.
       of Earth's electromagnetic fundamental, brought up into audible
       range (e.g., × 50). Caption links to Schumann's 1952 paper in
       Reading & References.
-- [ ] **Cymatics videos (linked, not hosted).** Existing YouTube footage
-      of actual Chladni plates running through frequencies. Embed on the
-      `chladni.html` page below the engravings. Pair the visual with the
-      same chord audio.
+- [x] **Cymatics videos (linked, not hosted).** Shipped: "Cymatics in motion"
+      section on `chladni.html` after the modern-plates photo. Single embedded
+      YouTube player (video ID `wvJAgrUBF4w`) plus a row of ten timestamp
+      buttons (0:00 · 1:00 · 1:10 · 1:18 · 1:26 · 1:37 · 1:50 · 1:53 · 2:02 ·
+      2:09) that scrub the player to different cymatic modes.
 - [x] **Sable's "almost" signal — sound design.** Shipped:
       `assets/audio/sable-almost.mp3` (50 s, stereo, ~575 KB). Synthesized
       drone with the phi-tuned augmented architecture (C/E/G♯ at 266.67 Hz
@@ -94,9 +95,12 @@ or strike if not interesting.
 - [ ] **A short scrolling animation of the phi-spiral rectangles
       construction unfolding.** Same math as the interactive, but timed
       and exported as a video for share-friendly contexts.
-- [ ] **Compendium PDF download.** A printable single-PDF of the full
-      reading list. Already have most of the bibliographic structure on
-      `reading.html`; the asset just needs to be generated.
+- [x] **Compendium PDF download.** Shipped: `assets/compendium.pdf` (~205 KB,
+      28 pages, 16 sections, 130+ entries). Generator script at
+      `scripts/build_compendium.py` parses `reading.html` with BeautifulSoup
+      and renders via ReportLab Platypus (DejaVu Sans for full Unicode glyph
+      coverage — φ, ↗, chord sharps all render). Download button on
+      `reading.html` above the Webb interactives.
 
 ---
 

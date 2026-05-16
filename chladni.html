@@ -113,6 +113,71 @@
   </figure>
 </section>
 
+<section>
+  <h2>Cymatics in motion</h2>
+  <p>Engravings are static; the patterns themselves are not. The video below shows a Chladni plate running through a sequence of frequencies — sand assembling itself into one nodal geometry, dissolving, and reassembling into the next as the driving frequency climbs. Each timestamp button jumps to a different mode.</p>
+  <div style="position:relative; width:100%; max-width: 720px; margin: 1.5em auto 1em; aspect-ratio: 16/9; background:#000; border-radius:4px; overflow:hidden;">
+    <iframe id="cymatics-player"
+            src="https://www.youtube.com/embed/wvJAgrUBF4w?rel=0&modestbranding=1"
+            title="Chladni plate cymatics demonstration"
+            style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+  </div>
+  <div id="cymatics-jumps" style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center; max-width:720px; margin: 0.5em auto 1em; font-size:12px;">
+    <button data-t="0"   class="ts-btn">0:00</button>
+    <button data-t="60"  class="ts-btn">1:00</button>
+    <button data-t="70"  class="ts-btn">1:10</button>
+    <button data-t="78"  class="ts-btn">1:18</button>
+    <button data-t="86"  class="ts-btn">1:26</button>
+    <button data-t="97"  class="ts-btn">1:37</button>
+    <button data-t="110" class="ts-btn">1:50</button>
+    <button data-t="113" class="ts-btn">1:53</button>
+    <button data-t="122" class="ts-btn">2:02</button>
+    <button data-t="129" class="ts-btn">2:09</button>
+  </div>
+  <p class="mute" style="font-size:12px; text-align:center; max-width:720px; margin:0 auto;">Video: <a href="https://youtu.be/wvJAgrUBF4w" target="_blank" rel="noopener">Chladni plate demonstration</a> &nbsp;·&nbsp; embedded for educational reference, not hosted on this site.</p>
+  <style>
+    .ts-btn {
+      background: transparent;
+      border: 1px solid rgba(218, 160, 85, 0.4);
+      color: rgba(218, 160, 85, 0.85);
+      font: inherit;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background .15s ease, color .15s ease, border-color .15s ease;
+    }
+    .ts-btn:hover {
+      color: #fff;
+      background: rgba(218, 160, 85, 0.15);
+      border-color: rgba(218, 160, 85, 0.7);
+    }
+    .ts-btn.active {
+      background: rgba(218, 160, 85, 0.28);
+      color: #fff;
+      border-color: #daa055;
+    }
+  </style>
+  <script>
+    (function () {
+      var iframe = document.getElementById('cymatics-player');
+      var btns = document.querySelectorAll('#cymatics-jumps .ts-btn');
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var t = btn.getAttribute('data-t');
+          // Rewriting src forces a clean seek + autoplay (autoplay required for
+          // a seamless jump; otherwise YouTube would just reload paused).
+          iframe.src = 'https://www.youtube.com/embed/wvJAgrUBF4w?rel=0&modestbranding=1&autoplay=1&start=' + t;
+          btns.forEach(function (b) { b.classList.toggle('active', b === btn); });
+        });
+      });
+    })();
+  </script>
+</section>
+
 <span class="rule-short"></span>
 
 <section>

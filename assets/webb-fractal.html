@@ -298,15 +298,36 @@
   // ---------- Interaction ----------
   let isDragging = false;
   let lastX = 0, lastY = 0;
-  let velX = 0.0018, velY = 0.0005;
+  let downX = 0, downY = 0;
+  let dragDist = 0;
+  const DEFAULT_VEL_X = 0.0018, DEFAULT_VEL_Y = 0.0005;
+  let velX = DEFAULT_VEL_X, velY = DEFAULT_VEL_Y;
   let zoom = 1;
   const minZoom = 0.5, maxZoom = 2.5;
+  const CLICK_THRESHOLD_PX = 5;  // movement under this counts as a click, not a drag
 
   container.addEventListener('mousedown', e => {
-    isDragging = true; lastX = e.clientX; lastY = e.clientY;
+    isDragging = true;
+    lastX = e.clientX; lastY = e.clientY;
+    downX = e.clientX; downY = e.clientY;
+    dragDist = 0;
     velX = 0; velY = 0;
   });
-  window.addEventListener('mouseup',   () => { isDragging = false; });
+  window.addEventListener('mouseup', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    // Treat a small-displacement mouseup as a click: toggle auto-rotation
+    // back on. Big-displacement drags leave the fractal where the user put
+    // it (velocity stays 0). The toggle works in either direction — click
+    // a still fractal to make it spin, click a spinning one to stop it.
+    if (dragDist < CLICK_THRESHOLD_PX) {
+      if (velX === 0 && velY === 0) {
+        velX = DEFAULT_VEL_X; velY = DEFAULT_VEL_Y;
+      } else {
+        velX = 0; velY = 0;
+      }
+    }
+  });
   window.addEventListener('mousemove', e => {
     if (!isDragging) return;
     const dx = (e.clientX - lastX) * 0.005;
@@ -314,6 +335,9 @@
     group.rotation.y += dx;
     group.rotation.x += dy;
     lastX = e.clientX; lastY = e.clientY;
+    // Track total displacement so mouseup can distinguish click vs drag
+    dragDist = Math.max(dragDist,
+      Math.hypot(e.clientX - downX, e.clientY - downY));
   });
   container.addEventListener('wheel', e => {
     e.preventDefault();
