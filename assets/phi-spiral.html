@@ -59,7 +59,7 @@
   }
   .controls {
     position: absolute;
-    bottom: 56px; left: 0; right: 0;
+    bottom: 50px; left: 0; right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -501,10 +501,12 @@
       const last = rects[rects.length - 1];
       const eyeX = offX + (last.x + last.s / 2) * k;
       const eyeY = offY + (last.y + last.s / 2) * k;
-      const innerR = Math.max(2, last.s * k * 0.5);
-      const outerR = rects[0].s * k * 1.6; // generous upper bound; clipping below stops the curve at the rect edge
+      // start the spiral tighter (smaller innerR) so it has more inner turns
+      // visible before reaching the rectangle boundary
+      const innerR = Math.max(1.5, last.s * k * 0.15);
+      const outerR = rects[0].s * k * 2.2; // generous upper bound; clipping below stops the curve at the rect edge
       const thetaMaxNominal = Math.log(outerR / innerR) / bLog;
-      const thetaMax = Math.min(thetaMaxNominal, 4 * Math.PI); // hard cap at 2 full turns regardless of ratio
+      const thetaMax = Math.min(thetaMaxNominal, 6 * Math.PI); // hard cap at 3 full turns
       // angular start: point toward the OUTER edge of the first (largest) cut,
       // i.e., away from the rest of the construction. This sends the spiral's
       // exit through the outer rectangle's open side at ratio = φ.
@@ -512,18 +514,22 @@
       const fx = offX + (first.dir === 0 ? first.x : first.dir === 2 ? first.x + first.s : first.x + first.s / 2) * k;
       const fy = offY + (first.dir === 1 ? first.y : first.dir === 3 ? first.y + first.s : first.y + first.s / 2) * k;
       const theta0 = Math.atan2(fy - eyeY, fx - eyeX);
-      const minX = offX, maxX = offX + totalW * k;
-      const minY = offY, maxY = offY + totalH * k;
+      // clip with a small buffer outside the rectangle, so the spiral is allowed
+      // to graze just past the edge before being cut — feels more generous than
+      // a hard edge-stop, while still keeping the curve from winding far away
+      const clipBuf = Math.min(totalW, totalH) * k * 0.06;
+      const minX = offX - clipBuf, maxX = offX + totalW * k + clipBuf;
+      const minY = offY - clipBuf, maxY = offY + totalH * k + clipBuf;
       let d = '';
       let started = false;
-      const steps = 320;
+      const steps = 360;
       for (let i = 0; i <= steps; i++) {
         const theta = (i / steps) * thetaMax;
         const rr = innerR * Math.exp(bLog * theta);
         // wind visually CCW on screen (matches the default L→T→R→B cut cycle)
         const x = eyeX + rr * Math.cos(theta0 - theta);
         const y = eyeY + rr * Math.sin(theta0 - theta);
-        // stop the moment the curve leaves the outer rectangle
+        // stop the moment the curve leaves the outer rectangle (plus a small buffer)
         if (x < minX || x > maxX || y < minY || y > maxY) break;
         d += (started ? 'L' : 'M') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
         started = true;
