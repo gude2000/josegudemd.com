@@ -129,14 +129,11 @@ or strike if not interesting.
       - `assets/audio/limen-beginning-never-ends-es.mp3` — *Limen* ES
         epigraph (used on `es/limen.html`)
       Each page's caption updated to "(lectura en español · José Gude)".
-- [ ] **Epigraph audio — Fragile Light Spanish (1/4 still pending).**
-      Last of the Tier 1b set. Record the Spanish reading of *La libertad
-      no perdió. La libertad fue interrumpida.* and drop the file at
-      `assets/audio/freedom-did-not-lose-es.mp3`. The `es/fragile-light.html`
-      page currently plays the English recording with a "(lectura en
-      inglés · José Gude)" note — swap the `<source>` path to the ES file
-      and change the caption to "(lectura en español · José Gude)" when
-      it arrives.
+- [x] **Epigraph audio — Fragile Light Spanish.** Shipped:
+      `assets/audio/freedom-did-not-lose-es.mp3` (5.8 s). Wired onto
+      `es/fragile-light.html`; caption now "(lectura en español · José Gude)".
+      Tier 1b complete — all four ES epigraph readings now live alongside
+      their EN/Latin originals.
 - [x] **A short scrolling animation of the phi-spiral rectangles
       construction unfolding.** Shipped: `assets/video/phi-rectangles.mp4`
       (1280×720, H.264, 9.2 s, ~66 KB). Built by `scripts/build_phi_animation.py`
