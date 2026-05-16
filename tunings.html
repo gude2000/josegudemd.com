@@ -204,6 +204,40 @@
     <button class="tuning-btn" data-id="t9">play / stop</button>
   </div>
 
+  <div class="tuning-card" style="border-color:var(--teal);flex-direction:column;align-items:stretch;text-align:left;">
+    <div class="meta" style="margin-bottom:14px;">
+      <h3>Schumann-resonance hum &mdash; the Earth's modes pitched up into hearing</h3>
+      <div class="freq">synthesized · five Schumann cavity modes (7.83, 14.3, 20.8, 27.3, 33.8 Hz) × 50 → 391.5 / 715 / 1040 / 1365 / 1690 Hz · a 7.83 Hz amplitude modulation rides on the sum · 45 s stereo</div>
+      <div class="desc">A direct rendering of Earth's electromagnetic cavity oscillations as audible sound. The five Schumann modes &mdash; born of the spherical waveguide between Earth's surface and the ionosphere, where lightning strikes a thousand times a second pump the cavity continuously &mdash; are each multiplied by 50 to bring them into the hearing band, weighted by descending amplitude so the fundamental dominates. On top of the drone, a slow 7.83 Hz amplitude modulation reproduces the actual rhythm of the planetary fundamental: the cavity-mode pulse you'd feel rather than hear if you stood inside the standing wave. Schumann's 1952 paper predicted this resonance; satellite and ground stations have confirmed it across half a century. See the <a href="schumann-resonance.html" style="color:var(--teal);">Schumann resonance explainer →</a></div>
+    </div>
+    <audio controls preload="none" style="width:100%;max-width:520px;align-self:center;">
+      <source src="assets/audio/schumann-hum.mp3" type="audio/mpeg">
+      your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <div class="tuning-card" style="border-color:var(--gold);flex-direction:column;align-items:stretch;text-align:left;">
+    <div class="meta" style="margin-bottom:14px;">
+      <h3>φ-tuned vs. equal-temperament &mdash; the same chord, two different rules</h3>
+      <div class="freq">A · 12-TET: E 164.81 · G♯ 207.65 · C 261.63 Hz &nbsp;&middot;&nbsp; B · φ-tuned: E 164.81 · G♯ 209.64 · C 266.67 Hz · sine waves, identical envelope, 10 s each</div>
+      <div class="desc">Two ten-second loops of the same three pitch-classes &mdash; E, G♯, C &mdash; anchored to the same E so the comparison is fair. Loop A holds them at 12-tone equal-temperament's exact major-third stack (E × 2<sup>4/12</sup>, E × 2<sup>8/12</sup>). Loop B holds them at the trilogy's φ-tuning &mdash; the irrational ratios that build <em>Sable's chord</em> and the Webb triangle. The frequencies differ by roughly 2 Hz on G♯ and 5 Hz on C: small, and not small. Listen twice on headphones, then with room speakers, then while reading something else. The body picks up the difference faster than the ear can name it. <em>The difference is small and not small.</em></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:520px;align-self:center;">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:4px;">A &middot; equal-temperament</div>
+        <audio controls preload="none" style="width:100%;">
+          <source src="assets/audio/phi-vs-et-et.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">B &middot; φ-tuned</div>
+        <audio controls preload="none" style="width:100%;">
+          <source src="assets/audio/phi-vs-et-phi.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </div>
+
   <p class="pair-label" id="josealex-chord" style="color:var(--gold);">José &amp; Alex's chord — the chord that refuses to resolve</p>
 
   <div class="tuning-card" style="border-color:var(--gold);">

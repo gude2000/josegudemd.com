@@ -50,18 +50,24 @@ applicable.
 Suggestions for the same gallery. None are urgent; mark to keep with [k]
 or strike if not interesting.
 
-- [ ] **Phi-tuned chord vs. equal-temperament chord — A/B audio.** Two
-      ~10-second loops, same instrument, same notes (E–G♯–C). One tuned
-      to equal temperament, one to exact phi ratios (164.81 / 209.64 /
-      266.67). Caption: "the difference is small and not small."
+- [x] **Phi-tuned chord vs. equal-temperament chord — A/B audio.** Shipped:
+      `assets/audio/phi-vs-et-et.mp3` and `phi-vs-et-phi.mp3` (10 s each,
+      sine waves, both anchored at E 164.81 Hz). 12-TET stack at G♯ 207.65 /
+      C 261.63 vs. φ-stack at 209.64 / 266.67. Card on `tunings.html` between
+      the Schumann-hum card and the José/Alex chord. Built by
+      `scripts/build_audio.py`.
 - [x] **40 Hz gamma binaural-beat demo.** Shipped: new `t10` card on
       `tunings.html`, 200 Hz / 240 Hz panned hard L/R, perceived 40 Hz
       difference. Caption cites Iaccarino 2016 / Martorell 2019 and links
       to the Bioelectromagnetism subsection in `reading.html`.
-- [ ] **Schumann-resonance hum (~7.83 Hz fundamental).** Audio rendering
-      of Earth's electromagnetic fundamental, brought up into audible
-      range (e.g., × 50). Caption links to Schumann's 1952 paper in
-      Reading & References.
+- [x] **Schumann-resonance hum (~7.83 Hz fundamental).** Shipped:
+      `assets/audio/schumann-hum.mp3` (45 s stereo). Five Schumann cavity
+      modes (7.83, 14.3, 20.8, 27.3, 33.8 Hz) multiplied × 50 into the
+      hearing band (391.5 / 715 / 1040 / 1365 / 1690 Hz) with decreasing
+      amplitude per partial, a 7.83 Hz amplitude modulation riding on the
+      sum to reproduce the cavity-mode rhythm, slow L/R detune for stereo
+      width, and a gentle low-pass. Card on `tunings.html` after the
+      Schumann binaural-beat card; links to `schumann-resonance.html`.
 - [x] **Cymatics videos (linked, not hosted).** Shipped: "Cymatics in motion"
       section on `chladni.html` after the modern-plates photo. Single embedded
       YouTube player (video ID `wvJAgrUBF4w`) plus a row of ten timestamp
