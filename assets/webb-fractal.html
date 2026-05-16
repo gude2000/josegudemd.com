@@ -32,6 +32,27 @@
     color: rgba(185, 176, 155, 0.45);
     pointer-events: none;
   }
+  /* Back link — visible only when this page is opened standalone (not in
+     an iframe). The inline script at the bottom of <body> toggles display. */
+  .back-link {
+    display: none;
+    position: absolute; top: 12px; left: 16px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(218, 160, 85, 0.75);
+    text-decoration: none;
+    padding: 4px 10px;
+    border: 1px solid rgba(218, 160, 85, 0.35);
+    border-radius: 2px;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+    z-index: 10;
+  }
+  .back-link:hover {
+    color: #e8e0ce;
+    border-color: rgba(218, 160, 85, 0.7);
+    background: rgba(218, 160, 85, 0.10);
+  }
   /* Depth toggle */
   .depth-toggle {
     position: absolute;
@@ -76,8 +97,18 @@
 </style>
 </head>
 <body>
+<a class="back-link" href="../explore.html">← Back to Explore</a>
 <div id="scene"></div>
 <div class="hint">drag · scroll</div>
+<script>
+  // Show the back link only when this page is loaded standalone — when it's
+  // embedded as an iframe (on reading.html), it stays hidden so the
+  // surrounding page navigation is the only chrome.
+  if (window.self === window.top) {
+    var bl = document.querySelector('.back-link');
+    if (bl) bl.style.display = 'inline-block';
+  }
+</script>
 
 <div class="depth-toggle">
   <span class="label">Recursion</span>

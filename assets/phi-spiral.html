@@ -26,13 +26,32 @@
   }
   #scene { width: 100vw; height: 100vh; display: block; }
   .hint {
-    position: absolute; top: 14px; right: 16px;
+    position: absolute; top: 44px; right: 16px;
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgba(185, 176, 155, 0.45);
     pointer-events: none;
     user-select: none;
+  }
+  /* Back link — visible only standalone (hidden when in iframe) */
+  .back-link {
+    display: none;
+    position: absolute; top: 12px; right: 16px;
+    font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(218, 160, 85, 0.75);
+    text-decoration: none;
+    padding: 4px 10px;
+    border: 1px solid rgba(218, 160, 85, 0.35);
+    border-radius: 2px;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+    z-index: 10;
+  }
+  .back-link:hover {
+    color: var(--cream);
+    border-color: rgba(218, 160, 85, 0.7);
+    background: rgba(218, 160, 85, 0.10);
   }
   .readout {
     position: absolute;
@@ -178,6 +197,14 @@
 </style>
 </head>
 <body>
+
+<a class="back-link" href="../explore.html">← Back to Explore</a>
+<script>
+  if (window.self === window.top) {
+    var bl = document.querySelector('.back-link');
+    if (bl) bl.style.display = 'inline-block';
+  }
+</script>
 
 <svg id="scene" xmlns="http://www.w3.org/2000/svg"></svg>
 
