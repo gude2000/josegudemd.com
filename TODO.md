@@ -119,21 +119,24 @@ or strike if not interesting.
       `es/fragile-light.html`, `es/index.html`) all carry the same English
       recordings with a small "(lectura en inglés · José Gude)" note
       beneath each — pending Spanish recordings (next task).
-- [ ] **Epigraph audios — Tier 1b (Spanish recordings).** Record Spanish
-      readings of the same four epigraphs to replace the English audios on
-      the `es/` pages. File targets (just drop them in `assets/audio/`):
-      - `assets/audio/aquinas-es.mp3` — *Anima* epigraph in Spanish
-        ("Querer el bien del otro por el bien del otro.")
-      - `assets/audio/rumi-ocean-in-a-drop-es.mp3` — *Numen* epigraph
-        ("No eres una gota en el océano, sino el océano en una gota.")
-      - `assets/audio/limen-beginning-never-ends-es.mp3` — *Limen* epigraph
-        ("El principio nunca termina.")
-      - `assets/audio/freedom-did-not-lose-es.mp3` — *Fragile Light*
-        epigraph ("La libertad no perdió. La libertad fue interrumpida.")
-      When the files arrive, swap the `<source>` paths on the four ES book
-      pages + `es/index.html` from `../assets/audio/[en-name].mp3` to
-      `../assets/audio/[es-name].mp3`, and change the small caption from
-      "(lectura en inglés · José Gude)" to "(lectura en español · José Gude)".
+- [x] **Epigraph audios — Tier 1b (Spanish recordings, 3/4 shipped).**
+      Three Spanish readings shipped, wired in:
+      - `assets/audio/aquinas-es.mp3` — *Anima* ES epigraph (replaces the
+        Latin recording on `es/anima.html`; the English Latin still on the
+        EN page and on the tunings card)
+      - `assets/audio/rumi-ocean-in-a-drop-es.mp3` — *Numen* ES epigraph
+        (used on `es/numen.html` and `es/index.html` home page)
+      - `assets/audio/limen-beginning-never-ends-es.mp3` — *Limen* ES
+        epigraph (used on `es/limen.html`)
+      Each page's caption updated to "(lectura en español · José Gude)".
+- [ ] **Epigraph audio — Fragile Light Spanish (1/4 still pending).**
+      Last of the Tier 1b set. Record the Spanish reading of *La libertad
+      no perdió. La libertad fue interrumpida.* and drop the file at
+      `assets/audio/freedom-did-not-lose-es.mp3`. The `es/fragile-light.html`
+      page currently plays the English recording with a "(lectura en
+      inglés · José Gude)" note — swap the `<source>` path to the ES file
+      and change the caption to "(lectura en español · José Gude)" when
+      it arrives.
 - [x] **A short scrolling animation of the phi-spiral rectangles
       construction unfolding.** Shipped: `assets/video/phi-rectangles.mp4`
       (1280×720, H.264, 9.2 s, ~66 KB). Built by `scripts/build_phi_animation.py`
