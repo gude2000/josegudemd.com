@@ -13,11 +13,14 @@ Listen page or a dedicated audio gallery). Each will need: file in
 context (which novel / which scene), and accessible transcription where
 applicable.
 
-- [ ] **Sable's Spanish-language speech files** — Sable speaking in Spanish.
-      Counterparts to the English `Sable.wav` already on the site.
-      File location: `assets/audio/sable_es_*.wav` (or `.mp3`).
-      Page wiring: add to `es/watch.html` and to the Spanish-edition pages
-      that link audio. EN-side `watch.html` may want a lang-toggle pair too.
+- [x] **Sable's Spanish-language speech files** — Shipped:
+      `assets/audio/sable-es.mp3` (~225 KB). Wired into the Spanish Sable
+      Speak card on `es/tunings.html` — the existing JS already tried
+      `../assets/audio/sable-es.mp3` first before falling back to the
+      English `sable.mp3` or to system TTS. Updated the loading-status
+      strings to drop the obsolete "Sable.wav" filename reference.
+      Pending: similar wiring in `es/watch.html` if the audio gallery
+      grows there too.
 
 - [x] **"Just Like Starting Over" — augmented-chord sequence.** Shipped:
       `assets/audio/starting-over.mp3`, card on `tunings.html` after the
