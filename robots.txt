@@ -1,4 +1,4 @@
-# josegudemd.com — robots.txt
+# robots.txt for josegudemd.com
 User-agent: *
 Allow: /
 
