@@ -93,6 +93,20 @@
      back to the cdnjs CDN, then to unpkg. Whichever succeeds first calls
      initWebbFractal(); if all three fail we surface a visible error in the
      caption rather than leaving the canvas inscrutably empty. -->
+<!-- Wire button visual state immediately so they respond even if WebGL / the
+     init function fails. The init function re-wires them with the real
+     buildFractal callback. -->
+<script>
+(function wireButtonsVisually() {
+  document.querySelectorAll('.depth-toggle button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.depth-toggle button').forEach(function (b) {
+        b.classList.toggle('active', b === btn);
+      });
+    });
+  });
+})();
+</script>
 <script>
 (function loadThree() {
   var urls = [
@@ -148,10 +162,43 @@ function initWebbFractal() {
   let BASE_Z = fitDistance();
   camera.position.set(0, 0, BASE_Z);
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  // WebGL context creation can fail when the browser has hit its per-process
+  // context limit (too many other 3D tabs/extensions open), when hardware
+  // acceleration is disabled, or when the GPU driver is in a bad state.
+  // Surface a clear message instead of silently leaving an empty canvas.
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+  } catch (err) {
+    console.error('WebGL renderer creation failed:', err);
+    var cap = document.querySelector('.caption');
+    if (cap) {
+      cap.style.color = '#e88';
+      cap.style.fontSize = '12px';
+      cap.style.lineHeight = '1.6';
+      cap.style.padding = '0 20px';
+      cap.innerHTML =
+        'WebGL context unavailable — the fractal cannot render in this browser session.<br>' +
+        'Common causes: too many other 3D tabs / extensions open, or hardware acceleration disabled.<br>' +
+        'Try: close some tabs and reload &nbsp;·&nbsp; or visit <code>chrome://gpu</code> to check WebGL status.';
+    }
+    return;
+  }
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
+
+  // Detect mid-flight context loss (driver reset, GPU process crash, tab
+  // backgrounding past the limit). Without this the canvas freezes silently.
+  renderer.domElement.addEventListener('webglcontextlost', function (e) {
+    e.preventDefault();
+    console.warn('WebGL context lost');
+    var cap2 = document.querySelector('.caption');
+    if (cap2) {
+      cap2.style.color = '#e88';
+      cap2.textContent = 'WebGL context lost — reload the page to recover.';
+    }
+  }, false);
 
   // ---------- The Webb fractal geometry ----------
   // Seed: right triangle with angles 34.38° · 55.62° · 90°. The legs satisfy
