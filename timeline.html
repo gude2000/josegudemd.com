@@ -308,15 +308,18 @@
   function render(laneId, data){
     const lane = document.getElementById(laneId);
     // greedy stacking to avoid overlap
-    const placed = []; // each: {top, bottom}
+    const placed = []; // each: {center, h}
     const minGap = 8; // px
-    let maxBottom = 0;
     data.forEach(item => {
       const baseTop = yPos(item.y);
-      // estimate entry height
-      const estH = item.d ? 64 : 36;
+      // estimate entry height based on description character length so multi-line
+      // descriptions ("Microtubule coherence kHz–THz at body temperature.",
+      // "Threshold — terminal lucidity, dossier of cases", etc.) are accounted
+      // for. The lane is narrow — wrapping happens at roughly 40 characters.
+      const descTextLen = item.d ? item.d.replace(/<[^>]*>/g, '').length : 0;
+      const descLines   = item.d ? Math.max(1, Math.ceil(descTextLen / 40)) : 0;
+      const estH = item.d ? (32 + descLines * 18) : 36; // year+name+margin + desc lines
       let top = baseTop;
-      // find a vertical slot that doesn't overlap with any placed (with same x — but since they're all the same lane, full overlap matters)
       let shifted = true;
       while (shifted) {
         shifted = false;
@@ -328,10 +331,6 @@
         }
       }
       placed.push({ center: top, h: estH });
-      // entries are centered with transform: translateY(-50%), so the visual bottom
-      // edge of the entry is top + estH/2.
-      const entryBottom = top + estH/2;
-      if (entryBottom > maxBottom) maxBottom = entryBottom;
 
       const div = document.createElement('div');
       div.className = 'entry';
@@ -352,21 +351,32 @@
       }
       lane.appendChild(div);
     });
-    return maxBottom;
+    // Second pass: measure the actual rendered heights now that the entries
+    // are in the DOM. Entries are centered with transform: translateY(-50%),
+    // so the visual bottom of each is top + offsetHeight/2. Estimates are
+    // close but never exact (font rendering, hyphenation, line-break choices
+    // vary), so this measurement is what the grid height must accommodate.
+    let actualMaxBottom = 0;
+    lane.querySelectorAll('.entry').forEach(el => {
+      const top = parseFloat(el.style.top) || 0;
+      const bottom = top + el.offsetHeight / 2;
+      if (bottom > actualMaxBottom) actualMaxBottom = bottom;
+    });
+    return actualMaxBottom;
   }
 
   // Greedy stacking pushes late-year entries downward to avoid collision (it
   // never pushes upward), so dense late-year clusters — the 2022/2024 physics
   // pair, the 2023/2024 mind cluster — can extend past the nominal 2600 px grid
-  // height and get clipped where the next section begins. Grow the grid to fit
-  // the deepest entry across all three lanes, plus a small bottom pad.
+  // height and get clipped. Grow the grid to fit the deepest actual entry
+  // bottom across all three lanes, plus a small pad below.
   const maxBot = Math.max(
     render('lane-physics', physics),
     render('lane-mind', mind),
     render('lane-inflect', inflect)
   );
   const grid = document.getElementById('timeline');
-  grid.style.height = Math.max(2600, Math.ceil(maxBot + 32)) + 'px';
+  grid.style.height = Math.max(2600, Math.ceil(maxBot + 40)) + 'px';
 })();
 </script>
 
