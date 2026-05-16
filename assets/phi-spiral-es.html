@@ -598,17 +598,9 @@
       });
       g.appendChild(dot);
     }
-    const lbl = svgEl('text', {
-      x: cx,
-      y: H - 110,
-      fill: 'var(--gold)',
-      'font-size': 13,
-      'text-anchor': 'middle',
-      'font-family': '-apple-system, sans-serif',
-      'letter-spacing': '0.10em'
-    });
-    lbl.textContent = `divergencia ${(divergenceAngle * 180 / Math.PI).toFixed(2).replace('.', ',')}°`;
-    g.appendChild(lbl);
+    // Sin etiqueta SVG de divergencia: el subtítulo del deslizador ya la
+    // muestra; una segunda copia en y: H-110 se solapa con los controles
+    // cuando el iframe es bajo.
   }
 
   function drawPolyhedra(g, cx, cy, polyIdx, t){

@@ -598,17 +598,9 @@
       });
       g.appendChild(dot);
     }
-    const lbl = svgEl('text', {
-      x: cx,
-      y: H - 110,
-      fill: 'var(--gold)',
-      'font-size': 13,
-      'text-anchor': 'middle',
-      'font-family': '-apple-system, sans-serif',
-      'letter-spacing': '0.10em'
-    });
-    lbl.textContent = `divergence ${(divergenceAngle * 180 / Math.PI).toFixed(2)}°`;
-    g.appendChild(lbl);
+    // No SVG-internal divergence label here — the slider caption above the
+    // slider already shows it, and a second copy at y: H-110 stacks/overlaps
+    // with the slider chrome in shorter iframe contexts.
   }
 
   function drawPolyhedra(g, cx, cy, polyIdx, t){
