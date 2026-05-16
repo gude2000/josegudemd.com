@@ -484,13 +484,20 @@
     // r = innerR · e^(b·θ) with b = ln(φ) / (π/2): growth rate φ per quarter-turn.
     // At ratio = φ the spiral threads the corner sequence; at other ratios it
     // visibly leaves the corners.
+    //
+    // outerR is capped at the LARGEST square's side (= shorter dimension of the
+    // outer rectangle in scaled px). This matches the radius of the outermost
+    // quarter-arc in a proper Fibonacci spiral and keeps the curve within the
+    // visual envelope of the outer rectangle. Using the full diagonal (as a
+    // previous version did) lets the spiral wind far outside the rectangle,
+    // because the spiral's eye is offset toward one corner of the construction.
     if (rects.length > 0) {
       const PHI_LOC = (1 + Math.sqrt(5)) / 2;
       const bLog = Math.log(PHI_LOC) / (Math.PI / 2);
       const last = rects[rects.length - 1];
       const eyeX = offX + (last.x + last.s / 2) * k;
       const eyeY = offY + (last.y + last.s / 2) * k;
-      const outerR = Math.sqrt((totalW * k) * (totalW * k) + (totalH * k) * (totalH * k));
+      const outerR = rects[0].s * k; // largest square's side, in scaled px
       const innerR = Math.max(2, last.s * k * 0.5);
       const thetaMax = Math.log(outerR / innerR) / bLog;
       // angular start: aim toward the outer corner of the first cut so the
