@@ -66,18 +66,26 @@ or strike if not interesting.
       of actual Chladni plates running through frequencies. Embed on the
       `chladni.html` page below the engravings. Pair the visual with the
       same chord audio.
-- [ ] **Sable's "almost" signal — sound design.** A short audio sketch
-      of the sub-threshold signal Sable carries. Could be the chord
-      compressed into a single sustained drone with a quiet harmonic
-      pulse beneath.
+- [x] **Sable's "almost" signal — sound design.** Shipped:
+      `assets/audio/sable-almost.mp3` (50 s, stereo, ~575 KB). Synthesized
+      drone with the phi-tuned augmented architecture (C/E/G♯ at 266.67 Hz
+      and its octaves), slow tremolo per voice, soft noise floor, and a
+      gaussian-shaped harmonic bloom every 9.5 seconds — the "almost"
+      pulse. Stereo swirl on a high partial. Card on `tunings.html`
+      between the Sable speak card and the two recordings.
 - [x] **José's journal — the fractal triangle.** Shipped: interactive SVG
       at `assets/webb-triangle.html` with nested φ-similar triangles, angle
       markers, vertex-labels (90° · 55.62° · 34.38° → C / G♯ / E), per-note
       click-to-play, and a "play full chord" button. Embedded on
       `reading.html` as the second iframe right after the Webb fractal.
-- [ ] **Spanish narration of the Aquinas Latin epigraph.** *Amor est velle
-      alicui bonum* — short voice clip. Pairs with the existing Latin
-      epigraph on the *Anima* page.
+- [x] **Aquinas Latin epigraph — spoken.** Shipped: card on `tunings.html`
+      with a "speak the Latin" button using the browser's SpeechSynthesis
+      API. Tries an installed Latin voice first; falls back to Italian for
+      ecclesiastical pronunciation; final fallback is the default voice.
+      No audio file shipped — pure real-time TTS, so the exact voice
+      depends on the listener's OS and browser. (Note: gTTS-based
+      pre-rendered audio was attempted but the sandbox can't reach
+      translate.google.com; SpeechSynthesis was used instead.)
 - [ ] **Reader audio — chapter-opening excerpts.** Short voice readings
       (yours or a narrator's) of the first 1–2 paragraphs of selected
       chapters: *Anima* I ("The Pause"), *Numen* I ("The Living Room"),

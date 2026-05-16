@@ -204,6 +204,18 @@
     <div id="sable-status" style="font-family:var(--sans);font-size:11px;color:var(--cream-mute);margin-top:10px;letter-spacing:0.08em;min-height:1.4em;"></div>
   </div>
 
+  <div class="tuning-card" style="border-color:var(--violet);flex-direction:column;align-items:stretch;text-align:left;">
+    <div class="meta" style="margin-bottom:14px;">
+      <h3>Sable's <em>almost</em> &mdash; the signal below the threshold of resolution</h3>
+      <div class="freq">synthesized sound design · phi-tuned C/E/G♯ drone across four octaves · gaussian pulse blooms every 9.5 s · 50 s stereo</div>
+      <div class="desc">Sable arrives in Boise carrying a sensation she calls <em>the almost</em> &mdash; a signal below the threshold of resolution, the chord audible to the body before it is audible to the ear. This is a sonic rendering: the phi-tuned augmented architecture (C / E / G♯ at 266.67 Hz and its octaves) held as a sustained drone, with slow tremolo on each voice and a soft noise floor for the "below-threshold" texture. Every ~9.5 seconds a high-harmonic bloom rises and recedes &mdash; the "almost" pulse, the signal you almost hear before it goes back under. Headphones reveal the stereo swirl on the high partial. Let it run; listen to the body, not the ear.</div>
+    </div>
+    <audio controls preload="none" style="width:100%;max-width:520px;align-self:center;">
+      <source src="assets/audio/sable-almost.mp3" type="audio/mpeg">
+      your browser does not support the audio element.
+    </audio>
+  </div>
+
   <p class="pair-label">Two recordings — the augmented chord in the wild and in the lab</p>
 
   <div class="tuning-card" style="border-color:var(--gold);flex-direction:column;align-items:stretch;text-align:left;">
@@ -259,6 +271,15 @@
       <div class="desc">A two-tone interval at the exact φ ratio. In 12-TET this interval lies between a minor sixth (800 cents) and a major sixth (900 cents) — it does not exist on any standard instrument. In 72-TET (Dolores Catherino's tuning system) it falls on step 50, which sits 833.33 cents above the root: φ to within 0.2 cents. This is the sound the trilogy gestures at when it says the chord refuses to resolve. The interval is mildly dissonant precisely because the human ear has been trained by 400 years of meantone-and-equal-temperament keyboards to expect resolution at the nearest tempered sixth.</div>
     </div>
     <button class="tuning-btn" data-id="t5">play / stop</button>
+  </div>
+
+  <div class="tuning-card" style="border-color:var(--cream-mute);background:rgba(232,224,206,0.04);flex-direction:column;align-items:stretch;text-align:center;padding:22px 24px;">
+    <div style="font-family:var(--sans);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream-mute);margin-bottom:6px;">Aquinas &middot; Summa Theologiae</div>
+    <h3 style="margin:0 0 8px 0;font-family:var(--serif);font-style:italic;font-size:20px;font-weight:400;color:var(--cream);"><em>Amor est velle alicui bonum</em></h3>
+    <div style="font-family:var(--serif);font-size:14px;color:var(--cream-dim);margin-bottom:12px;">"To love is to will the good of the other for their own sake."</div>
+    <div class="desc" style="max-width:38em;margin:0 auto 14px auto;">The epigraph of <em>Anima</em>, and the working definition of love throughout the trilogy. The phrase is short, exact, and surprisingly modern in its insistence that love is an act of will, not a feeling. Click below to hear it spoken &mdash; the browser will use a Latin voice if your system has one installed, otherwise an Italian voice for ecclesiastical pronunciation (the standard for spoken church Latin since the Renaissance).</div>
+    <button class="tuning-btn" id="aquinas-speak" style="border-color:var(--cream-dim);color:var(--cream);align-self:center;min-width:180px;">speak the Latin</button>
+    <div id="aquinas-status" style="font-family:var(--sans);font-size:11px;color:var(--cream-mute);margin-top:10px;letter-spacing:0.08em;min-height:1.4em;"></div>
   </div>
 
   <div class="stop-all-wrap" style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;align-items:center;">
@@ -437,6 +458,7 @@
 
   document.querySelectorAll('.tuning-btn').forEach(b => {
     if (b.id === 'sable-speak') return; // handled separately below
+    if (b.id === 'aquinas-speak') return; // SpeechSynthesis handler below
     b.addEventListener('click', () => {
       const id = b.dataset.id;
       if (active.has(id)) stopTone(id);
@@ -592,6 +614,55 @@
         }
       }, 45000);
     });
+  }
+
+  // ---- Aquinas Latin via SpeechSynthesis ----
+  // Prefer an installed Latin voice; otherwise use an Italian voice (the
+  // closest commonly-available approximation of ecclesiastical Latin
+  // pronunciation); fall back to whatever default the browser provides.
+  // This is real-time TTS — no audio file shipped — so the exact voice
+  // depends on the listener's OS / browser.
+  const aquinasBtn = document.getElementById('aquinas-speak');
+  const aquinasStatus = document.getElementById('aquinas-status');
+  if (aquinasBtn && 'speechSynthesis' in window) {
+    function setAqStatus(msg, color) {
+      if (!aquinasStatus) return;
+      aquinasStatus.textContent = msg;
+      aquinasStatus.style.color = color || 'var(--cream-mute)';
+    }
+    function pickAquinasVoice() {
+      const voices = window.speechSynthesis.getVoices() || [];
+      const lat = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('la'));
+      if (lat) return { voice: lat, lang: lat.lang, kind: 'Latin' };
+      const it = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('it'));
+      if (it) return { voice: it, lang: it.lang, kind: 'Italian (ecclesiastical pronunciation)' };
+      return { voice: null, lang: 'la', kind: 'default voice' };
+    }
+    aquinasBtn.addEventListener('click', () => {
+      try { window.speechSynthesis.cancel(); } catch(_){}
+      const choice = pickAquinasVoice();
+      const u = new SpeechSynthesisUtterance('Amor est velle alicui bonum.');
+      if (choice.voice) u.voice = choice.voice;
+      u.lang = choice.lang;
+      u.rate = 0.82;
+      u.pitch = 1.0;
+      u.volume = 1.0;
+      setAqStatus('▶ ' + choice.kind);
+      u.onend = () => setAqStatus('✓ Amor est velle alicui bonum.');
+      u.onerror = (e) => setAqStatus('speech error: ' + (e.error || 'unknown'), '#e88');
+      window.speechSynthesis.speak(u);
+    });
+    // Voice list is sometimes loaded async (Chrome/Edge); refresh status hint when ready
+    window.speechSynthesis.onvoiceschanged = () => {
+      const choice = pickAquinasVoice();
+      if (!aquinasStatus.textContent) {
+        setAqStatus('voice ready · ' + choice.kind, 'var(--cream-mute)');
+      }
+    };
+  } else if (aquinasBtn) {
+    aquinasBtn.disabled = true;
+    aquinasBtn.textContent = 'speech not supported';
+    aquinasStatus.textContent = 'your browser does not support speech synthesis';
   }
 
 })();
