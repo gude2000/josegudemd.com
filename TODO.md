@@ -78,16 +78,14 @@ or strike if not interesting.
       markers, vertex-labels (90° · 55.62° · 34.38° → C / G♯ / E), per-note
       click-to-play, and a "play full chord" button. Embedded on
       `reading.html` as the second iframe right after the Webb fractal.
-- [x] **Aquinas Latin epigraph — spoken (random 3-way rotation).** Shipped:
+- [x] **Aquinas Latin epigraph — spoken (alternating 2-way).** Shipped:
       card on `tunings.html` with a "speak the Latin" button. Each click
-      plays one of three sources at random (avoiding immediate repetition):
-      `assets/audio/aquinas.mp3` (earlier human take, 3.77 s),
-      `assets/audio/aquinas-v2.mp3` (later human take, 4.13 s), or an
-      Italian-female SpeechSynthesis voice (filtered by name hints like
-      Alice/Federica/Lucia/Elsa/etc; falls back to any installed Italian
-      voice, then to default). Status line shows which voice played. The
-      two 0-byte gTTS placeholders in `assets/audio/` are still on disk —
-      safe to `git rm` whenever.
+      alternates between two voices: `assets/audio/aquinas-v2.mp3` (the
+      author's recorded take, 4.13 s) and an Italian-female SpeechSynthesis
+      voice (filtered by name hints — Alice/Federica/Lucia/Elsa/etc — and
+      falling back to any installed Italian voice, then to default).
+      Earlier `aquinas.mp3` and the two 0-byte gTTS placeholders in
+      `assets/audio/` are still on disk; safe to `git rm` whenever.
 - [ ] **Reader audio — chapter-opening excerpts.** Short voice readings
       (yours or a narrator's) of the first 1–2 paragraphs of selected
       chapters: *Anima* I ("The Pause"), *Numen* I ("The Living Room"),

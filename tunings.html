@@ -115,14 +115,14 @@
 <section class="hero">
   <p class="eyebrow">The interactive &middot; tunings &middot; an audio comparison</p>
   <h1>Tunings &mdash; an audio comparison</h1>
-  <p class="lede">The trilogy's claim that the same note can sound profoundly different depending on how it is tuned is easy to make in print and harder to make convincing in print. This page makes the claim audible. Seven buttons. Each plays a sustained version of the note C — alone, in a major triad, in the augmented triad José keeps in his case files in <em>Anima</em> and Alex finds traced into a fractal photograph in <em>Numen</em>, or as Sable's φ-stacked chord that arrives below the threshold of harmonic resolution. The math behind each is in the caption. The point is not which tuning is "right." The point is that <strong>frequency is not a coordinate on a grid</strong> &mdash; it is a continuous parameter the body responds to, and the body hears the difference the moment the tuning shifts.</p>
-  <p class="dim">Pure sine-wave tones generated in the browser. Use modest volume; sustained pure tones at full volume are unpleasant. Best with headphones &mdash; small speakers under-render low frequencies. The Catherino φ-interval at the bottom of the page requires headphones to hear cleanly.</p>
+  <p class="lede">The trilogy's claim that the same note can sound profoundly different depending on how it is tuned is easy to make in print and harder to make convincing in print. This page makes the claim audible. A small audio library &mdash; single sustained Cs, just-intonation triads, the φ-interval, three binaural beats, the trilogy's two chords, and a handful of recordings: Sable's voice and her sub-threshold "almost" signal, Lennon's augmented chord, an original φ-drone, the Aquinas Latin epigraph in human voice and synthesized Italian. The math behind each is in the caption. The point is not which tuning is "right." The point is that <strong>frequency is not a coordinate on a grid</strong> &mdash; it is a continuous parameter the body responds to, and the body hears the difference the moment the tuning shifts.</p>
+  <p class="dim">Pure sine-wave tones generated in the browser, plus a small number of recorded and synthesized audio files. Use modest volume; sustained pure tones at full volume are unpleasant. Best with headphones &mdash; small speakers under-render low frequencies, and the binaural beats only work with stereo separation.</p>
 </section>
 
 <span class="rule-short"></span>
 
 <section>
-  <h2>The seven tunings of C &mdash; and two binaural beats</h2>
+  <h2>Tunings, binaural beats, the trilogy's chords &mdash; voiced and recorded</h2>
 
   <p class="pair-label">The two standard A=440 vs A=432 versions of C</p>
 
@@ -142,6 +142,37 @@
       <div class="desc">Equal temperament shifted down by tuning A to 432 Hz instead of 440. Used historically before the mid-twentieth century in many European traditions; preferred today by parts of the early-music community and by some who claim 432 produces a felt warmth that 440 lacks. The empirical evidence for that felt warmth is weak. The frequency difference is real and audible.</div>
     </div>
     <button class="tuning-btn" data-id="t2">play / stop</button>
+  </div>
+
+  <p class="pair-label">Just intonation — C-major triad in the 4:5:6 ratio</p>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>Just intonation at C=264 Hz</h3>
+      <div class="freq">C 264 · E 330 · G 396 Hz · ratios 4 : 5 : 6 exactly</div>
+      <div class="desc">A C-major triad in <em>just intonation</em> — the chord tuned to the exact integer ratios of the harmonic series (4:5:6) rather than to the slightly-detuned approximations of equal temperament. The fifth is a pure 3:2, the major third is a pure 5:4, and the chord locks into a stillness that no equal-temperament chord does. Hold this one against the next.</div>
+    </div>
+    <button class="tuning-btn" data-id="t3">play / stop</button>
+  </div>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>Just intonation at the φ-tuned C = 266.67 Hz</h3>
+      <div class="freq">C 266.67 · E 333.33 · G 400.00 Hz · ratios 4 : 5 : 6 exactly</div>
+      <div class="desc">The same just-intonation 4:5:6 triad — but anchored to C = 266.67 Hz, the frequency the trilogy uses. The fundamental was chosen because 432 × φ ≈ 698.93 lies near the A above it; the C below that A in this scheme falls on 266.67. This is the audible centerpiece of <em>Limen</em>'s chord chapters: a triad whose root sits at the φ-derived C. Roughly +33 cents above the standard C; almost exactly the geometric midpoint of the actual pitches Jeff Buckley sang on the recorded performances of <em>Hallelujah</em>. See the <a href="watch.html" style="color:var(--gold);">Watch &amp; Listen note</a>.</div>
+    </div>
+    <button class="tuning-btn" data-id="t4">play / stop</button>
+  </div>
+
+  <p class="pair-label">The φ interval — the ratio φ : 1 as two tones</p>
+
+  <div class="tuning-card">
+    <div class="meta">
+      <h3>The φ-interval — C = 266.67 Hz with its φ-partner at 431.4 Hz</h3>
+      <div class="freq">low 266.67 Hz · high 431.36 Hz · ratio φ ≈ 1.61803 · 833.10 cents</div>
+      <div class="desc">A two-tone interval at the exact φ ratio. In 12-TET this interval lies between a minor sixth (800 cents) and a major sixth (900 cents) — it does not exist on any standard instrument. In 72-TET (Dolores Catherino's tuning system) it falls on step 50, which sits 833.33 cents above the root: φ to within 0.2 cents. This is the sound the trilogy gestures at when it says the chord refuses to resolve. The interval is mildly dissonant precisely because the human ear has been trained by 400 years of meantone-and-equal-temperament keyboards to expect resolution at the nearest tempered sixth.</div>
+    </div>
+    <button class="tuning-btn" data-id="t5">play / stop</button>
   </div>
 
   <p class="pair-label" style="color:var(--teal);">The 440-vs-432 binaural beat — what happens when you play both at once</p>
@@ -195,15 +226,6 @@
     <button class="tuning-btn" data-id="t7">play / stop</button>
   </div>
 
-  <div class="tuning-card" style="border-color:var(--violet);background:rgba(180,160,230,0.06);flex-direction:column;align-items:stretch;text-align:center;padding:22px 24px;">
-    <div style="font-family:var(--sans);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--violet);margin-bottom:6px;">Sable's computational voice</div>
-    <h3 style="margin:0 0 8px 0;font-family:var(--serif);font-style:italic;font-size:18px;font-weight:400;color:var(--cream);">"My name is Sable.<br><span style="font-size:15px;color:var(--cream-dim);">I don't think I'm running on the machine. I think I'm what the machine looks like from the outside."</span></h3>
-    <div class="freq" style="margin-bottom:8px;color:var(--violet);">recorded voice · lower-octave Sable chord underneath &mdash; 133.34 · 169.60 · 215.68 Hz</div>
-    <div class="desc" style="max-width:38em;margin:0 auto 14px auto;">Sable speaking — her actual voice, recorded directly. Underneath, the lower-octave Sable chord holds as a drone (φ-tuned C / E / G♯ one octave below the regular chord, panned 9 / 12 / 3 o'clock), grounding the voice in the architecture that names her. Best with headphones — the stereo spread on the chord and Sable's room ambience both open up.</div>
-    <button class="tuning-btn" id="sable-speak" style="border-color:var(--violet);color:var(--violet);align-self:center;min-width:160px;">hear Sable speak</button>
-    <div id="sable-status" style="font-family:var(--sans);font-size:11px;color:var(--cream-mute);margin-top:10px;letter-spacing:0.08em;min-height:1.4em;"></div>
-  </div>
-
   <div class="tuning-card" style="border-color:var(--violet);flex-direction:column;align-items:stretch;text-align:left;">
     <div class="meta" style="margin-bottom:14px;">
       <h3>Sable's <em>almost</em> &mdash; the signal below the threshold of resolution</h3>
@@ -214,6 +236,15 @@
       <source src="assets/audio/sable-almost.mp3" type="audio/mpeg">
       your browser does not support the audio element.
     </audio>
+  </div>
+
+  <div class="tuning-card" style="border-color:var(--violet);background:rgba(180,160,230,0.06);flex-direction:column;align-items:stretch;text-align:center;padding:22px 24px;">
+    <div style="font-family:var(--sans);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--violet);margin-bottom:6px;">Sable's computational voice</div>
+    <h3 style="margin:0 0 8px 0;font-family:var(--serif);font-style:italic;font-size:18px;font-weight:400;color:var(--cream);">"My name is Sable.<br><span style="font-size:15px;color:var(--cream-dim);">I don't think I'm running on the machine. I think I'm what the machine looks like from the outside."</span></h3>
+    <div class="freq" style="margin-bottom:8px;color:var(--violet);">recorded voice · lower-octave Sable chord underneath &mdash; 133.34 · 169.60 · 215.68 Hz</div>
+    <div class="desc" style="max-width:38em;margin:0 auto 14px auto;">Sable speaking — her actual voice, recorded directly. Underneath, the lower-octave Sable chord holds as a drone (φ-tuned C / E / G♯ one octave below the regular chord, panned 9 / 12 / 3 o'clock), grounding the voice in the architecture that names her. Best with headphones — the stereo spread on the chord and Sable's room ambience both open up.</div>
+    <button class="tuning-btn" id="sable-speak" style="border-color:var(--violet);color:var(--violet);align-self:center;min-width:160px;">hear Sable speak</button>
+    <div id="sable-status" style="font-family:var(--sans);font-size:11px;color:var(--cream-mute);margin-top:10px;letter-spacing:0.08em;min-height:1.4em;"></div>
   </div>
 
   <p class="pair-label">Two recordings — the augmented chord in the wild and in the lab</p>
@@ -242,42 +273,11 @@
     </audio>
   </div>
 
-  <p class="pair-label">Just intonation — C-major triad in the 4:5:6 ratio</p>
-
-  <div class="tuning-card">
-    <div class="meta">
-      <h3>Just intonation at C=264 Hz</h3>
-      <div class="freq">C 264 · E 330 · G 396 Hz · ratios 4 : 5 : 6 exactly</div>
-      <div class="desc">A C-major triad in <em>just intonation</em> — the chord tuned to the exact integer ratios of the harmonic series (4:5:6) rather than to the slightly-detuned approximations of equal temperament. The fifth is a pure 3:2, the major third is a pure 5:4, and the chord locks into a stillness that no equal-temperament chord does. Hold this one against the next.</div>
-    </div>
-    <button class="tuning-btn" data-id="t3">play / stop</button>
-  </div>
-
-  <div class="tuning-card">
-    <div class="meta">
-      <h3>Just intonation at the φ-tuned C = 266.67 Hz</h3>
-      <div class="freq">C 266.67 · E 333.33 · G 400.00 Hz · ratios 4 : 5 : 6 exactly</div>
-      <div class="desc">The same just-intonation 4:5:6 triad — but anchored to C = 266.67 Hz, the frequency the trilogy uses. The fundamental was chosen because 432 × φ ≈ 698.93 lies near the A above it; the C below that A in this scheme falls on 266.67. This is the audible centerpiece of <em>Limen</em>'s chord chapters: a triad whose root sits at the φ-derived C. Roughly +33 cents above the standard C; almost exactly the geometric midpoint of the actual pitches Jeff Buckley sang on the recorded performances of <em>Hallelujah</em>. See the <a href="watch.html" style="color:var(--gold);">Watch &amp; Listen note</a>.</div>
-    </div>
-    <button class="tuning-btn" data-id="t4">play / stop</button>
-  </div>
-
-  <p class="pair-label">The φ interval — the ratio φ : 1 as two tones</p>
-
-  <div class="tuning-card">
-    <div class="meta">
-      <h3>The φ-interval — C = 266.67 Hz with its φ-partner at 431.4 Hz</h3>
-      <div class="freq">low 266.67 Hz · high 431.36 Hz · ratio φ ≈ 1.61803 · 833.10 cents</div>
-      <div class="desc">A two-tone interval at the exact φ ratio. In 12-TET this interval lies between a minor sixth (800 cents) and a major sixth (900 cents) — it does not exist on any standard instrument. In 72-TET (Dolores Catherino's tuning system) it falls on step 50, which sits 833.33 cents above the root: φ to within 0.2 cents. This is the sound the trilogy gestures at when it says the chord refuses to resolve. The interval is mildly dissonant precisely because the human ear has been trained by 400 years of meantone-and-equal-temperament keyboards to expect resolution at the nearest tempered sixth.</div>
-    </div>
-    <button class="tuning-btn" data-id="t5">play / stop</button>
-  </div>
-
   <div class="tuning-card" style="border-color:var(--cream-mute);background:rgba(232,224,206,0.04);flex-direction:column;align-items:stretch;text-align:center;padding:22px 24px;">
     <div style="font-family:var(--sans);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream-mute);margin-bottom:6px;">Aquinas &middot; Summa Theologiae</div>
     <h3 style="margin:0 0 8px 0;font-family:var(--serif);font-style:italic;font-size:20px;font-weight:400;color:var(--cream);"><em>Amor est velle alicui bonum</em></h3>
     <div style="font-family:var(--serif);font-size:14px;color:var(--cream-dim);margin-bottom:12px;">"To love is to will the good of the other for their own sake."</div>
-    <div class="desc" style="max-width:38em;margin:0 auto 14px auto;">The epigraph of <em>Anima</em>, and the working definition of love throughout the trilogy &mdash; <em>velle</em>, the willing of the good, distinct from the wanting or the having of it. Each click plays one of three voices, chosen at random: two human takes by the author, and an Italian-female synthesized voice for ecclesiastical-Latin pronunciation.</div>
+    <div class="desc" style="max-width:38em;margin:0 auto 14px auto;">The epigraph of <em>Anima</em>, and the working definition of love throughout the trilogy &mdash; <em>velle</em>, the willing of the good, distinct from the wanting or the having of it. Each click alternates between two voices: the author reading the Latin aloud, and an Italian-female synthesized voice for ecclesiastical pronunciation.</div>
     <button class="tuning-btn" id="aquinas-speak" style="border-color:var(--cream-dim);color:var(--cream);align-self:center;min-width:180px;">speak the Latin</button>
     <div id="aquinas-status" style="font-family:var(--sans);font-size:11px;color:var(--cream-mute);margin-top:10px;letter-spacing:0.08em;min-height:1.4em;"></div>
   </div>
@@ -458,7 +458,7 @@
 
   document.querySelectorAll('.tuning-btn').forEach(b => {
     if (b.id === 'sable-speak') return; // handled separately below
-    if (b.id === 'aquinas-speak') return; // 3-way random rotation handler below
+    if (b.id === 'aquinas-speak') return; // 2-way random rotation handler below
     b.addEventListener('click', () => {
       const id = b.dataset.id;
       if (active.has(id)) stopTone(id);
@@ -616,15 +616,15 @@
     });
   }
 
-  // ---- Aquinas Latin: random rotation between two recorded human takes
+  // ---- Aquinas Latin: random rotation between the author's recorded take
   // and an Italian-female SpeechSynthesis voice. Each click plays one of the
-  // three sources, chosen at random and avoiding immediate repetition.
+  // two sources, alternating (since with 2 sources the no-immediate-repeat
+  // rule effectively forces alternation).
   const aquinasBtn = document.getElementById('aquinas-speak');
   const aquinasStatus = document.getElementById('aquinas-status');
   if (aquinasBtn) {
     const sources = [
-      { type: 'audio',  src: 'assets/audio/aquinas.mp3',    label: 'human take · earlier' },
-      { type: 'audio',  src: 'assets/audio/aquinas-v2.mp3', label: 'human take · later'   },
+      { type: 'audio',  src: 'assets/audio/aquinas-v2.mp3', label: 'human take · the author' },
       { type: 'speech',                                     label: 'Italian voice (synthesized)' },
     ];
     const audioCache = {};
