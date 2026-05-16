@@ -307,36 +307,38 @@
 
   function render(laneId, data){
     const lane = document.getElementById(laneId);
-    // greedy stacking to avoid overlap
-    const placed = []; // each: {center, h}
-    const minGap = 8; // px
-    data.forEach(item => {
+    const minGap = 10; // px — vertical gap required between adjacent entries
+
+    // ---- PASS 1: build the DOM with a provisional layout ----
+    // Provisional positions come from a rough estimate of entry height. We
+    // place each entry at its year (yPos) and shift downward when an
+    // estimated collision is detected. After everything is in the DOM we
+    // can measure actual offsetHeight values and re-stack precisely.
+    const provisional = [];
+    data.forEach((item, idx) => {
       const baseTop = yPos(item.y);
-      // estimate entry height based on description character length so multi-line
-      // descriptions ("Microtubule coherence kHz–THz at body temperature.",
-      // "Threshold — terminal lucidity, dossier of cases", etc.) are accounted
-      // for. The lane is narrow — wrapping happens at roughly 40 characters.
+      // generous height estimate so dense clusters stay separated even if
+      // the description wraps to more lines than predicted
       const descTextLen = item.d ? item.d.replace(/<[^>]*>/g, '').length : 0;
-      const descLines   = item.d ? Math.max(1, Math.ceil(descTextLen / 40)) : 0;
-      const estH = item.d ? (32 + descLines * 18) : 36; // year+name+margin + desc lines
+      const descLines   = item.d ? Math.max(1, Math.ceil(descTextLen / 28)) : 0;
+      const estH = item.d ? (36 + descLines * 20) : 38;
+
       let top = baseTop;
       let shifted = true;
       while (shifted) {
         shifted = false;
-        for (const p of placed) {
-          if (Math.abs(top - p.center) < (estH/2 + p.h/2 + minGap)) {
-            top = p.center + p.h/2 + estH/2 + minGap;
+        for (const p of provisional) {
+          if (Math.abs(top - p.center) < (estH/2 + p.estH/2 + minGap)) {
+            top = p.center + p.estH/2 + estH/2 + minGap;
             shifted = true;
           }
         }
       }
-      placed.push({ center: top, h: estH });
 
       const div = document.createElement('div');
       div.className = 'entry';
       div.style.top = top + 'px';
-
-      const linkOpen = item.link ? `<a href="${item.link}">` : '';
+      const linkOpen  = item.link ? `<a href="${item.link}">` : '';
       const linkClose = item.link ? `</a>` : '';
       div.innerHTML = `
         <div class="e-year">${item.y}</div>
@@ -350,16 +352,39 @@
         });
       }
       lane.appendChild(div);
+      provisional.push({ div, baseTop, center: top, estH, idx });
     });
-    // Second pass: measure the actual rendered heights now that the entries
-    // are in the DOM. Entries are centered with transform: translateY(-50%),
-    // so the visual bottom of each is top + offsetHeight/2. Estimates are
-    // close but never exact (font rendering, hyphenation, line-break choices
-    // vary), so this measurement is what the grid height must accommodate.
+
+    // ---- PASS 2: measure actual heights, re-stack precisely ----
+    // Now that the entries are in the DOM, ask the browser for their true
+    // offsetHeight (factoring in font metrics, line-breaking, hyphenation,
+    // etc.) and re-run the stacker with those real values. This eliminates
+    // the visual overlap that plagued multi-line descriptions in dense
+    // clusters (Carhart-Harris 2012/2014/2019, Faggin 2021 / Batthyány 2023,
+    // and similar).
+    const items = provisional.map(p => ({
+      div: p.div,
+      baseTop: p.baseTop,
+      h: p.div.offsetHeight
+    }));
+    // Re-stack from natural year-positions using measured heights.
+    const placed = [];
     let actualMaxBottom = 0;
-    lane.querySelectorAll('.entry').forEach(el => {
-      const top = parseFloat(el.style.top) || 0;
-      const bottom = top + el.offsetHeight / 2;
+    items.forEach(m => {
+      let top = m.baseTop;
+      let shifted = true;
+      while (shifted) {
+        shifted = false;
+        for (const p of placed) {
+          if (Math.abs(top - p.center) < (m.h/2 + p.h/2 + minGap)) {
+            top = p.center + p.h/2 + m.h/2 + minGap;
+            shifted = true;
+          }
+        }
+      }
+      placed.push({ center: top, h: m.h });
+      m.div.style.top = top + 'px';
+      const bottom = top + m.h/2;
       if (bottom > actualMaxBottom) actualMaxBottom = bottom;
     });
     return actualMaxBottom;
