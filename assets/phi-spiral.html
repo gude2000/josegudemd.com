@@ -162,15 +162,18 @@
   }
   .caption {
     position: absolute;
-    bottom: 16px; left: 0; right: 0;
+    bottom: 14px; left: 0; right: 0;
     text-align: center;
-    font-size: 11px;
-    letter-spacing: 0.16em;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(218, 160, 85, 0.7);
+    color: rgba(218, 160, 85, 0.78);
     pointer-events: none;
     user-select: none;
-    padding: 0 24px;
+    padding: 0 14px;
+    max-width: 720px;
+    margin: 0 auto;
   }
 </style>
 </head>
@@ -503,10 +506,10 @@
       const eyeY = offY + (last.y + last.s / 2) * k;
       // start the spiral tighter (smaller innerR) so it has more inner turns
       // visible before reaching the rectangle boundary
-      const innerR = Math.max(1.5, last.s * k * 0.15);
-      const outerR = rects[0].s * k * 2.2; // generous upper bound; clipping below stops the curve at the rect edge
+      const innerR = Math.max(1.2, last.s * k * 0.08);
+      const outerR = rects[0].s * k * 2.6; // generous upper bound; clipping below stops the curve at the rect edge
       const thetaMaxNominal = Math.log(outerR / innerR) / bLog;
-      const thetaMax = Math.min(thetaMaxNominal, 6 * Math.PI); // hard cap at 3 full turns
+      const thetaMax = Math.min(thetaMaxNominal, 7 * Math.PI); // hard cap at 3.5 full turns
       // angular start: point toward the OUTER edge of the first (largest) cut,
       // i.e., away from the rest of the construction. This sends the spiral's
       // exit through the outer rectangle's open side at ratio = φ.
@@ -517,7 +520,7 @@
       // clip with a small buffer outside the rectangle, so the spiral is allowed
       // to graze just past the edge before being cut — feels more generous than
       // a hard edge-stop, while still keeping the curve from winding far away
-      const clipBuf = Math.min(totalW, totalH) * k * 0.06;
+      const clipBuf = Math.min(totalW, totalH) * k * 0.10;
       const minX = offX - clipBuf, maxX = offX + totalW * k + clipBuf;
       const minY = offY - clipBuf, maxY = offY + totalH * k + clipBuf;
       let d = '';
