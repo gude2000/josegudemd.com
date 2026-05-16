@@ -1,9 +1,11 @@
-// Click-to-enlarge for book covers.
-// On click, opens the cover in a full-screen overlay. Close by clicking
-// the overlay, the × button, or pressing Escape.
+// Click-to-enlarge for any image marked .cover-large (originally for book
+// covers) or .zoomable (the general opt-in used elsewhere on the site —
+// e.g. the Dalí painting thumbnails in the golden-ratio explainer).
+// On click, opens the image in a full-screen overlay. Close by clicking
+// the backdrop, the × button, or pressing Escape.
 (function () {
   document.addEventListener('DOMContentLoaded', function () {
-    var covers = document.querySelectorAll('.cover-large');
+    var covers = document.querySelectorAll('.cover-large, .zoomable');
     if (!covers.length) return;
 
     var lb = document.createElement('div');
