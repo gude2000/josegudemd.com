@@ -78,17 +78,23 @@ def spiral_arc_for_square(x, y, s, direction, prev_direction):
     sits at the inner vertex of the spiral. Angles in degrees, math-convention."""
     # The arc center sits at the corner of the square opposite to where the
     # spiral enters. Direction of growth determines which corner.
+    # Arc center is the corner of the square that, together with the entry
+    # and exit corners, makes a continuous CCW spiral that bulges AWAY from
+    # the spiral's overall center (i.e., convex outward, never concave).
     if direction == 'seed':
-        # The seed square hosts the FIRST arc, going from 180° to 270°
-        # with center at the top-right corner.
+        # Enters TL (0,s), exits BR (s,0); center at TR (s,s).
         return (x + s, y + s, s, 180, 270)
     if direction == 'r':
-        return (x + s, y,     s, 90, 180)
+        # Enters BL (x,y), exits TR (x+s, y+s); center at TL (x, y+s).
+        return (x,     y + s, s, 270, 360)
     if direction == 'u':
+        # Enters BR (x+s, y), exits TL (x, y+s); center at BL (x, y).
         return (x,     y,     s, 0, 90)
     if direction == 'l':
-        return (x,     y + s, s, 270, 360)
+        # Enters TR (x+s, y+s), exits BL (x, y); center at BR (x+s, y).
+        return (x + s, y,     s, 90, 180)
     if direction == 'd':
+        # Enters TL (x, y+s), exits BR (x+s, y); center at TR (x+s, y+s).
         return (x + s, y + s, s, 180, 270)
 
 
