@@ -390,136 +390,131 @@
     }
   }
 
-  function drawFibonacciRectangles(g, cx, cy, scale){
-    // build a chain of squares whose sides follow Fibonacci: 1,1,2,3,5,8,13,21,34
-    // each square is positioned spirally around the previous block, the union is a φ-rectangle.
-    // we'll build it analytically. Use unit-square offsets: this is the classic construction.
-    const fibs = [1,1,2,3,5,8,13,21,34,55];
-    // recipe: directions cycle right, up, left, down (counter-clockwise)
-    // start with square[0] at (0,0), size 1
-    // square[1] is to the right of square[0]: at (1,0), size 1
-    // square[2] is above the union of [0..1]: at (0,-2), size 2
-    // square[3] is to the left of that union: at (-3,-2), size 3
-    // ... etc
-    let rects = [];
-    let x = 0, y = 0, w = 1, h = 1;
-    rects.push({x:0,y:0,s:1});
-    rects.push({x:1,y:0,s:1});
-    // union bounds after first two: x in [0,2], y in [0,1]
-    let bx = 0, by = 0, bw = 2, bh = 1;
-    const dirs = ['up','left','down','right']; // next square placement direction relative to union
-    let di = 0;
-    for (let i = 2; i < fibs.length; i++) {
-      const s = fibs[i];
-      let nx, ny;
-      const dir = dirs[di % 4];
-      if (dir === 'up')    { nx = bx;            ny = by - s; bh = bh + s; by = ny; bw = Math.max(bw, s); }
-      else if (dir === 'left'){ nx = bx - s;     ny = by;     bw = bw + s; bx = nx; bh = Math.max(bh, s); }
-      else if (dir === 'down'){ nx = bx;         ny = by + bh; bh = bh + s; bw = Math.max(bw, s); }
-      else if (dir === 'right'){ nx = bx + bw;   ny = by;     bw = bw + s; bh = Math.max(bh, s); }
-      rects.push({x:nx, y:ny, s:s});
-      di++;
+  function drawFibonacciRectangles(g, cx, cy, ratio){
+    // The outer rectangle has aspect ratio = `ratio` (driven by the slider).
+    // At each step we cut the largest square (side = min dimension) from one end
+    // of the current longer side, alternating the cut side in a Left → Top → Right
+    // → Bottom cycle. With ratio = φ exactly, the remaining rectangle after each
+    // cut is a smaller copy of the outer (rotated 90°), so the construction tiles
+    // the rectangle without remainder — the golden spiral. With any other ratio,
+    // the construction terminates leaving a non-square remainder (drawn dashed),
+    // and the inscribed logarithmic spiral overlay (always at growth rate φ per
+    // quarter-turn) drifts visibly away from the square corners. This is the
+    // demonstration that φ is the unique self-similar aspect ratio.
+    let bx = 0, by = 0, bw = ratio, bh = 1;
+    const rects = [];
+    const maxIter = 14;
+    const minSize = 0.002;
+    let dir = (bw >= bh) ? 0 : 1; // 0=L, 1=T, 2=R, 3=B
+    for (let iter = 0; iter < maxIter; iter++) {
+      if (bw < minSize || bh < minSize) break;
+      // rotate dir to align with the current longer dimension
+      let tries = 0;
+      while (tries < 4 && !(((dir === 0 || dir === 2) && bw >= bh) || ((dir === 1 || dir === 3) && bh >= bw))) {
+        dir = (dir + 1) % 4; tries++;
+      }
+      if (tries >= 4) break;
+      let s, rx, ry;
+      if      (dir === 0) { s = bh; rx = bx;          ry = by;          bx += s; bw -= s; }
+      else if (dir === 1) { s = bw; rx = bx;          ry = by;          by += s; bh -= s; }
+      else if (dir === 2) { s = bh; rx = bx + bw - s; ry = by;                   bw -= s; }
+      else                { s = bw; rx = bx;          ry = by + bh - s;          bh -= s; }
+      rects.push({ x: rx, y: ry, s: s, dir: dir });
+      dir = (dir + 1) % 4;
     }
-    // bounding box
-    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-    for (const r of rects) {
-      minX = Math.min(minX, r.x); minY = Math.min(minY, r.y);
-      maxX = Math.max(maxX, r.x + r.s); maxY = Math.max(maxY, r.y + r.s);
-    }
-    const totalW = maxX - minX;
-    const totalH = maxY - minY;
-    const targetSize = Math.min(W, H) * 0.78;
-    const k = targetSize / Math.max(totalW, totalH);
-    const offX = cx - (minX + totalW/2) * k;
-    const offY = cy - (minY + totalH/2) * k;
+    const leftover = (bw > minSize && bh > minSize) ? { x: bx, y: by, w: bw, h: bh } : null;
 
-    // draw rectangles
+    // scale to fit ~60% of the viewport
+    const totalW = ratio, totalH = 1;
+    const targetSize = Math.min(W, H) * 0.6;
+    const k = targetSize / Math.max(totalW, totalH);
+    const offX = cx - totalW * k / 2;
+    const offY = cy - totalH * k / 2;
+
+    // outer rectangle outline (gold)
+    g.appendChild(svgEl('rect', {
+      x: offX.toFixed(2), y: offY.toFixed(2),
+      width:  (totalW * k).toFixed(2),
+      height: (totalH * k).toFixed(2),
+      fill: 'none', stroke: 'var(--gold)',
+      'stroke-width': 1.5, opacity: 0.7
+    }));
+
+    // inner squares
     rects.forEach((r, idx) => {
-      const rect = svgEl('rect', {
+      g.appendChild(svgEl('rect', {
         x: (offX + r.x * k).toFixed(2),
         y: (offY + r.y * k).toFixed(2),
-        width: (r.s * k).toFixed(2),
+        width:  (r.s * k).toFixed(2),
         height: (r.s * k).toFixed(2),
-        fill: 'none',
-        stroke: 'var(--rule)',
+        fill: 'none', stroke: 'var(--rule)',
+        'stroke-width': 1, opacity: 0.75
+      }));
+      if (idx < 6 && r.s * k > 22) {
+        const txt = svgEl('text', {
+          x: (offX + (r.x + r.s/2) * k).toFixed(2),
+          y: (offY + (r.y + r.s/2) * k + 3).toFixed(2),
+          fill: 'var(--cream-mute)',
+          'font-size': Math.max(9, Math.min(14, r.s * k * 0.14)),
+          'text-anchor': 'middle',
+          'font-family': '-apple-system, sans-serif',
+          opacity: 0.55
+        });
+        txt.textContent = r.s.toFixed(3);
+        g.appendChild(txt);
+      }
+    });
+
+    // leftover (only non-empty when ratio ≠ φ) — dashed gold tint
+    if (leftover) {
+      g.appendChild(svgEl('rect', {
+        x: (offX + leftover.x * k).toFixed(2),
+        y: (offY + leftover.y * k).toFixed(2),
+        width:  (leftover.w * k).toFixed(2),
+        height: (leftover.h * k).toFixed(2),
+        fill: 'rgba(218, 160, 85, 0.10)',
+        stroke: 'var(--gold-soft)',
         'stroke-width': 1,
-        opacity: 0.55
-      });
-      g.appendChild(rect);
-      // label
-      const txt = svgEl('text', {
-        x: (offX + (r.x + r.s/2) * k).toFixed(2),
-        y: (offY + (r.y + r.s/2) * k + 3).toFixed(2),
-        fill: 'var(--cream-mute)',
-        'font-size': Math.max(8, Math.min(16, r.s * k * 0.18)),
-        'text-anchor': 'middle',
-        'font-family': '-apple-system, sans-serif',
-        opacity: 0.6
-      });
-      txt.textContent = r.s;
-      g.appendChild(txt);
-    });
+        'stroke-dasharray': '4,3',
+        opacity: 0.85
+      }));
+    }
 
-    // draw quarter-circle arcs inside each square — the classical Fibonacci spiral.
-    //
-    // Corner-pattern table: for each square (indexed by construction order),
-    // give the inscribed quarter-arc as (start corner, end corner) expressed as
-    // 0/1 offsets multiplied by sk against the square's top-left (cx0, cy0).
-    // The arc's center is the corner the start/end pair is diagonally opposite to
-    // (closer to the spiral's eye).
-    //
-    //   idx % 4 == 0  →  center TR, arc TL → BR  (sq 0)
-    //   idx % 4 == 1  →  center TL, arc BL → TR  (sq 1, placed to the right)
-    //   idx % 4 == 2  →  center BL, arc BR → TL  (sq 2, placed above)
-    //   idx % 4 == 3  →  center BR, arc TR → BL  (sq 3, placed to the left)
-    //
-    // The cycle matches the construction-direction cycle (right, up, left, down).
-    // Each arc's start corner is the corner shared with the previous square's end,
-    // so the spiral joins continuously at the shared diagonals.
-    //
-    // SVG sweep-flag stays 0 for all four cases: the arc bulges away from the
-    // chosen center corner, traversed visually CCW on screen (sweep-flag 0 in
-    // SVG y-down = CCW visually).
-    const arcPattern = [
-      { sdx:0, sdy:0, edx:1, edy:1 }, // center TR, TL → BR
-      { sdx:0, sdy:1, edx:1, edy:0 }, // center TL, BL → TR
-      { sdx:1, sdy:1, edx:0, edy:0 }, // center BL, BR → TL
-      { sdx:1, sdy:0, edx:0, edy:1 }, // center BR, TR → BL
-    ];
-    let arcPath = '';
-    rects.forEach((r, idx) => {
-      const cx0 = offX + r.x * k;
-      const cy0 = offY + r.y * k;
-      const sk = r.s * k;
-      const pat = arcPattern[idx % 4];
-      const sx = cx0 + pat.sdx * sk;
-      const sy = cy0 + pat.sdy * sk;
-      const ex = cx0 + pat.edx * sk;
-      const ey = cy0 + pat.edy * sk;
-      arcPath += `M${sx.toFixed(2)},${sy.toFixed(2)} A${sk.toFixed(2)},${sk.toFixed(2)} 0 0 0 ${ex.toFixed(2)},${ey.toFixed(2)} `;
-    });
-    const arc = svgEl('path', {
-      d: arcPath.trim(),
-      fill: 'none',
-      stroke: 'var(--gold)',
-      'stroke-width': 1.8,
-      'stroke-linecap': 'round',
-      opacity: 0.95
-    });
-    g.appendChild(arc);
-
-    // ratio text: in this mode we always show φ
-    const lbl = svgEl('text', {
-      x: cx,
-      y: H - 110,
-      fill: 'var(--gold)',
-      'font-size': 13,
-      'text-anchor': 'middle',
-      'font-family': '-apple-system, sans-serif',
-      'letter-spacing': '0.10em'
-    });
-    lbl.textContent = 'consecutive Fibonacci ratios → φ';
-    g.appendChild(lbl);
+    // φ-rate logarithmic spiral overlay anchored to the deepest square's center.
+    // r = innerR · e^(b·θ) with b = ln(φ) / (π/2): growth rate φ per quarter-turn.
+    // At ratio = φ the spiral threads the corner sequence; at other ratios it
+    // visibly leaves the corners.
+    if (rects.length > 0) {
+      const PHI_LOC = (1 + Math.sqrt(5)) / 2;
+      const bLog = Math.log(PHI_LOC) / (Math.PI / 2);
+      const last = rects[rects.length - 1];
+      const eyeX = offX + (last.x + last.s / 2) * k;
+      const eyeY = offY + (last.y + last.s / 2) * k;
+      const outerR = Math.sqrt((totalW * k) * (totalW * k) + (totalH * k) * (totalH * k));
+      const innerR = Math.max(2, last.s * k * 0.5);
+      const thetaMax = Math.log(outerR / innerR) / bLog;
+      // angular start: aim toward the outer corner of the first cut so the
+      // spiral exits through the outer rectangle's "open" side
+      const first = rects[0];
+      const fx = offX + (first.dir === 0 ? first.x : first.dir === 2 ? first.x + first.s : first.x + first.s / 2) * k;
+      const fy = offY + (first.dir === 1 ? first.y : first.dir === 3 ? first.y + first.s : first.y + first.s / 2) * k;
+      const theta0 = Math.atan2(fy - eyeY, fx - eyeX);
+      let d = '';
+      const steps = 240;
+      for (let i = 0; i <= steps; i++) {
+        const theta = (i / steps) * thetaMax;
+        const rr = innerR * Math.exp(bLog * theta);
+        // wind in the direction matching the cut cycle (visually CCW for the default L→T→R→B order)
+        const x = eyeX + rr * Math.cos(theta0 - theta);
+        const y = eyeY + rr * Math.sin(theta0 - theta);
+        d += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
+      }
+      g.appendChild(svgEl('path', {
+        d: d.trim(), fill: 'none',
+        stroke: 'var(--gold)', 'stroke-width': 1.8,
+        'stroke-linecap': 'round', opacity: 0.95
+      }));
+    }
   }
 
   function drawPhyllotaxis(g, cx, cy, divergenceAngle){
@@ -700,9 +695,11 @@
         ? 'φ-spiral — each quarter-turn the radius multiplies by 1.618…'
         : `logarithmic spiral — each quarter-turn the radius multiplies by ${growthQuarter.toFixed(3)}`;
     } else if (mode === 'rectangles') {
-      sliderCap.textContent = 'Fibonacci squares — only φ tiles self-similarly';
-      drawFibonacciRectangles(g, cx, cy, 1);
-      captionEl.textContent = 'Fibonacci squares 1,1,2,3,5,8,13,21,34 — the only ratio that nests like this is φ';
+      sliderCap.textContent = atPhi ? 'aspect ratio — φ (golden)' : 'aspect ratio';
+      drawFibonacciRectangles(g, cx, cy, growthQuarter);
+      captionEl.textContent = atPhi
+        ? 'aspect ratio φ — square cuts tile exactly; the φ-rate spiral threads every corner'
+        : `aspect ratio ${growthQuarter.toFixed(3)} — square cuts leave a remainder (gold dashed) and the φ-spiral drifts from the corners`;
     } else if (mode === 'phyllotaxis') {
       // map slider position to divergence angle: 137.0° to 138.0° around the golden value
       // but allow exploration outside the lock — slider 1.05–2.50 → angle 130°–145°
