@@ -275,8 +275,21 @@
   }
 
   // --- audio ---
+  // Each voice gets a fixed stereo position — the three notes of the chord
+  // spread across 9 / 12 / 3 on the listening "clock":
+  //   E (lowest, 164.81 Hz)  → 9 o'clock  → pan -1 (full left)
+  //   G♯ (middle, 209.64 Hz) → 12 o'clock → pan  0 (center)
+  //   C (highest, 266.67 Hz) → 3 o'clock  → pan +1 (full right)
+  // Pitch-to-pan mapping mirrors a piano keyboard (low left, high right).
+  const PAN = {};
+  PAN[FREQ_E] = -1;
+  PAN[FREQ_G] =  0;
+  PAN[FREQ_C] = +1;
+
+  const NOTE_SECONDS = 20;  // each note / the whole chord plays for 20 s
+
   let actx = null;
-  const activeNotes = new Map(); // freq -> { osc, gain }
+  const activeNotes = new Map(); // freq -> { osc, gain, pan, dot, timer }
   function ensureCtx() {
     if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
     if (actx.state === 'suspended') actx.resume();
@@ -291,29 +304,39 @@
     const g = c.createGain();
     g.gain.setValueAtTime(0, c.currentTime);
     g.gain.linearRampToValueAtTime(0.15, c.currentTime + 0.05);
-    osc.connect(g).connect(c.destination);
+    // Stereo panner — older Safari falls back through a no-op if missing
+    let pan = null;
+    if (typeof c.createStereoPanner === 'function') {
+      pan = c.createStereoPanner();
+      pan.pan.value = PAN[freq] !== undefined ? PAN[freq] : 0;
+      osc.connect(g).connect(pan).connect(c.destination);
+    } else {
+      osc.connect(g).connect(c.destination);
+    }
     osc.start();
-    activeNotes.set(freq, { osc, g, dot });
+    const timer = setTimeout(() => stopNote(freq, dot), NOTE_SECONDS * 1000);
+    activeNotes.set(freq, { osc, g, pan, dot, timer });
     if (dot) dot.setAttribute('r', 9);
-    // auto-stop after 4 seconds
-    setTimeout(() => stopNote(freq, dot), 4000);
   }
   function stopNote(freq, dot) {
     const a = activeNotes.get(freq);
     if (!a) return;
+    clearTimeout(a.timer);
     const c = ensureCtx();
     const now = c.currentTime;
     a.g.gain.cancelScheduledValues(now);
     a.g.gain.setValueAtTime(a.g.gain.value, now);
-    a.g.gain.linearRampToValueAtTime(0, now + 0.2);
-    a.osc.stop(now + 0.25);
+    a.g.gain.linearRampToValueAtTime(0, now + 0.4);
+    a.osc.stop(now + 0.45);
     activeNotes.delete(freq);
     if (dot) dot.setAttribute('r', 6);
   }
 
   let chordActive = false;
+  let chordTimer = null;
   playBtn.addEventListener('click', () => {
     if (chordActive) {
+      if (chordTimer) { clearTimeout(chordTimer); chordTimer = null; }
       [FREQ_E, FREQ_G, FREQ_C].forEach(f => stopNote(f));
       playBtn.classList.remove('active');
       playBtn.textContent = 'play full chord';
@@ -323,11 +346,12 @@
       playBtn.classList.add('active');
       playBtn.textContent = 'stop chord';
       chordActive = true;
-      setTimeout(() => {
+      chordTimer = setTimeout(() => {
         playBtn.classList.remove('active');
         playBtn.textContent = 'play full chord';
         chordActive = false;
-      }, 4200);
+        chordTimer = null;
+      }, NOTE_SECONDS * 1000 + 500);
     }
   });
 
