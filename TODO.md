@@ -19,13 +19,15 @@ applicable.
       Page wiring: add to `es/watch.html` and to the Spanish-edition pages
       that link audio. EN-side `watch.html` may want a lang-toggle pair too.
 
-- [ ] **"Just Like Starting Over" — augmented-chord sequence.** John Lennon's
-      song uses the E–G♯–C augmented progression that runs through the
-      trilogy. Upload the isolated chord sequence (or a short illustrative
-      excerpt, fair-use). Caption it to the chapter where Joseph Franco
-      hears it (Chapter IX, *Anima* — "The Cascade"). If full-track licensing
-      is a concern, render an instrumental piano version of just the
-      relevant chord sequence and label it as a transcription.
+- [x] **"Just Like Starting Over" — augmented-chord sequence.** Shipped:
+      `assets/audio/starting-over.mp3`, card on `tunings.html` after the
+      Sable section. Worth a follow-up on `watch.html` too if the
+      Hallelujah/Cohen card pattern wants a sibling there.
+
+- [x] **Phi Drone — original composition (added during this session).**
+      Shipped: `assets/audio/phi-drone.mp3`, card on `tunings.html`
+      alongside Starting Over. The augmented triad E / G♯ / C at the
+      φ-tuned C = 266.67 Hz held as a sustained drone.
 
 - [ ] **Extended piano augmented-chord piece — "after the chord lands."**
       José and Alex playing together post-resolution. Original composition.
