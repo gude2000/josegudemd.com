@@ -277,7 +277,7 @@
     <div style="font-family:var(--sans);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream-mute);margin-bottom:6px;">Aquinas &middot; Summa Theologiae</div>
     <h3 style="margin:0 0 8px 0;font-family:var(--serif);font-style:italic;font-size:20px;font-weight:400;color:var(--cream);"><em>Amor est velle alicui bonum</em></h3>
     <div style="font-family:var(--serif);font-size:14px;color:var(--cream-dim);margin-bottom:12px;">"To love is to will the good of the other for their own sake."</div>
-    <div class="desc" style="max-width:38em;margin:0 auto 14px auto;">The epigraph of <em>Anima</em>, and the working definition of love throughout the trilogy. The phrase is short, exact, and surprisingly modern in its insistence that love is an act of will, not a feeling. Click below to hear it spoken &mdash; the browser will use a Latin voice if your system has one installed, otherwise an Italian voice for ecclesiastical pronunciation (the standard for spoken church Latin since the Renaissance).</div>
+    <div class="desc" style="max-width:38em;margin:0 auto 14px auto;">The epigraph of <em>Anima</em>, and the working definition of love throughout the trilogy &mdash; <em>velle</em>, the willing of the good, distinct from the wanting or the having of it. Each click plays one of three voices, chosen at random: two human takes by the author, and an Italian-female synthesized voice for ecclesiastical-Latin pronunciation.</div>
     <button class="tuning-btn" id="aquinas-speak" style="border-color:var(--cream-dim);color:var(--cream);align-self:center;min-width:180px;">speak the Latin</button>
     <div id="aquinas-status" style="font-family:var(--sans);font-size:11px;color:var(--cream-mute);margin-top:10px;letter-spacing:0.08em;min-height:1.4em;"></div>
   </div>
@@ -458,7 +458,7 @@
 
   document.querySelectorAll('.tuning-btn').forEach(b => {
     if (b.id === 'sable-speak') return; // handled separately below
-    if (b.id === 'aquinas-speak') return; // SpeechSynthesis handler below
+    if (b.id === 'aquinas-speak') return; // 3-way random rotation handler below
     b.addEventListener('click', () => {
       const id = b.dataset.id;
       if (active.has(id)) stopTone(id);
@@ -616,53 +616,90 @@
     });
   }
 
-  // ---- Aquinas Latin via SpeechSynthesis ----
-  // Prefer an installed Latin voice; otherwise use an Italian voice (the
-  // closest commonly-available approximation of ecclesiastical Latin
-  // pronunciation); fall back to whatever default the browser provides.
-  // This is real-time TTS — no audio file shipped — so the exact voice
-  // depends on the listener's OS / browser.
+  // ---- Aquinas Latin: random rotation between two recorded human takes
+  // and an Italian-female SpeechSynthesis voice. Each click plays one of the
+  // three sources, chosen at random and avoiding immediate repetition.
   const aquinasBtn = document.getElementById('aquinas-speak');
   const aquinasStatus = document.getElementById('aquinas-status');
-  if (aquinasBtn && 'speechSynthesis' in window) {
+  if (aquinasBtn) {
+    const sources = [
+      { type: 'audio',  src: 'assets/audio/aquinas.mp3',    label: 'human take · earlier' },
+      { type: 'audio',  src: 'assets/audio/aquinas-v2.mp3', label: 'human take · later'   },
+      { type: 'speech',                                     label: 'Italian voice (synthesized)' },
+    ];
+    const audioCache = {};
+    let lastIndex = -1;
+    let currentAudio = null;
     function setAqStatus(msg, color) {
-      if (!aquinasStatus) return;
       aquinasStatus.textContent = msg;
       aquinasStatus.style.color = color || 'var(--cream-mute)';
     }
-    function pickAquinasVoice() {
-      const voices = window.speechSynthesis.getVoices() || [];
-      const lat = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('la'));
-      if (lat) return { voice: lat, lang: lat.lang, kind: 'Latin' };
-      const it = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('it'));
-      if (it) return { voice: it, lang: it.lang, kind: 'Italian (ecclesiastical pronunciation)' };
-      return { voice: null, lang: 'la', kind: 'default voice' };
+    function pickItalianVoice() {
+      const voices = (window.speechSynthesis && window.speechSynthesis.getVoices) ? window.speechSynthesis.getVoices() : [];
+      const italian = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('it'));
+      if (italian.length === 0) return null;
+      // Prefer Italian voices with names that suggest female timbre. Common
+      // installed Italian female voices include Alice/Federica/Lucia (macOS),
+      // Elsa (Windows), Paola/Silvia/Aurora/Giulia (various). Fallback: first
+      // Italian voice available.
+      const femaleHints = ['alice','federica','lucia','elsa','paola','silvia','aurora','giulia','female','donna'];
+      const female = italian.find(v => {
+        const n = (v.name || '').toLowerCase();
+        return femaleHints.some(h => n.includes(h));
+      });
+      return female || italian[0];
+    }
+    function stopAllAquinas() {
+      if (currentAudio) {
+        try { currentAudio.pause(); currentAudio.currentTime = 0; } catch(_){}
+        currentAudio = null;
+      }
+      try { window.speechSynthesis.cancel(); } catch(_){}
     }
     aquinasBtn.addEventListener('click', () => {
-      try { window.speechSynthesis.cancel(); } catch(_){}
-      const choice = pickAquinasVoice();
-      const u = new SpeechSynthesisUtterance('Amor est velle alicui bonum.');
-      if (choice.voice) u.voice = choice.voice;
-      u.lang = choice.lang;
-      u.rate = 0.82;
-      u.pitch = 1.0;
-      u.volume = 1.0;
-      setAqStatus('▶ ' + choice.kind);
-      u.onend = () => setAqStatus('✓ Amor est velle alicui bonum.');
-      u.onerror = (e) => setAqStatus('speech error: ' + (e.error || 'unknown'), '#e88');
-      window.speechSynthesis.speak(u);
-    });
-    // Voice list is sometimes loaded async (Chrome/Edge); refresh status hint when ready
-    window.speechSynthesis.onvoiceschanged = () => {
-      const choice = pickAquinasVoice();
-      if (!aquinasStatus.textContent) {
-        setAqStatus('voice ready · ' + choice.kind, 'var(--cream-mute)');
+      stopAllAquinas();
+      // pick a source at random, but avoid repeating the same one twice in a row
+      let idx;
+      if (sources.length > 1) {
+        do { idx = Math.floor(Math.random() * sources.length); } while (idx === lastIndex);
+      } else { idx = 0; }
+      lastIndex = idx;
+      const pick = sources[idx];
+      if (pick.type === 'audio') {
+        let a = audioCache[pick.src];
+        if (!a) { a = new Audio(pick.src); audioCache[pick.src] = a; }
+        currentAudio = a;
+        a.currentTime = 0;
+        const onErr = (e) => setAqStatus('audio failed: ' + ((e && e.message) || 'unknown'), '#e88');
+        a.onended = () => { setAqStatus('✓ ' + pick.label); currentAudio = null; };
+        try {
+          const p = a.play();
+          if (p && p.then) p.then(() => setAqStatus('▶ ' + pick.label)).catch(onErr);
+          else setAqStatus('▶ ' + pick.label);
+        } catch (e) { onErr(e); }
+      } else if (pick.type === 'speech') {
+        if (!('speechSynthesis' in window)) {
+          setAqStatus('speech synthesis not supported — using a human take next', '#e88');
+          // re-pick to one of the recorded takes
+          lastIndex = idx; // mark this slot consumed so next click rolls again
+          return;
+        }
+        const voice = pickItalianVoice();
+        const u = new SpeechSynthesisUtterance('Amor est velle alicui bonum.');
+        if (voice) { u.voice = voice; u.lang = voice.lang; }
+        else { u.lang = 'it-IT'; }
+        u.rate = 0.82;
+        u.pitch = 1.05;
+        u.onstart = () => setAqStatus('▶ ' + pick.label + (voice ? ' · ' + voice.name : ' · default'));
+        u.onend = () => setAqStatus('✓ ' + pick.label);
+        u.onerror = (e) => setAqStatus('speech error: ' + ((e && e.error) || 'unknown'), '#e88');
+        // Chrome sometimes drops the first speak after page load if no user
+        // interaction has fired the audio engine yet — our click is that
+        // interaction, so this should be fine.
+        window.speechSynthesis.speak(u);
+        setAqStatus('▶ ' + pick.label + (voice ? ' · ' + voice.name : ' · default'));
       }
-    };
-  } else if (aquinasBtn) {
-    aquinasBtn.disabled = true;
-    aquinasBtn.textContent = 'speech not supported';
-    aquinasStatus.textContent = 'your browser does not support speech synthesis';
+    });
   }
 
 })();

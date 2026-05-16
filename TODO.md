@@ -78,14 +78,16 @@ or strike if not interesting.
       markers, vertex-labels (90° · 55.62° · 34.38° → C / G♯ / E), per-note
       click-to-play, and a "play full chord" button. Embedded on
       `reading.html` as the second iframe right after the Webb fractal.
-- [x] **Aquinas Latin epigraph — spoken.** Shipped: card on `tunings.html`
-      with a "speak the Latin" button using the browser's SpeechSynthesis
-      API. Tries an installed Latin voice first; falls back to Italian for
-      ecclesiastical pronunciation; final fallback is the default voice.
-      No audio file shipped — pure real-time TTS, so the exact voice
-      depends on the listener's OS and browser. (Note: gTTS-based
-      pre-rendered audio was attempted but the sandbox can't reach
-      translate.google.com; SpeechSynthesis was used instead.)
+- [x] **Aquinas Latin epigraph — spoken (random 3-way rotation).** Shipped:
+      card on `tunings.html` with a "speak the Latin" button. Each click
+      plays one of three sources at random (avoiding immediate repetition):
+      `assets/audio/aquinas.mp3` (earlier human take, 3.77 s),
+      `assets/audio/aquinas-v2.mp3` (later human take, 4.13 s), or an
+      Italian-female SpeechSynthesis voice (filtered by name hints like
+      Alice/Federica/Lucia/Elsa/etc; falls back to any installed Italian
+      voice, then to default). Status line shows which voice played. The
+      two 0-byte gTTS placeholders in `assets/audio/` are still on disk —
+      safe to `git rm` whenever.
 - [ ] **Reader audio — chapter-opening excerpts.** Short voice readings
       (yours or a narrator's) of the first 1–2 paragraphs of selected
       chapters: *Anima* I ("The Pause"), *Numen* I ("The Living Room"),
