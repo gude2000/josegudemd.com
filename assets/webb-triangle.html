@@ -101,8 +101,11 @@
      viewports and grows up into the play-chord button. Push the button
      higher and tighten the caption so they don't collide. */
   @media (max-width: 640px) {
+    /* Parent iframe (.fractal-frame) is now 700px on mobile; the triangle
+       SVG sits in the upper half, so the play-chord button can return to a
+       low bottom value without overlapping the geometry. */
     .play-btn {
-      bottom: 110px;
+      bottom: 80px;
       font-size: 9px;
       padding: 6px 14px;
       letter-spacing: 0.14em;

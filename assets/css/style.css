@@ -469,7 +469,11 @@ footer ul {
   margin: 32px 0;
 }
 @media (max-width: 640px) {
-  .fractal-frame { height: 380px; }
+  /* Was 380; bumped to 700 so the phi-spiral and Webb-triangle iframes
+     have enough vertical room for their SVG content AND the controls below.
+     With min(W,H) on mobile = W (narrow), the SVG content is sized by W and
+     extra height just gives the controls a clean place to sit. */
+  .fractal-frame { height: 700px; }
 }
 
 /* ============================================================

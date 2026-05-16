@@ -101,8 +101,11 @@
      estrechas y sube hasta el botón de acorde. Subimos el botón y
      compactamos la leyenda y el readout para que no colisionen. */
   @media (max-width: 640px) {
+    /* El iframe padre (.fractal-frame) ahora es 700px en móvil; el triángulo
+       SVG ocupa la mitad superior, así que el botón puede volver a una
+       posición baja sin solapar la geometría. */
     .play-btn {
-      bottom: 110px;
+      bottom: 80px;
       font-size: 9px;
       padding: 6px 14px;
       letter-spacing: 0.14em;

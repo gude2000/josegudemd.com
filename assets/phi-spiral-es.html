@@ -199,8 +199,11 @@
      Empujamos los controles más arriba y compactamos la leyenda para que no
      choquen. */
   @media (max-width: 640px) {
+    /* En móvil el iframe padre (.fractal-frame) ahora mide 700px de alto;
+       el contenido SVG queda arriba y los controles pueden volver a su
+       posición habitual en la parte baja sin solapar la espiral. */
     .controls {
-      bottom: 140px;
+      bottom: 80px;
       gap: 10px;
     }
     .caption {

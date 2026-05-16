@@ -198,8 +198,11 @@
      three or four lines and grow up into the controls area. Push the
      controls higher and tighten the caption so they don't collide. */
   @media (max-width: 640px) {
+    /* On mobile the parent iframe (.fractal-frame) is now 700px tall, so the
+       SVG content sits in the upper half and these controls can return to
+       their normal bottom-of-iframe position without overlapping the spiral. */
     .controls {
-      bottom: 140px;
+      bottom: 80px;
       gap: 10px;
     }
     .caption {
