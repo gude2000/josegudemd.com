@@ -427,9 +427,10 @@
     }
     const leftover = (bw > minSize && bh > minSize) ? { x: bx, y: by, w: bw, h: bh } : null;
 
-    // scale to fit ~60% of the viewport
+    // scale to fit ~72% of the viewport — gives the rectangle construction more
+    // room AND lets the spiral grow further before hitting the canvas edge
     const totalW = ratio, totalH = 1;
-    const targetSize = Math.min(W, H) * 0.6;
+    const targetSize = Math.min(W, H) * 0.72;
     const k = targetSize / Math.max(totalW, totalH);
     const offX = cx - totalW * k / 2;
     const offY = cy - totalH * k / 2;
@@ -505,11 +506,11 @@
       const eyeX = offX + (last.x + last.s / 2) * k;
       const eyeY = offY + (last.y + last.s / 2) * k;
       // start the spiral tighter (smaller innerR) so it has more inner turns
-      // visible before reaching the rectangle boundary
-      const innerR = Math.max(1.0, last.s * k * 0.05);
-      const outerR = rects[0].s * k * 3.5; // generous upper bound; clipping below stops the curve at the viewport edge
+      // visible before reaching the viewport edge
+      const innerR = Math.max(0.5, last.s * k * 0.04);
+      const outerR = rects[0].s * k * 4.5; // generous upper bound; clipping below stops the curve at the viewport edge
       const thetaMaxNominal = Math.log(outerR / innerR) / bLog;
-      const thetaMax = Math.min(thetaMaxNominal, 8 * Math.PI); // hard cap at 4 full turns
+      const thetaMax = Math.min(thetaMaxNominal, 10 * Math.PI); // hard cap at 5 full turns
       // angular start: point toward the OUTER edge of the first (largest) cut,
       // i.e., away from the rest of the construction. This sends the spiral's
       // exit through the outer rectangle's open side at ratio = φ.
