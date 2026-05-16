@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 """
-build_compendium.py — generate a printable PDF of the full bibliography
-from reading.html. Run from the repo root:
+build_compendium.py — generate printable PDFs of the full bibliography.
+Run from the repo root:
 
-    python3 scripts/build_compendium.py
+    python3 scripts/build_compendium.py            # builds both languages
+    python3 scripts/build_compendium.py --lang=en  # English only
+    python3 scripts/build_compendium.py --lang=es  # Spanish only
 
-Outputs: assets/compendium.pdf
+Outputs:
+    assets/compendium.pdf       (from reading.html)
+    es/compendium-es.pdf        (from es/reading.html)
 """
 from __future__ import annotations
+import argparse
 import re
 import sys
 import html
@@ -85,10 +90,50 @@ def register_fonts():
     )
     return ("BodySans", "BodySans-Bold", "BodySans-Italic", "BodySans-BoldItalic")
 
-# ---------- paths ----------
+# ---------- paths & per-language config ----------
 ROOT = Path(__file__).resolve().parent.parent
-READING_HTML = ROOT / "reading.html"
-OUT_PDF = ROOT / "assets" / "compendium.pdf"
+
+LANGS = {
+    "en": {
+        "input":     ROOT / "reading.html",
+        "output":    ROOT / "assets" / "compendium.pdf",
+        "title":     "Reading &amp; References",
+        "subtitle":  "A compendium for the Field Trilogy",
+        "books":     "Anima &nbsp;·&nbsp; Numen &nbsp;·&nbsp; Limen &nbsp;·&nbsp; Fragile Light",
+        "compiled":  "Compiled {month} &nbsp;·&nbsp; josegudemd.com",
+        "contents":  "Contents",
+        "footer":    "josegudemd.com  ·  Reading & References compendium",
+        "month_fmt": "%B %Y",
+        "doc_title":   "Reading & References — Field Trilogy Compendium",
+        "doc_subject": "Bibliography for the Field Trilogy (Anima, Numen, Limen, Fragile Light)",
+    },
+    "es": {
+        "input":     ROOT / "es" / "reading.html",
+        "output":    ROOT / "es" / "compendium-es.pdf",
+        "title":     "Lecturas y referencias",
+        "subtitle":  "Un compendio para la Trilogía del Campo",
+        "books":     "Anima &nbsp;·&nbsp; Numen &nbsp;·&nbsp; Limen &nbsp;·&nbsp; Luz frágil",
+        "compiled":  "Compilado en {month} &nbsp;·&nbsp; josegudemd.com",
+        "contents":  "Índice",
+        "footer":    "josegudemd.com  ·  Compendio de lecturas y referencias",
+        # Spanish month names — built manually so we don't depend on locale
+        "month_fmt": "ES_MONTH",
+        "doc_title":   "Lecturas y referencias — Compendio de la Trilogía del Campo",
+        "doc_subject": "Bibliografía de la Trilogía del Campo (Anima, Numen, Limen, Luz frágil)",
+    },
+}
+
+SPANISH_MONTHS = [
+    "", "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+]
+
+
+def format_month(cfg) -> str:
+    today = date.today()
+    if cfg["month_fmt"] == "ES_MONTH":
+        return f"{SPANISH_MONTHS[today.month]} de {today.year}"
+    return today.strftime(cfg["month_fmt"])
 
 # ---------- color palette (matches site) ----------
 GOLD = HexColor("#daa055")
@@ -134,12 +179,15 @@ def to_reportlab_inline(node) -> str:
 
 
 def strip_explainer_tail(text: str) -> str:
-    """Remove the 'Read the explainer →' style tails that are site-internal."""
-    # The note typically ends with a sentence linking to a per-entry page.
-    # Cut off at "Read the explainer" / "→" patterns.
+    """Remove the 'Read the explainer →' / 'Lee la guía →' style tails — they
+    link to site-internal pages that don't resolve in a printed PDF."""
     cut_patterns = [
         r"\s*Read the explainer.*?→\s*$",
         r"\s*Read the explainer.*?$",
+        r"\s*Lee la guía.*?→\s*$",
+        r"\s*Lee la guía.*?$",
+        r"\s*Lee el ensayo.*?$",
+        r"\s*Lectura ampliada.*?$",
     ]
     for pat in cut_patterns:
         text = re.sub(pat, "", text, flags=re.S)
@@ -202,62 +250,59 @@ def make_styles(reg, bold, italic, bi):
 
 
 # ---------- page chrome ----------
-def on_page(canvas_obj: canvas.Canvas, doc):
-    canvas_obj.saveState()
-    w, h = LETTER
-    footer_font = "BodySans" if "BodySans" in pdfmetrics.getRegisteredFontNames() else "Helvetica"
-    canvas_obj.setFont(footer_font, 8)
-    canvas_obj.setFillColor(CREAM_DIM)
-    # left footer: site
-    canvas_obj.drawString(0.75 * inch, 0.5 * inch,
-                          "josegudemd.com  ·  Reading & References compendium")
-    # right footer: page number
-    canvas_obj.drawRightString(w - 0.75 * inch, 0.5 * inch,
-                               f"{doc.page}")
-    canvas_obj.restoreState()
+def make_on_page(footer_text):
+    def on_page(canvas_obj: canvas.Canvas, doc):
+        canvas_obj.saveState()
+        w, h = LETTER
+        footer_font = "BodySans" if "BodySans" in pdfmetrics.getRegisteredFontNames() else "Helvetica"
+        canvas_obj.setFont(footer_font, 8)
+        canvas_obj.setFillColor(CREAM_DIM)
+        canvas_obj.drawString(0.75 * inch, 0.5 * inch, footer_text)
+        canvas_obj.drawRightString(w - 0.75 * inch, 0.5 * inch, f"{doc.page}")
+        canvas_obj.restoreState()
+    return on_page
 
 
 # ---------- build ----------
-def build():
-    soup = BeautifulSoup(READING_HTML.read_text(encoding="utf-8"), "lxml")
+def build(lang: str):
+    cfg = LANGS[lang]
+    soup = BeautifulSoup(cfg["input"].read_text(encoding="utf-8"), "lxml")
     sections = soup.select("section.ref-section")
     if not sections:
-        print("No ref-sections found. Aborting.", file=sys.stderr)
+        print(f"[{lang}] No ref-sections found in {cfg['input']}. Aborting.", file=sys.stderr)
         sys.exit(1)
 
     reg, bold, italic, bi = register_fonts()
     styles = make_styles(reg, bold, italic, bi)
-    OUT_PDF.parent.mkdir(parents=True, exist_ok=True)
+    cfg["output"].parent.mkdir(parents=True, exist_ok=True)
     doc = SimpleDocTemplate(
-        str(OUT_PDF),
+        str(cfg["output"]),
         pagesize=LETTER,
         leftMargin=0.85 * inch,
         rightMargin=0.85 * inch,
         topMargin=0.85 * inch,
         bottomMargin=0.85 * inch,
-        title="Reading & References — Field Trilogy Compendium",
+        title=cfg["doc_title"],
         author="José Gude MD",
-        subject="Bibliography for the Field Trilogy (Anima, Numen, Limen, Fragile Light)",
+        subject=cfg["doc_subject"],
     )
 
     story = []
 
     # ---- Title page ----
     story.append(Spacer(1, 1.6 * inch))
-    story.append(Paragraph("Reading &amp; References", styles["TitleBig"]))
-    story.append(Paragraph("A compendium for the Field Trilogy", styles["Subtitle"]))
+    story.append(Paragraph(cfg["title"], styles["TitleBig"]))
+    story.append(Paragraph(cfg["subtitle"], styles["Subtitle"]))
     story.append(Spacer(1, 0.25 * inch))
-    story.append(Paragraph(
-        "Anima &nbsp;·&nbsp; Numen &nbsp;·&nbsp; Limen &nbsp;·&nbsp; Fragile Light",
-        styles["Subtitle"]))
+    story.append(Paragraph(cfg["books"], styles["Subtitle"]))
     story.append(Spacer(1, 1.8 * inch))
     story.append(Paragraph(
-        f"Compiled {date.today():%B %Y} &nbsp;·&nbsp; josegudemd.com",
+        cfg["compiled"].format(month=format_month(cfg)),
         styles["TitleMeta"]))
     story.append(PageBreak())
 
     # ---- Contents ----
-    story.append(Paragraph("Contents", styles["SectionH"]))
+    story.append(Paragraph(cfg["contents"], styles["SectionH"]))
     story.append(Spacer(1, 6))
     for idx, sec in enumerate(sections, 1):
         h3 = sec.find("h3")
@@ -275,7 +320,6 @@ def build():
         title_html = to_reportlab_inline(h3)
         story.append(Paragraph(f"{idx}.&nbsp;&nbsp;{title_html}", styles["SectionH"]))
 
-        # Optional intro paragraph immediately after h3
         intro = h3.find_next_sibling()
         if intro and intro.name == "p" and "dim" in (intro.get("class") or []):
             story.append(Paragraph(to_reportlab_inline(intro), styles["SectionIntro"]))
@@ -298,14 +342,19 @@ def build():
                 parts.append(Paragraph(note_html, styles["EntryNote"]))
 
             if parts:
-                # KeepTogether so an entry doesn't split awkwardly across pages
                 story.append(KeepTogether(parts))
 
         story.append(Spacer(1, 12))
 
+    on_page = make_on_page(cfg["footer"])
     doc.build(story, onFirstPage=on_page, onLaterPages=on_page)
-    print(f"Wrote {OUT_PDF}  ({OUT_PDF.stat().st_size / 1024:.1f} KB)")
+    print(f"[{lang}] Wrote {cfg['output']}  ({cfg['output'].stat().st_size / 1024:.1f} KB)")
 
 
 if __name__ == "__main__":
-    build()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--lang", choices=["en", "es", "all"], default="all")
+    args = ap.parse_args()
+    langs = ["en", "es"] if args.lang == "all" else [args.lang]
+    for l in langs:
+        build(l)
