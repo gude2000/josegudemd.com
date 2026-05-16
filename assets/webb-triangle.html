@@ -97,6 +97,30 @@
   }
   .play-btn:hover { background: rgba(218, 160, 85, 0.18); color: var(--cream); }
   .play-btn.active { background: rgba(218, 160, 85, 0.28); color: var(--cream); }
+  /* Mobile: the caption under the triangle wraps to 3–4 lines on narrow
+     viewports and grows up into the play-chord button. Push the button
+     higher and tighten the caption so they don't collide. */
+  @media (max-width: 640px) {
+    .play-btn {
+      bottom: 110px;
+      font-size: 9px;
+      padding: 6px 14px;
+      letter-spacing: 0.14em;
+    }
+    .caption {
+      font-size: 10.5px;
+      line-height: 1.4;
+      letter-spacing: 0.08em;
+      bottom: 18px;
+      padding: 0 12px;
+    }
+    .readout {
+      font-size: 11px;
+      line-height: 1.55;
+    }
+    .readout .value { font-size: 12.5px; }
+    .readout .label { font-size: 9px; }
+  }
 </style>
 </head>
 <body>

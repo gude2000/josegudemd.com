@@ -97,6 +97,30 @@
   }
   .play-btn:hover { background: rgba(218, 160, 85, 0.18); color: var(--cream); }
   .play-btn.active { background: rgba(218, 160, 85, 0.28); color: var(--cream); }
+  /* Móvil: la leyenda bajo el triángulo se ajusta a 3–4 líneas en pantallas
+     estrechas y sube hasta el botón de acorde. Subimos el botón y
+     compactamos la leyenda y el readout para que no colisionen. */
+  @media (max-width: 640px) {
+    .play-btn {
+      bottom: 110px;
+      font-size: 9px;
+      padding: 6px 14px;
+      letter-spacing: 0.14em;
+    }
+    .caption {
+      font-size: 10.5px;
+      line-height: 1.4;
+      letter-spacing: 0.08em;
+      bottom: 18px;
+      padding: 0 12px;
+    }
+    .readout {
+      font-size: 11px;
+      line-height: 1.55;
+    }
+    .readout .value { font-size: 12.5px; }
+    .readout .label { font-size: 9px; }
+  }
 </style>
 </head>
 <body>
