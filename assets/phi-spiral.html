@@ -480,47 +480,61 @@
       }));
     }
 
-    // φ-rate logarithmic spiral overlay anchored to the deepest square's center.
-    // r = innerR · e^(b·θ) with b = ln(φ) / (π/2): growth rate φ per quarter-turn.
-    // At ratio = φ the spiral threads the corner sequence; at other ratios it
-    // visibly leaves the corners.
+    // φ-rate logarithmic spiral overlay anchored to the deepest square's center
+    // (the limit point of the iterative construction — its "eye", offset from the
+    // rectangle's geometric center toward the smaller-squares region).
+    // r = innerR · e^(b·θ), b = ln(φ) / (π/2): growth rate φ per quarter-turn.
     //
-    // outerR is capped at the LARGEST square's side (= shorter dimension of the
-    // outer rectangle in scaled px). This matches the radius of the outermost
-    // quarter-arc in a proper Fibonacci spiral and keeps the curve within the
-    // visual envelope of the outer rectangle. Using the full diagonal (as a
-    // previous version did) lets the spiral wind far outside the rectangle,
-    // because the spiral's eye is offset toward one corner of the construction.
+    // The spiral is drawn outward from the eye, point-by-point, and stops as
+    // soon as any sample exits the outer rectangle. This guarantees the curve
+    // never overshoots the rectangle in directions where the eye sits close to
+    // an edge (the eye is genuinely off-center — that's the geometry, not a bug),
+    // while still allowing it to extend to corners in directions where the rect
+    // reaches farther.
+    //
+    // At ratio = φ the spiral threads the corner sequence cleanly before exiting;
+    // at other ratios it drifts visibly off the square corners — the
+    // demonstration that φ is the unique self-similar fixed point.
     if (rects.length > 0) {
       const PHI_LOC = (1 + Math.sqrt(5)) / 2;
       const bLog = Math.log(PHI_LOC) / (Math.PI / 2);
       const last = rects[rects.length - 1];
       const eyeX = offX + (last.x + last.s / 2) * k;
       const eyeY = offY + (last.y + last.s / 2) * k;
-      const outerR = rects[0].s * k; // largest square's side, in scaled px
       const innerR = Math.max(2, last.s * k * 0.5);
-      const thetaMax = Math.log(outerR / innerR) / bLog;
-      // angular start: aim toward the outer corner of the first cut so the
-      // spiral exits through the outer rectangle's "open" side
+      const outerR = rects[0].s * k * 1.6; // generous upper bound; clipping below stops the curve at the rect edge
+      const thetaMaxNominal = Math.log(outerR / innerR) / bLog;
+      const thetaMax = Math.min(thetaMaxNominal, 4 * Math.PI); // hard cap at 2 full turns regardless of ratio
+      // angular start: point toward the OUTER edge of the first (largest) cut,
+      // i.e., away from the rest of the construction. This sends the spiral's
+      // exit through the outer rectangle's open side at ratio = φ.
       const first = rects[0];
       const fx = offX + (first.dir === 0 ? first.x : first.dir === 2 ? first.x + first.s : first.x + first.s / 2) * k;
       const fy = offY + (first.dir === 1 ? first.y : first.dir === 3 ? first.y + first.s : first.y + first.s / 2) * k;
       const theta0 = Math.atan2(fy - eyeY, fx - eyeX);
+      const minX = offX, maxX = offX + totalW * k;
+      const minY = offY, maxY = offY + totalH * k;
       let d = '';
-      const steps = 240;
+      let started = false;
+      const steps = 320;
       for (let i = 0; i <= steps; i++) {
         const theta = (i / steps) * thetaMax;
         const rr = innerR * Math.exp(bLog * theta);
-        // wind in the direction matching the cut cycle (visually CCW for the default L→T→R→B order)
+        // wind visually CCW on screen (matches the default L→T→R→B cut cycle)
         const x = eyeX + rr * Math.cos(theta0 - theta);
         const y = eyeY + rr * Math.sin(theta0 - theta);
-        d += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
+        // stop the moment the curve leaves the outer rectangle
+        if (x < minX || x > maxX || y < minY || y > maxY) break;
+        d += (started ? 'L' : 'M') + x.toFixed(2) + ',' + y.toFixed(2) + ' ';
+        started = true;
       }
-      g.appendChild(svgEl('path', {
-        d: d.trim(), fill: 'none',
-        stroke: 'var(--gold)', 'stroke-width': 1.8,
-        'stroke-linecap': 'round', opacity: 0.95
-      }));
+      if (started) {
+        g.appendChild(svgEl('path', {
+          d: d.trim(), fill: 'none',
+          stroke: 'var(--gold)', 'stroke-width': 1.8,
+          'stroke-linecap': 'round', opacity: 0.95
+        }));
+      }
     }
   }
 
