@@ -41,13 +41,15 @@ def fade_envelope(n, fade_s=1.0):
     return env
 
 
-def write_wav(path: Path, stereo: np.ndarray):
-    """stereo shape (n, 2), float64 in [-1, 1]."""
+def write_wav(path: Path, stereo: np.ndarray, peak_target: float = 0.673):
+    """stereo shape (n, 2), float64 in [-1, 1].
+    Default peak_target ≈ 0.673 ≡ -3 dB below digital full-scale — these
+    pad-style assets felt too loud at baseline in browser audio elements,
+    so the headroom was widened on 2026-05-16."""
     import wave, struct
-    # normalize headroom
     peak = float(np.max(np.abs(stereo)))
     if peak > 0:
-        stereo = stereo * (0.95 / peak)
+        stereo = stereo * (peak_target / peak)
     interleaved = (stereo * 32767).astype(np.int16).flatten()
     with wave.open(str(path), "wb") as w:
         w.setnchannels(2)
