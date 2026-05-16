@@ -149,10 +149,42 @@
   let BASE_Z = fitDistance();
   camera.position.set(0, 0, BASE_Z);
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  // Diagnostic try/catch around the WebGLRenderer constructor. When the
+  // browser refuses to create a WebGL context (too many other 3D tabs,
+  // hardware acceleration disabled, blocked by extension), Three.js
+  // throws here and the canvas would otherwise be silently empty. The
+  // catch surfaces a visible explanation in the caption.
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+  } catch (err) {
+    console.error('WebGL renderer creation failed:', err);
+    var cap = document.querySelector('.caption');
+    if (cap) {
+      cap.style.color = '#e88';
+      cap.style.fontSize = '12px';
+      cap.style.lineHeight = '1.6';
+      cap.style.padding = '0 20px';
+      cap.innerHTML =
+        'WebGL context unavailable — the fractal cannot render in this browser session.<br>' +
+        'Common causes: too many other 3D tabs / extensions open, or hardware acceleration disabled.<br>' +
+        'Try: close some tabs and reload &nbsp;·&nbsp; or check <code>chrome://gpu</code> for WebGL status.';
+    }
+    return;
+  }
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
+
+  // Surface mid-flight context loss (GPU process crash, driver reset).
+  renderer.domElement.addEventListener('webglcontextlost', function (e) {
+    e.preventDefault();
+    var cap2 = document.querySelector('.caption');
+    if (cap2) {
+      cap2.style.color = '#e88';
+      cap2.textContent = 'WebGL context lost — reload the page to recover.';
+    }
+  }, false);
 
   // ---------- The Webb fractal geometry ----------
   // Seed: right triangle with angles 34.38° · 55.62° · 90°. The legs satisfy

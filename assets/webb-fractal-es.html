@@ -149,10 +149,42 @@
   let BASE_Z = fitDistance();
   camera.position.set(0, 0, BASE_Z);
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  // try/catch diagnóstico alrededor del constructor del WebGLRenderer.
+  // Cuando el navegador se niega a crear un contexto WebGL (demasiadas
+  // pestañas 3D, aceleración por hardware desactivada, bloqueado por una
+  // extensión), Three.js lanza aquí y el canvas quedaría silenciosamente
+  // vacío. El catch hace visible una explicación en el pie.
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+  } catch (err) {
+    console.error('Fallo al crear renderer WebGL:', err);
+    var cap = document.querySelector('.caption');
+    if (cap) {
+      cap.style.color = '#e88';
+      cap.style.fontSize = '12px';
+      cap.style.lineHeight = '1.6';
+      cap.style.padding = '0 20px';
+      cap.innerHTML =
+        'Contexto WebGL no disponible &mdash; el fractal no puede renderizarse en esta sesión del navegador.<br>' +
+        'Causas habituales: demasiadas otras pestañas 3D / extensiones abiertas, o aceleración por hardware desactivada.<br>' +
+        'Intenta: cierra algunas pestañas y recarga &nbsp;·&nbsp; o revisa <code>chrome://gpu</code> para el estado de WebGL.';
+    }
+    return;
+  }
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
+
+  // Surface mid-flight context loss (GPU crash, driver reset).
+  renderer.domElement.addEventListener('webglcontextlost', function (e) {
+    e.preventDefault();
+    var cap2 = document.querySelector('.caption');
+    if (cap2) {
+      cap2.style.color = '#e88';
+      cap2.textContent = 'Contexto WebGL perdido — recarga la página para recuperar.';
+    }
+  }, false);
 
   // ---------- The Webb fractal geometry ----------
   // Seed: right triangle with angles 34.38° · 55.62° · 90°. The legs satisfy

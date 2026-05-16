@@ -101,9 +101,11 @@ or strike if not interesting.
       chapters: *Anima* I ("The Pause"), *Numen* I ("The Living Room"),
       *Limen* "An Opening Note," *Fragile Light* I ("Light in the Lab").
       Useful for social sharing and as a sample for prospective readers.
-- [ ] **A short scrolling animation of the phi-spiral rectangles
-      construction unfolding.** Same math as the interactive, but timed
-      and exported as a video for share-friendly contexts.
+- [x] **A short scrolling animation of the phi-spiral rectangles
+      construction unfolding.** Shipped: `assets/video/phi-rectangles.mp4`
+      (1280×720, H.264, 9.2 s, ~66 KB). Built by `scripts/build_phi_animation.py`
+      using matplotlib + ffmpeg. Embedded under the interactive on both
+      `golden-ratio.html` and `es/golden-ratio.html`.
 - [x] **Compendium PDF download.** Shipped: `assets/compendium.pdf` (~205 KB,
       28 pages, 16 sections, 130+ entries). Generator script at
       `scripts/build_compendium.py` parses `reading.html` with BeautifulSoup
@@ -129,11 +131,10 @@ Amazon button (line ~37 of each).
 
 ## Citation polish
 
-- [ ] **Carhart-Harris et al. (Frontiers, 2015)** — the scholarly papers
-      section credits it as "Carhart-Harris et al." without the full author
-      list. Frontiers DOI: 10.3389/fnhum.2015.00346. If desired, paste the
-      full author list from the Frontiers article page so the byline can
-      be expanded.
+- [x] **Carhart-Harris et al. (Frontiers, 2015)** — Fixed: paper at DOI
+      10.3389/fnhum.2015.00346 is actually by Andrew R. Gallimore (sole
+      author), not Carhart-Harris. Corrected in both `reading.html` and
+      `es/reading.html` and rebuilt into both compendium PDFs.
 
 ---
 
