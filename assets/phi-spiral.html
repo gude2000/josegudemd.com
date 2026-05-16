@@ -197,6 +197,7 @@
       <button data-mode="spiral" class="active">spiral</button>
       <button data-mode="rectangles">φ-rectangles</button>
       <button data-mode="phyllotaxis">phyllotaxis</button>
+      <button data-mode="polyhedra">DaVinci solids</button>
     </div>
   </div>
 </div>
@@ -218,9 +219,78 @@
   const PHI = (1 + Math.sqrt(5)) / 2;
   // golden angle in radians (the "phyllotaxis angle"): 360° / φ² = 137.5077…°
   const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
+  const INV_PHI = 1 / PHI;
+  const SQRT2 = Math.SQRT2;
   let mode = 'spiral';
   let W = 0, H = 0;
   const PHI_EPS = 0.003; // ratio considered "at φ"
+
+  // -- Polyhedra (Option B: Leonardo's drawings for Pacioli, De Divina Proportione 1509) --
+  // Vertex sets are procedural; edge tables are derived by distance threshold.
+  function genCubeV(){ const v=[]; for(let x=-1;x<=1;x+=2) for(let y=-1;y<=1;y+=2) for(let z=-1;z<=1;z+=2) v.push([x,y,z]); return v; }
+  function genIcosaV(){
+    const v=[];
+    for(let a=-1;a<=1;a+=2) for(let b=-1;b<=1;b+=2){
+      v.push([0, a, b*PHI]); v.push([a, b*PHI, 0]); v.push([a*PHI, 0, b]);
+    }
+    return v;
+  }
+  function genDodecaV(){
+    const v = genCubeV(); // 8 cube vertices at (±1,±1,±1)
+    for(let a=-1;a<=1;a+=2) for(let b=-1;b<=1;b+=2){
+      v.push([0, a*INV_PHI, b*PHI]);
+      v.push([a*INV_PHI, b*PHI, 0]);
+      v.push([a*PHI, 0, b*INV_PHI]);
+    }
+    return v; // 20 total
+  }
+  function genRcoV(){
+    const v=[]; const u=1+SQRT2;
+    for(let a=-1;a<=1;a+=2) for(let b=-1;b<=1;b+=2) for(let c=-1;c<=1;c+=2){
+      v.push([a, b, c*u]); v.push([a, b*u, c]); v.push([a*u, b, c]);
+    }
+    return v; // 24 total
+  }
+  function dist3(a,b){ const dx=a[0]-b[0], dy=a[1]-b[1], dz=a[2]-b[2]; return Math.sqrt(dx*dx+dy*dy+dz*dz); }
+  function genEdges(verts, target, tol){
+    tol = tol || 0.001; const e=[];
+    for(let i=0;i<verts.length;i++) for(let j=i+1;j<verts.length;j++)
+      if (Math.abs(dist3(verts[i], verts[j]) - target) < tol) e.push([i,j]);
+    return e;
+  }
+  const tetraV  = [[1,1,1],[1,-1,-1],[-1,1,-1],[-1,-1,1]];
+  const cubeV   = genCubeV();
+  const octaV   = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+  const dodecaV = genDodecaV();
+  const icosaV  = genIcosaV();
+  const rcoV    = genRcoV();
+  //
+  // Phi-edge identification for the gold-highlight overlay:
+  //   • Dodecahedron: the 8 vertices at (±1,±1,±1) form an inscribed cube;
+  //     its 12 edges (length 2 between coord-adjacent vertices) are gold.
+  //     5 such cubes can be inscribed; we show one. The face-diagonal-to-edge
+  //     ratio (the actual phi relationship) is mentioned in the caption.
+  //   • Icosahedron: the 12 vertices partition into three sets of 4 sharing
+  //     a zero coordinate. Each set forms a golden rectangle of sides 2 × 2φ
+  //     in one of the three orthogonal coordinate planes. The 12 perimeter
+  //     segments (4 per rectangle × 3) are gold. Two of the four segments
+  //     per rectangle coincide with actual icosahedron edges (the short
+  //     sides, length 2); the other two are interior diagonals.
+  //
+  const polyhedra = [
+    { name:'Tetrahedron',         verts: tetraV,  edges: genEdges(tetraV, Math.sqrt(8)),
+      note: 'Four triangular faces. The simplest Platonic solid.' },
+    { name:'Cube',                verts: cubeV,   edges: genEdges(cubeV, 2),
+      note: 'Six square faces.' },
+    { name:'Octahedron',          verts: octaV,   edges: genEdges(octaV, Math.SQRT2),
+      note: "Eight triangular faces — the cube's dual." },
+    { name:'Dodecahedron',        verts: dodecaV, edges: genEdges(dodecaV, 2*INV_PHI), phiOverlay: 'inscribedCube',
+      note: 'Twelve pentagonal faces · face diagonals are in golden ratio φ to face edges. An inscribed cube (gold) shares 8 of the 20 vertices.' },
+    { name:'Icosahedron',         verts: icosaV,  edges: genEdges(icosaV, 2), phiOverlay: 'goldenRectangles',
+      note: 'Twenty triangular faces · vertices form three orthogonal golden rectangles (gold), each with sides in φ:1.' },
+    { name:'Rhombicuboctahedron', verts: rcoV,    edges: genEdges(rcoV, 2),
+      note: "Twenty-six faces (18 squares, 8 triangles) — the polyhedron Leonardo drew most famously for Pacioli's 1509 treatise." },
+  ];
 
   function resize(){
     W = window.innerWidth;
@@ -236,6 +306,7 @@
     mode = newMode;
     modeButtons.forEach(b => b.classList.toggle('active', b.dataset.mode === newMode));
     draw();
+    if (newMode === 'polyhedra') startAnim();
   }
   modeButtons.forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
 
@@ -389,37 +460,42 @@
       g.appendChild(txt);
     });
 
-    // draw quarter-circle arcs inside each square — this is the Fibonacci spiral
-    // the arc in each square sweeps 90° from one corner to the adjacent corner
-    // direction of sweep follows the construction direction
-    const arcSweepDir = ['right','up','left','down','right','up','left','down','right','up'];
+    // draw quarter-circle arcs inside each square — the classical Fibonacci spiral.
+    //
+    // Corner-pattern table: for each square (indexed by construction order),
+    // give the inscribed quarter-arc as (start corner, end corner) expressed as
+    // 0/1 offsets multiplied by sk against the square's top-left (cx0, cy0).
+    // The arc's center is the corner the start/end pair is diagonally opposite to
+    // (closer to the spiral's eye).
+    //
+    //   idx % 4 == 0  →  center TR, arc TL → BR  (sq 0)
+    //   idx % 4 == 1  →  center TL, arc BL → TR  (sq 1, placed to the right)
+    //   idx % 4 == 2  →  center BL, arc BR → TL  (sq 2, placed above)
+    //   idx % 4 == 3  →  center BR, arc TR → BL  (sq 3, placed to the left)
+    //
+    // The cycle matches the construction-direction cycle (right, up, left, down).
+    // Each arc's start corner is the corner shared with the previous square's end,
+    // so the spiral joins continuously at the shared diagonals.
+    //
+    // SVG sweep-flag stays 0 for all four cases: the arc bulges away from the
+    // chosen center corner, traversed visually CCW on screen (sweep-flag 0 in
+    // SVG y-down = CCW visually).
+    const arcPattern = [
+      { sdx:0, sdy:0, edx:1, edy:1 }, // center TR, TL → BR
+      { sdx:0, sdy:1, edx:1, edy:0 }, // center TL, BL → TR
+      { sdx:1, sdy:1, edx:0, edy:0 }, // center BL, BR → TL
+      { sdx:1, sdy:0, edx:0, edy:1 }, // center BR, TR → BL
+    ];
     let arcPath = '';
     rects.forEach((r, idx) => {
       const cx0 = offX + r.x * k;
       const cy0 = offY + r.y * k;
       const sk = r.s * k;
-      // pick start and end corner depending on which direction this square was added
-      // for the classic Fibonacci spiral, arc goes from outer-corner-of-previous to outer-corner-of-this
-      // simpler: each square's arc is a quarter circle inscribed in it, sweeping 90°
-      // we determine which corner pair based on idx
-      let sx, sy, ex, ey, cxArc, cyArc;
-      const pattern = idx % 4;
-      if (pattern === 0) {
-        // start bottom-right -> top-right with center at top-right? simpler: bottom-left -> top-left? let's compute
-        // for idx 0: square at (0,0), size 1. arc should start at bottom-right (1,1) and go to top-right (1,0)? no that's just a vertical line
-        // classic Fibonacci spiral: arcs all share a common touching scheme. Each arc is a quarter circle of radius = square side.
-        // arc center is at one corner of the square, arc goes from one adjacent corner to the other.
-        // The center corner alternates: 0,1,2,3 → BR, BL, TL, TR (clockwise from bottom-right)
-      }
-      // center corner for each square (0-indexed): BR, BL, TL, TR, BR, BL, TL, TR...
-      const corners = ['BR','BL','TL','TR'];
-      const cc = corners[idx % 4];
-      let ccx, ccy;
-      if (cc === 'BR') { ccx = cx0 + sk; ccy = cy0 + sk; sx = cx0;       sy = cy0 + sk; ex = cx0 + sk; ey = cy0; }
-      if (cc === 'BL') { ccx = cx0;      ccy = cy0 + sk; sx = cx0 + sk; sy = cy0 + sk; ex = cx0;      ey = cy0; }
-      if (cc === 'TL') { ccx = cx0;      ccy = cy0;      sx = cx0 + sk; sy = cy0;      ex = cx0;      ey = cy0 + sk; }
-      if (cc === 'TR') { ccx = cx0 + sk; ccy = cy0;      sx = cx0;      sy = cy0;      ex = cx0 + sk; ey = cy0 + sk; }
-      // arc with radius = sk, large-arc-flag=0, sweep-flag=0 (counterclockwise from start to end)
+      const pat = arcPattern[idx % 4];
+      const sx = cx0 + pat.sdx * sk;
+      const sy = cy0 + pat.sdy * sk;
+      const ex = cx0 + pat.edx * sk;
+      const ey = cy0 + pat.edy * sk;
       arcPath += `M${sx.toFixed(2)},${sy.toFixed(2)} A${sk.toFixed(2)},${sk.toFixed(2)} 0 0 0 ${ex.toFixed(2)},${ey.toFixed(2)} `;
     });
     const arc = svgEl('path', {
@@ -480,6 +556,115 @@
     g.appendChild(lbl);
   }
 
+  function drawPolyhedra(g, cx, cy, polyIdx, t){
+    const poly = polyhedra[polyIdx];
+    // auto-rotate around vertical (y) axis, with a fixed downward tilt for depth.
+    const yawSpeed = (2 * Math.PI) / 12000; // 12 seconds per revolution
+    const yaw = t * yawSpeed;
+    const ca = Math.cos(yaw), sa = Math.sin(yaw);
+    const pitch = -0.42; // ~24° tilt
+    const cp = Math.cos(pitch), sp = Math.sin(pitch);
+    function project(v){
+      // rotate around Y (yaw)
+      const x1 =  v[0]*ca + v[2]*sa;
+      const z1 = -v[0]*sa + v[2]*ca;
+      const y1 = v[1];
+      // tilt around X (pitch)
+      const y2 = y1*cp - z1*sp;
+      const z2 = y1*sp + z1*cp;
+      return [x1, y2, z2];
+    }
+    const projected = poly.verts.map(project);
+    // scale so the projected bounding circle fits ~32% of min(W, H)
+    let maxR = 0;
+    for (const p of projected){
+      const r = Math.sqrt(p[0]*p[0] + p[1]*p[1]);
+      if (r > maxR) maxR = r;
+    }
+    const scale = (Math.min(W, H) * 0.32) / maxR;
+    function sxc(p){ return cx + p[0]*scale; }
+    function syc(p){ return cy + p[1]*scale; }
+
+    // base polyhedron edges (gray)
+    for (const [i, j] of poly.edges){
+      const a = projected[i], b = projected[j];
+      g.appendChild(svgEl('line', {
+        x1: sxc(a).toFixed(2), y1: syc(a).toFixed(2),
+        x2: sxc(b).toFixed(2), y2: syc(b).toFixed(2),
+        stroke: 'var(--cream-mute)',
+        'stroke-width': 1.1,
+        opacity: 0.65
+      }));
+    }
+    // phi overlay (gold)
+    if (poly.phiOverlay === 'inscribedCube'){
+      const cubeIdx = [];
+      poly.verts.forEach((v, i) => {
+        if (Math.abs(Math.abs(v[0])-1) < 0.01 && Math.abs(Math.abs(v[1])-1) < 0.01 && Math.abs(Math.abs(v[2])-1) < 0.01) cubeIdx.push(i);
+      });
+      for (let a=0;a<cubeIdx.length;a++) for (let b=a+1;b<cubeIdx.length;b++){
+        if (Math.abs(dist3(poly.verts[cubeIdx[a]], poly.verts[cubeIdx[b]]) - 2) < 0.01){
+          const A = projected[cubeIdx[a]], B = projected[cubeIdx[b]];
+          g.appendChild(svgEl('line', {
+            x1: sxc(A).toFixed(2), y1: syc(A).toFixed(2),
+            x2: sxc(B).toFixed(2), y2: syc(B).toFixed(2),
+            stroke: 'var(--gold)', 'stroke-width': 2, opacity: 0.95
+          }));
+        }
+      }
+    } else if (poly.phiOverlay === 'goldenRectangles'){
+      [0,1,2].forEach(axis => {
+        const inPlane = [];
+        poly.verts.forEach((v, i) => { if (Math.abs(v[axis]) < 0.01) inPlane.push(i); });
+        if (inPlane.length !== 4) return;
+        const b = (axis+1)%3, c = (axis+2)%3;
+        inPlane.sort((p, q) => Math.atan2(poly.verts[p][b], poly.verts[p][c]) - Math.atan2(poly.verts[q][b], poly.verts[q][c]));
+        for (let k=0;k<4;k++){
+          const A = projected[inPlane[k]], B = projected[inPlane[(k+1)%4]];
+          g.appendChild(svgEl('line', {
+            x1: sxc(A).toFixed(2), y1: syc(A).toFixed(2),
+            x2: sxc(B).toFixed(2), y2: syc(B).toFixed(2),
+            stroke: 'var(--gold)', 'stroke-width': 2, opacity: 0.95
+          }));
+        }
+      });
+    }
+    // vertex dots
+    for (const p of projected){
+      g.appendChild(svgEl('circle', {
+        cx: sxc(p).toFixed(2), cy: syc(p).toFixed(2),
+        r: 2.2, fill: 'var(--cream)', opacity: 0.6
+      }));
+    }
+    // name label
+    const nameEl = svgEl('text', {
+      x: cx, y: H - 130,
+      fill: 'var(--gold)', 'font-size': 16,
+      'text-anchor': 'middle', 'font-family': '-apple-system, sans-serif',
+      'letter-spacing': '0.08em'
+    });
+    nameEl.textContent = poly.name;
+    g.appendChild(nameEl);
+  }
+
+  // animation loop used only by polyhedra mode
+  let animT = 0;
+  let animLast = 0;
+  let animFrame = null;
+  function tick(now){
+    if (mode !== 'polyhedra'){ animFrame = null; return; }
+    if (!animLast) animLast = now;
+    animT += (now - animLast);
+    animLast = now;
+    draw();
+    animFrame = requestAnimationFrame(tick);
+  }
+  function startAnim(){
+    if (animFrame) return;
+    animLast = 0;
+    animFrame = requestAnimationFrame(tick);
+  }
+
   function draw(){
     clear();
     // build a g group
@@ -537,6 +722,13 @@
       captionEl.textContent = atPhi
         ? 'sunflower at 137.5° — the only angle that packs without overlap or gap'
         : `sunflower at ${degrees.toFixed(2)}° — gaps and overlaps that the golden angle avoids`;
+    } else if (mode === 'polyhedra') {
+      // map slider position 1.05–2.50 to polyhedron index 0–5
+      const tNorm = (growthQuarter - 1.05) / (2.50 - 1.05);
+      const polyIdx = Math.max(0, Math.min(5, Math.floor(tNorm * 6)));
+      sliderCap.textContent = 'select solid';
+      drawPolyhedra(g, cx, cy, polyIdx, animT);
+      captionEl.textContent = polyhedra[polyIdx].note;
     }
   }
 

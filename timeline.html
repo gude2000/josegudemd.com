@@ -310,6 +310,7 @@
     // greedy stacking to avoid overlap
     const placed = []; // each: {top, bottom}
     const minGap = 8; // px
+    let maxBottom = 0;
     data.forEach(item => {
       const baseTop = yPos(item.y);
       // estimate entry height
@@ -327,6 +328,10 @@
         }
       }
       placed.push({ center: top, h: estH });
+      // entries are centered with transform: translateY(-50%), so the visual bottom
+      // edge of the entry is top + estH/2.
+      const entryBottom = top + estH/2;
+      if (entryBottom > maxBottom) maxBottom = entryBottom;
 
       const div = document.createElement('div');
       div.className = 'entry';
@@ -347,11 +352,21 @@
       }
       lane.appendChild(div);
     });
+    return maxBottom;
   }
 
-  render('lane-physics', physics);
-  render('lane-mind', mind);
-  render('lane-inflect', inflect);
+  // Greedy stacking pushes late-year entries downward to avoid collision (it
+  // never pushes upward), so dense late-year clusters — the 2022/2024 physics
+  // pair, the 2023/2024 mind cluster — can extend past the nominal 2600 px grid
+  // height and get clipped where the next section begins. Grow the grid to fit
+  // the deepest entry across all three lanes, plus a small bottom pad.
+  const maxBot = Math.max(
+    render('lane-physics', physics),
+    render('lane-mind', mind),
+    render('lane-inflect', inflect)
+  );
+  const grid = document.getElementById('timeline');
+  grid.style.height = Math.max(2600, Math.ceil(maxBot + 32)) + 'px';
 })();
 </script>
 
