@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frequencies in your body &mdash; José Gude MD</title>
+  <meta name="description" content="A log-scale visualization of the frequencies that organize life — from breath and heartbeat through brain rhythms and Schumann modes up to the voice and the φ-tuned chord — showing how the body and the planet ring in adjacent bands.">
+  <!-- Open Graph / social share -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="José Gude MD">
+  <meta property="og:title" content="Frequencies in your body — the receiver-model ladder · José Gude MD · The Field Trilogy">
+  <meta property="og:description" content="A log-scale visualization of the frequencies that organize life — from breath and heartbeat through brain rhythms and Schumann modes up to the voice and the φ-tuned chord — showing how the body and the planet ring in adjacent bands.">
+  <meta property="og:url" content="https://josegudemd.com/frequencies-in-your-body.html">
+  <meta property="og:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Frequencies in your body — the receiver-model ladder · José Gude MD · The Field Trilogy">
+  <meta name="twitter:description" content="A log-scale visualization of the frequencies that organize life — from breath and heartbeat through brain rhythms and Schumann modes up to the voice and the φ-tuned chord — showing how the body and the planet ring in adjacent bands.">
+  <meta name="twitter:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <link rel="canonical" href="https://josegudemd.com/frequencies-in-your-body.html">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .freq-ladder {
+      width: 100%;
+      max-width: 900px;
+      margin: 1.5em auto;
+      display: block;
+      background: var(--bg-soft, #11151f);
+      border-radius: 4px;
+    }
+    .freq-ladder text { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; }
+    .freq-ladder .axis-tick { fill: var(--cream-mute, #7d7868); font-size: 12px; }
+    .freq-ladder .axis-decade { fill: var(--cream-dim, #b9b09b); font-size: 13px; font-weight: 600; }
+    .freq-ladder .col-title { fill: var(--cream-dim, #b9b09b); font-size: 11px; letter-spacing: 0.20em; text-transform: uppercase; text-anchor: middle; }
+    .freq-ladder .band-label { fill: var(--cream, #e8e0ce); font-size: 12px; }
+    .freq-ladder .band-detail { fill: var(--cream-mute, #7d7868); font-size: 10px; }
+    .freq-ladder .marker-label { fill: var(--gold, #daa055); font-size: 11px; }
+    .freq-ladder .marker-label.cream { fill: var(--cream, #e8e0ce); }
+    .freq-ladder .marker-label.teal { fill: var(--teal, #78c8b4); }
+    .freq-ladder .marker-label.violet { fill: var(--violet, #b4a0e6); }
+    .freq-ladder .gridline { stroke: var(--rule, #2a2e3d); stroke-width: 1; stroke-dasharray: 2 4; }
+    .freq-ladder .audible { stroke: var(--gold-soft, #c48c42); stroke-width: 1.5; stroke-dasharray: 6 4; opacity: 0.7; }
+    .band-brain { fill: var(--teal, #78c8b4); fill-opacity: 0.18; stroke: var(--teal, #78c8b4); stroke-width: 1; stroke-opacity: 0.55; }
+    .band-body { fill: var(--cream, #e8e0ce); fill-opacity: 0.10; stroke: var(--cream, #e8e0ce); stroke-width: 1; stroke-opacity: 0.40; }
+    .band-music { fill: var(--gold, #daa055); fill-opacity: 0.14; stroke: var(--gold, #daa055); stroke-width: 1; stroke-opacity: 0.55; }
+    .mode-schumann { stroke: var(--violet, #b4a0e6); stroke-width: 2; }
+    .mark-phi { stroke: var(--gold, #daa055); stroke-width: 2.5; }
+    .mark-concert { stroke: var(--cream, #e8e0ce); stroke-width: 1.5; stroke-dasharray: 4 3; opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Books</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="watch.html">Watch &amp; Listen</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="the-evidence.html">Synthesis</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><span style="color:var(--gold);">EN</span> <span style="opacity:0.4;">|</span> <a href="es/frequencies-in-your-body.html">ES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">The receiver-model ladder</p>
+  <h1><em>Frequencies in your body</em></h1>
+  <p class="lede">Breath, heartbeat, brain waves, voice, the φ-tuned chord, the planet's own electromagnetic fundamental — they all live on the same logarithmic ladder, and the bands overlap in ways the trilogy keeps coming back to. The image below puts them on one axis.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <svg class="freq-ladder" viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A log-scale ladder of frequencies from 0.1 Hz to 1000 Hz, showing body rhythms, Schumann resonances, and musical frequencies stacked side by side.">
+    <!-- Column titles -->
+    <text class="col-title" x="190" y="32">Body</text>
+    <text class="col-title" x="450" y="32">Planet</text>
+    <text class="col-title" x="710" y="32">Music</text>
+
+    <!-- Decade gridlines + tick labels -->
+    <!-- 1000 Hz: y=50 -->
+    <line class="gridline" x1="80" y1="50"  x2="840" y2="50"/>
+    <text class="axis-decade" x="70" y="54" text-anchor="end">1000 Hz</text>
+    <!-- 100 Hz: y=252.5 -->
+    <line class="gridline" x1="80" y1="252.5" x2="840" y2="252.5"/>
+    <text class="axis-decade" x="70" y="256" text-anchor="end">100 Hz</text>
+    <!-- 10 Hz: y=455 -->
+    <line class="gridline" x1="80" y1="455" x2="840" y2="455"/>
+    <text class="axis-decade" x="70" y="459" text-anchor="end">10 Hz</text>
+    <!-- 1 Hz: y=657.5 -->
+    <line class="gridline" x1="80" y1="657.5" x2="840" y2="657.5"/>
+    <text class="axis-decade" x="70" y="661" text-anchor="end">1 Hz</text>
+    <!-- 0.1 Hz: y=860 -->
+    <line class="gridline" x1="80" y1="860" x2="840" y2="860"/>
+    <text class="axis-decade" x="70" y="864" text-anchor="end">0.1 Hz</text>
+
+    <!-- Minor ticks at 0.3, 3, 30, 300 (between decades) -->
+    <line class="gridline" x1="80" y1="763.4" x2="840" y2="763.4" stroke-opacity="0.4"/>
+    <text class="axis-tick" x="70" y="767" text-anchor="end">0.3</text>
+    <line class="gridline" x1="80" y1="560.5" x2="840" y2="560.5" stroke-opacity="0.4"/>
+    <text class="axis-tick" x="70" y="564" text-anchor="end">3</text>
+    <line class="gridline" x1="80" y1="358" x2="840" y2="358" stroke-opacity="0.4"/>
+    <text class="axis-tick" x="70" y="362" text-anchor="end">30</text>
+    <line class="gridline" x1="80" y1="155.7" x2="840" y2="155.7" stroke-opacity="0.4"/>
+    <text class="axis-tick" x="70" y="159" text-anchor="end">300</text>
+
+    <!-- Audible threshold (20 Hz): horizontal dashed line all the way across -->
+    <line class="audible" x1="80" y1="394" x2="840" y2="394"/>
+    <text class="axis-tick" x="836" y="389" text-anchor="end" style="fill:var(--gold-soft);font-size:11px;">audible threshold &mdash; 20 Hz</text>
+
+    <!-- ===== BODY COLUMN: x = 110 to 280 ===== -->
+    <!-- Breath ~0.2-0.3 Hz -->
+    <rect class="band-body" x="110" y="763.4" width="170" height="50"/>
+    <text class="band-label" x="120" y="800">Breath</text>
+    <text class="band-detail" x="120" y="814">~0.2–0.3 Hz · 12–18 / min</text>
+
+    <!-- Heartbeat ~1-1.5 Hz -->
+    <rect class="band-body" x="110" y="634.4" width="170" height="29"/>
+    <text class="band-label" x="120" y="654">Heartbeat</text>
+    <text class="band-detail" x="120" y="678">~1–1.5 Hz · 60–90 BPM</text>
+
+    <!-- Brain wave bands -->
+    <!-- Delta (1-4 Hz): y(4)=535.6 to y(1)=657.5 -->
+    <rect class="band-brain" x="110" y="535.6" width="170" height="121.9"/>
+    <text class="band-label" x="120" y="555">Delta &mdash; deep sleep</text>
+    <text class="band-detail" x="120" y="569">1–4 Hz</text>
+
+    <!-- Theta (4-8 Hz): y(8)=474.6 to y(4)=535.6 -->
+    <rect class="band-brain" x="110" y="474.6" width="170" height="61"/>
+    <text class="band-label" x="120" y="494">Theta &mdash; hypnagogia</text>
+    <text class="band-detail" x="120" y="508">4–8 Hz</text>
+
+    <!-- Alpha (8-13 Hz): y(13)=431.9 to y(8)=474.6 -->
+    <rect class="band-brain" x="110" y="431.9" width="170" height="42.7"/>
+    <text class="band-label" x="120" y="451">Alpha &mdash; relaxed alert</text>
+    <text class="band-detail" x="120" y="465">8–13 Hz</text>
+
+    <!-- Beta (13-30 Hz): y(30)=358.4 to y(13)=431.9 -->
+    <rect class="band-brain" x="110" y="358.4" width="170" height="73.5"/>
+    <text class="band-label" x="120" y="378">Beta &mdash; thinking</text>
+    <text class="band-detail" x="120" y="392">13–30 Hz</text>
+
+    <!-- Gamma (30-100 Hz): y(100)=252.5 to y(30)=358.4 -->
+    <rect class="band-brain" x="110" y="252.5" width="170" height="105.9"/>
+    <text class="band-label" x="120" y="272">Gamma &mdash; binding</text>
+    <text class="band-detail" x="120" y="286">30–100+ Hz</text>
+
+    <!-- ===== PLANET COLUMN (Schumann modes): x = 360 to 540 ===== -->
+    <!-- Schumann fundamental 7.83 Hz: y = 476.5 -->
+    <line class="mode-schumann" x1="360" y1="476.5" x2="540" y2="476.5"/>
+    <circle cx="450" cy="476.5" r="5" fill="var(--violet, #b4a0e6)"/>
+    <text class="marker-label violet" x="546" y="481" style="font-weight:600;">7.83 Hz &mdash; Schumann fundamental</text>
+
+    <!-- 2nd harmonic 14.3 Hz: y = 423.5 -->
+    <line class="mode-schumann" x1="360" y1="423.5" x2="540" y2="423.5" stroke-opacity="0.75"/>
+    <circle cx="450" cy="423.5" r="4" fill="var(--violet, #b4a0e6)" fill-opacity="0.85"/>
+    <text class="marker-label violet" x="546" y="427" style="font-size:11px;">14.3 Hz &mdash; 2nd harmonic</text>
+
+    <!-- 3rd harmonic 20.8 Hz: y = 390.6 -->
+    <line class="mode-schumann" x1="360" y1="390.6" x2="540" y2="390.6" stroke-opacity="0.65"/>
+    <circle cx="450" cy="390.6" r="3.5" fill="var(--violet, #b4a0e6)" fill-opacity="0.75"/>
+    <text class="marker-label violet" x="546" y="365" style="font-size:11px;">20.8 Hz &mdash; 3rd</text>
+
+    <!-- 4th harmonic 27.3 Hz: y = 366.7 -->
+    <line class="mode-schumann" x1="360" y1="366.7" x2="540" y2="366.7" stroke-opacity="0.55"/>
+    <circle cx="450" cy="366.7" r="3.5" fill="var(--violet, #b4a0e6)" fill-opacity="0.7"/>
+    <text class="marker-label violet" x="546" y="370" style="font-size:11px;">27.3 Hz &mdash; 4th</text>
+
+    <!-- 5th harmonic 33.8 Hz: y = 347.9 -->
+    <line class="mode-schumann" x1="360" y1="347.9" x2="540" y2="347.9" stroke-opacity="0.45"/>
+    <circle cx="450" cy="347.9" r="3" fill="var(--violet, #b4a0e6)" fill-opacity="0.65"/>
+    <text class="marker-label violet" x="546" y="351" style="font-size:11px;">33.8 Hz &mdash; 5th</text>
+
+    <!-- Annotation: where brain ↔ planet overlap -->
+    <text class="band-detail" x="450" y="510" text-anchor="middle" style="fill:var(--violet, #b4a0e6);font-style:italic;font-size:11px;">↑ overlap with</text>
+    <text class="band-detail" x="450" y="524" text-anchor="middle" style="fill:var(--violet, #b4a0e6);font-style:italic;font-size:11px;">theta / alpha / beta / gamma</text>
+
+    <!-- ===== MUSIC COLUMN: x = 620 to 790 ===== -->
+    <!-- Voice / singing range: ~80-300 Hz, y(300)=155.9 to y(80)=272.1 -->
+    <rect class="band-music" x="620" y="155.9" width="170" height="116.2"/>
+    <text class="band-label" x="630" y="175">Voice &amp; singing</text>
+    <text class="band-detail" x="630" y="189">80–300 Hz fundamentals</text>
+
+    <!-- φ-tuned chord notes -->
+    <!-- E 164.81 Hz: y = 208.6 -->
+    <line class="mark-phi" x1="620" y1="208.6" x2="790" y2="208.6" stroke-opacity="0.75"/>
+    <circle cx="705" cy="208.6" r="4" fill="var(--gold, #daa055)"/>
+    <text class="marker-label" x="796" y="212" style="font-size:11px;">E 164.81 Hz</text>
+
+    <!-- φ-tuned C 266.67 Hz: y = 166.2 -->
+    <line class="mark-phi" x1="620" y1="166.2" x2="790" y2="166.2"/>
+    <circle cx="705" cy="166.2" r="6" fill="var(--gold, #daa055)"/>
+    <text class="marker-label" x="796" y="170" style="font-weight:700;">★ φ-tuned C 266.67 Hz</text>
+
+    <!-- E in Sable's chord 339.20 Hz: y = 145.1 -->
+    <line class="mark-phi" x1="620" y1="145.1" x2="790" y2="145.1" stroke-opacity="0.75"/>
+    <circle cx="705" cy="145.1" r="4" fill="var(--gold, #daa055)"/>
+    <text class="marker-label" x="796" y="149" style="font-size:11px;">E×√φ 339.20 Hz</text>
+
+    <!-- G♯ 431.36 Hz: y = 123.9 -->
+    <line class="mark-phi" x1="620" y1="123.9" x2="790" y2="123.9"/>
+    <circle cx="705" cy="123.9" r="5" fill="var(--gold, #daa055)"/>
+    <text class="marker-label" x="796" y="128" style="font-size:11px;">G♯ 431.36 Hz</text>
+
+    <!-- Concert pitches A=432, A=440 as dashed cream lines -->
+    <line class="mark-concert" x1="620" y1="123.8" x2="790" y2="123.8"/>
+    <text class="marker-label cream" x="796" y="115" style="font-size:10px;">A=432 (≈ φ × C)</text>
+
+    <line class="mark-concert" x1="620" y1="122.2" x2="790" y2="122.2" stroke-opacity="0.6"/>
+    <text class="marker-label cream" x="796" y="105" style="font-size:10px;">A=440 (standard)</text>
+
+    <!-- Side bracket: chord range -->
+    <line x1="612" y1="123.9" x2="612" y2="208.6" stroke="var(--gold, #daa055)" stroke-width="2" stroke-opacity="0.7"/>
+    <line x1="612" y1="123.9" x2="618" y2="123.9" stroke="var(--gold, #daa055)" stroke-width="2" stroke-opacity="0.7"/>
+    <line x1="612" y1="208.6" x2="618" y2="208.6" stroke="var(--gold, #daa055)" stroke-width="2" stroke-opacity="0.7"/>
+    <text class="band-detail" x="608" y="170" text-anchor="end" style="fill:var(--gold, #daa055);font-style:italic;">φ-chord</text>
+
+    <!-- Bottom note -->
+    <text class="band-detail" x="450" y="890" text-anchor="middle" style="font-style:italic;font-size:11px;">log scale &mdash; each gridline is ×10. Click a frequency on the <a href="tunings.html">tunings page</a> to hear it.</text>
+  </svg>
+</section>
+
+<section>
+  <h2>What the picture says</h2>
+  <p>Four claims, all visible at a glance once the frequencies are stacked on the same axis.</p>
+
+  <p><strong>1. The brain and the planet ring in the same band.</strong> The Schumann fundamental at <span style="color:var(--violet);">7.83 Hz</span> sits exactly on the theta/alpha boundary — the band associated with hypnagogia, deep relaxation, contemplative absorption. The higher Schumann harmonics fall through alpha, beta, and the lower edge of gamma. The brain's entire low-frequency activity span (1–100 Hz) overlaps the Schumann cavity's first five modes. This is not metaphor — both are measurable, both are continuous, both fall in the same physical range.</p>
+
+  <p><strong>2. The audible threshold cuts the picture in two.</strong> Below the dashed gold line (20 Hz), the body's own rhythms operate: breath, heart, brain waves, the Schumann fundamental. You don't hear them — you <em>are</em> them. Above the line, sound enters the audible world: the voice, the chord, the concert pitches. The same continuous logarithmic axis runs through both.</p>
+
+  <p><strong>3. The φ-tuned chord lives in the voice's natural range.</strong> The trilogy's chord — E at 164.81 Hz, G♯ at 209.64 Hz (between markers), C at 266.67 Hz at one octave's transposition, G♯ at 431.36 Hz at the upper edge — sits squarely inside the band of human speech and singing fundamentals (80–300 Hz). This is not by accident. The φ-tuned C was chosen so that <em>C × φ</em> lands within 0.15% of the 432-Hz A — and the resulting chord ends up where the voice itself naturally lives. The architecture is tuned to the body.</p>
+
+  <p><strong>4. The 432 / 440 gap is small.</strong> The two concert-pitch standards are 8 Hz apart at the A — almost invisible at this scale. The argument about 432 vs 440 is real, but it is an argument about a thirty-cent shift, not about the whole architecture. The deeper claim the trilogy makes is at the <em>structural</em> level: φ-tuned C, the Webb-triangle chord, Sable's chord, the Schumann resonance, the brain's bands. All of these are visible above. The choice of 432 vs 440 is downstream.</p>
+</section>
+
+<section>
+  <h2>Each band, briefly</h2>
+
+  <p><strong>Breath</strong> (~0.2–0.3 Hz) — the slowest rhythm the body produces on its own. 12 to 18 breaths per minute at rest; slower in contemplative states. In <em>Anima</em>, the prolonged-exhale meditation José is taught early in the case work pulls breath toward the lower end of this band, into the territory where it begins to entrain heart rate variability.</p>
+
+  <p><strong>Heartbeat</strong> (~1–1.5 Hz) — 60 to 90 BPM at rest. The HRV literature (Porges, McCraty) measures the <em>variability</em> rather than the rate itself; the variability spectrum overlaps the breath band and modulates with vagal tone.</p>
+
+  <p><strong>Brain waves</strong> (1–100+ Hz) — five conventional bands, each associated with different states of consciousness. The Lutz/Davidson <em>gamma-coherence</em> measurements in long-term meditators (top of the gamma band, 40 Hz and up) are the empirical claim behind the trilogy's interest in attention as a measurable phenomenon. See the <a href="reading.html">Carhart-Harris entropic-brain</a> entry and the gamma-stimulation Bioelectromagnetism subsection.</p>
+
+  <p><strong>Schumann modes</strong> (<span style="color:var(--violet);">7.83 · 14.3 · 20.8 · 27.3 · 33.8 Hz</span>) — the standing-wave frequencies of Earth's spherical waveguide cavity, formed between the surface and the ionosphere. Predicted by Otto Schumann in 1952, continuously measured ever since. See the <a href="schumann-resonance.html">Schumann explainer</a>.</p>
+
+  <p><strong>Voice and singing fundamentals</strong> (~80–300 Hz) — the range of human vocal fold vibration. Bass voices sit at the low end, sopranos at the high. The φ-tuned C at 266.67 Hz is in the middle of the soprano fundamental range and is exactly where Jeff Buckley sang on the <em>Hallelujah</em> recordings.</p>
+
+  <p><strong>The φ-chord</strong> (<span style="color:var(--gold);">164.81 · 209.64 · 266.67 · 339.20 · 431.36 Hz</span>) — the Webb-triangle chord and Sable's chord, each built on the φ-tuned C. The bracket on the right side of the diagram shows the chord's full vertical span; the four gold markers are its individual notes. See <a href="phi-tuned-c.html">the φ-tuned C explainer</a> for how the frequencies are derived.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">The receiver-model claim, made visible. Body rhythms below the audible threshold; planet's electromagnetic ringing in the same band; voice and chord in the band above. The body is tuned to receive a range that begins at the heartbeat and crosses into the band the planet is broadcasting. Read <a href="schumann-resonance.html">Schumann</a> and <a href="phi-tuned-c.html">φ-tuned C</a> next.</p>
+  <a href="explore.html" class="read-more">← Back to Explore</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Reader's tools:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Start here</a> &middot;
+      <a href="glossary.html">Glossary</a> &middot;
+      <a href="the-evidence.html">Synthesis</a> &middot;
+      <a href="explore.html">Explore</a> &middot;
+      <a href="search.html">Search</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://admitnote.com" target="_blank" rel="noopener">AdmitNote</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -194,6 +194,30 @@
     max-width: 720px;
     margin: 0 auto;
   }
+  /* On narrow viewports (phones), the longer polyhedron captions wrap to
+     three or four lines and grow up into the controls area. Push the
+     controls higher and tighten the caption so they don't collide. */
+  @media (max-width: 640px) {
+    .controls {
+      bottom: 140px;
+      gap: 10px;
+    }
+    .caption {
+      font-size: 10.5px;
+      line-height: 1.4;
+      letter-spacing: 0.10em;
+      bottom: 18px;
+    }
+    .mode-toggle button {
+      font-size: 9.5px;
+      padding: 5px 9px;
+      letter-spacing: 0.08em;
+    }
+    .snap-btn {
+      font-size: 9.5px;
+      padding: 5px 11px;
+    }
+  }
 </style>
 </head>
 <body>

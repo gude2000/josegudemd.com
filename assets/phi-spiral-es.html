@@ -194,6 +194,31 @@
     max-width: 720px;
     margin: 0 auto;
   }
+  /* En viewports estrechos (móviles), las descripciones más largas de los
+     poliedros se ajustan a tres o cuatro líneas y suben hacia los controles.
+     Empujamos los controles más arriba y compactamos la leyenda para que no
+     choquen. */
+  @media (max-width: 640px) {
+    .controls {
+      bottom: 140px;
+      gap: 10px;
+    }
+    .caption {
+      font-size: 10.5px;
+      line-height: 1.4;
+      letter-spacing: 0.10em;
+      bottom: 18px;
+    }
+    .mode-toggle button {
+      font-size: 9.5px;
+      padding: 5px 9px;
+      letter-spacing: 0.08em;
+    }
+    .snap-btn {
+      font-size: 9.5px;
+      padding: 5px 11px;
+    }
+  }
 </style>
 </head>
 <body>
