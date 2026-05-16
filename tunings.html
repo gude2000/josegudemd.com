@@ -157,6 +157,15 @@
 
   <div class="tuning-card" style="border-color:var(--teal);">
     <div class="meta">
+      <h3>40 Hz gamma binaural beat &mdash; the frequency that clears amyloid in mouse brains</h3>
+      <div class="freq">left: 200 Hz · right: 240 Hz · perceived difference: <strong>40 Hz</strong> (gamma band) · Iaccarino et al., <em>Nature</em> 2016 · Martorell et al., <em>Cell</em> 2019</div>
+      <div class="desc">Two pure tones, 40 Hz apart, one per ear. The brainstem computes the difference and the auditory cortex inherits a 40 Hz binaural beat — the same frequency Hannah Iaccarino's lab used to entrain mouse visual cortex in 2016. At 40 Hz of light exposure, microglia activate and amyloid plaque load measurably drops; the 2019 Martorell follow-up showed light + sound at 40 Hz extends the effect to tau pathology and the hippocampus. Gamma is the band of binding — perceptual integration, working memory, and the kind of attention the trilogy circles. <strong>Requires headphones.</strong> See the gamma-stimulation entries in the <a href="reading.html" style="color:var(--teal);">Bioelectromagnetism, neurofeedback, the body in signal</a> scholarly subsection.</div>
+    </div>
+    <button class="tuning-btn" data-id="t10">play / stop</button>
+  </div>
+
+  <div class="tuning-card" style="border-color:var(--teal);">
+    <div class="meta">
       <h3>Schumann-resonance binaural beat &mdash; the Earth's heartbeat as the difference</h3>
       <div class="freq">left: 262.755 Hz · right: 270.585 Hz · perceived difference: <strong>7.83 Hz</strong> (Schumann fundamental) · arithmetic mean: 266.67 Hz (the φ-tuned C)</div>
       <div class="desc">Both ears hear a tone that sits within a quarter-tone of the trilogy's <strong>φ-tuned C = 266.67 Hz</strong> &mdash; the left ear at 266.67 − 3.915 Hz, the right ear at 266.67 + 3.915 Hz. Their arithmetic mean is exactly the φ-tuned C, so what the listener perceives as the central pitch is the trilogy's anchor. Their <em>difference</em> is exactly <strong>7.83 Hz</strong> &mdash; the fundamental Schumann resonance, the cavity-mode oscillation of the Earth-ionosphere waveguide that has been called the planet's electromagnetic heartbeat since Otto Schumann predicted it in 1952. The brainstem generates this 7.83 Hz beat from the comparison itself; nothing in the physical signal is oscillating at that rate. The chord that arises is a meeting of three threads the trilogy keeps circling: the φ-tuned C, the Earth's planetary frequency, and the brain's own capacity to generate the resonance it is supposed to hear. <strong>Requires headphones.</strong> See the <a href="schumann-resonance.html" style="color:var(--teal);">Schumann resonance explainer →</a> and the <a href="oster-binaural-beats.html" style="color:var(--teal);">Oster binaural-beats explainer →</a></div>
@@ -313,7 +322,8 @@
     t6: { freqs: [266.67, 333.33, 416.67], pans: [-1, 0, 1], label: "José & Alex's chord (augmented C-E-G♯ at φ-tuned C)" },
     t7: { freqs: [266.67, 266.67 * Math.sqrt(PHI), 266.67 * PHI], pans: [-1, 0, 1], label: "Sable's chord (C / E / G♯ at 1 : √φ : φ)" },
     t8: { freqs: [261.626, 256.869], pans: [-1, 1], duration: 20, label: "440-vs-432 binaural beat (theta, ≈4.76 Hz)" },
-    t9: { freqs: [266.67 - 3.915, 266.67 + 3.915], pans: [-1, 1], duration: 20, label: "Schumann binaural beat at the φ-tuned C (Δ = 7.83 Hz)" }
+    t9: { freqs: [266.67 - 3.915, 266.67 + 3.915], pans: [-1, 1], duration: 20, label: "Schumann binaural beat at the φ-tuned C (Δ = 7.83 Hz)" },
+    t10: { freqs: [200.0, 240.0], pans: [-1, 1], duration: 20, label: "40 Hz gamma binaural beat (Iaccarino / Tsai 2016 entrainment frequency)" }
   };
 
   let ctx = null;
@@ -451,7 +461,7 @@
   if (playAllBtn) {
     playAllBtn.addEventListener('click', () => {
       stopAll();
-      ['t1','t2','t3','t4','t5','t6','t7','t8','t9'].forEach(id => {
+      ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10'].forEach(id => {
         startTone(id, { duration: 60, peak: 0.06 });
       });
       // Octave-below Sable chord — a hair louder per voice since it grounds the field

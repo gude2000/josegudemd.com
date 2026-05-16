@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webb fractal triangle — the chord as geometry</title>
+<style>
+  :root {
+    --bg:        #0a0e1a;
+    --bg-soft:   #11151f;
+    --cream:     #e8e0ce;
+    --cream-dim: #b9b09b;
+    --cream-mute:#7d7868;
+    --gold:      #daa055;
+    --gold-soft: #c48c42;
+    --teal:      #78c8b4;
+    --violet:    #b4a0e6;
+    --rule:      #2a2e3d;
+  }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    color: var(--cream-dim);
+  }
+  #scene { width: 100vw; height: 100vh; display: block; }
+  .hint {
+    position: absolute; top: 14px; right: 16px;
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(185, 176, 155, 0.45);
+    pointer-events: none; user-select: none;
+  }
+  .readout {
+    position: absolute;
+    top: 14px; left: 16px;
+    font-size: 12px;
+    color: var(--cream-dim);
+    line-height: 1.65;
+    user-select: none;
+    pointer-events: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .readout .label {
+    color: var(--cream-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+  .readout .value { color: var(--cream); font-size: 14px; }
+  .readout .value.gold { color: var(--gold); }
+  .caption {
+    position: absolute;
+    bottom: 14px; left: 0; right: 0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.55;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(218, 160, 85, 0.78);
+    padding: 0 18px;
+    pointer-events: none; user-select: none;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .play-btn {
+    position: absolute;
+    bottom: 64px; left: 50%; transform: translateX(-50%);
+    background: transparent;
+    border: 1px solid rgba(218, 160, 85, 0.5);
+    color: var(--gold);
+    font-family: inherit; font-size: 10px;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    padding: 7px 18px;
+    cursor: pointer; border-radius: 2px;
+    transition: background .15s, color .15s;
+  }
+  .play-btn:hover { background: rgba(218, 160, 85, 0.18); color: var(--cream); }
+  .play-btn.active { background: rgba(218, 160, 85, 0.28); color: var(--cream); }
+</style>
+</head>
+<body>
+
+<svg id="scene" xmlns="http://www.w3.org/2000/svg"></svg>
+
+<div class="hint">click a vertex to play its note</div>
+
+<div class="readout">
+  <div><span class="label">angles</span><br><span class="value gold">90° · 55.62° · 34.38°</span></div>
+  <div style="margin-top:8px;"><span class="label">ratios of</span><br><span class="value">1 : 1/φ : 1/φ²</span></div>
+  <div style="margin-top:8px;"><span class="label">chord</span><br><span class="value">E 164.81 · G♯ 209.64 · C 266.67 Hz</span></div>
+  <div style="margin-top:8px;"><span class="label">ratios of</span><br><span class="value">1 : √φ : φ</span></div>
+</div>
+
+<button class="play-btn" id="play-chord">play full chord</button>
+
+<div class="caption">
+  The Webb triangle &mdash; the angles in φ progression, the chord intervals in √φ progression. The same architecture in two scales.
+</div>
+
+<script>
+(function(){
+  const svg = document.getElementById('scene');
+  const playBtn = document.getElementById('play-chord');
+
+  // --- triangle geometry (in normalized coords, scaled at draw time) ---
+  // 90° at A (lower-left), 55.62° at B (upper-left? upper-right?), 34.38° at C
+  // We construct it with the 90° at the corner, the legs along x and y axes:
+  // - vertical leg AC (opposite 34.38°, the short leg) length sin(34.38°)
+  // - horizontal leg AB (opposite 55.62°, the long leg) length sin(55.62°)
+  // - hypotenuse BC length 1 (opposite 90°)
+  const rad = (deg) => deg * Math.PI / 180;
+  const ANGLE_C = 90, ANGLE_G = 55.62, ANGLE_E = 34.38;
+  const FREQ_E = 164.81, FREQ_G = 209.64, FREQ_C = 266.67;
+  // normalized side lengths (law of sines):
+  const sideAB = Math.sin(rad(ANGLE_G)); // horizontal leg (opposite G♯ at upper vertex)
+  const sideAC = Math.sin(rad(ANGLE_E)); // vertical leg (opposite E at the far horizontal vertex)
+
+  let W = 0, H = 0;
+
+  function resize() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    draw();
+  }
+  window.addEventListener('resize', resize);
+
+  function svgEl(tag, attrs) {
+    const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function clear() { while (svg.firstChild) svg.removeChild(svg.firstChild); }
+
+  function draw() {
+    clear();
+    // Fit the triangle into ~64% of min(W, H), centered.
+    const scale = Math.min(W, H) * 0.62;
+    // pixel side lengths
+    const ABpx = scale * sideAB;
+    const ACpx = scale * sideAC;
+    // bounding box of triangle in pixel units: width ABpx, height ACpx
+    const cx = W / 2, cy = H / 2;
+    // place the centroid roughly at (cx, cy + 30) — small downward bias for the caption
+    // A = 90° corner (lower-left), B = 34.38° corner (lower-right, far end of long leg AB),
+    // C = 55.62° corner (upper-left, end of short leg AC)
+    const Ax = cx - ABpx / 2;
+    const Ay = cy + ACpx / 2 + 40;
+    const Bx = Ax + ABpx;
+    const By = Ay;
+    const Cx = Ax;
+    const Cy = Ay - ACpx;
+
+    // The "fractal" feel: draw 4 nested similar triangles, each scaled by 1/φ
+    // toward the centroid. The original triangle, then smaller ones inside.
+    const PHI = (1 + Math.sqrt(5)) / 2;
+    const N_LAYERS = 5;
+    const centroidX = (Ax + Bx + Cx) / 3;
+    const centroidY = (Ay + By + Cy) / 3;
+    for (let i = N_LAYERS - 1; i >= 0; i--) {
+      const k = Math.pow(1 / PHI, i);
+      const opa = 0.20 + (1 - i / N_LAYERS) * 0.65;
+      const sw = 1.0 + (1 - i / N_LAYERS) * 0.8;
+      const pts = [
+        [centroidX + (Ax - centroidX) * k, centroidY + (Ay - centroidY) * k],
+        [centroidX + (Bx - centroidX) * k, centroidY + (By - centroidY) * k],
+        [centroidX + (Cx - centroidX) * k, centroidY + (Cy - centroidY) * k],
+      ];
+      svg.appendChild(svgEl('polygon', {
+        points: pts.map(p => p[0].toFixed(2) + ',' + p[1].toFixed(2)).join(' '),
+        fill: 'none',
+        stroke: i === 0 ? 'var(--gold)' : 'var(--gold-soft)',
+        'stroke-width': sw.toFixed(2),
+        opacity: opa.toFixed(2)
+      }));
+    }
+
+    // Right-angle marker at A
+    const ramk = 14;
+    svg.appendChild(svgEl('polyline', {
+      points: `${Ax},${Ay - ramk} ${Ax + ramk},${Ay - ramk} ${Ax + ramk},${Ay}`,
+      fill: 'none', stroke: 'var(--gold)', 'stroke-width': 1, opacity: 0.85
+    }));
+
+    // angle arcs near each vertex (small arc inside the corner)
+    function angleArc(x, y, ang1, ang2, rArc, color) {
+      // ang1, ang2 in degrees, measured from positive x-axis going CCW (math convention),
+      // but SVG y is down, so we flip the sign of sin contributions.
+      const a1 = rad(ang1), a2 = rad(ang2);
+      const x1 = x + rArc * Math.cos(a1);
+      const y1 = y - rArc * Math.sin(a1);
+      const x2 = x + rArc * Math.cos(a2);
+      const y2 = y - rArc * Math.sin(a2);
+      const sweepFlag = 1; // arc drawn the short way; in SVG y-down this is the CCW-on-screen direction for a1 < a2
+      svg.appendChild(svgEl('path', {
+        d: `M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${rArc} ${rArc} 0 0 ${sweepFlag} ${x2.toFixed(2)} ${y2.toFixed(2)}`,
+        fill: 'none', stroke: color, 'stroke-width': 1.2, opacity: 0.9
+      }));
+    }
+    // At C (upper-left, 55.62°): the legs from C point right (toward B) and down (toward A).
+    // Angles in math-CCW from +x: toward B (down-right) ≈ atan2(-(By-Cy), (Bx-Cx)), and toward A (down) ≈ -90°.
+    angleArc(Cx, Cy, Math.atan2(-(By - Cy), (Bx - Cx)) * 180 / Math.PI, -90, 26, 'var(--cream-mute)');
+    // At B (lower-right, 34.38°): legs point left (toward A) and up-left (toward C).
+    angleArc(Bx, By, 180, Math.atan2(-(Cy - By), (Cx - Bx)) * 180 / Math.PI, 30, 'var(--cream-mute)');
+
+    // Vertex circles (clickable to play the note)
+    const verts = [
+      { x: Ax, y: Ay, freq: FREQ_C, label: 'C 266.67 Hz', angle: '90°', name: 'C' },
+      { x: Bx, y: By, freq: FREQ_E, label: 'E 164.81 Hz', angle: '34.38°', name: 'E' },
+      { x: Cx, y: Cy, freq: FREQ_G, label: 'G♯ 209.64 Hz', angle: '55.62°', name: 'G♯' },
+    ];
+    verts.forEach((v, idx) => {
+      const dot = svgEl('circle', {
+        cx: v.x.toFixed(2), cy: v.y.toFixed(2), r: 6,
+        fill: 'var(--gold)', opacity: 0.95,
+        style: 'cursor:pointer;'
+      });
+      dot.dataset.idx = idx;
+      dot.addEventListener('click', () => playNote(v.freq, dot));
+      svg.appendChild(dot);
+      // label offset away from centroid so the text doesn't sit on top of the triangle
+      const dx = v.x - centroidX, dy = v.y - centroidY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const offX = dx / dist * 36;
+      const offY = dy / dist * 36;
+      const labelLine1 = svgEl('text', {
+        x: (v.x + offX).toFixed(2), y: (v.y + offY).toFixed(2),
+        fill: 'var(--gold)', 'font-size': 14,
+        'text-anchor': 'middle', 'font-family': '-apple-system, sans-serif',
+        'letter-spacing': '0.06em', 'font-weight': '600'
+      });
+      labelLine1.textContent = v.name;
+      svg.appendChild(labelLine1);
+      const labelLine2 = svgEl('text', {
+        x: (v.x + offX).toFixed(2), y: (v.y + offY + 16).toFixed(2),
+        fill: 'var(--cream-dim)', 'font-size': 11,
+        'text-anchor': 'middle', 'font-family': '-apple-system, sans-serif',
+        'letter-spacing': '0.04em'
+      });
+      labelLine2.textContent = v.angle + '  ·  ' + Math.round(v.freq * 100) / 100 + ' Hz';
+      svg.appendChild(labelLine2);
+    });
+  }
+
+  // --- audio ---
+  let actx = null;
+  const activeNotes = new Map(); // freq -> { osc, gain }
+  function ensureCtx() {
+    if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+    if (actx.state === 'suspended') actx.resume();
+    return actx;
+  }
+  function playNote(freq, dot) {
+    const c = ensureCtx();
+    if (activeNotes.has(freq)) { stopNote(freq, dot); return; }
+    const osc = c.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0, c.currentTime);
+    g.gain.linearRampToValueAtTime(0.15, c.currentTime + 0.05);
+    osc.connect(g).connect(c.destination);
+    osc.start();
+    activeNotes.set(freq, { osc, g, dot });
+    if (dot) dot.setAttribute('r', 9);
+    // auto-stop after 4 seconds
+    setTimeout(() => stopNote(freq, dot), 4000);
+  }
+  function stopNote(freq, dot) {
+    const a = activeNotes.get(freq);
+    if (!a) return;
+    const c = ensureCtx();
+    const now = c.currentTime;
+    a.g.gain.cancelScheduledValues(now);
+    a.g.gain.setValueAtTime(a.g.gain.value, now);
+    a.g.gain.linearRampToValueAtTime(0, now + 0.2);
+    a.osc.stop(now + 0.25);
+    activeNotes.delete(freq);
+    if (dot) dot.setAttribute('r', 6);
+  }
+
+  let chordActive = false;
+  playBtn.addEventListener('click', () => {
+    if (chordActive) {
+      [FREQ_E, FREQ_G, FREQ_C].forEach(f => stopNote(f));
+      playBtn.classList.remove('active');
+      playBtn.textContent = 'play full chord';
+      chordActive = false;
+    } else {
+      [FREQ_E, FREQ_G, FREQ_C].forEach(f => playNote(f));
+      playBtn.classList.add('active');
+      playBtn.textContent = 'stop chord';
+      chordActive = true;
+      setTimeout(() => {
+        playBtn.classList.remove('active');
+        playBtn.textContent = 'play full chord';
+        chordActive = false;
+      }, 4200);
+    }
+  });
+
+  resize();
+})();
+</script>
+</body>
+</html>

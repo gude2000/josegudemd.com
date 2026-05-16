@@ -54,10 +54,10 @@ or strike if not interesting.
       ~10-second loops, same instrument, same notes (E–G♯–C). One tuned
       to equal temperament, one to exact phi ratios (164.81 / 209.64 /
       266.67). Caption: "the difference is small and not small."
-- [ ] **40 Hz gamma binaural-beat demo.** Per the Iaccarino paper on
-      gamma entrainment / Alzheimer's. 30 seconds of binaural beats at
-      40 Hz, headphones required. Caption with appropriate disclaimer
-      (not therapeutic; demonstrative only).
+- [x] **40 Hz gamma binaural-beat demo.** Shipped: new `t10` card on
+      `tunings.html`, 200 Hz / 240 Hz panned hard L/R, perceived 40 Hz
+      difference. Caption cites Iaccarino 2016 / Martorell 2019 and links
+      to the Bioelectromagnetism subsection in `reading.html`.
 - [ ] **Schumann-resonance hum (~7.83 Hz fundamental).** Audio rendering
       of Earth's electromagnetic fundamental, brought up into audible
       range (e.g., × 50). Caption links to Schumann's 1952 paper in
@@ -70,10 +70,11 @@ or strike if not interesting.
       of the sub-threshold signal Sable carries. Could be the chord
       compressed into a single sustained drone with a quiet harmonic
       pulse beneath.
-- [ ] **José's journal — the fractal triangle scan.** A static illustrated
-      page (or an interactive SVG that traces the 34.38° / 55.62° / 90°
-      triangle whose angles match the chord's interval ratios). Could
-      live next to the Webb fractal.
+- [x] **José's journal — the fractal triangle.** Shipped: interactive SVG
+      at `assets/webb-triangle.html` with nested φ-similar triangles, angle
+      markers, vertex-labels (90° · 55.62° · 34.38° → C / G♯ / E), per-note
+      click-to-play, and a "play full chord" button. Embedded on
+      `reading.html` as the second iframe right after the Webb fractal.
 - [ ] **Spanish narration of the Aquinas Latin epigraph.** *Amor est velle
       alicui bonum* — short voice clip. Pairs with the existing Latin
       epigraph on the *Anima* page.
