@@ -158,10 +158,11 @@ When the books go live on the respective platforms, replace the
 href="#" with real Amazon URL when book is live -->` comment above the
 Amazon button (line ~37 of each).
 
-- [ ] `anima.html`         — Amazon URL · Bookshop URL · Edición española URL
-- [ ] `numen.html`         — Amazon URL · Bookshop URL · Edición española URL
-- [ ] `limen.html`         — Amazon URL · Bookshop URL · Edición española URL
-- [ ] `fragile-light.html` — Amazon URL · Bookshop URL · Edición española URL
+- [x] `anima.html`         — Amazon `B0H1WDCLQ1` wired · Bookshop pending · ES-edition pending
+- [x] `numen.html`         — Amazon `B0GY67WLDX` wired · Bookshop pending · ES-edition pending
+- [x] `limen.html`         — Amazon `B0GZYDPY6X` wired · Bookshop pending · ES-edition pending
+- [x] `fragile-light.html` — Amazon `B0GZ7Q6ZZG` wired · Bookshop pending · ES-edition pending
+- [ ] `es/*.html` Spanish-edition Amazon URLs — pending separate ASINs for ES editions
 
 ---
 
