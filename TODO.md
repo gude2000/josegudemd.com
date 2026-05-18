@@ -96,11 +96,14 @@ or strike if not interesting.
       falling back to any installed Italian voice, then to default).
       Earlier `aquinas.mp3` and the two 0-byte gTTS placeholders in
       `assets/audio/` are still on disk; safe to `git rm` whenever.
-- [ ] **Reader audio — chapter-opening excerpts.** Short voice readings
-      (yours or a narrator's) of the first 1–2 paragraphs of selected
-      chapters: *Anima* I ("The Pause"), *Numen* I ("The Living Room"),
-      *Limen* "An Opening Note," *Fragile Light* I ("Light in the Lab").
-      Useful for social sharing and as a sample for prospective readers.
+- [x] **Reader audio — chapter-opening excerpts → became avatar reading
+      videos.** Shipped instead as short avatar-performed reading videos
+      (~40–45 s, 720×1280, H.264). 4 books × 2 languages = 8 videos:
+      `assets/video/{anima,numen,limen,fragile-light}-reading.mp4` +
+      `-es.mp4` siblings, each with a poster frame. Embedded on every
+      book page between the epigraph block and the synopsis. The Spanish
+      pages now point to native Spanish reading videos (no "en inglés"
+      caveat). Tier 2 complete.
 - [x] **Epigraph audios — Tier 1 (English / original-language readings).**
       Shipped four book-page audio players, all author-read in English /
       Latin:
