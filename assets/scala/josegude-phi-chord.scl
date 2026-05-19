@@ -1,0 +1,26 @@
+! josegude-phi-chord.scl
+!
+! The Field Trilogy phi-tuned augmented chord. E / G# / C at exact phi
+! ratios; the other 9 chromatic notes at 12-TET. Octave = 2:1, so the
+! sequence C1 -> C2 -> C3 -> C4 -> C5 behaves as expected (each C is
+! exactly double the C below). Set base frequency to 266.67 Hz at MIDI
+! note 60 (C4) to match the trilogy's anchor. With that setting:
+!   E3  = 164.81 Hz
+!   G#3 = 209.64 Hz
+!   C4  = 266.67 Hz
+!
+Phi-tuned E/G#/C augmented chord (Field Trilogy)
+ 12
+!
+ 100.00000
+ 200.00000
+ 300.00000
+ 366.89641
+ 500.00000
+ 600.00000
+ 700.00000
+ 783.47525
+ 900.00000
+ 1000.00000
+ 1100.00000
+ 2/1
