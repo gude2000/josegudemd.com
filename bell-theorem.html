@@ -63,6 +63,29 @@
 </section>
 
 <section>
+  <h2>The argument in plain language</h2>
+  <p>Before the equations, here is what Bell actually shows. Imagine two boxes &mdash; one for Alice, one for Bob &mdash; far apart, connected only by a source in the middle that releases pairs of particles, one to each box. Each box has a dial with three settings (call them 1, 2, 3) and a light bulb that flashes either red or green when a button is pressed. Alice and Bob each randomly choose a setting, press the button, and write down what colour their bulb shows. They do this thousands of times, then compare notes.</p>
+  <p>Two patterns stand out in the data:</p>
+  <ol style="line-height:1.7;">
+    <li>Whenever Alice and Bob happen to pick the <em>same</em> dial setting (both 1, both 2, or both 3), their lights <strong>always match</strong>. Both red, or both green, every single time.</li>
+    <li>Whenever they pick <em>different</em> settings, their lights match only about <strong>25%</strong> of the time.</li>
+  </ol>
+  <p>Now ask the question Einstein wanted answered: what could possibly be inside the particles to produce this pattern?</p>
+  <p>The intuitive answer &mdash; the answer Einstein insisted had to be right &mdash; is that each particle carries a kind of hidden instruction sheet from the source. Something like: <em>"If your dial is set to 1, flash red; if 2, flash red; if 3, flash green."</em> The particles are emitted in matched pairs, so whenever the two dials agree the bulbs agree. Different particle pairs come pre-stamped with different sheets, and the apparent randomness is just our ignorance of which sheet was issued. This is what physicists call a <em>local hidden-variable theory</em>: the result at each box is fixed by something the particle was already carrying when it left the source.</p>
+  <p>Here is where Bell broke the world. With three dial settings and two possible colours per setting, there are only <strong>eight possible instruction sheets</strong>: RRR, RRG, RGR, RGG, GRR, GRG, GGR, GGG. You can check by hand &mdash; this is high-school arithmetic, not advanced mathematics &mdash; that for <em>any</em> distribution of those eight sheets you choose, the rate at which the bulbs match when the dials are different is <strong>always at least 1/3</strong> (about 33.3%).</p>
+  <p>But the experimental rate is <strong>1/4</strong> (25%). <em>Lower</em> than any combination of hidden instructions can produce.</p>
+  <p>That is the inequality, and that is the violation. It is not a small discrepancy, not a measurement error, not a missing variable we have yet to find. It is a <em>mathematical impossibility</em> that the particles were carrying pre-arranged instructions of any kind. The numbers cannot be made to fit.</p>
+  <p>And if the particles are not carrying instructions, then something else must be happening. Either:</p>
+  <ul style="line-height:1.7;">
+    <li><strong>(a)</strong> The particles genuinely <em>do not have</em> a colour until measured. There is no fact of the matter about what they would have shown for any setting other than the one Alice or Bob chose. Reality, in the sense of definite properties existing before observation, is not what we thought it was.</li>
+    <li><strong>(b)</strong> The particles do have hidden states, but Alice's choice of dial is somehow influencing Bob's bulb across whatever distance separates them &mdash; faster than light, instantaneously, without any signal we can intercept or use. Locality, in the sense Einstein required, is not what we thought it was.</li>
+  </ul>
+  <p>There is no third option that survives careful scrutiny. (A few exotic loopholes &mdash; superdeterminism, retrocausality &mdash; remain technically open, but each pays a price most physicists find higher than just abandoning locality or realism.) This is Bell's verdict, and it has been confirmed in every experiment since Clauser and Freedman in 1972, with each generation of experiment closing another loophole, until the Aspect / Clauser / Zeilinger work that won the 2022 Nobel Prize closed essentially all of them.</p>
+  <p>What it means is plain, and rarely stated plainly. <em>One of two things you probably never questioned about how the world works &mdash; that things have properties whether or not anyone is looking, or that nothing affects anything else instantly across distance &mdash; is provably wrong.</em> Not "approximately right at large scales." Wrong. The universe is provably one or the other. Most people, hearing this for the first time, assume they must have misunderstood. They haven't. Bell genuinely cuts the floor out from under the picture of reality you were taught in school. The fact that physics has known this for sixty years and lived with it as if nothing had happened is itself a story worth telling.</p>
+  <p>The rest of this page restates the same conclusion in the technical vocabulary the literature uses &mdash; <em>local realism</em>, <em>hidden variables</em>, <em>CHSH inequality</em> &mdash; and walks through what the Nobel-winning experiments actually measured. But the picture above is the heart of it. Keep it in view as you read the equations.</p>
+</section>
+
+<section>
   <h2>What Bell's theorem assumes</h2>
   <p>Bell starts from two technical assumptions — <em>local realism</em> and <em>hidden variables</em> — and shows they have testable consequences.</p>
   <ul>
