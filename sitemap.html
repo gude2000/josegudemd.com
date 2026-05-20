@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Open Graph / social share -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="José Gude MD">
+  <meta property="og:title" content="Site map · José Gude MD · The Field Trilogy">
+  <meta property="og:description" content="The full architecture of josegudemd.com at a glance — books, reading clusters, the Synthesis essay's thirteen sections, the Watch & Listen audio cards, the Explore interactive pages, and the synthesis utilities (Start Here, Glossary, Timeline, Reality Check).">
+  <meta property="og:url" content="https://josegudemd.com/sitemap.html">
+  <meta property="og:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Site map · José Gude MD · The Field Trilogy">
+  <meta name="twitter:description" content="The full architecture of josegudemd.com at a glance.">
+  <meta name="twitter:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <link rel="canonical" href="https://josegudemd.com/sitemap.html">
+  <title>Site map &mdash; José Gude MD</title>
+  <meta name="description" content="The full architecture of josegudemd.com at a glance — books, reading clusters, the Synthesis essay, the Watch & Listen audio cards, the Explore interactive pages, and the synthesis utilities.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .sm-tree { width:100%;max-width:980px;height:auto;margin:24px auto 36px;display:block; }
+    .sm-grid { display:grid; grid-template-columns:1fr; gap:22px; margin:24px 0 36px; }
+    @media (min-width: 760px) { .sm-grid { grid-template-columns:1fr 1fr; } }
+    @media (min-width: 1020px) { .sm-grid.three { grid-template-columns:1fr 1fr 1fr; } }
+    .sm-card {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sm-card .tag {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .sm-card h3 {
+      font-size: 17px;
+      color: var(--cream);
+      margin: 0;
+    }
+    .sm-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 6px 0 0;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .sm-card ul li { padding: 1px 0; }
+    .sm-card ul li::before {
+      content: "›";
+      color: var(--cream-dim);
+      margin-right: 8px;
+      opacity: 0.65;
+    }
+    .sm-card .sub {
+      color: var(--cream-dim);
+      font-size: 13px;
+      font-style: italic;
+      margin: 4px 0 0;
+    }
+    .sm-card .narrow-list { columns: 2; column-gap: 18px; }
+    @media (max-width: 600px) { .sm-card .narrow-list { columns: 1; } }
+    .sm-section-eyebrow {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 36px 0 4px;
+    }
+    .sm-section-eyebrow .count {
+      color: var(--cream-mute);
+      opacity: 0.65;
+      margin-left: 8px;
+      font-size: 10px;
+    }
+    .sm-flat-list {
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .sm-flat-list a { margin-right: 6px; }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Books</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="watch.html">Watch &amp; Listen</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="the-evidence.html">Synthesis</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><span style="color:var(--gold);">EN</span> <span style="opacity:0.4;">|</span> <a href="es/sitemap.html">ES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero container">
+  <p class="eyebrow">Site map</p>
+  <h1>The whole site, at a glance.</h1>
+  <p class="lede">Every page on josegudemd.com, organized by where it lives in the architecture — books, reading clusters, the Synthesis essay's thirteen sections, the Watch &amp; Listen cards, the Explore interactives, and the synthesis utilities.</p>
+  <p class="dim">68 pages in English · 62 in Spanish · one EN/ES toggle on every page · all roads lead back to <a href="the-evidence.html" style="color:var(--gold);">the Synthesis</a>.</p>
+</section>
+
+<section class="container">
+
+<!-- =========================================================== -->
+<!-- MASTER TREE SVG ============================================ -->
+<!-- =========================================================== -->
+<svg class="sm-tree" viewBox="0 0 980 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="sm-title sm-desc">
+  <title id="sm-title">josegudemd.com — master navigation tree</title>
+  <desc id="sm-desc">Tree showing how the home page branches into the seven nav destinations and how each of those expands into hubs and leaf pages.</desc>
+
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" fill="#8a8a8a"/>
+    </marker>
+    <style>
+      .smbox { fill: var(--bg-card, #1c1a14); stroke: var(--rule, #4a4435); stroke-width: 1.2; rx: 6; ry: 6; }
+      .smhome { fill: rgba(201,169,97,0.18); stroke: var(--gold, #c9a961); stroke-width: 1.6; }
+      .smnav  { fill: var(--bg-card, #1c1a14); stroke: var(--gold, #c9a961); }
+      .smhub  { fill: rgba(201,169,97,0.10); stroke: #b89651; }
+      .smleaf { fill: var(--bg-card, #1c1a14); stroke: var(--rule, #4a4435); }
+      .smacc  { fill: rgba(111,156,146,0.12); stroke: #6f9c92; }
+      .label  { font-size: 13px; fill: var(--cream, #ede4cc); font-weight: 500; font-family: var(--sans, system-ui); }
+      .label-sm { font-size: 11px; fill: var(--cream, #ede4cc); font-family: var(--sans, system-ui); }
+      .sub    { font-size: 10px; fill: var(--cream-dim, #968d76); font-family: var(--sans, system-ui); }
+      .tier   { font-size: 10px; fill: var(--cream-dim, #968d76); letter-spacing: 0.14em; text-transform: uppercase; font-family: var(--sans, system-ui); }
+      .edge   { stroke: #8a8a8a; stroke-width: 1; fill: none; }
+      .edge-soft { stroke: #6a6a6a; stroke-width: 0.9; fill: none; stroke-dasharray: 3 3; }
+    </style>
+  </defs>
+
+  <text x="490" y="22" text-anchor="middle" class="tier">josegudemd.com</text>
+
+  <!-- HOME -->
+  <rect class="smbox smhome" x="400" y="40" width="180" height="48"/>
+  <text x="490" y="62" text-anchor="middle" class="label" font-weight="600">index.html</text>
+  <text x="490" y="78" text-anchor="middle" class="sub">Home · "Fiction at the edge of the Consciousness Field"</text>
+
+  <path class="edge" d="M490,88 L490,112" marker-end="url(#arr)"/>
+  <text x="490" y="128" text-anchor="middle" class="tier">main nav · present on every page</text>
+
+  <!-- NAV BAND -->
+  <rect class="smbox smnav" x="32"  y="140" width="120" height="40"/><text x="92"  y="165" text-anchor="middle" class="label">Books</text>
+  <rect class="smbox smnav" x="166" y="140" width="120" height="40"/><text x="226" y="165" text-anchor="middle" class="label">Reading</text>
+  <rect class="smbox smnav" x="300" y="140" width="120" height="40"/><text x="360" y="165" text-anchor="middle" class="label">Watch &amp; Listen</text>
+  <rect class="smbox smnav" x="434" y="140" width="120" height="40"/><text x="494" y="165" text-anchor="middle" class="label">Explore</text>
+  <rect class="smbox smnav" x="568" y="140" width="120" height="40"/><text x="628" y="165" text-anchor="middle" class="label">Synthesis</text>
+  <rect class="smbox smnav" x="702" y="140" width="120" height="40"/><text x="762" y="165" text-anchor="middle" class="label">About</text>
+  <rect class="smbox smnav" x="836" y="140" width="112" height="40"/><text x="892" y="165" text-anchor="middle" class="label">Search</text>
+
+  <path class="edge" d="M92,180 L92,210"  marker-end="url(#arr)"/>
+  <path class="edge" d="M226,180 L226,210" marker-end="url(#arr)"/>
+  <path class="edge" d="M360,180 L360,210" marker-end="url(#arr)"/>
+  <path class="edge" d="M494,180 L494,210" marker-end="url(#arr)"/>
+  <path class="edge" d="M628,180 L628,210" marker-end="url(#arr)"/>
+  <path class="edge" d="M762,180 L762,210" marker-end="url(#arr)"/>
+  <path class="edge" d="M892,180 L892,210" marker-end="url(#arr)"/>
+
+  <!-- HUB ROW -->
+  <rect class="smbox smhub" x="32"  y="210" width="120" height="44"/><text x="92"  y="231" text-anchor="middle" class="label-sm" font-weight="600">field-trilogy</text><text x="92" y="247" text-anchor="middle" class="sub">series + 4 novels</text>
+  <rect class="smbox smleaf" x="166" y="210" width="120" height="44"/><text x="226" y="231" text-anchor="middle" class="label-sm">reading</text><text x="226" y="247" text-anchor="middle" class="sub">10 topic clusters</text>
+  <rect class="smbox smhub" x="300" y="210" width="120" height="44"/><text x="360" y="231" text-anchor="middle" class="label-sm" font-weight="600">watch · tunings</text><text x="360" y="247" text-anchor="middle" class="sub">videos + audio cards</text>
+  <rect class="smbox smhub" x="434" y="210" width="120" height="44"/><text x="494" y="231" text-anchor="middle" class="label-sm" font-weight="600">explore</text><text x="494" y="247" text-anchor="middle" class="sub">4 interactives</text>
+  <rect class="smbox smhub" x="568" y="210" width="120" height="44"/><text x="628" y="231" text-anchor="middle" class="label-sm" font-weight="600">the-evidence</text><text x="628" y="247" text-anchor="middle" class="sub">13 sections + utils</text>
+  <rect class="smbox smleaf" x="702" y="210" width="120" height="44"/><text x="762" y="231" text-anchor="middle" class="label-sm">about</text><text x="762" y="247" text-anchor="middle" class="sub">+ process-notes</text>
+  <rect class="smbox smleaf" x="836" y="210" width="112" height="44"/><text x="892" y="231" text-anchor="middle" class="label-sm">search</text><text x="892" y="247" text-anchor="middle" class="sub">full-text</text>
+
+  <!-- arrows down -->
+  <path class="edge" d="M92,254 L92,286"  marker-end="url(#arr)"/>
+  <path class="edge" d="M360,254 L360,286" marker-end="url(#arr)"/>
+  <path class="edge" d="M494,254 L494,286" marker-end="url(#arr)"/>
+  <path class="edge" d="M628,254 L628,286" marker-end="url(#arr)"/>
+
+  <!-- BOOKS column -->
+  <rect class="smbox smleaf" x="32" y="286" width="120" height="30"/><text x="92" y="305" text-anchor="middle" class="label-sm">anima</text>
+  <rect class="smbox smleaf" x="32" y="320" width="120" height="30"/><text x="92" y="339" text-anchor="middle" class="label-sm">numen</text>
+  <rect class="smbox smleaf" x="32" y="354" width="120" height="30"/><text x="92" y="373" text-anchor="middle" class="label-sm">limen</text>
+  <rect class="smbox smleaf" x="32" y="388" width="120" height="30"/><text x="92" y="407" text-anchor="middle" class="label-sm">fragile-light</text>
+  <text x="92" y="436" text-anchor="middle" class="sub">+ themes pages, Amazon/Bookshop</text>
+
+  <!-- WATCH column -->
+  <rect class="smbox smleaf" x="300" y="286" width="120" height="30"/><text x="360" y="305" text-anchor="middle" class="label-sm">tunings.html</text>
+  <rect class="smbox smleaf" x="300" y="320" width="120" height="30"/><text x="360" y="339" text-anchor="middle" class="sub">26 audio cards</text>
+  <rect class="smbox smleaf" x="300" y="354" width="120" height="30"/><text x="360" y="373" text-anchor="middle" class="sub">3 .scl files</text>
+  <rect class="smbox smleaf" x="300" y="388" width="120" height="30"/><text x="360" y="407" text-anchor="middle" class="sub">10 book videos</text>
+
+  <!-- EXPLORE column -->
+  <rect class="smbox smacc" x="434" y="286" width="120" height="30"/><text x="494" y="305" text-anchor="middle" class="label-sm">golden-ratio</text>
+  <rect class="smbox smacc" x="434" y="320" width="120" height="30"/><text x="494" y="339" text-anchor="middle" class="label-sm">tunings (audio)</text>
+  <rect class="smbox smacc" x="434" y="354" width="120" height="30"/><text x="494" y="373" text-anchor="middle" class="label-sm">timeline</text>
+  <rect class="smbox smacc" x="434" y="388" width="120" height="30"/><text x="494" y="407" text-anchor="middle" class="label-sm">Webb fractal</text>
+  <text x="494" y="436" text-anchor="middle" class="sub">interactive widgets</text>
+
+  <!-- SYNTHESIS column -->
+  <rect class="smbox smleaf" x="568" y="286" width="120" height="30"/><text x="628" y="305" text-anchor="middle" class="label-sm">start-here</text>
+  <rect class="smbox smleaf" x="568" y="320" width="120" height="30"/><text x="628" y="339" text-anchor="middle" class="label-sm">reality-check</text>
+  <rect class="smbox smleaf" x="568" y="354" width="120" height="30"/><text x="628" y="373" text-anchor="middle" class="label-sm">glossary</text>
+  <rect class="smbox smleaf" x="568" y="388" width="120" height="30"/><text x="628" y="407" text-anchor="middle" class="label-sm">timeline</text>
+  <text x="628" y="436" text-anchor="middle" class="sub">+ PDF / EPUB pamphlet</text>
+
+  <!-- Reading clusters cluster band -->
+  <rect class="smbox smleaf" x="166" y="286" width="120" height="132"/>
+  <text x="226" y="305" text-anchor="middle" class="label-sm" font-weight="600">reading clusters</text>
+  <text x="226" y="324" text-anchor="middle" class="sub">10 topic groups</text>
+  <text x="226" y="342" text-anchor="middle" class="sub">~42 essay leaves</text>
+  <text x="226" y="360" text-anchor="middle" class="sub">physics · biology ·</text>
+  <text x="226" y="378" text-anchor="middle" class="sub">consciousness ·</text>
+  <text x="226" y="396" text-anchor="middle" class="sub">mystics · field ·</text>
+  <text x="226" y="412" text-anchor="middle" class="sub">simulation · ethics</text>
+
+  <!-- glitches + simulation companions feeding back to synthesis -->
+  <path class="edge-soft" d="M226,418 C 380,500 480,500 628,418"/>
+  <text x="490" y="490" text-anchor="middle" class="sub" font-style="italic">essay pages cross-link back to ↑ glossary · the-evidence · related essays</text>
+
+  <!-- ES mirror band -->
+  <rect class="smbox smleaf" x="40" y="555" width="900" height="50" stroke-dasharray="3 3"/>
+  <text x="490" y="578" text-anchor="middle" class="tier">/es/ — Spanish mirror</text>
+  <text x="490" y="596" text-anchor="middle" class="label-sm">same structure · same nav · EN ⇄ ES toggle on every page · ~62 parallel pages</text>
+
+  <!-- footer note -->
+  <text x="490" y="640" text-anchor="middle" class="sub">inbound-link weight: the-evidence (172) → index (142) → reading (141) → explore (132) → about (129)</text>
+  <text x="490" y="658" text-anchor="middle" class="sub" font-style="italic">solid arrows = primary navigation · dashed = cross-links from leaves back to hubs</text>
+
+  <!-- Legend -->
+  <g transform="translate(180,680)">
+    <rect class="smbox smhome" x="0" y="0" width="14" height="14"/><text x="22" y="11" class="sub">home</text>
+    <rect class="smbox smnav"  x="76" y="0" width="14" height="14"/><text x="98" y="11" class="sub">main nav</text>
+    <rect class="smbox smhub"  x="172" y="0" width="14" height="14"/><text x="194" y="11" class="sub">hub page</text>
+    <rect class="smbox smacc"  x="266" y="0" width="14" height="14"/><text x="288" y="11" class="sub">interactive</text>
+    <rect class="smbox smleaf" x="362" y="0" width="14" height="14"/><text x="384" y="11" class="sub">leaf page</text>
+  </g>
+</svg>
+
+</section>
+
+<span class="rule-short"></span>
+
+<!-- =========================================================== -->
+<!-- BOOKS BRANCH ============================================== -->
+<!-- =========================================================== -->
+<section class="container">
+  <p class="sm-section-eyebrow">Books branch <span class="count">10 pages · 4 novels + themes + series page</span></p>
+  <h2>Books → <a href="field-trilogy.html" style="color:var(--gold);">the series page</a> → the four novels</h2>
+  <div class="sm-grid">
+    <div class="sm-card">
+      <span class="tag">The Field Trilogy</span>
+      <h3>Anima · Numen · Limen</h3>
+      <ul>
+        <li><a href="anima.html">Anima</a> &middot; <a href="anima-themes.html">themes</a></li>
+        <li><a href="numen.html">Numen</a> &middot; <a href="numen-themes.html">themes</a></li>
+        <li><a href="limen.html">Limen</a> &middot; <a href="limen-themes.html">themes</a></li>
+      </ul>
+      <p class="sub">Each novel page carries an avatar reading video, cover art, Amazon + Bookshop buttons, an OG social-share card, and the chapter outline. The themes page is the literary-analysis companion to each.</p>
+    </div>
+    <div class="sm-card">
+      <span class="tag">Standalone</span>
+      <h3>Fragile Light</h3>
+      <ul>
+        <li><a href="fragile-light.html">Fragile Light</a> &middot; <a href="fragile-light-themes.html">themes</a></li>
+      </ul>
+      <p class="sub">An alien-contact novel that sits beside the trilogy. Shares the consciousness-field substrate but tells its own story — Lía Reyes, the entanglement signal, the question of whether mirroring is contact or construction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== -->
+<!-- READING CLUSTERS ========================================== -->
+<!-- =========================================================== -->
+<section class="container">
+  <p class="sm-section-eyebrow">Reading branch <span class="count">~42 essay leaves · 10 topic clusters</span></p>
+  <h2><a href="reading.html" style="color:var(--gold);">Reading</a> → ten topic clusters → individual companion essays</h2>
+  <p class="dim">Each essay leaf is a single companion page on one scientist, study, experiment, or concept. The cluster headings come straight from <code>reading.html</code>.</p>
+
+  <div class="sm-grid">
+    <div class="sm-card">
+      <span class="tag">Cluster 01</span>
+      <h3>Reader companions — integrative essays</h3>
+      <ul>
+        <li><a href="glitches-in-reality.html">Glitches in reality</a></li>
+        <li><a href="simulation-hypothesis.html">Simulation hypothesis</a></li>
+        <li><a href="the-wave-function.html">What does the wave wave on?</a></li>
+      </ul>
+    </div>
+
+    <div class="sm-card">
+      <span class="tag">Cluster 02</span>
+      <h3>Quantum foundations &amp; nonlocality</h3>
+      <ul class="narrow-list">
+        <li><a href="bell-theorem.html">Bell theorem</a></li>
+        <li><a href="aspect-1982.html">Aspect 1982</a></li>
+        <li><a href="planck-scale.html">Planck scale</a></li>
+        <li><a href="bekenstein-bound.html">Bekenstein bound</a></li>
+        <li><a href="tsvf.html">Two-state vector</a></li>
+        <li><a href="amplituhedron.html">Amplituhedron</a></li>
+        <li><a href="wheeler-delayed-choice.html">Wheeler delayed-choice</a></li>
+        <li><a href="manning-2015-atom.html">Manning 2015 atom</a></li>
+      </ul>
+    </div>
+
+    <div class="sm-card">
+      <span class="tag">Cluster 03</span>
+      <h3>Hard problem &amp; consciousness theory</h3>
+      <ul>
+        <li><a href="dariano-faggin.html">D'Ariano &amp; Faggin</a></li>
+        <li><a href="stromme-phi-field.html">Strømme · phi-field cosmology</a></li>
+        <li><a href="chalmers-hard-problem.html">Chalmers · hard problem</a></li>
+        <li><a href="crick-koch-ncc.html">Crick &amp; Koch · NCC</a></li>
+        <li><a href="hoffman-interface.html">Hoffman · interface theory</a></li>
+        <li><a href="chalmers-hard-problem.html">Chalmers · hard problem</a></li>
+      </ul>
+    </div>
+
+    <div class="sm-card">
+      <span class="tag">Cluster 04</span>
+      <h3>The Field hypothesis — consciousness as reception</h3>
+      <ul>
+        <li><a href="bandyopadhyay-microtubules.html">Bandyopadhyay · microtubules</a></li>
+        <li><a href="quantum-biology.html">Quantum biology</a></li>
+        <li><a href="bohm-implicate-order.html">Bohm · implicate order</a></li>
+        <li><a href="pribram-holonomic-brain.html">Pribram · holonomic brain</a></li>
+        <li><a href="stapp-mind-matter.html">Stapp · mind &amp; matter</a></li>
+        <li><a href="carhart-harris-entropic-brain.html">Carhart-Harris · entropic brain</a></li>
+      </ul>
+    </div>
+
+    <div class="sm-card">
+      <span class="tag">Cluster 05</span>
+      <h3>Anomalous evidence</h3>
+      <ul>
+        <li><a href="terminal-lucidity.html">Terminal lucidity</a></li>
+        <li><a href="treffert-savant.html">Treffert · acquired savant</a></li>
+        <li><a href="ez-water.html">EZ water (Pollack)</a></li>
+        <li><a href="ez-water-fascia.html">EZ water · fascia</a></li>
+        <li><a href="ez-water-memory.html">EZ water · memory</a></li>
+        <li><a href="pollack-ez-water.html">Pollack · EZ water</a></li>
+        <li><a href="pollack-ez-agents.html">Pollack · EZ agents</a></li>
+      </ul>
+    </div>
+
+    <div class="sm-card">
+      <span class="tag">Cluster 06</span>
+      <h3>Brain, attention, bioelectricity</h3>
+      <ul>
+        <li><a href="levin-bioelectricity.html">Levin · bioelectricity</a></li>
+        <li><a href="libet-readiness-potential.html">Libet · readiness potential</a></li>
+        <li><a href="schurger-accumulator.html">Schurger · accumulator</a></li>
+        <li><a href="teresa-avila.html">Teresa of Ávila · mystic</a></li>
+      </ul>
+    </div>
+
+    <div class="sm-card">
+      <span class="tag">Cluster 07</span>
+      <h3>Frequency, music, and the body</h3>
+      <ul>
+        <li><a href="oster-binaural-beats.html">Oster · binaural beats</a></li>
+        <li><a href="singing-and-the-body.html">Singing and the body</a></li>
+        <li><a href="good-russo-singing.html">Good &amp; Russo · singing</a></li>
+        <li><a href="frequencies-in-your-body.html">Frequencies in your body</a></li>
+        <li><a href="chladni.html">Chladni patterns</a></li>
+        <li><a href="phi-tuned-c.html">The φ-tuned C explainer</a></li>
+        <li><a href="golden-ratio.html">Golden ratio</a></li>
+      </ul>
+    </div>
+
+    <div class="sm-card">
+      <span class="tag">Cluster 08</span>
+      <h3>Bioelectromagnetism &amp; the body in signal</h3>
+      <ul>
+        <li><a href="schumann-resonance.html">Schumann resonance</a></li>
+      </ul>
+      <p class="sub">A small cluster, but Schumann sits at the centre of the trilogy's signal-substrate motif.</p>
+    </div>
+
+    <div class="sm-card">
+      <span class="tag">Cluster 09</span>
+      <h3>The mystics — phenomenological convergence</h3>
+      <ul>
+        <li><a href="teresa-avila.html">Teresa of Ávila</a></li>
+        <li><a href="kashmir-shaivism.html">Kashmir Shaivism</a></li>
+      </ul>
+    </div>
+
+    <div class="sm-card">
+      <span class="tag">Cluster 10</span>
+      <h3>Medicine &amp; the clinical encounter</h3>
+      <ul>
+        <li><a href="biocomputing-wetware.html">Biocomputing wetware</a></li>
+      </ul>
+      <p class="sub">A small cluster, but the medical voice runs through the whole site.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== -->
+<!-- WATCH & LISTEN ============================================ -->
+<!-- =========================================================== -->
+<section class="container">
+  <p class="sm-section-eyebrow">Watch &amp; Listen branch <span class="count">2 pages · ~36 cards · all media on one page each</span></p>
+  <h2><a href="watch.html" style="color:var(--gold);">Watch &amp; Listen</a> &middot; <a href="tunings.html" style="color:var(--gold);">Tunings</a> — every audio and video on the site</h2>
+  <div class="sm-grid">
+    <div class="sm-card">
+      <span class="tag">watch.html</span>
+      <h3>The book videos</h3>
+      <p class="sub">Avatar reading videos + author intro video. Two per novel where both exist (EN + ES). One author intro at the top.</p>
+      <ul>
+        <li>Author intro video (EN + ES)</li>
+        <li>Anima, Numen, Limen, Fragile Light — reading videos (EN + ES)</li>
+      </ul>
+    </div>
+    <div class="sm-card">
+      <span class="tag">tunings.html</span>
+      <h3>The audio cards</h3>
+      <p class="sub">Synthesized + recorded audio pieces, organized by chord-family and theme. Each card is its own listening experiment.</p>
+      <ul class="narrow-list">
+        <li>Phi-tuned chord pair (φ vs 12-TET)</li>
+        <li>José &amp; Alex's chord</li>
+        <li>Alex &amp; José theme (440 + φ)</li>
+        <li>Alex &amp; Alma in Seattle (440 + φ)</li>
+        <li>Sable's chord + Sable's <em>almost</em></li>
+        <li>Mystic Scriabin</li>
+        <li>Schumann hum</li>
+        <li>Phi drone + Phi-tave combos</li>
+        <li>3 downloadable .scl files</li>
+        <li>Aquinas Latin epigraph</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== -->
+<!-- EXPLORE — interactives ==================================== -->
+<!-- =========================================================== -->
+<section class="container">
+  <p class="sm-section-eyebrow">Explore branch <span class="count">4 interactive pages</span></p>
+  <h2><a href="explore.html" style="color:var(--gold);">Explore</a> — the interactive widgets</h2>
+  <div class="sm-grid">
+    <div class="sm-card">
+      <span class="tag">interactive</span>
+      <h3><a href="golden-ratio.html">The φ-spiral</a></h3>
+      <p class="sub">Snap-to-φ and Fibonacci-rectangle modes — the golden ratio made manipulable.</p>
+    </div>
+    <div class="sm-card">
+      <span class="tag">interactive</span>
+      <h3><a href="tunings.html">Tunings</a></h3>
+      <p class="sub">In-browser audio comparison between equal-temperament and the trilogy's φ-tuned chords.</p>
+    </div>
+    <div class="sm-card">
+      <span class="tag">interactive</span>
+      <h3><a href="timeline.html">The paradigm-shift timeline</a></h3>
+      <p class="sub">Three centuries of physics, consciousness science, and contemplative discovery on one scrollable axis.</p>
+    </div>
+    <div class="sm-card">
+      <span class="tag">interactive</span>
+      <h3><a href="assets/webb-fractal.html">The Webb fractal</a></h3>
+      <p class="sub">An interactive rendering of the Webb-triangle architecture the trilogy keeps returning to.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== -->
+<!-- SYNTHESIS — the-evidence's 13 sections ==================== -->
+<!-- =========================================================== -->
+<section class="container">
+  <p class="sm-section-eyebrow">Synthesis branch <span class="count">1 hub · 13 sections · 4 utility pages · PDF + EPUB pamphlet</span></p>
+  <h2><a href="the-evidence.html" style="color:var(--gold);">Synthesis</a> — the thirteen-section essay and its utility pages</h2>
+  <div class="sm-grid three">
+    <div class="sm-card">
+      <span class="tag">the-evidence.html</span>
+      <h3>The thirteen sections</h3>
+      <ul>
+        <li><a href="the-evidence.html#sec1">1. The question that production models cannot answer</a></li>
+        <li><a href="the-evidence.html#sec2">2. How we got here — the rise and crack of materialism</a></li>
+        <li><a href="the-evidence.html#sec3">3. Anomalies the production model cannot absorb</a></li>
+        <li><a href="the-evidence.html#sec4">4. Physics I — the world is not locally real</a></li>
+        <li><a href="the-evidence.html#sec5">5. Physics II — spacetime is not the bottom layer</a></li>
+        <li><a href="the-evidence.html#sec6">6. Physics III — the universe has a finite resolution</a></li>
+        <li><a href="the-evidence.html#sec7">7. Physics IV — retrocausality and unitarity</a></li>
+        <li><a href="the-evidence.html#sec8">8. Computation — the simulation argument matures</a></li>
+        <li><a href="the-evidence.html#sec9">9. The new ontology being constructed</a></li>
+        <li><a href="the-evidence.html#sec10">10. Biology — the body as antenna</a></li>
+        <li><a href="the-evidence.html#sec11">11. Where the trilogy stands</a></li>
+        <li><a href="the-evidence.html#sec12">12. Three paradigm shifts, one convergence</a></li>
+        <li><a href="the-evidence.html#sec13">13. The wager</a></li>
+      </ul>
+    </div>
+    <div class="sm-card">
+      <span class="tag">utility</span>
+      <h3>Reader's tools</h3>
+      <ul>
+        <li><a href="start-here.html">Start here</a> — the convergence trail</li>
+        <li><a href="glossary.html">Glossary</a> — every concept on the site</li>
+        <li><a href="timeline.html">Timeline</a> — paradigm shifts as scrollable map</li>
+        <li><a href="reality-check.html">Reality check</a> — three-tier plausibility framework</li>
+      </ul>
+      <p class="sub">Where the essay is the argument, these four pages are the reader's compass through it.</p>
+    </div>
+    <div class="sm-card">
+      <span class="tag">downloadable</span>
+      <h3>The pamphlet</h3>
+      <ul>
+        <li><a href="dist/field-trilogy-synthesis.pdf">PDF · 6×9 pamphlet (36 pp)</a></li>
+        <li><a href="dist/field-trilogy-synthesis.epub">EPUB · for e-readers</a></li>
+      </ul>
+      <p class="sub">The Synthesis essay typeset for offline reading, regenerated from <code>the-evidence.html</code> via the <code>build_synthesis_book.py</code> script.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== -->
+<!-- ABOUT / SEARCH / META ===================================== -->
+<!-- =========================================================== -->
+<section class="container">
+  <p class="sm-section-eyebrow">Meta &amp; supporting pages</p>
+  <h2>The site behind the site</h2>
+  <div class="sm-grid three">
+    <div class="sm-card">
+      <span class="tag">about</span>
+      <h3><a href="about.html">About</a></h3>
+      <ul>
+        <li><a href="about.html">About the author</a></li>
+        <li><a href="process-notes.html">Process notes</a></li>
+        <li><a href="praise.html">Praise</a></li>
+        <li><a href="changelog.html">Changelog</a></li>
+      </ul>
+    </div>
+    <div class="sm-card">
+      <span class="tag">search</span>
+      <h3><a href="search.html">Search</a></h3>
+      <p class="sub">Full-text client-side search across every page of the site, EN and ES indexed separately.</p>
+    </div>
+    <div class="sm-card">
+      <span class="tag">language</span>
+      <h3><a href="es/sitemap.html">Spanish mirror</a></h3>
+      <p class="sub">~62 pages of parallel ES content with the same structure and the same nav. EN ⇄ ES toggle lives in the header on every page so a reader can swap languages without losing their place.</p>
+    </div>
+  </div>
+</section>
+
+<span class="rule-short"></span>
+
+<section class="container" style="text-align:center;margin:1.2em 0 2em;">
+  <p class="dim">The architecture of josegudemd.com in one place. If a page exists, it is reachable from this map within two clicks. The Synthesis essay is the centre of gravity; everything else is either approach to it or commentary on it.</p>
+  <a href="index.html" class="read-more">← Back to the books</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Reader's tools:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Start here</a> &middot;
+      <a href="glossary.html">Glossary</a> &middot;
+      <a href="the-evidence.html">Synthesis</a> &middot;
+      <a href="explore.html">Explore</a> &middot;
+      <a href="sitemap.html">Site map</a> &middot;
+      <a href="search.html">Search</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
