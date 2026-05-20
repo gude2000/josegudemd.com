@@ -133,6 +133,10 @@
       .smhub  { fill: rgba(201,169,97,0.10); stroke: #b89651; }
       .smleaf { fill: var(--bg-card, #1c1a14); stroke: var(--rule, #4a4435); }
       .smacc  { fill: rgba(111,156,146,0.12); stroke: #6f9c92; }
+      a .smbox, a text { cursor: pointer; transition: stroke 0.15s ease, fill 0.15s ease, opacity 0.15s ease; }
+      a:hover .smbox  { stroke-width: 2; stroke: var(--gold, #c9a961); }
+      a:hover text    { fill: var(--gold, #c9a961); }
+      a, a:visited    { text-decoration: none; }
       .label  { font-size: 13px; fill: var(--cream, #ede4cc); font-weight: 500; font-family: var(--sans, system-ui); }
       .label-sm { font-size: 11px; fill: var(--cream, #ede4cc); font-family: var(--sans, system-ui); }
       .sub    { font-size: 10px; fill: var(--cream-dim, #968d76); font-family: var(--sans, system-ui); }
@@ -145,21 +149,23 @@
   <text x="490" y="22" text-anchor="middle" class="tier">josegudemd.com</text>
 
   <!-- HOME -->
-  <rect class="smbox smhome" x="310" y="40" width="360" height="52"/>
-  <text x="490" y="62" text-anchor="middle" class="label" font-weight="600">index.html</text>
-  <text x="490" y="80" text-anchor="middle" class="sub">Inicio · "Ficción al borde del Campo de la Conciencia"</text>
+  <a href="index.html">
+    <rect class="smbox smhome" x="310" y="40" width="360" height="52"/>
+    <text x="490" y="62" text-anchor="middle" class="label" font-weight="600">index.html</text>
+    <text x="490" y="80" text-anchor="middle" class="sub">Inicio · "Ficción al borde del Campo de la Conciencia"</text>
+  </a>
 
   <path class="edge" d="M490,92 L490,112" marker-end="url(#arr)"/>
   <text x="490" y="128" text-anchor="middle" class="tier">menú principal · presente en cada página</text>
 
   <!-- NAV BAND -->
-  <rect class="smbox smnav" x="32"  y="140" width="120" height="40"/><text x="92"  y="165" text-anchor="middle" class="label">Libros</text>
-  <rect class="smbox smnav" x="166" y="140" width="120" height="40"/><text x="226" y="165" text-anchor="middle" class="label">Lecturas</text>
-  <rect class="smbox smnav" x="300" y="140" width="120" height="40"/><text x="360" y="165" text-anchor="middle" class="label">Ver y Escuchar</text>
-  <rect class="smbox smnav" x="434" y="140" width="120" height="40"/><text x="494" y="165" text-anchor="middle" class="label">Explorar</text>
-  <rect class="smbox smnav" x="568" y="140" width="120" height="40"/><text x="628" y="165" text-anchor="middle" class="label">Síntesis</text>
-  <rect class="smbox smnav" x="702" y="140" width="120" height="40"/><text x="762" y="165" text-anchor="middle" class="label">Autor</text>
-  <rect class="smbox smnav" x="836" y="140" width="112" height="40"/><text x="892" y="165" text-anchor="middle" class="label">Buscar</text>
+  <a href="index.html"><rect class="smbox smnav" x="32"  y="140" width="120" height="40"/><text x="92"  y="165" text-anchor="middle" class="label">Libros</text></a>
+  <a href="reading.html"><rect class="smbox smnav" x="166" y="140" width="120" height="40"/><text x="226" y="165" text-anchor="middle" class="label">Lecturas</text></a>
+  <a href="watch.html"><rect class="smbox smnav" x="300" y="140" width="120" height="40"/><text x="360" y="165" text-anchor="middle" class="label">Ver y Escuchar</text></a>
+  <a href="explore.html"><rect class="smbox smnav" x="434" y="140" width="120" height="40"/><text x="494" y="165" text-anchor="middle" class="label">Explorar</text></a>
+  <a href="the-evidence.html"><rect class="smbox smnav" x="568" y="140" width="120" height="40"/><text x="628" y="165" text-anchor="middle" class="label">Síntesis</text></a>
+  <a href="about.html"><rect class="smbox smnav" x="702" y="140" width="120" height="40"/><text x="762" y="165" text-anchor="middle" class="label">Autor</text></a>
+  <a href="search.html"><rect class="smbox smnav" x="836" y="140" width="112" height="40"/><text x="892" y="165" text-anchor="middle" class="label">Buscar</text></a>
 
   <path class="edge" d="M92,180 L92,210"  marker-end="url(#arr)"/>
   <path class="edge" d="M226,180 L226,210" marker-end="url(#arr)"/>
@@ -170,13 +176,13 @@
   <path class="edge" d="M892,180 L892,210" marker-end="url(#arr)"/>
 
   <!-- HUB ROW -->
-  <rect class="smbox smhub" x="32"  y="210" width="120" height="44"/><text x="92"  y="231" text-anchor="middle" class="label-sm" font-weight="600">field-trilogy</text><text x="92" y="247" text-anchor="middle" class="sub">serie + 4 novelas</text>
-  <rect class="smbox smleaf" x="166" y="210" width="120" height="44"/><text x="226" y="231" text-anchor="middle" class="label-sm">reading</text><text x="226" y="247" text-anchor="middle" class="sub">10 grupos temáticos</text>
-  <rect class="smbox smhub" x="300" y="210" width="120" height="44"/><text x="360" y="231" text-anchor="middle" class="label-sm" font-weight="600">watch · tunings</text><text x="360" y="247" text-anchor="middle" class="sub">vídeo + audio</text>
-  <rect class="smbox smhub" x="434" y="210" width="120" height="44"/><text x="494" y="231" text-anchor="middle" class="label-sm" font-weight="600">explore</text><text x="494" y="247" text-anchor="middle" class="sub">4 interactivos</text>
-  <rect class="smbox smhub" x="568" y="210" width="120" height="44"/><text x="628" y="231" text-anchor="middle" class="label-sm" font-weight="600">the-evidence</text><text x="628" y="247" text-anchor="middle" class="sub">13 secciones + util.</text>
-  <rect class="smbox smleaf" x="702" y="210" width="120" height="44"/><text x="762" y="231" text-anchor="middle" class="label-sm">about</text><text x="762" y="247" text-anchor="middle" class="sub">+ notas, prensa</text>
-  <rect class="smbox smleaf" x="836" y="210" width="112" height="44"/><text x="892" y="231" text-anchor="middle" class="label-sm">search</text><text x="892" y="247" text-anchor="middle" class="sub">texto completo</text>
+  <a href="field-trilogy.html"><rect class="smbox smhub" x="32"  y="210" width="120" height="44"/><text x="92"  y="231" text-anchor="middle" class="label-sm" font-weight="600">field-trilogy</text><text x="92" y="247" text-anchor="middle" class="sub">serie + 4 novelas</text></a>
+  <a href="reading.html"><rect class="smbox smleaf" x="166" y="210" width="120" height="44"/><text x="226" y="231" text-anchor="middle" class="label-sm">reading</text><text x="226" y="247" text-anchor="middle" class="sub">10 grupos temáticos</text></a>
+  <a href="watch.html"><rect class="smbox smhub" x="300" y="210" width="120" height="44"/><text x="360" y="231" text-anchor="middle" class="label-sm" font-weight="600">watch · tunings</text><text x="360" y="247" text-anchor="middle" class="sub">vídeo + audio</text></a>
+  <a href="explore.html"><rect class="smbox smhub" x="434" y="210" width="120" height="44"/><text x="494" y="231" text-anchor="middle" class="label-sm" font-weight="600">explore</text><text x="494" y="247" text-anchor="middle" class="sub">4 interactivos</text></a>
+  <a href="the-evidence.html"><rect class="smbox smhub" x="568" y="210" width="120" height="44"/><text x="628" y="231" text-anchor="middle" class="label-sm" font-weight="600">the-evidence</text><text x="628" y="247" text-anchor="middle" class="sub">13 secciones + util.</text></a>
+  <a href="about.html"><rect class="smbox smleaf" x="702" y="210" width="120" height="44"/><text x="762" y="231" text-anchor="middle" class="label-sm">about</text><text x="762" y="247" text-anchor="middle" class="sub">+ notas, prensa</text></a>
+  <a href="search.html"><rect class="smbox smleaf" x="836" y="210" width="112" height="44"/><text x="892" y="231" text-anchor="middle" class="label-sm">search</text><text x="892" y="247" text-anchor="middle" class="sub">texto completo</text></a>
 
   <path class="edge" d="M92,254 L92,286"  marker-end="url(#arr)"/>
   <path class="edge" d="M360,254 L360,286" marker-end="url(#arr)"/>
@@ -184,41 +190,43 @@
   <path class="edge" d="M628,254 L628,286" marker-end="url(#arr)"/>
 
   <!-- BOOKS column -->
-  <rect class="smbox smleaf" x="32" y="286" width="120" height="30"/><text x="92" y="305" text-anchor="middle" class="label-sm">anima</text>
-  <rect class="smbox smleaf" x="32" y="320" width="120" height="30"/><text x="92" y="339" text-anchor="middle" class="label-sm">numen</text>
-  <rect class="smbox smleaf" x="32" y="354" width="120" height="30"/><text x="92" y="373" text-anchor="middle" class="label-sm">limen</text>
-  <rect class="smbox smleaf" x="32" y="388" width="120" height="30"/><text x="92" y="407" text-anchor="middle" class="label-sm">luz-frágil</text>
+  <a href="anima.html"><rect class="smbox smleaf" x="32" y="286" width="120" height="30"/><text x="92" y="305" text-anchor="middle" class="label-sm">anima</text></a>
+  <a href="numen.html"><rect class="smbox smleaf" x="32" y="320" width="120" height="30"/><text x="92" y="339" text-anchor="middle" class="label-sm">numen</text></a>
+  <a href="limen.html"><rect class="smbox smleaf" x="32" y="354" width="120" height="30"/><text x="92" y="373" text-anchor="middle" class="label-sm">limen</text></a>
+  <a href="fragile-light.html"><rect class="smbox smleaf" x="32" y="388" width="120" height="30"/><text x="92" y="407" text-anchor="middle" class="label-sm">luz-frágil</text></a>
   <text x="92" y="436" text-anchor="middle" class="sub">+ temas, Amazon/Bookshop</text>
 
   <!-- WATCH column -->
-  <rect class="smbox smleaf" x="300" y="286" width="120" height="30"/><text x="360" y="305" text-anchor="middle" class="label-sm">tunings.html</text>
-  <rect class="smbox smleaf" x="300" y="320" width="120" height="30"/><text x="360" y="339" text-anchor="middle" class="sub">26 tarjetas de audio</text>
-  <rect class="smbox smleaf" x="300" y="354" width="120" height="30"/><text x="360" y="373" text-anchor="middle" class="sub">3 archivos .scl</text>
-  <rect class="smbox smleaf" x="300" y="388" width="120" height="30"/><text x="360" y="407" text-anchor="middle" class="sub">10 vídeos del libro</text>
+  <a href="tunings.html"><rect class="smbox smleaf" x="300" y="286" width="120" height="30"/><text x="360" y="305" text-anchor="middle" class="label-sm">tunings.html</text></a>
+  <a href="tunings.html"><rect class="smbox smleaf" x="300" y="320" width="120" height="30"/><text x="360" y="339" text-anchor="middle" class="sub">26 tarjetas de audio</text></a>
+  <a href="tunings.html#scala-files"><rect class="smbox smleaf" x="300" y="354" width="120" height="30"/><text x="360" y="373" text-anchor="middle" class="sub">3 archivos .scl</text></a>
+  <a href="watch.html"><rect class="smbox smleaf" x="300" y="388" width="120" height="30"/><text x="360" y="407" text-anchor="middle" class="sub">10 vídeos del libro</text></a>
 
   <!-- EXPLORE column -->
-  <rect class="smbox smacc" x="434" y="286" width="120" height="30"/><text x="494" y="305" text-anchor="middle" class="label-sm">razón áurea</text>
-  <rect class="smbox smacc" x="434" y="320" width="120" height="30"/><text x="494" y="339" text-anchor="middle" class="label-sm">tunings (audio)</text>
-  <rect class="smbox smacc" x="434" y="354" width="120" height="30"/><text x="494" y="373" text-anchor="middle" class="label-sm">cronología</text>
-  <rect class="smbox smacc" x="434" y="388" width="120" height="30"/><text x="494" y="407" text-anchor="middle" class="label-sm">fractal Webb</text>
+  <a href="golden-ratio.html"><rect class="smbox smacc" x="434" y="286" width="120" height="30"/><text x="494" y="305" text-anchor="middle" class="label-sm">razón áurea</text></a>
+  <a href="tunings.html"><rect class="smbox smacc" x="434" y="320" width="120" height="30"/><text x="494" y="339" text-anchor="middle" class="label-sm">tunings (audio)</text></a>
+  <a href="timeline.html"><rect class="smbox smacc" x="434" y="354" width="120" height="30"/><text x="494" y="373" text-anchor="middle" class="label-sm">cronología</text></a>
+  <a href="../assets/webb-fractal-es.html"><rect class="smbox smacc" x="434" y="388" width="120" height="30"/><text x="494" y="407" text-anchor="middle" class="label-sm">fractal Webb</text></a>
   <text x="494" y="436" text-anchor="middle" class="sub">widgets interactivos</text>
 
   <!-- SYNTHESIS column -->
-  <rect class="smbox smleaf" x="568" y="286" width="120" height="30"/><text x="628" y="305" text-anchor="middle" class="label-sm">empieza-aquí</text>
-  <rect class="smbox smleaf" x="568" y="320" width="120" height="30"/><text x="628" y="339" text-anchor="middle" class="label-sm">verificación-realidad</text>
-  <rect class="smbox smleaf" x="568" y="354" width="120" height="30"/><text x="628" y="373" text-anchor="middle" class="label-sm">glosario</text>
-  <rect class="smbox smleaf" x="568" y="388" width="120" height="30"/><text x="628" y="407" text-anchor="middle" class="label-sm">cronología</text>
+  <a href="start-here.html"><rect class="smbox smleaf" x="568" y="286" width="120" height="30"/><text x="628" y="305" text-anchor="middle" class="label-sm">empieza-aquí</text></a>
+  <a href="reality-check.html"><rect class="smbox smleaf" x="568" y="320" width="120" height="30"/><text x="628" y="339" text-anchor="middle" class="label-sm">verificación-realidad</text></a>
+  <a href="glossary.html"><rect class="smbox smleaf" x="568" y="354" width="120" height="30"/><text x="628" y="373" text-anchor="middle" class="label-sm">glosario</text></a>
+  <a href="timeline.html"><rect class="smbox smleaf" x="568" y="388" width="120" height="30"/><text x="628" y="407" text-anchor="middle" class="label-sm">cronología</text></a>
   <text x="628" y="436" text-anchor="middle" class="sub">+ folleto PDF / EPUB</text>
 
   <!-- Reading clusters band -->
-  <rect class="smbox smleaf" x="166" y="286" width="120" height="132"/>
-  <text x="226" y="305" text-anchor="middle" class="label-sm" font-weight="600">grupos de lectura</text>
-  <text x="226" y="324" text-anchor="middle" class="sub">10 grupos temáticos</text>
-  <text x="226" y="342" text-anchor="middle" class="sub">~42 ensayos-hoja</text>
-  <text x="226" y="360" text-anchor="middle" class="sub">física · biología ·</text>
-  <text x="226" y="378" text-anchor="middle" class="sub">conciencia ·</text>
-  <text x="226" y="396" text-anchor="middle" class="sub">místicos · campo ·</text>
-  <text x="226" y="412" text-anchor="middle" class="sub">simulación · ética</text>
+  <a href="reading.html">
+    <rect class="smbox smleaf" x="166" y="286" width="120" height="132"/>
+    <text x="226" y="305" text-anchor="middle" class="label-sm" font-weight="600">grupos de lectura</text>
+    <text x="226" y="324" text-anchor="middle" class="sub">10 grupos temáticos</text>
+    <text x="226" y="342" text-anchor="middle" class="sub">~42 ensayos-hoja</text>
+    <text x="226" y="360" text-anchor="middle" class="sub">física · biología ·</text>
+    <text x="226" y="378" text-anchor="middle" class="sub">conciencia ·</text>
+    <text x="226" y="396" text-anchor="middle" class="sub">místicos · campo ·</text>
+    <text x="226" y="412" text-anchor="middle" class="sub">simulación · ética</text>
+  </a>
 
   <path class="edge-soft" d="M226,418 C 380,500 480,500 628,418"/>
   <text x="490" y="490" text-anchor="middle" class="sub" font-style="italic">los ensayos enlazan de vuelta a ↑ glosario · the-evidence · ensayos relacionados</text>
@@ -544,7 +552,7 @@
 <span class="rule-short"></span>
 
 <section class="container" style="margin:1.2em 0 2em;">
-  <div style="max-width:640px;margin:0 auto;">
+  <div style="max-width:580px;margin-left:160px;">
     <p class="dim" style="text-align:left;">La arquitectura de josegudemd.com en un solo lugar. Si una página existe, es alcanzable desde este mapa en dos clics. El ensayo de Síntesis es el centro de gravedad; todo lo demás es o aproximación a él o comentario sobre él.</p>
     <a href="index.html" class="read-more">← Volver a los libros</a>
   </div>
