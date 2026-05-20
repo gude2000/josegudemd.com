@@ -211,22 +211,38 @@
   <div class="tuning-card" style="border-color:var(--gold);flex-direction:column;align-items:stretch;text-align:left;">
     <div class="meta" style="margin-bottom:14px;">
       <h3>Afinación-φ frente a temperamento igual &mdash; el mismo acorde, dos reglas distintas</h3>
-      <div class="freq">A · 12-TET: mi 164,81 · sol♯ 207,65 · do 261,63 Hz &nbsp;&middot;&nbsp; B · afinado en φ: mi 164,81 · sol♯ 209,64 · do 266,67 Hz · ondas sinusoidales, envolvente idéntica, 10 s cada uno</div>
-      <div class="desc">Dos bucles de diez segundos con las mismas tres clases de altura &mdash; mi, sol♯, do &mdash; ancladas al mismo mi para que la comparación sea justa. El bucle A las sostiene en la pila exacta de terceras mayores del temperamento igual de 12 tonos (mi × 2<sup>4/12</sup>, mi × 2<sup>8/12</sup>). El bucle B las sostiene en la afinación-φ de la trilogía &mdash; las razones irracionales que construyen el <em>acorde de Sable</em> y el triángulo Webb. Las frecuencias difieren en unos 2 Hz en el sol♯ y 5 Hz en el do: pequeño, y no pequeño. Escucha dos veces con auriculares, luego con los altavoces de la sala, luego mientras lees otra cosa. El cuerpo capta la diferencia antes de que el oído sepa nombrarla. <em>La diferencia es pequeña y no pequeña.</em></div>
+      <div class="freq">grabado · piano · A · 12-TET: mi 164,81 · sol♯ 207,65 · do 261,63 Hz &nbsp;&middot;&nbsp; B · afinado en φ: mi 164,81 · sol♯ 209,64 · do 266,67 Hz · ~70 s cada uno</div>
+      <div class="desc">Dos tomas de piano con las mismas tres clases de altura &mdash; mi, sol♯, do &mdash; ancladas al mismo mi para que la comparación sea justa. La toma A las sostiene en la pila exacta de terceras mayores del temperamento igual de 12 tonos (mi × 2<sup>4/12</sup>, mi × 2<sup>8/12</sup>). La toma B las sostiene en la afinación-φ de la trilogía &mdash; las razones irracionales que construyen el <em>acorde de Sable</em> y el triángulo Webb. Las frecuencias difieren en unos 2 Hz en el sol♯ y 5 Hz en el do: pequeño, y no pequeño. Escucha dos veces con auriculares, luego con los altavoces de la sala, luego mientras lees otra cosa. El cuerpo capta la diferencia antes de que el oído sepa nombrarla. <em>La diferencia es pequeña y no pequeña.</em></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:520px;align-self:center;">
       <div>
         <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:4px;">A &middot; temperamento igual</div>
         <audio controls preload="none" style="width:100%;">
-          <source src="../assets/audio/phi-vs-et-et.mp3" type="audio/mpeg">
+          <source src="../assets/audio/phi-vs-et-et-v2.mp3" type="audio/mpeg">
         </audio>
       </div>
       <div>
         <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">B &middot; afinado en φ</div>
         <audio controls preload="none" style="width:100%;">
-          <source src="../assets/audio/phi-vs-et-phi.mp3" type="audio/mpeg">
+          <source src="../assets/audio/phi-vs-et-phi-v2.mp3" type="audio/mpeg">
         </audio>
       </div>
+    </div>
+  </div>
+
+  <p class="pair-label" id="scala-files" style="color:var(--gold);">Tres archivos de afinación Scala (.scl) &mdash; para Pianoteq, Surge XT, Ableton Live 12 y cualquier plugin compatible con MTS-ESP</p>
+
+  <div class="tuning-card" style="border-color:var(--gold);flex-direction:column;align-items:stretch;text-align:left;">
+    <div class="meta" style="margin-bottom:14px;">
+      <h3>Archivos de afinación descargables &mdash; tres variaciones del acorde aumentado anclado en φ</h3>
+      <div class="freq">formato Scala (.scl) · escalas de 12 tonos · todas ancladas en C = 266,67 Hz · introdúcelos en Pianoteq / Surge XT / Ableton Live 12 / cualquier plugin MTS-ESP</div>
+      <div class="desc">Tres maneras de afinar el acorde aumentado do/mi/sol♯ sobre la C anclada en φ de la trilogía. Cada archivo es una pequeña escala Scala basada en texto; cárgalo en el panel de afinación de tu sintetizador o sampler y ajusta la nota de referencia a do4 = 266,67 Hz. Las tres usan 12 ranuras de semitono para mapearse sobre un teclado estándar. Se diferencian en las razones internas del acorde y (en la tercera) en si la octava cierra en 2:1.</div>
+      <ul style="font-size:14px;line-height:1.6;margin-top:14px;">
+        <li><strong><a href="../assets/scala/josegude-phi-chord.scl" download style="color:var(--gold);">josegude-phi-chord.scl</a></strong> &mdash; <em>El acorde de la trilogía.</em> do = 266,67, mi = 329,62 (2/φ), sol♯ = 419,27 (2/√φ). Tanto mi como sol♯ están en razones derivadas de φ desde do; el acorde es exactamente la arquitectura de la trilogía. Octava preservada en 2:1, así que la composición multi-registro funciona limpiamente. El predeterminado y el más útil para la escritura ordinaria.</li>
+        <li><strong><a href="../assets/scala/c-just-chord-on-phi.scl" download style="color:var(--gold);">c-just-chord-on-phi.scl</a></strong> &mdash; <em>La alternativa en entonación justa.</em> do = 266,67, mi = 333,33 (5/4), sol♯ = 416,67 (25/16). Terceras mayores puras 5:4 apiladas &mdash; la tríada aumentada clásica de la entonación justa &mdash; sobre la misma do anclada en φ. Más consonante al oído clásico; sacrifica la simetría interna en φ. Octava en 2:1.</li>
+        <li><strong><a href="../assets/scala/c-phi-tave-12.scl" download style="color:var(--gold);">c-phi-tave-12.scl</a></strong> &mdash; <em>El phi-tave puro.</em> Cada semitono = φ^(1/8); mi en √φ sobre do (339,20 Hz), sol♯ en φ sobre do (431,36 Hz). El acorde es matemáticamente exacto en φ. El coste: la «octava» cierra en φ^(3/2) ≈ 2,058, no en 2 &mdash; unos 50 centésimas más ancha que el estándar. Dentro de un solo phi-tave lo más teóricamente puro; a través de múltiples «octavas» pierdes la equivalencia octavada estándar. Para el experimento de escucha, no para la composición cross-registro.</li>
+      </ul>
+      <p class="dim" style="font-size:12px;margin-top:14px;">Cómo cargar: en Pianoteq, abre <em>Opciones → Afinación</em>, haz clic en <em>Importar escala</em>, selecciona el archivo .scl. Ajusta el diapasón (referencia A4) a <strong>448,49 Hz</strong> para los dos primeros archivos para que do4 = 266,67 Hz. La «A» del tercer archivo se sitúa en una posición de centésimas no estándar; ajusta el diapasón para que el 1/1 de la escala se ancle en MIDI 60 = 266,67. En Ableton Live 12, suéltalos en <em>Afinación → Importar escala</em>, ajusta el tono de referencia a MIDI 60 (do4) y la frecuencia de referencia a 266,67 Hz directamente. Verifica con MTuner (Melda Production, gratuito) en cualquier pista &mdash; toca do4, la lectura debe ser 266,67 Hz.</p>
     </div>
   </div>
 

@@ -235,22 +235,38 @@
   <div class="tuning-card" style="border-color:var(--gold);flex-direction:column;align-items:stretch;text-align:left;">
     <div class="meta" style="margin-bottom:14px;">
       <h3>φ-tuned vs. equal-temperament &mdash; the same chord, two different rules</h3>
-      <div class="freq">A · 12-TET: E 164.81 · G♯ 207.65 · C 261.63 Hz &nbsp;&middot;&nbsp; B · φ-tuned: E 164.81 · G♯ 209.64 · C 266.67 Hz · sine waves, identical envelope, 10 s each</div>
-      <div class="desc">Two ten-second loops of the same three pitch-classes &mdash; E, G♯, C &mdash; anchored to the same E so the comparison is fair. Loop A holds them at 12-tone equal-temperament's exact major-third stack (E × 2<sup>4/12</sup>, E × 2<sup>8/12</sup>). Loop B holds them at the trilogy's φ-tuning &mdash; the irrational ratios that build <em>Sable's chord</em> and the Webb triangle. The frequencies differ by roughly 2 Hz on G♯ and 5 Hz on C: small, and not small. Listen twice on headphones, then with room speakers, then while reading something else. The body picks up the difference faster than the ear can name it. <em>The difference is small and not small.</em></div>
+      <div class="freq">recorded · piano · A · 12-TET: E 164.81 · G♯ 207.65 · C 261.63 Hz &nbsp;&middot;&nbsp; B · φ-tuned: E 164.81 · G♯ 209.64 · C 266.67 Hz · ~70 s each</div>
+      <div class="desc">Two piano takes of the same three pitch-classes &mdash; E, G♯, C &mdash; anchored to the same E so the comparison is fair. Loop A holds them at 12-tone equal-temperament's exact major-third stack (E × 2<sup>4/12</sup>, E × 2<sup>8/12</sup>). Loop B holds them at the trilogy's φ-tuning &mdash; the irrational ratios that build <em>Sable's chord</em> and the Webb triangle. The frequencies differ by roughly 2 Hz on G♯ and 5 Hz on C: small, and not small. Listen twice on headphones, then with room speakers, then while reading something else. The body picks up the difference faster than the ear can name it. <em>The difference is small and not small.</em></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:520px;align-self:center;">
       <div>
         <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:4px;">A &middot; equal-temperament</div>
         <audio controls preload="none" style="width:100%;">
-          <source src="assets/audio/phi-vs-et-et.mp3" type="audio/mpeg">
+          <source src="assets/audio/phi-vs-et-et-v2.mp3" type="audio/mpeg">
         </audio>
       </div>
       <div>
         <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">B &middot; φ-tuned</div>
         <audio controls preload="none" style="width:100%;">
-          <source src="assets/audio/phi-vs-et-phi.mp3" type="audio/mpeg">
+          <source src="assets/audio/phi-vs-et-phi-v2.mp3" type="audio/mpeg">
         </audio>
       </div>
+    </div>
+  </div>
+
+  <p class="pair-label" id="scala-files" style="color:var(--gold);">Three Scala (.scl) tuning files &mdash; for Pianoteq, Surge XT, Ableton Live 12, and any MTS-ESP-compatible plugin</p>
+
+  <div class="tuning-card" style="border-color:var(--gold);flex-direction:column;align-items:stretch;text-align:left;">
+    <div class="meta" style="margin-bottom:14px;">
+      <h3>Downloadable tuning files &mdash; three variations of the φ-anchored augmented chord</h3>
+      <div class="freq">Scala-format (.scl) · 12-tone scales · all anchored at C = 266.67 Hz · drop into Pianoteq / Surge XT / Ableton Live 12 / any MTS-ESP plugin</div>
+      <div class="desc">Three ways to tune the augmented C / E / G♯ chord on the trilogy's φ-anchored C. Each file is a small text-based Scala scale; load it into your synth or sampler's tuning panel and set the reference note to C4 = 266.67 Hz. All three use 12 semitone slots so they map onto a standard keyboard. They differ in which chord-internal ratios they use, and (for the third) whether the octave closes at 2:1.</div>
+      <ul style="font-size:14px;line-height:1.6;margin-top:14px;">
+        <li><strong><a href="assets/scala/josegude-phi-chord.scl" download style="color:var(--gold);">josegude-phi-chord.scl</a></strong> &mdash; <em>The trilogy's chord.</em> C = 266.67, E = 329.62 (2/φ), G♯ = 419.27 (2/√φ). Both E and G♯ are at φ-derived ratios from C; chord is exactly the trilogy's architecture. Octave preserved at 2:1, so multi-register composition works cleanly. The default and most useful for ordinary writing.</li>
+        <li><strong><a href="assets/scala/c-just-chord-on-phi.scl" download style="color:var(--gold);">c-just-chord-on-phi.scl</a></strong> &mdash; <em>The just-intonation alternative.</em> C = 266.67, E = 333.33 (5/4), G♯ = 416.67 (25/16). Pure 5:4 major thirds stacked &mdash; the classical just augmented triad &mdash; on the same φ-anchored C. More consonant by classical ear; sacrifices the φ-internal symmetry. Octave at 2:1.</li>
+        <li><strong><a href="assets/scala/c-phi-tave-12.scl" download style="color:var(--gold);">c-phi-tave-12.scl</a></strong> &mdash; <em>The pure-φ phi-tave.</em> Every semitone = φ^(1/8); E at √φ above C (339.20 Hz), G♯ at φ above C (431.36 Hz). The chord is mathematically exact φ. The cost: the "octave" closes at φ^(3/2) ≈ 2.058, not 2 &mdash; about 50 cents wider than standard. Within a single phi-tave the most theoretically pure; across multiple "octaves" you lose standard octave equivalence. For the listening experiment, not for cross-register composition.</li>
+      </ul>
+      <p class="dim" style="font-size:12px;margin-top:14px;">Loading: in Pianoteq, open <em>Options → Tuning</em>, click <em>Import scale</em>, select the .scl file. Set Diapason (A4 reference) to <strong>448.49 Hz</strong> for the first two files so C4 = 266.67 Hz. The third file's "A" sits at a non-standard cents position; set Diapason such that the scale's 1/1 anchors at MIDI 60 = 266.67. In Ableton Live 12, drop into <em>Tuning → Import scale</em>, set reference pitch to MIDI 60 (C4) and reference frequency to 266.67 Hz directly. Verify with MTuner (Melda Production, free) on any track &mdash; play C4, read should be 266.67 Hz.</p>
     </div>
   </div>
 
