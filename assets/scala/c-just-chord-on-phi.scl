@@ -1,0 +1,29 @@
+! c-just-chord-on-phi.scl
+!
+! Just-intonation augmented chord (16:20:25, two stacked 5:4 major thirds)
+! anchored on the trilogy's phi-tuned C = 266.67 Hz. The chord is pure
+! just intonation (5/4 thirds); the anchor frequency is phi-derived.
+! The other 9 chromatic notes are at 12-TET. Octave = 2:1, so the scale
+! repeats cleanly across registers.
+! Set base frequency to 266.67 Hz at MIDI note 60 (C4).
+! With that setting:
+!   C4  = 266.67 Hz
+!   E4  = 333.33 Hz   (5/4 above C, the just major third)
+!   G#4 = 416.67 Hz   (25/16 above C, two stacked 5/4 thirds)
+!   C5  = 533.33 Hz   (2:1 octave)
+!
+C just-augmented chord on phi-anchored C (Field Trilogy variant)
+ 12
+!
+ 100.00000
+ 200.00000
+ 300.00000
+ 386.31371
+ 500.00000
+ 600.00000
+ 700.00000
+ 772.62742
+ 900.00000
+ 1000.00000
+ 1100.00000
+ 2/1

@@ -187,4 +187,41 @@ Amazon button (line ~37 of each).
 
 ---
 
+## Missing ES essay translations
+
+Surfaced by the sitemap audit (2026-05-20): five EN essay leaves have
+no Spanish counterpart in `/es/`. Four of them are historical
+consolidated-redirect stubs and don't strictly need to be translated —
+the canonical EZ-water essay already exists on both sides. One is a
+real translation gap.
+
+### Real translation gap (write a Spanish version)
+
+- [ ] **`good-russo-singing.html`** — no ES counterpart. The Good &
+      Russo singing-and-the-body essay needs a Spanish translation,
+      ideally landing at `es/good-russo-singing.html`. Once written:
+      add the link back into `es/sitemap.html` (Grupo 07, between
+      `singing-and-the-body.html` and `frequencies-in-your-body.html`)
+      and into `es/reading.html` under "Frecuencia, música y cuerpo".
+
+### EN-only redirect stubs (no ES action required)
+
+These four EN files are short `<meta refresh>` stubs that consolidate
+into `ez-water.html`. The ES side already has the canonical `ez-water.html`
+essay and skips the redirect-stub pattern entirely. No translation
+needed — listed here only so a future audit knows the asymmetry is
+intentional:
+
+- [—] `ez-water-fascia.html` — consolidates into `ez-water.html`
+- [—] `ez-water-memory.html` — consolidates into `ez-water.html`
+- [—] `pollack-ez-water.html` — consolidates into `ez-water.html`
+- [—] `pollack-ez-agents.html` — consolidates into `ez-water.html`
+
+If a Spanish reader hits one of these URLs via search engine or stale
+external link, they'll be served the EN redirect stub which bounces
+to `ez-water.html` (EN). Acceptable for now; if it becomes a real
+problem, add four matching ES stubs that bounce to `es/ez-water.html`.
+
+---
+
 *Last updated by Claude · keep close to the root of the repo.*

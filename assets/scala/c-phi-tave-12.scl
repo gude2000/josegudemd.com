@@ -1,0 +1,34 @@
+! c-phi-tave-12.scl
+!
+! True phi-tave 12-equal scale. Every semitone equals phi^(1/8) (about
+! 104.14 cents); the chord E / G# / C falls at exact phi ratios from C:
+!     E = sqrt(phi) above C   (416.55 cents, phi major third)
+!     G# = phi above C        (833.09 cents, phi augmented fifth)
+! The "octave" does NOT close at 2:1. It closes at phi^(3/2) ≈ 2.058,
+! about 49.6 cents wider than a standard octave. Compositions spanning
+! multiple "octaves" will drift relative to standard pitch references.
+! Use this scale within a single phi-tave for the pure phi listening
+! experience; use the octave-preserving josegude-phi-chord.scl when
+! crossing multiple registers cleanly is the priority.
+! Set base frequency to 266.67 Hz at MIDI note 60 (C4).
+! With that setting:
+!   C4  = 266.67 Hz
+!   E4  = 339.20 Hz   (sqrt(phi) above C, the phi major third)
+!   G#4 = 431.36 Hz   (phi above C, the phi augmented fifth)
+!   C5  = 548.84 Hz   (phi^(3/2) above C, NOT 2x; the phi-tave)
+!
+True phi-tave 12-equal (Field Trilogy pure-phi variant)
+ 12
+!
+ 104.13629
+ 208.27257
+ 312.40886
+ 416.54514
+ 520.68143
+ 624.81772
+ 728.95400
+ 833.09029
+ 937.22657
+ 1041.36286
+ 1145.49915
+ 1249.63543
