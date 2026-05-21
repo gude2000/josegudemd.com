@@ -96,7 +96,107 @@
 </section>
 
 <section>
-  <h2>5. ¿Qué es un «observador»?</h2>
+  <h2>5. ¿Qué se propone realmente como mecanismo?</h2>
+  <p>Esta es la pregunta a la que todo lector del experimento de la doble rendija acaba llegando: <em>físicamente, ¿qué sucede en el momento de la medición?</em> La respuesta de manual &mdash; «la función de onda colapsa» &mdash; es un postulado, no un mecanismo. Te dice qué cambia; no te dice cómo, ni por qué, ni dónde. Las interpretaciones de la mecánica cuántica difieren precisamente porque cada una ofrece una explicación distinta de lo que sucede entre la evolución suave de Schrödinger y el único resultado observado. Una guía del lector a los principales contendientes:</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">Dos capas que conviene separar</h3>
+  <p>Antes de enumerar los mecanismos, ayuda factorizar la pregunta. <em>¿Por qué desaparece la interferencia cuando existe información de qué-camino?</em> tiene una respuesta empíricamente resuelta: <strong>decoherencia</strong>. Cuando un sistema cuántico se entrelaza con cualquier grado de libertad del entorno que registre por qué camino fue &mdash; un detector, un aparato, un fotón dispersado en el borde de la rendija, incluso una sola molécula de aire que interactúa con la partícula &mdash;, los términos fuera de la diagonal de la matriz de densidad decaen exponencialmente rápido y la interferencia se desvanece. El disparador de la «observación» en el experimento de la doble rendija no es un ojo humano. Es cualquier interacción suficiente para registrar información de qué-camino en cualquier sitio, incluso en principio. No se requiere conciencia, no se requiere misterio. Esta parte es física convencional. (Para la versión más larga véase §3 arriba y la <a href="quantum-classical-line.html">página sobre la línea cuántico-clásico</a>.)</p>
+  <p>La pregunta más profunda &mdash; <em>¿por qué ocurre un único resultado en lugar de una superposición continuada o una mezcla de todos los resultados?</em> &mdash; es el problema de la medición propiamente dicho, y aquí los mecanismos divergen. Las propuestas siguientes cada una da una respuesta distinta a esa pregunta más profunda.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">1. Copenhague (Bohr, Heisenberg) &mdash; colapso como postulado primitivo</h3>
+  <p>La explicación de manual. La ecuación de Schrödinger gobierna el sistema entre mediciones; en el momento de la medición, el sistema «colapsa» a un resultado definido con probabilidades dadas por la regla de Born. No se propone ningún mecanismo para el colapso mismo. Se añade a mano. El dispositivo de medición se trata como clásico y fuera de la descripción cuántica. Esta es la posición dentro de la que la mayoría de los físicos están entrenados a operar, y es la posición que deja la parte más profunda del problema sin respuesta. Copenhague no es tanto un mecanismo como una negativa a hacer la pregunta del mecanismo.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">2. Múltiples Mundos (Everett, Deutsch) &mdash; no hay colapso</h3>
+  <p>La función de onda <em>nunca</em> se reduce. La ecuación de Schrödinger es exacta y universal. Cuando ocurre una medición, el aparato se entrelaza con el sistema, el experimentador se entrelaza con el aparato, el laboratorio se entrelaza con el experimentador, y la función de onda global contiene ahora todos los resultados posibles como ramas separadas. Cada rama contiene una versión del experimentador que observó un resultado particular. El «único resultado» que recuerdas es lo que una rama experimenta desde dentro de sí misma. No hay mecanismo de colapso porque nada colapsa. El argumento de Deutsch de que los ordenadores cuánticos deben computar literalmente a través de estas ramas (cubierto en el <a href="quantum-computing-primer.html">manual de computación cuántica</a>) es la aplicación más agresiva de esta visión. Fortaleza: matemáticamente la más limpia. Costo: te compromete con una ontología de universos que se ramifican a los que no puedes acceder directamente.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">3. Onda-piloto / de Broglie-Bohm &mdash; las partículas siempre tienen posiciones definidas</h3>
+  <p>Las partículas nunca entran en superposición; siempre tienen trayectorias definidas. La función de onda es un campo físico real (la <em>onda piloto</em>) que las guía, evolucionando según la ecuación de Schrödinger. La aleatoriedad aparente de los resultados de medición se debe a la ignorancia de la posición inicial real de la partícula, no a una indeterminación intrínseca. La medición revela lo que siempre estuvo ahí; no ocurre ningún colapso porque ninguna superposición de <em>posiciones de partícula</em> existió en primer lugar. Fortaleza: determinista, restaura el realismo ordinario. Costo: explícitamente no local (la onda piloto responde instantáneamente a cambios distantes), y la imagen para campos en lugar de partículas es mucho más difícil de escribir limpiamente.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">4. Modelos de colapso objetivo &mdash; la función de onda se reduce espontáneamente</h3>
+  <p>La función de onda <em>sí</em> colapsa físicamente, pero no porque alguien la observe. El colapso es una característica estocástica intrínseca de la dinámica. Las principales variantes:</p>
+  <p style="margin-left:1.2em;"><strong>GRW (Ghirardi-Rimini-Weber, 1986)</strong> &mdash; cada partícula tiene una pequeña probabilidad intrínseca por unidad de tiempo de localizarse espontáneamente. La tasa se ajusta para ser despreciable para una sola partícula (una localización aproximadamente cada 10<sup>16</sup> segundos) pero enorme para objetos macroscópicos (que contienen ~10<sup>23</sup> partículas y por tanto se localizan esencialmente instantáneamente). Esto explica por qué los sistemas cuánticos individuales mantienen su superposición mientras los aparatos macroscópicos no. Las variantes incluyen CSL (localización espontánea continua).</p>
+  <p style="margin-left:1.2em;"><strong>Penrose-Diósi (colapso inducido por la gravedad)</strong> &mdash; la propuesta de Roger Penrose: el colapso lo desencadena la gravedad. Cuando un sistema cuántico entra en una superposición que involucra distribuciones de masa-energía suficientemente distintas, la diferencia de energía gravitacional propia entre las ramas supera un umbral y el sistema se localiza espontáneamente. El tiempo-de-colapso es aproximadamente &#8463;/<em>E</em><sub>G</sub>, donde <em>E</em><sub>G</sub> es la diferencia de energía gravitacional propia. <em>Este es el único mecanismo de la lista que es directamente comprobable con la tecnología actual</em>, y los experimentos a escalas de masa crecientes (el grupo de Aspelmeyer, propuestas de la misión MAQRO, nanoesferas levitadas) están reduciendo activamente el espacio de parámetros. Hasta ahora, no se ha detectado señal de colapso objetivo; los límites siguen estrechándose.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">5. QBism (Bayesianismo cuántico) &mdash; la función de onda es creencia personal</h3>
+  <p>Christopher Fuchs, David Mermin y otros: la función de onda no es un estado objetivo del mundo. Es un <em>grado personal de creencia</em> sostenido por un agente sobre los resultados de los experimentos que podría realizar. El «colapso» es lo que sucede cuando ella aprende el resultado &mdash; actualiza sus creencias, igual que un jugador de cartas actualiza su estimación tras ver la siguiente carta. No hay mecanismo físico porque nada físico colapsa; solo cambia el estado de información de un agente. Fortaleza: elimina el problema de la medición por completo al reformular de qué trata la función de onda. Costo: requiere aceptar que la mecánica cuántica es fundamentalmente una teoría de las apuestas de los agentes en lugar del mundo.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">6. Mecánica cuántica relacional (Rovelli) &mdash; los estados son relaciones entre sistemas</h3>
+  <p>La interpretación de Carlo Rovelli, desarrollada en estrecha compañía con su trabajo sobre el tiempo. No hay estados cuánticos independientes del observador. Toda descripción cuántica es una descripción de un sistema respecto a otro. Cuando el sistema A «mide» el sistema B, el resultado es el establecimiento de un hecho relacional particular entre A y B; desde el punto de vista de un tercer sistema C, A-más-B puede seguir estando en superposición hasta que C interactúe con el par. Distintos observadores pueden cada uno tener una descripción cuántica completa y correcta del mismo sistema, y estas descripciones no necesitan coincidir. El «colapso» es el establecimiento de un hecho relacional, no un evento global. Fortaleza: maneja limpiamente el amigo de Wigner (el amigo y Wigner simplemente tienen relaciones distintas con el sistema, ambas correctas). Costo: requiere ceder la intuición de una única realidad independiente del observador. Estrechamente alineada con el proyecto más amplio de Rovelli sobre el tiempo (véase <a href="rovelli-order-of-time.html">el ensayo compañero sobre Rovelli</a>).</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">7. Interpretación transaccional (Cramer) y el formalismo de los dos vectores de estado</h3>
+  <p>La interpretación transaccional de John Cramer y el formalismo de los dos vectores de estado temporalmente simétrico (Aharonov, Vaidman) tratan la medición como un <em>apretón de manos</em> a través del tiempo. Un emisor envía una «onda de oferta» hacia adelante en el tiempo; un absorbedor envía una «onda de confirmación» hacia atrás en el tiempo; cuando las dos coinciden, una transacción se completa y se registra un evento. El colapso es el cierre del apretón de manos. Esto acomoda naturalmente fenómenos retrocausales como el borrador cuántico de elección diferida (véase <a href="simulation-hypothesis.html">página de la hipótesis de la simulación</a>, entrada #E): el pasado no es un libro contable fijo sino un registro de transacciones, algunas pendientes hasta que todas las partes hayan sido procesadas. Fortaleza: hace que los resultados experimentales temporalmente simétricos parezcan naturales en lugar de paradójicos. Costo: requiere comodidad con el lenguaje retrocausal incluso si la física subyacente es reformulable sin él.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">8. La conciencia causa el colapso (von Neumann-Wigner) &mdash; la cadena termina en la mente</h3>
+  <p>Ya discutido en §2, pero vale la pena reformularlo aquí como una propuesta de mecanismo entre las otras. El argumento de von Neumann de que la cadena de medición no tiene punto interno de parada y debe terminar en algún lugar es correcto en sus propios términos; la propuesta es que el terminal es la conciencia misma. La mente es lo que colapsa la función de onda. La física convencional la ha apartado en gran medida como demasiado mística, pero nunca ha sido refutada, y defensores contemporáneos serios (Henry Stapp, Richard Conn Henry, y partes del proyecto de David Chalmers bajo algunas lecturas) la mantienen viva. Es la propuesta más cercana a lo que el modelo del receptor de la trilogía señala &mdash; con la importante diferencia de que el modelo del receptor trata la conciencia como <em>fundamental</em> en lugar de como un proceso especial unido a ciertos sistemas biológicos.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">Dónde sitúa cada interpretación el mecanismo</h3>
+  <div style="overflow-x:auto;margin:1.2em 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.4;">
+    <thead>
+      <tr style="border-bottom:2px solid var(--gold);text-align:left;">
+        <th style="padding:0.5em 0.7em;color:var(--gold);width:23%;">Interpretación</th>
+        <th style="padding:0.5em 0.7em;color:var(--gold);width:42%;">Qué es el «colapso»</th>
+        <th style="padding:0.5em 0.7em;color:var(--gold);width:35%;">Estado / comprobabilidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Copenhague</td>
+        <td style="padding:0.5em 0.7em;">Un postulado primitivo. Sin mecanismo.</td>
+        <td style="padding:0.5em 0.7em;">Manual estándar; deja la pregunta profunda sin respuesta.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Múltiples Mundos</td>
+        <td style="padding:0.5em 0.7em;">Nada colapsa; el observador se ramifica con el sistema.</td>
+        <td style="padding:0.5em 0.7em;">Matemáticamente limpia; ontológicamente cara.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Onda piloto</td>
+        <td style="padding:0.5em 0.7em;">Las partículas siempre definidas; la medición revela.</td>
+        <td style="padding:0.5em 0.7em;">Determinista; explícitamente no local; limpia para partículas, incómoda para campos.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">GRW / CSL</td>
+        <td style="padding:0.5em 0.7em;">Localización estocástica espontánea; tasa ajustada a la escala.</td>
+        <td style="padding:0.5em 0.7em;">Comprobable; límites estrechándose; ninguna señal positiva todavía.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Penrose-Diósi</td>
+        <td style="padding:0.5em 0.7em;">Reducción inducida por gravedad en un umbral masa-energía.</td>
+        <td style="padding:0.5em 0.7em;">Directamente comprobable; Aspelmeyer y otros estrechando parámetros.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">QBism</td>
+        <td style="padding:0.5em 0.7em;">Actualización bayesiana de las creencias de un agente. Sin evento físico.</td>
+        <td style="padding:0.5em 0.7em;">Disuelve el problema al reformular qué es la función de onda.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Relacional (Rovelli)</td>
+        <td style="padding:0.5em 0.7em;">Establecimiento de un hecho relativo a un observador específico.</td>
+        <td style="padding:0.5em 0.7em;">Sin colapso global; maneja limpiamente al amigo de Wigner.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Transaccional / TSVF</td>
+        <td style="padding:0.5em 0.7em;">Apretón de manos hacia adelante + hacia atrás cerrando una transacción.</td>
+        <td style="padding:0.5em 0.7em;">Maneja naturalmente el borrador de elección diferida; lenguaje retrocausal.</td>
+      </tr>
+      <tr>
+        <td style="padding:0.5em 0.7em;">La conciencia causa el colapso</td>
+        <td style="padding:0.5em 0.7em;">La cadena de medición termina en la conciencia consciente.</td>
+        <td style="padding:0.5em 0.7em;">Fuera de moda; no refutada; la más cercana a la intuición del modelo del receptor.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="color:var(--gold);font-style:italic;">El resumen honesto</h3>
+  <p>No hay consenso. Las ocho opciones anteriores no son ocho teorías rivales con predicciones distintas; son ocho historias distintas contadas <em>sobre las mismas matemáticas</em>. Todas reproducen el registro experimental. Discrepan sobre qué describen las matemáticas. La única de las ocho que hace <em>predicciones experimentales distintas</em> en el régimen directamente comprobable es el colapso objetivo (GRW, Penrose-Diósi), y los experimentos para discriminarla del resto están corriendo activamente y hasta ahora no la han separado. En todo lo demás, la elección es interpretativa &mdash; un compromiso metafísico, no una decisión empírica.</p>
+  <p>Para los propósitos de la trilogía, el encuadre más útil es que <a href="the-evidence.html"><strong>el modelo del receptor</strong></a> es compatible con la mayoría de estas interpretaciones y es más natural con tres: <strong>relacional</strong> (los estados son relaciones observador-sistema &mdash; véase <a href="rovelli-order-of-time.html">el ensayo compañero sobre Rovelli</a>), <strong>QBism</strong> (la función de onda es lo que un agente sabe sobre sus acoplamientos) y <strong>el encuadre observador-participatorio de Wheeler</strong> (ningún fenómeno es un fenómeno real hasta que es observado &mdash; véase <a href="simulation-hypothesis.html#s8">entrada #8 de la hipótesis de la simulación</a>). Es más amigable con la lectura von Neumann-Wigner que la Copenhague convencional, pero no requiere la afirmación fuerte de que la conciencia es la <em>causa</em> del colapso &mdash; solo que la conciencia es <em>constitutiva</em> del mundo en el que ocurre el colapso. La apuesta de la trilogía es la misma que hizo Wheeler, menos polémicamente: el observador nunca fue un intruso incómodo en la física. El observador era el sustrato que la física venía describiendo todo el tiempo.</p>
+  <p class="dim" style="font-size:13px;font-style:italic;margin-top:0.4em;">&rarr; Para la declaración completa de la posición del modelo del receptor por parte de la trilogía, véase <a href="the-evidence.html">la Síntesis</a> (el argumento integrado), <a href="hard-problem-restated.html">El problema duro, reformulado</a> (cómo el modelo del receptor disuelve la brecha explicativa al abandonar el supuesto de que el universo comenzó no-consciente), y <a href="information-as-foundation.html">La información como fundamento</a> (la síntesis IIT + Wheeler + Tegmark de la que se nutre el campo del modelo del receptor). La siguiente sección esboza la resolución del modelo del receptor al nivel de esta página; los ensayos enlazados la llevan todo el camino.</p>
+</section>
+
+<section>
+  <h2>6. ¿Qué es un «observador»?</h2>
   <p>La palabra <em>observador</em> está haciendo un trabajo extraordinario en la mecánica cuántica, y las ecuaciones no nos dicen qué significa. Se han propuesto varios candidatos para lo que distingue físicamente a un observador de cualquier otro sistema:</p>
   <ul style="line-height:1.7;">
     <li><strong>Cualquier amplificación irreversible.</strong> Un fotón golpea una placa fotográfica y desencadena una reacción química que no puede invertirse. La reacción es la «medida». No se requiere conciencia &mdash; solo irreversibilidad termodinámica. (Visión dominante, pero tiene problemas con situaciones donde la reversibilidad es posible en principio pero no en la práctica.)</li>
@@ -109,7 +209,7 @@
 </section>
 
 <section>
-  <h2>6. El problema de la medición y el modelo del receptor</h2>
+  <h2>7. El problema de la medición y el modelo del receptor</h2>
   <p>Aquí es donde la trilogía toma su posición. El modelo del receptor sobre el que están construidos los libros dice: la conciencia no es producida por el cerebro. La conciencia es una propiedad-de-campo del universo que los cerebros están configurados para recibir, decodificar y localizar. Desde esta visión, el universo es-sustrato-consciente-por-defecto, y los cerebros son la arquitectura biológica particular que permite a una conciencia localizada habitar un cuerpo en una línea temporal.</p>
   <p>El modelo del receptor no resuelve el problema de la medición en el sentido técnico. Pero disuelve algo con lo que el problema de la medición ha estado lidiando durante noventa años: la incómoda, persistente, sorprendente centralidad del observador en una teoría que se suponía que describía un mundo independiente de la observación.</p>
   <p>Si la conciencia es fundamental &mdash; si es parte de lo que la realidad <em>es</em>, no lo que la realidad <em>produce</em> &mdash; entonces el entrelazamiento de sistemas físicos con observadores conscientes no es un añadido peculiar a la física. Es la consecuencia natural de sistemas físicos interactuando con el sustrato del que nunca estuvieron separados. El amigo de Wigner deja de ser paradójico: por supuesto que las funciones de onda son relativas al observador, porque la realidad misma está constituida en parte por la observación. Las tres suposiciones de Frauchiger-Renner pueden ser reevaluadas: la suposición de que la observación física es un proceso neutral, en tercera persona, que simplemente registra hechos es la que cede.</p>
@@ -117,7 +217,7 @@
 </section>
 
 <section>
-  <h2>7. Qué significa esto para la trilogía</h2>
+  <h2>8. Qué significa esto para la trilogía</h2>
   <p>Tres puntos de contacto específicos donde el problema de la medición aparece explícitamente en los libros:</p>
   <ul style="line-height:1.7;">
     <li>Los últimos capítulos de <em>Anima</em> &mdash; el momento en que José escribe en su carpeta que el paciente con la premonición del artefacto explosivo no estaba «prediciendo» el futuro. La conciencia del paciente ya estaba acoplada al campo que con el tiempo renderizaría la explosión localmente observable. La terminología no es la de Bell; la estructura sí. Lo que parece premonición desde dentro de una rama de una cadena de medida parece causación ordinaria desde fuera de ella.</li>

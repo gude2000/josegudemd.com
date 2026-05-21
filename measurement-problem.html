@@ -96,7 +96,107 @@
 </section>
 
 <section>
-  <h2>5. What is an "observer"?</h2>
+  <h2>5. So what is actually proposed as the mechanism?</h2>
+  <p>This is the question every reader of the double-slit experiment eventually arrives at: <em>physically, what happens at the moment of measurement?</em> The textbook answer &mdash; "the wavefunction collapses" &mdash; is a postulate, not a mechanism. It tells you what changes; it does not tell you how, or why, or where. The interpretations of quantum mechanics differ precisely because each offers a different account of what is happening between the smooth Schrödinger evolution and the single observed outcome. A reader's guide to the main contenders:</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">Two layers to keep separate</h3>
+  <p>Before listing the mechanisms it helps to factor the question. <em>Why does interference disappear when which-path information exists?</em> has an empirically settled answer: <strong>decoherence</strong>. When a quantum system becomes entangled with any environmental degree of freedom that records which path it took &mdash; a detector, an apparatus, a photon scattered off the slit edge, even a single air molecule that interacts with the particle &mdash; the off-diagonal terms of the density matrix decay exponentially fast and interference vanishes. The trigger for "observation" in the double-slit experiment is not a human eye. It is any interaction sufficient to register which-path information anywhere, even in principle. No consciousness required, no mystery required. This part is mainstream physics. (For the longer version see §3 above and the <a href="quantum-classical-line.html">quantum-classical-line page</a>.)</p>
+  <p>The deeper question &mdash; <em>why does a single outcome occur rather than a continuing superposition or a mixture of all outcomes?</em> &mdash; is the measurement problem proper, and this is where mechanisms diverge. The proposals below each give a different answer to that deeper question.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">1. Copenhagen (Bohr, Heisenberg) &mdash; collapse as a primitive postulate</h3>
+  <p>The textbook account. The Schrödinger equation governs the system between measurements; at the moment of measurement, the system "collapses" into a definite outcome with probabilities given by the Born rule. No mechanism is proposed for the collapse itself. It is added by hand. The measurement device is treated as classical and outside the quantum description. This is the position most physicists are trained to operate inside, and it is the position that leaves the deepest part of the problem unanswered. Copenhagen is not so much a mechanism as a refusal to ask the mechanism question.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">2. Many-Worlds (Everett, Deutsch) &mdash; there is no collapse</h3>
+  <p>The wavefunction <em>never</em> reduces. The Schrödinger equation is exact and universal. When a measurement occurs the apparatus becomes entangled with the system, the experimenter becomes entangled with the apparatus, the laboratory becomes entangled with the experimenter, and the global wavefunction now contains every possible outcome as a separate branch. Each branch contains a version of the experimenter who observed a particular result. The "single outcome" you remember is what one branch experiences from inside itself. There is no mechanism for collapse because nothing collapses. Deutsch's argument that quantum computers must literally compute across these branches (covered on the <a href="quantum-computing-primer.html">quantum-computing primer</a>) is the most aggressive application of this view. Strength: mathematically the cleanest. Cost: commits you to an ontology of branching universes you cannot directly access.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">3. Pilot-wave / de Broglie-Bohm &mdash; particles always have definite positions</h3>
+  <p>Particles never go into superposition; they always have definite trajectories. The wavefunction is a real physical field (the <em>pilot wave</em>) that guides them, evolving according to the Schrödinger equation. The apparent randomness of measurement outcomes is due to ignorance of the particle's actual initial position, not to any intrinsic indeterminacy. Measurement reveals what was always there; no collapse occurs because no superposition of <em>particle positions</em> ever existed in the first place. Strength: deterministic, restores ordinary realism. Cost: explicitly non-local (the pilot wave responds instantaneously to distant changes), and the picture for fields rather than particles is much harder to write down cleanly.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">4. Objective-collapse models &mdash; the wavefunction reduces spontaneously</h3>
+  <p>The wavefunction <em>does</em> physically collapse, but not because anyone observes it. Collapse is a built-in stochastic feature of the dynamics. The main variants:</p>
+  <p style="margin-left:1.2em;"><strong>GRW (Ghirardi-Rimini-Weber, 1986)</strong> &mdash; every particle has a tiny intrinsic probability per unit time of spontaneously localizing. The rate is tuned to be negligible for a single particle (one localization roughly every 10<sup>16</sup> seconds) but enormous for macroscopic objects (which contain ~10<sup>23</sup> particles and therefore localize essentially instantaneously). This explains why single quantum systems hold their superposition while macroscopic apparatuses do not. Variants include CSL (continuous spontaneous localization).</p>
+  <p style="margin-left:1.2em;"><strong>Penrose-Diósi (gravity-induced collapse)</strong> &mdash; Roger Penrose's proposal: collapse is triggered by gravity. When a quantum system enters a superposition involving sufficiently different mass-energy distributions, the gravitational self-energy difference between the branches exceeds a threshold and the system spontaneously localizes. Time-to-collapse is roughly &#8463;/<em>E</em><sub>G</sub>, where <em>E</em><sub>G</sub> is the gravitational self-energy difference. <em>This is the only mechanism on the list that is directly testable with current technology</em>, and experiments at increasing mass scales (Aspelmeyer's group, MAQRO mission proposals, levitated nanospheres) are actively narrowing the parameter space. So far, no objective-collapse signal has been detected; bounds keep tightening.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">5. QBism (Quantum Bayesianism) &mdash; the wavefunction is personal belief</h3>
+  <p>Christopher Fuchs, David Mermin, and others: the wavefunction is not an objective state of the world. It is a <em>personal degree of belief</em> held by an agent about the outcomes of experiments she might perform. "Collapse" is what happens when she learns the result &mdash; she updates her beliefs, just as a card player updates her estimate after seeing the next card. There is no physical mechanism because nothing physical collapses; only an agent's information state changes. Strength: removes the measurement problem entirely by reframing what the wavefunction is about. Cost: requires accepting that quantum mechanics is fundamentally a theory of agents' bets rather than of the world.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">6. Relational quantum mechanics (Rovelli) &mdash; states are relations between systems</h3>
+  <p>Carlo Rovelli's interpretation, developed in close company with his work on time. There are no observer-independent quantum states. Every quantum description is a description of one system relative to another. When system A "measures" system B, the result is the establishment of a particular relational fact between A and B; from a third system C's point of view, A-plus-B may still be in superposition until C interacts with the pair. Different observers can each have a complete and correct quantum description of the same system, and these descriptions need not match. "Collapse" is the establishment of a relational fact, not a global event. Strength: handles Wigner's friend cleanly (the friend and Wigner simply have different relations to the system, both correct). Cost: requires giving up the intuition of a single observer-independent reality. Closely allied with Rovelli's broader project on time (see <a href="rovelli-order-of-time.html">the Rovelli companion essay</a>).</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">7. Transactional interpretation (Cramer) and the Two-State Vector Formalism</h3>
+  <p>John Cramer's transactional interpretation and the time-symmetric Two-State Vector Formalism (Aharonov, Vaidman) treat measurement as a <em>handshake</em> across time. An emitter sends an "offer wave" forward in time; an absorber sends a "confirmation wave" backward in time; when the two match, a transaction completes and an event is recorded. The collapse is the closing of the handshake. This naturally accommodates retrocausal phenomena like the delayed-choice quantum eraser (see <a href="simulation-hypothesis.html">simulation-hypothesis page</a>, entry #E): the past is not a fixed ledger but a log of transactions, some pending until all parties have been processed. Strength: makes time-symmetric experimental results look natural rather than paradoxical. Cost: requires comfort with retrocausal language even if the underlying physics is reformulable without it.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">8. Consciousness-causes-collapse (von Neumann-Wigner) &mdash; the chain ends in mind</h3>
+  <p>Already discussed in §2, but worth restating here as a mechanism proposal among the others. The von Neumann argument that the measurement chain has no internal stopping point and must terminate somewhere is correct on its own terms; the proposal is that the terminus is consciousness itself. Mind is what collapses the wavefunction. Mainstream physics has largely set this aside as too mystical, but it has never been refuted, and serious contemporary defenders (Henry Stapp, Richard Conn Henry, and parts of David Chalmers's project under some readings) keep it alive. It is the proposal closest to what the trilogy's receiver model points back at &mdash; with the important difference that the receiver model treats consciousness as <em>fundamental</em> rather than as a special process attached to certain biological systems.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">Where each interpretation puts the mechanism</h3>
+  <div style="overflow-x:auto;margin:1.2em 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.4;">
+    <thead>
+      <tr style="border-bottom:2px solid var(--gold);text-align:left;">
+        <th style="padding:0.5em 0.7em;color:var(--gold);width:23%;">Interpretation</th>
+        <th style="padding:0.5em 0.7em;color:var(--gold);width:42%;">What "collapse" is</th>
+        <th style="padding:0.5em 0.7em;color:var(--gold);width:35%;">Status / testability</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Copenhagen</td>
+        <td style="padding:0.5em 0.7em;">A primitive postulate. No mechanism.</td>
+        <td style="padding:0.5em 0.7em;">Standard textbook; leaves the deep question unanswered.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Many-Worlds</td>
+        <td style="padding:0.5em 0.7em;">Nothing collapses; observer branches with the system.</td>
+        <td style="padding:0.5em 0.7em;">Mathematically clean; ontologically expensive.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Pilot wave</td>
+        <td style="padding:0.5em 0.7em;">Particles always definite; measurement reveals.</td>
+        <td style="padding:0.5em 0.7em;">Deterministic; explicitly non-local; clean for particles, awkward for fields.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">GRW / CSL</td>
+        <td style="padding:0.5em 0.7em;">Spontaneous stochastic localization; rate tuned to scale.</td>
+        <td style="padding:0.5em 0.7em;">Testable; bounds tightening; no positive signal yet.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Penrose-Diósi</td>
+        <td style="padding:0.5em 0.7em;">Gravity-induced reduction at a mass-energy threshold.</td>
+        <td style="padding:0.5em 0.7em;">Directly testable; Aspelmeyer et al. narrowing parameters.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">QBism</td>
+        <td style="padding:0.5em 0.7em;">Bayesian updating of an agent's beliefs. No physical event.</td>
+        <td style="padding:0.5em 0.7em;">Dissolves the problem by reframing what the wavefunction is.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Relational (Rovelli)</td>
+        <td style="padding:0.5em 0.7em;">Establishment of a fact relative to one specific observer.</td>
+        <td style="padding:0.5em 0.7em;">No global collapse; handles Wigner's friend cleanly.</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.07);">
+        <td style="padding:0.5em 0.7em;">Transactional / TSVF</td>
+        <td style="padding:0.5em 0.7em;">Forward + backward handshake closing a transaction.</td>
+        <td style="padding:0.5em 0.7em;">Naturally handles delayed-choice eraser; retrocausal language.</td>
+      </tr>
+      <tr>
+        <td style="padding:0.5em 0.7em;">Consciousness-causes-collapse</td>
+        <td style="padding:0.5em 0.7em;">The measurement chain terminates in conscious awareness.</td>
+        <td style="padding:0.5em 0.7em;">Out of fashion; not refuted; closest to receiver-model intuition.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="color:var(--gold);font-style:italic;">The honest summary</h3>
+  <p>There is no consensus. The eight options above are not eight competing theories with different predictions; they are eight different stories told <em>about the same mathematics</em>. They all reproduce the experimental record. They disagree about what the mathematics is describing. The only one of the eight that makes <em>different experimental predictions</em> in the directly testable regime is objective collapse (GRW, Penrose-Diósi), and experiments to discriminate it from the others are actively running and so far have not separated it. Everywhere else, the choice is interpretive &mdash; a metaphysical commitment, not an empirical decision.</p>
+  <p>For the trilogy's purposes, the most useful framing is that <a href="the-evidence.html"><strong>the receiver model</strong></a> is compatible with most of these interpretations and is most natural with three: <strong>relational</strong> (states are observer-system relations &mdash; see <a href="rovelli-order-of-time.html">the Rovelli companion essay</a>), <strong>QBism</strong> (the wavefunction is what an agent knows about its couplings), and <strong>Wheeler's observer-participatory framing</strong> (no phenomenon is a real phenomenon until observed &mdash; see <a href="simulation-hypothesis.html#s8">simulation-hypothesis entry #8</a>). It is friendlier to the von Neumann-Wigner reading than mainstream Copenhagen is, but does not require the strong claim that consciousness is the <em>cause</em> of collapse &mdash; only that consciousness is <em>constitutive</em> of the world the collapse occurs in. The trilogy's wager is the same one Wheeler made, less polemically: the observer was never an awkward intruder in physics. The observer was the substrate physics was describing all along.</p>
+  <p class="dim" style="font-size:13px;font-style:italic;margin-top:0.4em;">&rarr; For the trilogy's full statement of the receiver-model position, see <a href="the-evidence.html">the Synthesis</a> (the integrated argument), <a href="hard-problem-restated.html">The hard problem, re-stated</a> (how the receiver model dissolves the explanatory gap by abandoning the assumption that the universe started non-conscious), and <a href="information-as-foundation.html">Information as the foundation</a> (the IIT + Wheeler + Tegmark synthesis the receiver-model field draws on). The next section below sketches the receiver-model resolution at this page's level; the linked essays carry it the full way down.</p>
+</section>
+
+<section>
+  <h2>6. What is an "observer"?</h2>
   <p>The word <em>observer</em> is doing an extraordinary amount of work in quantum mechanics, and the equations don't tell us what it means. Several candidates have been proposed for what physically distinguishes an observer from any other system:</p>
   <ul style="line-height:1.7;">
     <li><strong>Any irreversible amplification.</strong> A photon hits a photographic plate and triggers a chemical reaction that cannot be reversed. The reaction is the "measurement." No consciousness required &mdash; just thermodynamic irreversibility. (Mainstream view, but has trouble with situations where reversibility is in principle possible but practically not.)</li>
@@ -109,7 +209,7 @@
 </section>
 
 <section>
-  <h2>6. The measurement problem and the receiver model</h2>
+  <h2>7. The measurement problem and the receiver model</h2>
   <p>Here is where the trilogy takes its position. The receiver model the books are built around says: consciousness is not produced by the brain. Consciousness is a field-property of the universe that brains are configured to receive, decode, and localise. On this view, the universe is conscious-substrate-by-default, and brains are the particular biological architecture that allows one localised consciousness to inhabit one body in one timeline.</p>
   <p>The receiver model does not solve the measurement problem in the technical sense. But it dissolves something the measurement problem has been struggling with for ninety years: the awkward, persistent, surprising centrality of the observer in a theory that was supposed to describe a world independent of observation.</p>
   <p>If consciousness is fundamental &mdash; if it is part of what reality <em>is</em>, not what reality <em>produces</em> &mdash; then the entanglement of physical systems with conscious observers is not a peculiar add-on to physics. It is the natural consequence of physical systems interacting with the substrate they were never separate from. Wigner's friend stops being paradoxical: of course wavefunctions are observer-relative, because reality itself is partly constituted by observation. Frauchiger-Renner's three assumptions can be re-evaluated: the assumption that physical observation is a neutral, third-person process that simply registers facts is the one that gives way.</p>
@@ -117,7 +217,7 @@
 </section>
 
 <section>
-  <h2>7. What this means for the trilogy</h2>
+  <h2>8. What this means for the trilogy</h2>
   <p>Three specific touchpoints, where the measurement problem appears explicitly in the books:</p>
   <ul style="line-height:1.7;">
     <li><em>Anima</em>'s late chapters &mdash; the moment José writes in his folder that the patient with the IED premonition was not "predicting" the future. The patient's consciousness was already coupled to the field that would in due course render the explosion locally observable. The terminology is not Bell's; the structure is. What looks like premonition from inside one branch of a measurement chain looks like ordinary causation from outside it.</li>
