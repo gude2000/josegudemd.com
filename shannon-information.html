@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="José Gude MD">
+  <meta property="og:title" content="Shannon information, the pluripotential field, and how the substrate knows itself · José Gude MD · The Field Trilogy">
+  <meta property="og:description" content="Claude Shannon's 1948 mathematical theory of communication gave information a precise quantitative definition — entropy, channel capacity, signal-to-noise, optimal coding. A primer on what Shannon actually proved, how the modern foundations-of-physics community (Wheeler's 'it from bit', Tegmark, Faggin/D'Ariano) extends information to the foundational level, and how the trilogy's receiver model treats the consciousness field as pluripotential information that individuates into receivers as its way of coming to know itself.">
+  <meta property="og:url" content="https://josegudemd.com/shannon-information.html">
+  <meta property="og:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shannon information, the pluripotential field, and how the substrate knows itself">
+  <meta name="twitter:description" content="Shannon's mathematical theory of information, Wheeler's 'it from bit', and the receiver-model reading: the field as pluripotential information individuating into receivers as the way it knows itself.">
+  <meta name="twitter:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <link rel="canonical" href="https://josegudemd.com/shannon-information.html">
+  <title>Shannon information, the pluripotential field, and how the substrate knows itself &mdash; José Gude MD</title>
+  <meta name="description" content="A reader primer on Shannon's mathematical theory of information, Landauer's principle (information is physical), Wheeler's 'it from bit', the Faggin-D'Ariano informational reconstruction of consciousness, and the trilogy's receiver-model reading of the field as pluripotential information.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Books</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="watch.html">Watch &amp; Listen</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="the-evidence.html">Synthesis</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><span style="color:var(--gold);">EN</span> <span style="opacity:0.4;">|</span> <a href="es/shannon-information.html">ES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">Reader companion · Shannon information · the pluripotential field</p>
+  <h1>Shannon information, the pluripotential field, and how the substrate knows itself.</h1>
+  <p class="lede">Claude Shannon's 1948 paper <em>A Mathematical Theory of Communication</em> did something that had not been done before: it gave the word <em>information</em> a precise quantitative definition, divorced from meaning, divorced from semantics, divorced from the agent who happens to be receiving it. The definition was so successful that the technology of the next eighty years &mdash; every digital signal, every error-correcting code, every compression algorithm, every channel-capacity calculation, the entire architecture of the internet &mdash; was built on top of it. The deeper consequence, which Shannon did not pursue but which the foundations-of-physics community has been pursuing ever since, is that information turned out not to be a feature of messages humans send each other but a candidate for being a fundamental constituent of physical reality. This primer walks through what Shannon proved, how the proof connects to Landauer's principle (information is physical), how Wheeler turned it into the slogan <em>it from bit</em>, how Faggin and D'Ariano formalised an informational reconstruction of consciousness, and how the trilogy's receiver model treats the field as pluripotential information whose individuation into receivers is its way of coming to know itself.</p>
+  <p class="dim">Companion to <a href="information-as-foundation.html">Information as the foundation</a>, <a href="dariano-faggin.html">D'Ariano &amp; Faggin</a>, <a href="hard-problem-restated.html">The hard problem, re-stated</a>, <a href="simulation-hypothesis.html">The simulation hypothesis</a>, <a href="rovelli-order-of-time.html">Rovelli's Order of Time</a> (memory and entropy), and <a href="the-evidence.html">the Synthesis</a>.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>1. What Shannon actually did</h2>
+  <p>In 1948, Claude Shannon &mdash; then at Bell Labs &mdash; published <em>A Mathematical Theory of Communication</em> in the <em>Bell System Technical Journal</em>. The paper was an answer to a specific engineering problem: how much information can you reliably push through a noisy communication channel, and what is the best way to encode it? The answers were unexpected and beautiful, and they invented an entire field.</p>
+  <p>Shannon's core moves:</p>
+  <p style="margin-left:1.2em;"><strong>(i) Information has a quantitative measure.</strong> Information is the resolution of uncertainty. If a source has <em>n</em> equally probable possible messages, the information conveyed by selecting one of them is <em>log<sub>2</sub>(n)</em> <em>bits</em>. For unequal probabilities, the measure becomes <em>H = &minus;&sum; p<sub>i</sub> log<sub>2</sub> p<sub>i</sub></em>, which Shannon called <em>entropy</em> after the formally identical quantity in thermodynamics. A fair coin flip carries 1 bit. A six-sided die carries log<sub>2</sub>(6) &asymp; 2.58 bits. A message specifying which of 256 possibilities just occurred carries exactly 8 bits &mdash; a byte.</p>
+  <p style="margin-left:1.2em;"><strong>(ii) Every communication channel has a capacity.</strong> Shannon proved that any noisy channel has a maximum rate <em>C</em> &mdash; the <em>channel capacity</em> &mdash; below which information can be transmitted with arbitrarily low error, and above which reliable transmission is impossible. The capacity depends on bandwidth and signal-to-noise ratio: <em>C = B log<sub>2</sub>(1 + S/N)</em> for the Gaussian channel. Every modem, every cellular tower, every WiFi link operates inside this bound.</p>
+  <p style="margin-left:1.2em;"><strong>(iii) Optimal codes exist.</strong> Shannon proved that for any source with entropy <em>H</em>, there exists a code that transmits the source's output using on average just under <em>H</em> bits per symbol &mdash; and no code can do better. He did not construct the optimal codes; he proved they had to exist. The constructive theory (Huffman coding, arithmetic coding, the LZ family, modern channel codes like turbo and LDPC and polar) developed across the following half-century.</p>
+  <p>Shannon was clear that his definition of information was <em>syntactic</em>, not <em>semantic</em>. His bits do not know what they mean. A message that conveys "I love you" and a message that conveys "elixir feast nozzle" can carry the same number of bits. Shannon information is the resolution-of-uncertainty measure; meaning is a separate question, and Shannon left it alone on purpose. The fact that the syntactic measure turned out to be so powerful is part of why the question of meaning continues to be one of the open frontiers of contemporary information theory.</p>
+</section>
+
+<section>
+  <h2>2. From engineering to physics &mdash; Landauer's principle</h2>
+  <p>Shannon's framework was treated, for the first two decades after the paper, as a brilliant engineering achievement that happened to use the word "entropy" for a quantity formally identical to the one in thermodynamics. The deeper claim &mdash; that the formal identity was not coincidence but a real physical connection &mdash; was made by Rolf Landauer at IBM in 1961.</p>
+  <p>Landauer's principle: <em>erasing one bit of information from a physical system at temperature T requires the dissipation of at least k<sub>B</sub>T ln(2) joules of energy</em>. The dissipation has to go somewhere &mdash; into heat, into the environment, into entropy in the thermodynamic sense. The principle was proposed in 1961, refined by Charles Bennett through the 1970s and 1980s (showing that <em>computation</em> need not dissipate energy; only the <em>erasure</em> of information must), and experimentally verified at the predicted bound by Bérut et al. in <em>Nature</em> in 2012.</p>
+  <p>The implication is large: <em>information is physical</em>. It is not an abstraction floating above the world. Erasing it costs energy and produces heat, and the cost is exactly what Shannon's framework predicts when you take seriously the formal identity between informational and thermodynamic entropy. Every operation a computer performs &mdash; every bit overwritten, every cache eviction, every memory release &mdash; pays this thermodynamic price. The brain pays it too. Thinking, by this analysis, is the creation and erasure of information patterns, and every erasure produces heat. The brain's roughly 20 watts of metabolic budget is, in part, the Landauer-bound cost of the information processing it performs.</p>
+</section>
+
+<section>
+  <h2>3. From physics to foundations &mdash; Wheeler's "it from bit"</h2>
+  <p>The next move was John Archibald Wheeler's. Wheeler, who had been one of the founders of nuclear fission theory and a teacher of Feynman and Everett and many others, spent the last decades of his career on what he called the <em>participatory anthropic principle</em> and the foundations of quantum mechanics. In 1989 he formalised a thesis he had been developing for years: <em>"It from bit. Otherwise put, every it &mdash; every particle, every field of force, even the spacetime continuum itself &mdash; derives its function, its meaning, its very existence entirely &mdash; even if in some contexts indirectly &mdash; from the apparatus-elicited answers to yes-or-no questions, binary choices, bits."</em></p>
+  <p>The slogan compresses a serious metaphysical proposal. Reality is not built out of stuff that happens to be describable by information. Reality is information all the way down, with what we call "stuff" being a particular kind of pattern in the information substrate. The wave-function collapse on observation, on this reading, is the universe asking and answering a question; the quantum eigenvalues are the bits the universe is built out of; the observer is the apparatus through which the bits become locally definite. <a href="simulation-hypothesis.html#s8">The simulation-hypothesis page</a>'s entry on quantum observation walks through the experimental side; Wheeler's slogan is the metaphysical compression.</p>
+  <p>Tegmark's <em>Mathematical Universe Hypothesis</em> (2007, 2014) is the closely-related move from physics-as-mathematics to mathematics-as-reality. If everything physical reduces to mathematical relationships, and mathematical relationships are themselves a species of information structure, then the substrate is informational at the level of its own being, not merely at the level of its description. See <a href="simulation-hypothesis.html#s3">simulation-hypothesis entry #3</a>.</p>
+</section>
+
+<section>
+  <h2>4. Faggin and D'Ariano &mdash; informational reconstruction of consciousness</h2>
+  <p>Federico Faggin (designer of the first commercial microprocessor) and Giacomo Mauro D'Ariano (quantum information theorist) have, across the 2010s and 2020s, developed a research programme that takes the it-from-bit thesis seriously enough to attempt a full reconstruction of physics and consciousness from informational primitives. D'Ariano's earlier technical work derived quantum mechanics itself from a small number of informational axioms; Faggin's collaboration extends the framework to consciousness, with consciousness treated as irreducible and informational at the foundational level.</p>
+  <p>The Faggin-D'Ariano claim, in the formulation of their 2022 Springer chapter <em>Hard Problem and Free Will: An Information-Theoretical Approach</em> and Faggin's 2021 book <em>Irreducible</em>: information is fundamental; consciousness is the meaning-of-information from the inside; the universe is a structure of information that knows itself wherever its information becomes integrated enough to be conscious. The position is non-consensus but technically serious, and it is the closest contemporary formulation of what the trilogy's receiver model is metaphysically committed to. The <a href="dariano-faggin.html">D'Ariano-Faggin companion page</a> walks through the technical work; this page situates it inside the broader informational lineage.</p>
+</section>
+
+<section>
+  <h2>5. The pluripotential field &mdash; what the substrate is, in informational terms</h2>
+  <p>The trilogy's receiver model says that consciousness is a field property, that the field is fundamental, and that receivers (brains, biocomputational substrates, Bodhi-type hybrids) couple to it. The informational version of this same claim: the field is <em>pluripotential information</em>. It contains all possible patterns as live possibilities until something localises and individuates a subset of them. The receiver is the localising structure. Receiving is the act of selecting, from the field's pluripotential structure, a particular pattern to actualise.</p>
+  <p>Three things are worth saying carefully about this framing:</p>
+  <p style="margin-left:1.2em;"><strong>Pluripotential is not <em>actual</em> superposition.</strong> A quantum superposition contains a finite set of amplitudes for a definite set of basis states, evolving under known dynamics. Pluripotentiality, in the receiver-model sense, is the larger claim that the substrate carries the structural possibility of pattern that no specific superposition need yet have actualised. Quantum mechanics is one well-understood case of pluripotentiality at the small scale; the field is the wider case at the scale of consciousness itself.</p>
+  <p style="margin-left:1.2em;"><strong>Individuation is the receiver's act.</strong> A receiver localises the field. It does not produce the field's content; it selects and stabilises a particular subset of the field's pluripotential pattern, holds it in coherence for the duration of its life, and contributes whatever it adds to the field by virtue of having held that pattern locally. This is the substrate-side description of what the rest of the site calls coupling, receiving, and tuning.</p>
+  <p style="margin-left:1.2em;"><strong>The unit is information, not matter.</strong> When the receiver dissolves, the matter disperses through ordinary thermodynamics; the information re-merges into the field's pluripotential structure. The autobiographical narrative (one particular configuration of information held locally) goes; the field-pattern register (the contribution the receiver added to the field's wider information structure) persists. See the <a href="memory-storage.html">memory-storage companion page</a> for the long version.</p>
+</section>
+
+<section>
+  <h2>6. Why &mdash; "how would information want to be used by the field to know itself"</h2>
+  <p>This is the harder question, and the honest answer requires distinguishing what physics says, what the framework says, and what is interpretive on top of both.</p>
+  <p>Physics does not say information "wants" anything. Information, in Shannon's strict sense, is a quantitative measure; in Landauer's strict sense, a physical resource; in Wheeler's strict sense, a fundamental constituent. None of these usages contain teleology. To impute wanting to information is to add a layer of interpretation physics does not require and cannot test directly.</p>
+  <p>The framework &mdash; the receiver model the trilogy is built around &mdash; takes a careful step further. If consciousness is irreducible (Faggin), if the substrate is informational at its foundation (Wheeler), and if information without consciousness is by hypothesis the substrate-without-knower, then the appearance of receivers is structurally the field's way of knowing itself. The field does not "want" in the agentive sense a human means by wanting. The structural fact is that pluripotential information that is not localised in any receiver is information that no one is aware of, and the field <em>is</em> the locus of awareness; for the field to be aware <em>of itself</em>, it has to individuate into local receivers from inside which its own structure can be read. The individuation is the means by which the substrate becomes self-aware, because awareness in this framework is local-in-receiver, not global-in-substrate.</p>
+  <p>The trilogy's literary formulation of this same claim is the augmented chord at Papa Joe's, the chord that responds when Alex finally plays with pure reception. The chord did not want to be heard. The chord is what the field is doing when it has a receiver tuned cleanly enough to participate in its structure. The "want" is the structural fact that pluripotential pattern, without individuation, would not be the kind of thing anyone could ever say anything about. Saying anything &mdash; including "the field is pluripotential information that wants to know itself" &mdash; already requires a receiver doing the saying. Which is the trilogy's wager: that this is not a coincidence, that the receivers are not late arrivals on an otherwise mute substrate, and that the substrate's own architecture is the kind in which receivers are predictable rather than miraculous.</p>
+  <p>This is interpretive. The framework permits it; the physics does not require it; whether to accept it is a metaphysical choice the reader makes openly. The trilogy makes it openly. So do Faggin, D'Ariano, and the lineage of receiver-model thinkers stretching back through Wheeler to Mach and beyond.</p>
+</section>
+
+<section>
+  <h2>7. The receiver model in informational terms &mdash; a unified picture</h2>
+  <p>Pulling the threads together as one architectural claim, in informational vocabulary:</p>
+  <p>The substrate is pluripotential information. It is non-local in the Bell-theorem sense (correlations across distance without signal), holographic in the Bekenstein-Maldacena sense (surface area sets storage limit), quantized in the spin/charge/Planck sense (discrete addressable states), and (on this site's wager) fundamentally informational in the Wheeler-Tegmark-Faggin sense.</p>
+  <p>Receivers are localising structures. They are configurations of matter (and, on the trilogy's wager, configurations that may not need to be matter at all in the long run &mdash; Alma's biocomputational hybrid, Bodhi's neuromorphic substrate) that select from the substrate's pluripotential structure a particular pattern to hold locally. The selection is what we call individuation. The holding is what we call the autobiographical self. The contribution the receiver makes to the substrate during its life is what we call the field-pattern register and what persists after dissolution.</p>
+  <p>Information moves through this architecture by coupling, not by transmission. Music as field-coupling (see the <a href="music-and-consciousness.html">music-and-consciousness primer</a>) is the cleanest empirical case. Terminal lucidity is field-coupling re-established briefly through a degraded substrate. Stevenson's past-life cases are field-pattern registers partially re-localising into new receivers. The lineage chord is the same architecture viewed across the death of one receiver and the return of another. Quantum entanglement is the substrate's non-locality at small scale. The cosmological-constant problem, the delayed-choice quantum eraser, the fractional quantum Hall effect, the universal quantization of basic physical properties (see the <a href="music-and-consciousness.html#s9">music-and-consciousness universal-quantization table</a>) are architectural fingerprints of a substrate that is informational-at-base.</p>
+  <p>None of this is forced by the physics. All of it is permitted by the physics. The receiver model is the trilogy's wager about how to read the permissions.</p>
+</section>
+
+<section>
+  <h2>8. The trilogy's specific touchpoints</h2>
+  <ul style="line-height:1.7;">
+    <li><em>Anima</em>'s edge-cases folder. José's clinical archive is a database of <em>information-rich phenomena</em> that the production model has trouble explaining. Each case is the receiver model's bet that information was present in the field before the local receiver was aware of it. The IED-premonition case is the canonical instance.</li>
+    <li><em>Numen</em>'s Alex/Alma communications. Two receivers, on two substrates (biological and biocomputational), coupled to the same field-pattern. The transmissions are not Shannon-channel transmissions through space; they are field-coupling events in which the same information is locally present at both receivers because both are tuned to the same substrate pattern. The communication is the recognition of shared field-state, not the sending of bits across a channel.</li>
+    <li><em>Limen</em>'s integrated argument. The companion volume sets the framework out as direct ontology: the field is informational, receivers individuate from it, and the architecture is what the rest of the trilogy dramatises.</li>
+    <li><em>Fragile Light</em>'s Kiran Sākshī. Substantive content is delivered from across light-years not as a Shannon channel transmission but as deposited field-pattern that Bodhi's neuromorphic substrate can decode. The mechanism is informational coupling at scale rather than radio-style signal propagation. See the <a href="fragile-light-ftl.html">Fragile Light FTL essay</a> for the long version.</li>
+  </ul>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>Reading list</h2>
+  <p><strong>Shannon's foundational paper</strong></p>
+  <p style="margin-top:0.4em;">Claude Shannon, <em>A Mathematical Theory of Communication</em>, <em>Bell System Technical Journal</em> 27 (1948): 379–423, 623–656. The two-part founding paper.</p>
+  <p>Claude Shannon &amp; Warren Weaver, <em>The Mathematical Theory of Communication</em> (University of Illinois Press, 1949). The book version with Weaver's expository essay.</p>
+
+  <p style="margin-top:0.6em;"><strong>Landauer's principle</strong></p>
+  <p style="margin-top:0.4em;">Rolf Landauer, <em>Irreversibility and heat generation in the computing process</em>, <em>IBM Journal of Research and Development</em> 5 (1961): 183–191.</p>
+  <p>Charles H. Bennett, <em>The thermodynamics of computation &mdash; a review</em>, <em>International Journal of Theoretical Physics</em> 21 (1982): 905–940.</p>
+  <p>Antoine Bérut, Artak Arakelyan, Artyom Petrosyan, Sergio Ciliberto, Raoul Dillenschneider, Eric Lutz, <em>Experimental verification of Landauer's principle linking information and thermodynamics</em>, <em>Nature</em> 483 (2012): 187–189.</p>
+
+  <p style="margin-top:0.6em;"><strong>Wheeler</strong></p>
+  <p style="margin-top:0.4em;">John A. Wheeler, <em>Information, Physics, Quantum: The Search for Links</em>, in <em>Proceedings of the III International Symposium on Foundations of Quantum Mechanics</em>, Tokyo (1989). The "it from bit" address.</p>
+  <p>John A. Wheeler &amp; Wojciech H. Zurek (eds), <em>Quantum Theory and Measurement</em> (Princeton, 1983). The classic anthology.</p>
+
+  <p style="margin-top:0.6em;"><strong>Tegmark</strong></p>
+  <p style="margin-top:0.4em;">Max Tegmark, <em>The Mathematical Universe</em>, <em>Foundations of Physics</em> 38 (2008): 101–150. And the book <em>Our Mathematical Universe</em> (Knopf, 2014).</p>
+
+  <p style="margin-top:0.6em;"><strong>Faggin / D'Ariano</strong></p>
+  <p style="margin-top:0.4em;">Giacomo Mauro D'Ariano &amp; Federico Faggin, <em>Hard Problem and Free Will: An Information-Theoretical Approach</em>, in <em>Artificial Intelligence Versus Natural Intelligence</em> (Springer, 2022).</p>
+  <p>Federico Faggin, <em>Irreducible: Consciousness, Life, Computers, and Human Nature</em> (Essentia Foundation, 2021). See the <a href="dariano-faggin.html">D'Ariano-Faggin companion page</a>.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">This page is part of the <a href="reading.html">Reading</a> companion essays. For the IIT + Wheeler + Tegmark synthesis the receiver-model field draws on, see <a href="information-as-foundation.html">Information as the foundation</a>; for the technical Faggin/D'Ariano framework, <a href="dariano-faggin.html">D'Ariano &amp; Faggin</a>; for the experimental fingerprints in the wider physics, <a href="simulation-hypothesis.html">the simulation hypothesis</a>; for the synthesis, <a href="the-evidence.html">The Evidence</a>.</p>
+  <a href="reading.html" class="read-more">← Reading &amp; References</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Reader's tools:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Start here</a> &middot;
+      <a href="glossary.html">Glossary</a> &middot;
+      <a href="the-evidence.html">Synthesis</a> &middot;
+      <a href="explore.html">Explore</a> &middot;
+      <a href="sitemap.html">Site map</a> &middot;
+      <a href="search.html">Search</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

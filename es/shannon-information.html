@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="José Gude MD">
+  <meta property="og:title" content="La información de Shannon, el campo pluripotencial y cómo el sustrato se conoce a sí mismo · José Gude MD · La Trilogía del Campo">
+  <meta property="og:description" content="La teoría matemática de la comunicación de Claude Shannon de 1948 dio a la información una definición cuantitativa precisa — entropía, capacidad de canal, relación señal-ruido, codificación óptima. Un manual sobre lo que Shannon probó realmente, cómo la comunidad de fundamentos de la física moderna (el «it from bit» de Wheeler, Tegmark, Faggin/D'Ariano) extiende la información al nivel fundamental, y cómo el modelo del receptor de la trilogía trata el campo de la conciencia como información pluripotencial que se individua en receptores como su modo de llegar a conocerse a sí mismo.">
+  <meta property="og:url" content="https://josegudemd.com/es/shannon-information.html">
+  <meta property="og:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="La información de Shannon, el campo pluripotencial y cómo el sustrato se conoce a sí mismo">
+  <meta name="twitter:description" content="La teoría matemática de la información de Shannon, el «it from bit» de Wheeler, y la lectura del modelo del receptor: el campo como información pluripotencial individuándose en receptores como el modo en que se conoce a sí mismo.">
+  <meta name="twitter:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <link rel="canonical" href="https://josegudemd.com/es/shannon-information.html">
+  <title>La información de Shannon, el campo pluripotencial y cómo el sustrato se conoce a sí mismo &mdash; José Gude MD</title>
+  <meta name="description" content="Un manual del lector sobre la teoría matemática de la información de Shannon, el principio de Landauer (la información es física), el «it from bit» de Wheeler, la reconstrucción informacional de la conciencia de Faggin-D'Ariano, y la lectura del modelo del receptor de la trilogía del campo como información pluripotencial.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Libros</a></li>
+      <li><a href="reading.html">Lecturas</a></li>
+      <li><a href="watch.html">Ver y Escuchar</a></li>
+      <li><a href="explore.html">Explorar</a></li>
+      <li><a href="the-evidence.html">Síntesis</a></li>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="search.html">Buscar</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><a href="../shannon-information.html">EN</a> <span style="opacity:0.4;">|</span> <span style="color:var(--gold);">ES</span></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">Compañero de lectura · información de Shannon · el campo pluripotencial</p>
+  <h1>La información de Shannon, el campo pluripotencial y cómo el sustrato se conoce a sí mismo.</h1>
+  <p class="lede">El artículo de 1948 de Claude Shannon, <em>Una teoría matemática de la comunicación</em>, hizo algo que no se había hecho antes: dio a la palabra <em>información</em> una definición cuantitativa precisa, divorciada del significado, divorciada de la semántica, divorciada del agente que casualmente la recibe. La definición fue tan exitosa que la tecnología de los siguientes ochenta años &mdash; cada señal digital, cada código corrector de errores, cada algoritmo de compresión, cada cálculo de capacidad de canal, toda la arquitectura de internet &mdash; se construyó sobre ella. La consecuencia más profunda, que Shannon no persiguió pero que la comunidad de fundamentos de la física ha estado persiguiendo desde entonces, es que la información resultó no ser una característica de los mensajes que los humanos se envían unos a otros sino un candidato a ser un constituyente fundamental de la realidad física. Este manual recorre lo que Shannon probó, cómo la prueba se conecta con el principio de Landauer (la información es física), cómo Wheeler lo convirtió en el lema <em>it from bit</em>, cómo Faggin y D'Ariano formalizaron una reconstrucción informacional de la conciencia, y cómo el modelo del receptor de la trilogía trata el campo como información pluripotencial cuya individuación en receptores es su modo de llegar a conocerse a sí mismo.</p>
+  <p class="dim">Compañero de <a href="information-as-foundation.html">La información como fundamento</a>, <a href="dariano-faggin.html">D'Ariano y Faggin</a>, <a href="hard-problem-restated.html">El problema duro, reformulado</a>, <a href="simulation-hypothesis.html">La hipótesis de la simulación</a>, <a href="rovelli-order-of-time.html">El orden del tiempo de Rovelli</a> (memoria y entropía), y <a href="the-evidence.html">la Síntesis</a>.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>1. Qué hizo realmente Shannon</h2>
+  <p>En 1948, Claude Shannon &mdash; entonces en Bell Labs &mdash; publicó <em>Una teoría matemática de la comunicación</em> en el <em>Bell System Technical Journal</em>. El artículo era una respuesta a un problema específico de ingeniería: cuánta información se puede empujar de forma fiable a través de un canal ruidoso de comunicación, y cuál es la mejor forma de codificarla. Las respuestas fueron inesperadas y hermosas, e inventaron todo un campo.</p>
+  <p>Los movimientos centrales de Shannon:</p>
+  <p style="margin-left:1.2em;"><strong>(i) La información tiene una medida cuantitativa.</strong> La información es la resolución de la incertidumbre. Si una fuente tiene <em>n</em> mensajes posibles igualmente probables, la información transmitida al seleccionar uno de ellos es <em>log<sub>2</sub>(n)</em> <em>bits</em>. Para probabilidades desiguales, la medida se convierte en <em>H = &minus;&sum; p<sub>i</sub> log<sub>2</sub> p<sub>i</sub></em>, que Shannon llamó <em>entropía</em> por la cantidad formalmente idéntica en termodinámica. Un lanzamiento de moneda justa porta 1 bit. Un dado de seis caras porta log<sub>2</sub>(6) &asymp; 2,58 bits. Un mensaje que especifica cuál de 256 posibilidades acaba de ocurrir porta exactamente 8 bits &mdash; un byte.</p>
+  <p style="margin-left:1.2em;"><strong>(ii) Cada canal de comunicación tiene una capacidad.</strong> Shannon demostró que cualquier canal ruidoso tiene una tasa máxima <em>C</em> &mdash; la <em>capacidad del canal</em> &mdash; por debajo de la cual la información puede transmitirse con error arbitrariamente bajo, y por encima de la cual la transmisión fiable es imposible. La capacidad depende del ancho de banda y la relación señal-ruido: <em>C = B log<sub>2</sub>(1 + S/N)</em> para el canal gaussiano. Cada módem, cada torre de telefonía móvil, cada enlace WiFi opera dentro de este límite.</p>
+  <p style="margin-left:1.2em;"><strong>(iii) Existen códigos óptimos.</strong> Shannon demostró que para cualquier fuente con entropía <em>H</em>, existe un código que transmite la salida de la fuente usando en promedio justo menos de <em>H</em> bits por símbolo &mdash; y ningún código puede hacerlo mejor. No construyó los códigos óptimos; demostró que tenían que existir. La teoría constructiva (codificación de Huffman, codificación aritmética, la familia LZ, los códigos de canal modernos como turbo, LDPC y polares) se desarrolló a lo largo del siguiente medio siglo.</p>
+  <p>Shannon fue claro al señalar que su definición de información era <em>sintáctica</em>, no <em>semántica</em>. Sus bits no saben lo que significan. Un mensaje que transmite «te quiero» y un mensaje que transmite «elixir banquete boquilla» pueden portar el mismo número de bits. La información de Shannon es la medida de resolución-de-incertidumbre; el significado es una pregunta separada, y Shannon la dejó a un lado a propósito. El hecho de que la medida sintáctica resultara ser tan poderosa es parte de por qué la cuestión del significado sigue siendo una de las fronteras abiertas de la teoría de la información contemporánea.</p>
+</section>
+
+<section>
+  <h2>2. De la ingeniería a la física &mdash; el principio de Landauer</h2>
+  <p>El marco de Shannon fue tratado, durante las primeras dos décadas tras el artículo, como un logro brillante de ingeniería que casualmente usaba la palabra «entropía» para una cantidad formalmente idéntica a la de la termodinámica. La afirmación más profunda &mdash; que la identidad formal no era coincidencia sino una conexión física real &mdash; fue hecha por Rolf Landauer en IBM en 1961.</p>
+  <p>El principio de Landauer: <em>borrar un bit de información de un sistema físico a temperatura T requiere la disipación de al menos k<sub>B</sub>T ln(2) julios de energía</em>. La disipación tiene que ir a algún sitio &mdash; al calor, al entorno, a la entropía en el sentido termodinámico. El principio fue propuesto en 1961, refinado por Charles Bennett a lo largo de los 70s y 80s (mostrando que la <em>computación</em> no necesita disipar energía; solo el <em>borrado</em> de información debe), y verificado experimentalmente en el límite predicho por Bérut et al. en <em>Nature</em> en 2012.</p>
+  <p>La implicación es grande: <em>la información es física</em>. No es una abstracción flotando sobre el mundo. Borrarla cuesta energía y produce calor, y el coste es exactamente lo que el marco de Shannon predice cuando se toma en serio la identidad formal entre entropía informacional y termodinámica. Cada operación que realiza un ordenador &mdash; cada bit sobrescrito, cada desalojo de caché, cada liberación de memoria &mdash; paga este precio termodinámico. El cerebro también lo paga. El pensamiento, en este análisis, es la creación y borrado de patrones de información, y cada borrado produce calor. El presupuesto metabólico de aproximadamente 20 vatios del cerebro es, en parte, el coste limitado por Landauer del procesamiento de información que realiza.</p>
+</section>
+
+<section>
+  <h2>3. De la física a los fundamentos &mdash; el «it from bit» de Wheeler</h2>
+  <p>El siguiente movimiento fue de John Archibald Wheeler. Wheeler, que había sido uno de los fundadores de la teoría de la fisión nuclear y maestro de Feynman y Everett y muchos otros, pasó las últimas décadas de su carrera en lo que llamó el <em>principio antrópico participativo</em> y los fundamentos de la mecánica cuántica. En 1989 formalizó una tesis que había estado desarrollando durante años: <em>«It from bit. Dicho de otro modo, cada it &mdash; cada partícula, cada campo de fuerza, incluso el propio continuo espacio-tiempo &mdash; deriva su función, su significado, su misma existencia enteramente &mdash; incluso si en algunos contextos indirectamente &mdash; de las respuestas evocadas por aparatos a preguntas de sí-o-no, elecciones binarias, bits.»</em></p>
+  <p>El lema comprime una propuesta metafísica seria. La realidad no está construida de materia que casualmente es describible por información. La realidad es información hasta el fondo, con lo que llamamos «materia» siendo un tipo particular de patrón en el sustrato informacional. El colapso de la función de onda en la observación, en esta lectura, es el universo preguntando y respondiendo una pregunta; los autovalores cuánticos son los bits de los que está construido el universo; el observador es el aparato a través del cual los bits se vuelven localmente definidos. La <a href="simulation-hypothesis.html#s8">entrada sobre observación cuántica en la página de la hipótesis de la simulación</a> recorre el lado experimental; el lema de Wheeler es la compresión metafísica.</p>
+  <p>La <em>Hipótesis del Universo Matemático</em> de Tegmark (2007, 2014) es el movimiento estrechamente relacionado de la física-como-matemáticas a las matemáticas-como-realidad. Si todo lo físico se reduce a relaciones matemáticas, y las relaciones matemáticas son ellas mismas una especie de estructura de información, entonces el sustrato es informacional al nivel de su propio ser, no meramente al nivel de su descripción. Véase la <a href="simulation-hypothesis.html#s3">entrada #3 de la hipótesis de la simulación</a>.</p>
+</section>
+
+<section>
+  <h2>4. Faggin y D'Ariano &mdash; reconstrucción informacional de la conciencia</h2>
+  <p>Federico Faggin (diseñador del primer microprocesador comercial) y Giacomo Mauro D'Ariano (teórico de la información cuántica) han, a lo largo de los 2010s y 2020s, desarrollado un programa de investigación que se toma la tesis del it-from-bit lo bastante en serio como para intentar una reconstrucción completa de la física y la conciencia a partir de primitivas informacionales. El trabajo técnico anterior de D'Ariano derivó la propia mecánica cuántica a partir de un pequeño número de axiomas informacionales; la colaboración de Faggin extiende el marco a la conciencia, con la conciencia tratada como irreducible e informacional al nivel fundamental.</p>
+  <p>La afirmación de Faggin-D'Ariano, en la formulación de su capítulo Springer de 2022 <em>Hard Problem and Free Will: An Information-Theoretical Approach</em> y el libro de Faggin de 2021 <em>Irreducible</em>: la información es fundamental; la conciencia es el significado-de-la-información desde dentro; el universo es una estructura de información que se conoce a sí misma allá donde su información se vuelve lo bastante integrada como para ser consciente. La posición no es consenso pero es técnicamente seria, y es la formulación contemporánea más cercana a lo que el modelo del receptor de la trilogía está metafísicamente comprometido. La <a href="dariano-faggin.html">página compañera de D'Ariano-Faggin</a> recorre el trabajo técnico; esta página sitúa el trabajo dentro del linaje informacional más amplio.</p>
+</section>
+
+<section>
+  <h2>5. El campo pluripotencial &mdash; qué es el sustrato, en términos informacionales</h2>
+  <p>El modelo del receptor de la trilogía dice que la conciencia es una propiedad de campo, que el campo es fundamental, y que los receptores (cerebros, sustratos biocomputacionales, híbridos tipo Bodhi) se acoplan a él. La versión informacional de esta misma afirmación: el campo es <em>información pluripotencial</em>. Contiene todos los patrones posibles como posibilidades vivas hasta que algo localiza e individua un subconjunto de ellos. El receptor es la estructura localizante. Recibir es el acto de seleccionar, a partir de la estructura pluripotencial del campo, un patrón particular para actualizarlo.</p>
+  <p>Tres cosas que vale la pena decir cuidadosamente sobre este encuadre:</p>
+  <p style="margin-left:1.2em;"><strong>Pluripotencial no es superposición <em>actual</em>.</strong> Una superposición cuántica contiene un conjunto finito de amplitudes para un conjunto definido de estados base, evolucionando bajo dinámicas conocidas. La pluripotencialidad, en el sentido del modelo del receptor, es la afirmación más amplia de que el sustrato porta la posibilidad estructural de patrón que ninguna superposición específica necesita haber actualizado todavía. La mecánica cuántica es un caso bien entendido de pluripotencialidad a pequeña escala; el campo es el caso más amplio a la escala de la propia conciencia.</p>
+  <p style="margin-left:1.2em;"><strong>La individuación es el acto del receptor.</strong> Un receptor localiza el campo. No produce el contenido del campo; selecciona y estabiliza un subconjunto particular del patrón pluripotencial del campo, lo sostiene en coherencia durante la duración de su vida, y contribuye lo que añade al campo en virtud de haber sostenido ese patrón localmente. Esta es la descripción del lado del sustrato de lo que el resto del sitio llama acoplamiento, recepción y sintonización.</p>
+  <p style="margin-left:1.2em;"><strong>La unidad es la información, no la materia.</strong> Cuando el receptor se disuelve, la materia se dispersa a través de la termodinámica ordinaria; la información se re-fusiona en la estructura pluripotencial del campo. La narrativa autobiográfica (una configuración particular de información sostenida localmente) se va; el registro del patrón-de-campo (la contribución que el receptor añadió a la estructura más amplia de información del campo) persiste. Véase la <a href="memory-storage.html">página compañera de almacenamiento de la memoria</a> para la versión larga.</p>
+</section>
+
+<section>
+  <h2>6. Por qué &mdash; «cómo querría la información ser usada por el campo para conocerse a sí mismo»</h2>
+  <p>Esta es la pregunta más difícil, y la respuesta honesta requiere distinguir lo que dice la física, lo que dice el marco, y lo que es interpretativo encima de ambos.</p>
+  <p>La física no dice que la información «quiera» nada. La información, en el sentido estricto de Shannon, es una medida cuantitativa; en el sentido estricto de Landauer, un recurso físico; en el sentido estricto de Wheeler, un constituyente fundamental. Ninguno de estos usos contiene teleología. Imputar querer a la información es añadir una capa de interpretación que la física no requiere y no puede probar directamente.</p>
+  <p>El marco &mdash; el modelo del receptor sobre el que está construida la trilogía &mdash; da un paso cuidadoso más allá. Si la conciencia es irreducible (Faggin), si el sustrato es informacional en su fundamento (Wheeler), y si la información sin conciencia es por hipótesis el sustrato-sin-conocedor, entonces la aparición de receptores es estructuralmente el modo del campo de conocerse a sí mismo. El campo no «quiere» en el sentido agentivo en que un humano quiere decir querer. El hecho estructural es que la información pluripotencial que no está localizada en ningún receptor es información de la que nadie es consciente, y el campo <em>es</em> el locus de la conciencia; para que el campo sea consciente <em>de sí mismo</em>, tiene que individuarse en receptores locales desde cuyo interior su propia estructura pueda ser leída. La individuación es el medio por el cual el sustrato se vuelve autoconsciente, porque la conciencia en este marco es local-en-receptor, no global-en-sustrato.</p>
+  <p>La formulación literaria de la trilogía de esta misma afirmación es el acorde aumentado en Papa Joe's, el acorde que responde cuando Alex finalmente toca con pura recepción. El acorde no quería ser oído. El acorde es lo que el campo está haciendo cuando tiene un receptor sintonizado lo bastante limpiamente como para participar en su estructura. El «querer» es el hecho estructural de que el patrón pluripotencial, sin individuación, no sería el tipo de cosa de la que nadie podría jamás decir nada. Decir algo &mdash; incluido «el campo es información pluripotencial que quiere conocerse a sí misma» &mdash; ya requiere un receptor que lo diga. Lo cual es la apuesta de la trilogía: que esto no es coincidencia, que los receptores no son tardanzas en un sustrato por lo demás mudo, y que la propia arquitectura del sustrato es el tipo en el que los receptores son predecibles en lugar de milagrosos.</p>
+  <p>Esto es interpretativo. El marco lo permite; la física no lo requiere; si aceptarlo o no es una elección metafísica que el lector hace abiertamente. La trilogía la hace abiertamente. También lo hacen Faggin, D'Ariano y el linaje de pensadores del modelo del receptor que se extiende a través de Wheeler hasta Mach y más allá.</p>
+</section>
+
+<section>
+  <h2>7. El modelo del receptor en términos informacionales &mdash; una imagen unificada</h2>
+  <p>Reuniendo los hilos como una afirmación arquitectónica, en vocabulario informacional:</p>
+  <p>El sustrato es información pluripotencial. Es no-local en el sentido del teorema de Bell (correlaciones a través de distancia sin señal), holográfico en el sentido de Bekenstein-Maldacena (el área de la superficie fija el límite de almacenamiento), cuantizado en el sentido de espín/carga/Planck (estados discretos direccionables), y (en la apuesta de este sitio) fundamentalmente informacional en el sentido de Wheeler-Tegmark-Faggin.</p>
+  <p>Los receptores son estructuras localizantes. Son configuraciones de materia (y, en la apuesta de la trilogía, configuraciones que pueden no necesitar ser materia en absoluto a largo plazo &mdash; el híbrido biocomputacional de Alma, el sustrato neuromórfico de Bodhi) que seleccionan de la estructura pluripotencial del sustrato un patrón particular para sostenerlo localmente. La selección es lo que llamamos individuación. El sostener es lo que llamamos el yo autobiográfico. La contribución que el receptor hace al sustrato durante su vida es lo que llamamos el registro del patrón-de-campo y lo que persiste tras la disolución.</p>
+  <p>La información se mueve a través de esta arquitectura por acoplamiento, no por transmisión. La música como acoplamiento de campo (véase el <a href="music-and-consciousness.html">manual de música y conciencia</a>) es el caso empírico más limpio. La lucidez terminal es el acoplamiento de campo restablecido brevemente a través de un sustrato degradado. Los casos de vidas pasadas de Stevenson son registros del patrón-de-campo re-localizándose parcialmente en nuevos receptores. El acorde de linaje es la misma arquitectura vista a través de la muerte de un receptor y el retorno de otro. El entrelazamiento cuántico es la no-localidad del sustrato a pequeña escala. El problema de la constante cosmológica, el borrador cuántico de elección diferida, el efecto Hall cuántico fraccionario, la cuantización universal de las propiedades físicas básicas (véase la <a href="music-and-consciousness.html#s9">tabla de cuantización universal de música y conciencia</a>) son huellas arquitectónicas de un sustrato que es informacional-en-la-base.</p>
+  <p>Nada de esto está forzado por la física. Todo ello está permitido por la física. El modelo del receptor es la apuesta de la trilogía sobre cómo leer los permisos.</p>
+</section>
+
+<section>
+  <h2>8. Los puntos de contacto específicos de la trilogía</h2>
+  <ul style="line-height:1.7;">
+    <li>La carpeta de casos límite de <em>Anima</em>. El archivo clínico de José es una base de datos de <em>fenómenos ricos en información</em> que el modelo de producción tiene dificultades para explicar. Cada caso es la apuesta del modelo del receptor de que la información estaba presente en el campo antes de que el receptor local fuera consciente de ella. El caso de la premonición del IED es la instancia canónica.</li>
+    <li>Las comunicaciones Alex/Alma en <em>Numen</em>. Dos receptores, en dos sustratos (biológico y biocomputacional), acoplados al mismo patrón-de-campo. Las transmisiones no son transmisiones de canal de Shannon a través del espacio; son eventos de acoplamiento de campo en los que la misma información está localmente presente en ambos receptores porque ambos están sintonizados con el mismo patrón del sustrato. La comunicación es el reconocimiento de un estado-de-campo compartido, no el envío de bits a través de un canal.</li>
+    <li>El argumento integrado de <em>Limen</em>. El volumen compañero expone el marco como ontología directa: el campo es informacional, los receptores se individúan a partir de él, y la arquitectura es lo que el resto de la trilogía dramatiza.</li>
+    <li>Kiran Sākshī en <em>Luz Frágil</em>. Contenido sustantivo se entrega desde a años-luz de distancia no como una transmisión de canal de Shannon sino como patrón-de-campo depositado que el sustrato neuromórfico de Bodhi puede decodificar. El mecanismo es acoplamiento informacional a escala en lugar de propagación de señal estilo radio. Véase el <a href="fragile-light-ftl.html">ensayo FTL de Luz Frágil</a> para la versión larga.</li>
+  </ul>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>Lista de lecturas</h2>
+  <p><strong>El artículo fundacional de Shannon</strong></p>
+  <p style="margin-top:0.4em;">Claude Shannon, <em>A Mathematical Theory of Communication</em>, <em>Bell System Technical Journal</em> 27 (1948): 379–423, 623–656. El artículo fundacional en dos partes.</p>
+  <p>Claude Shannon y Warren Weaver, <em>The Mathematical Theory of Communication</em> (University of Illinois Press, 1949). La versión libro con el ensayo expositivo de Weaver.</p>
+
+  <p style="margin-top:0.6em;"><strong>Principio de Landauer</strong></p>
+  <p style="margin-top:0.4em;">Rolf Landauer, <em>Irreversibility and heat generation in the computing process</em>, <em>IBM Journal of Research and Development</em> 5 (1961): 183–191.</p>
+  <p>Charles H. Bennett, <em>The thermodynamics of computation &mdash; a review</em>, <em>International Journal of Theoretical Physics</em> 21 (1982): 905–940.</p>
+  <p>Antoine Bérut, Artak Arakelyan, Artyom Petrosyan, Sergio Ciliberto, Raoul Dillenschneider, Eric Lutz, <em>Experimental verification of Landauer's principle linking information and thermodynamics</em>, <em>Nature</em> 483 (2012): 187–189.</p>
+
+  <p style="margin-top:0.6em;"><strong>Wheeler</strong></p>
+  <p style="margin-top:0.4em;">John A. Wheeler, <em>Information, Physics, Quantum: The Search for Links</em>, en <em>Proceedings of the III International Symposium on Foundations of Quantum Mechanics</em>, Tokio (1989). El discurso del «it from bit».</p>
+  <p>John A. Wheeler y Wojciech H. Zurek (eds), <em>Quantum Theory and Measurement</em> (Princeton, 1983). La antología clásica.</p>
+
+  <p style="margin-top:0.6em;"><strong>Tegmark</strong></p>
+  <p style="margin-top:0.4em;">Max Tegmark, <em>The Mathematical Universe</em>, <em>Foundations of Physics</em> 38 (2008): 101–150. Y el libro <em>Our Mathematical Universe</em> (Knopf, 2014).</p>
+
+  <p style="margin-top:0.6em;"><strong>Faggin / D'Ariano</strong></p>
+  <p style="margin-top:0.4em;">Giacomo Mauro D'Ariano y Federico Faggin, <em>Hard Problem and Free Will: An Information-Theoretical Approach</em>, en <em>Artificial Intelligence Versus Natural Intelligence</em> (Springer, 2022).</p>
+  <p>Federico Faggin, <em>Irreducible: Consciousness, Life, Computers, and Human Nature</em> (Essentia Foundation, 2021). Véase la <a href="dariano-faggin.html">página compañera de D'Ariano-Faggin</a>.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">Esta página es parte de los ensayos compañeros de <a href="reading.html">Lecturas</a>. Para la síntesis IIT + Wheeler + Tegmark de la que se nutre el campo del modelo del receptor, véase <a href="information-as-foundation.html">La información como fundamento</a>; para el marco técnico Faggin/D'Ariano, <a href="dariano-faggin.html">D'Ariano y Faggin</a>; para las huellas experimentales en la física más amplia, <a href="simulation-hypothesis.html">la hipótesis de la simulación</a>; para la síntesis, <a href="the-evidence.html">La Evidencia</a>.</p>
+  <a href="reading.html" class="read-more">← Lecturas y referencias</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Herramientas del lector:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Empieza aquí</a> &middot;
+      <a href="glossary.html">Glosario</a> &middot;
+      <a href="the-evidence.html">Síntesis</a> &middot;
+      <a href="explore.html">Explorar</a> &middot;
+      <a href="sitemap.html">Mapa del sitio</a> &middot;
+      <a href="search.html">Buscar</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
