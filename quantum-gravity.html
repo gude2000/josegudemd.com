@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="José Gude MD">
+  <meta property="og:title" content="Quantum gravity and loop quantum gravity — a reader primer · José Gude MD · The Field Trilogy">
+  <meta property="og:description" content="General relativity describes gravity beautifully at large scales. Quantum mechanics describes everything else beautifully at small scales. They do not fit together, and where they collide — at the Big Bang, inside black holes, at the Planck scale — physics has no working theory. A primer on the quantum-gravity problem, the two leading approaches (string theory and loop quantum gravity), what Rovelli and Smolin and Ashtekar's spin networks actually propose, and how the trilogy's receiver-model architecture sits naturally inside a quantized substrate.">
+  <meta property="og:url" content="https://josegudemd.com/quantum-gravity.html">
+  <meta property="og:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Quantum gravity and loop quantum gravity — a reader primer">
+  <meta name="twitter:description" content="GR and QM don't fit. The two leading attempts (string theory and LQG), spin networks, quantized spacetime, and the receiver-model reading.">
+  <meta name="twitter:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <link rel="canonical" href="https://josegudemd.com/quantum-gravity.html">
+  <title>Quantum gravity and loop quantum gravity &mdash; a reader primer &mdash; José Gude MD</title>
+  <meta name="description" content="A reader primer on the quantum-gravity problem — why GR and QM are incompatible, the two leading attempts (string theory and loop quantum gravity), Rovelli/Smolin/Ashtekar's spin networks, the Planck scale, and how the receiver model sits naturally inside a quantized substrate.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Books</a></li>
+      <li><a href="reading.html">Reading</a></li>
+      <li><a href="watch.html">Watch &amp; Listen</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="the-evidence.html">Synthesis</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><span style="color:var(--gold);">EN</span> <span style="opacity:0.4;">|</span> <a href="es/quantum-gravity.html">ES</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">Reader companion · quantum gravity · loop quantum gravity</p>
+  <h1>Quantum gravity and loop quantum gravity &mdash; a reader primer.</h1>
+  <p class="lede">Two theories built across the twentieth century, both spectacularly successful in their domains, do not fit together. <em>General relativity</em> describes gravity as the curvature of a smooth, continuous spacetime; it is the most accurate large-scale theory we have, tested everywhere from planetary orbits to gravitational waves to the bending of light by galaxies. <em>Quantum mechanics</em> describes everything else &mdash; matter, light, the strong and weak nuclear forces &mdash; as discrete, probabilistic, observer-dependent; it is the most accurately tested theory in the history of science. Where the two collide &mdash; at the Big Bang, inside black holes, at the Planck scale of about 10<sup>&minus;35</sup> metres &mdash; physics has no working theory. The search for one is the search for <em>quantum gravity</em>, and it is the deepest open problem in fundamental physics. This primer walks through what the problem is, the two leading approaches (string theory and loop quantum gravity), what Carlo Rovelli, Lee Smolin, Abhay Ashtekar, and Roger Penrose's spin networks actually propose, and how the trilogy's receiver-model architecture sits naturally inside a substrate that is quantized at the deepest level.</p>
+  <p class="dim">Companion to <a href="planck-scale.html">The Planck scale</a>, <a href="rovelli-order-of-time.html">Rovelli's Order of Time</a>, <a href="simulation-hypothesis.html">The simulation hypothesis</a>, <a href="entanglement-evidence.html">Entanglement at every scale</a>, and <a href="the-evidence.html">the Synthesis</a>.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>1. Why GR and QM don't fit</h2>
+  <p>The problem is structural, not merely technical. General relativity treats spacetime as a smooth, dynamical, continuous manifold whose curvature is determined by the mass-energy it contains. The Einstein field equations are deterministic differential equations in this continuum. Quantum mechanics treats fundamental quantities as discrete, observer-dependent, probabilistic, and described by operators on Hilbert spaces. The two frameworks make incompatible assumptions about what reality is made of.</p>
+  <p>For most of the twentieth century this incompatibility could be ignored. The scales at which gravity dominates (planets, stars, galaxies) and the scales at which quantum mechanics dominates (atoms, molecules, subatomic particles) are wildly separated. A theory that worked beautifully in either regime did not need to address the other. The problem becomes inescapable in three regimes where both frameworks must apply simultaneously and neither is sufficient:</p>
+  <ul style="line-height:1.7;">
+    <li><strong>The Big Bang.</strong> Run the cosmological equations backward toward t = 0 and general relativity predicts a singularity &mdash; infinite density, infinite curvature, infinite everything. At the Planck scale before that singularity, quantum effects on spacetime itself become non-negligible. GR says we should have a continuum; QM says we should not. Without a quantum theory of gravity, we cannot say what the Big Bang was, only what happened a fraction of a second after.</li>
+    <li><strong>Black hole interiors and singularities.</strong> General relativity predicts that matter collapsing past the Schwarzschild radius continues collapsing to a point of infinite density &mdash; another singularity. Quantum mechanics suggests this cannot be the actual final state. Hawking radiation (which combines QM with QFT in a curved GR background) shows that black holes evaporate, raising the <em>information paradox</em>: where does the information about what fell in go? GR and QM give incompatible answers.</li>
+    <li><strong>The Planck scale.</strong> At length scales around 10<sup>&minus;35</sup> metres and time scales around 10<sup>&minus;44</sup> seconds, the energy required to probe such a small region (by the uncertainty principle) is large enough that, by general relativity, it should curve spacetime into a black hole at that scale. At this scale, asking what spacetime is "doing" between events becomes incoherent in either framework's vocabulary alone. The Planck scale is where, on most current views, spacetime as we know it must either dissolve into something more fundamental or be a coarse-grained appearance of a more fundamental substrate.</li>
+  </ul>
+  <p>Quantum gravity, on every approach, is the attempt to give a single coherent account of the regime where both frameworks apply.</p>
+</section>
+
+<section>
+  <h2>2. The Planck scale &mdash; setting the floor</h2>
+  <p>Max Planck noticed in 1899 that combining the three fundamental constants &mdash; the gravitational constant G, the speed of light c, and Planck's own constant ℏ &mdash; gives natural units for length, time, mass, and energy. These are the <em>Planck units</em>:</p>
+  <ul style="line-height:1.7;">
+    <li><strong>Planck length</strong> &asymp; 1.616 &times; 10<sup>&minus;35</sup> m</li>
+    <li><strong>Planck time</strong> &asymp; 5.391 &times; 10<sup>&minus;44</sup> s</li>
+    <li><strong>Planck mass</strong> &asymp; 2.176 &times; 10<sup>&minus;8</sup> kg (the only Planck unit at human-relatable scale)</li>
+    <li><strong>Planck energy</strong> &asymp; 1.956 &times; 10<sup>9</sup> J (about 500 kilowatt-hours, concentrated in a single particle)</li>
+  </ul>
+  <p>The Planck units are not numerically special on their own; they are the scales at which dimensional analysis predicts the GR-QM incompatibility becomes unavoidable. Whether spacetime is <em>literally</em> discrete at the Planck scale is a question different quantum-gravity approaches answer differently. Loop quantum gravity says yes &mdash; geometry has discrete spectra; the Planck length is a real minimum. String theory says less clearly &mdash; the strings live in spacetime that is not obviously quantized at the Planck level, though stringy effects become unavoidable there. Causal set theory and causal dynamical triangulations say yes, but quantize differently. See the <a href="planck-scale.html">Planck-scale companion page</a> for the longer treatment.</p>
+</section>
+
+<section>
+  <h2>3. String theory &mdash; the approach with more press</h2>
+  <p>String theory, developed across the 1970s, 1980s, and 1990s by Schwarz, Green, Witten, and a generation of mathematicians and physicists, proposes that the fundamental constituents of reality are not point particles but one-dimensional <em>strings</em> whose vibrational modes correspond to different particle types. A graviton is one vibrational mode of a string; an electron is another; a photon is another. The theory is mathematically beautiful, requires extra spatial dimensions beyond the three we observe (the standard formulations require nine spatial dimensions plus time, with the extra six "compactified" at scales we cannot resolve), and naturally incorporates gravity.</p>
+  <p>String theory's strengths: it incorporates gravity automatically, it removes some of the infinities that plague quantum field theory in flat spacetime, and the mathematics it has driven (mirror symmetry, dualities, AdS/CFT) has substantially enriched both physics and pure mathematics. Maldacena's 1997 AdS/CFT correspondence, in particular, has become one of the most powerful tools in theoretical physics, with applications well beyond string theory itself.</p>
+  <p>String theory's weaknesses, increasingly acknowledged: after fifty years it has made no testable predictions distinct from those of the standard model and general relativity; the "landscape" of allowed solutions is enormous (on some estimates 10<sup>500</sup> distinct vacuum states), which makes it consistent with almost any observation and therefore vulnerable to the charge that it cannot be falsified; the extra dimensions have never been observed; and the most basic question &mdash; what string theory's actual non-perturbative formulation is &mdash; remains open. Critics including Lee Smolin (<em>The Trouble with Physics</em>, 2006) and Peter Woit (<em>Not Even Wrong</em>, 2006) have argued that the sociological dominance of string theory in twentieth-century theoretical physics outran its empirical justification. The string-theory community has responded; the debate is ongoing.</p>
+</section>
+
+<section>
+  <h2>4. Loop quantum gravity &mdash; the approach this site engages with most directly</h2>
+  <p>Loop quantum gravity (LQG), developed in parallel by Abhay Ashtekar, Carlo Rovelli, Lee Smolin, and others from the late 1980s onward, takes a different approach. Where string theory begins with a background spacetime and adds extra dimensions, LQG attempts to quantize spacetime <em>itself</em>, without any background structure presupposed. The result is one of the most radical pictures of fundamental reality in contemporary physics: spacetime, on LQG, is not a smooth continuum at all. It is a discrete, granular structure made of quantized "atoms" of space whose connections form what Rovelli and Smolin call <em>spin networks</em>.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">Spin networks &mdash; what LQG says spacetime is made of</h3>
+  <p>A spin network is a graph &mdash; nodes connected by edges &mdash; in which the edges carry quantum numbers (labels analogous to spin in atomic physics) and the nodes carry intertwining operators. Each node represents a quantum of three-dimensional space; each edge represents a connection between adjacent quanta. The geometry &mdash; areas, volumes, lengths &mdash; is not in any background; it is computed directly from the spin-network labels. Rovelli, Smolin, and Ashtekar derived (in the 1990s) that the operators corresponding to area and volume have <em>discrete spectra</em> in LQG. There is a minimum non-zero area (on the order of the Planck area, 10<sup>&minus;70</sup> m<sup>2</sup>) and a minimum non-zero volume. Geometry, on LQG, is quantized in the literal sense: you cannot have a region of space with area smaller than the minimum permitted value, just as you cannot have an electron with a fractional charge.</p>
+  <p>The temporal extension of spin networks is the <em>spin foam</em> &mdash; the history of a spin network as it evolves. The transition from one spin network to another (the smallest discrete "event" in LQG) is what corresponds, at the Planck scale, to the passage of a Planck unit of time. The smooth spacetime we observe is the coarse-graining of an enormously dense spin foam at scales above the Planck length, in the same way the smooth surface of water is the coarse-graining of an enormous number of discrete water molecules.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">Penrose's prehistory of spin networks</h3>
+  <p>Roger Penrose first proposed spin networks in the early 1970s, as a purely combinatorial way of constructing geometry from quantum-mechanical primitives without presupposing a continuum. Penrose's networks were not yet a full theory of gravity, but they were the structural precedent loop quantum gravity built on twenty years later. Penrose's later work (<em>The Road to Reality</em>, 2004; his various twistor-theory and Orch-OR papers) keeps the spin-network thread visible.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">What LQG predicts and where it stands</h3>
+  <p>LQG predicts discrete area and volume spectra at the Planck scale, a resolution of the Big Bang singularity (the "bouncing-cosmology" scenario where the apparent singularity at t = 0 is a transition through a Planck-scale phase to a previous contracting universe), a resolution of the black-hole singularity, and a calculation of black-hole entropy that matches the Bekenstein-Hawking result. It has been less successful than string theory at incorporating the matter content (the standard-model particles and forces) into its framework; the two approaches address different parts of the unification problem from different sides. The Rovelli camp argues that LQG's background-independence is the deeper move; the string-theory camp argues that the unification of matter is the more pressing problem. Both arguments have merit. Neither has been settled empirically.</p>
+</section>
+
+<section>
+  <h2>5. Other approaches &mdash; the wider field</h2>
+  <p>Quantum gravity is not a two-horse race. Several other approaches have produced serious technical work and partial results:</p>
+  <ul style="line-height:1.7;">
+    <li><strong>Causal dynamical triangulations</strong> (CDT) &mdash; Loll, Ambj&oslash;rn, Jurkiewicz. Builds spacetime out of discrete simplices and lets the dynamics generate the geometry. Recovers four-dimensional spacetime at large scales from a discrete substrate at small scales.</li>
+    <li><strong>Asymptotic safety</strong> &mdash; Weinberg's proposal that gravity, despite naive non-renormalisability, may be renormalisable at a non-trivial fixed point. Substantial numerical and analytical work supports this; the question remains open.</li>
+    <li><strong>Causal set theory</strong> &mdash; Sorkin and collaborators. Spacetime as a partially ordered set of discrete events, with causal structure as the fundamental relation. Sorkin's 1991 prediction of the cosmological constant order-of-magnitude was, in retrospect, remarkably accurate.</li>
+    <li><strong>The Wolfram physics project</strong> &mdash; Stephen Wolfram's hypergraph-rewriting approach, which proposes that spacetime emerges from the dynamics of an evolving discrete network. Strong on the computational-substrate side; less developed on the empirical-physics side.</li>
+    <li><strong>Emergent gravity</strong> (Verlinde and others) &mdash; gravity as a thermodynamic or entropic phenomenon rather than fundamental. Erik Verlinde's 2010 derivation of Newton's gravity from holographic entropy considerations brought the approach to wider attention. The reception has been mixed; the proposal remains under active development.</li>
+  </ul>
+  <p>The field is in an unusual state of permanent ferment. No approach has yet produced a single distinguishing empirical prediction that has been observed. The Planck scale remains experimentally inaccessible; tabletop experiments testing Penrose-Diósi gravity-induced collapse (see the <a href="measurement-problem.html#s5">measurement-problem essay</a>) are the closest thing to a quantum-gravity-relevant experiment currently running, and they are still in the parameter-narrowing phase.</p>
+</section>
+
+<section>
+  <h2>6. Why quantum gravity matters for the receiver model</h2>
+  <p>Three points worth making about why the trilogy's framework engages quantum gravity directly:</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">The substrate is quantized at base &mdash; if LQG is right</h3>
+  <p>The <a href="music-and-consciousness.html#s9">universal quantization table</a> on the music-and-consciousness page documents how almost every fundamental property of physical reality, examined closely enough, turns out to be quantized. If loop quantum gravity is correct, this pattern extends all the way down: <em>spacetime itself</em> is discrete at the Planck scale, with minimum area and volume in the literal sense. The receiver model's intuition that the substrate has discrete addressable structure becomes, on LQG, not a metaphor but a working physics proposal. The universe is a vast spin network at the Planck level, with what we experience as smooth space and continuous time being the macroscopic appearance of an underlying granular geometry.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">Rovelli's framework is the trilogy's most natural physics partner</h3>
+  <p>Carlo Rovelli is not only one of the founders of LQG; he is also the author of <em>The Order of Time</em> (2017) and the technical papers <em>Memory and Entropy</em> (2020) and the Wolpert-Scharnhorst-Rovelli (2025) Boltzmann brain analysis. His relational interpretation of quantum mechanics (see the <a href="measurement-problem.html#s5">measurement-problem essay</a>'s mechanism section) is the closest contemporary mainstream interpretation to the receiver-model's central claim that observers are constitutive of the world they observe. The convergence is not coincidental. Rovelli is doing physics; the trilogy is doing phenomenology; both arrive at very similar architectural commitments. The <a href="rovelli-order-of-time.html">Rovelli companion essay</a> walks through the joint reading in detail.</p>
+
+  <h3 style="color:var(--gold);font-style:italic;">The Big Bang singularity and what comes before</h3>
+  <p>LQG's bouncing-cosmology resolution of the Big Bang singularity changes the metaphysical picture significantly. If the apparent singularity at t = 0 is not the absolute beginning but a transition through a Planck-scale bounce from a previous contracting universe, then the universe has an indefinite history that the standard Big Bang cosmology hides behind the singularity. The trilogy's framework does not require a particular cosmological model, but it is friendlier to one in which the substrate is older than the visible universe and the patterns the field carries are older than the local Big Bang we live downstream of. The Wolpert-Scharnhorst-Rovelli (2025) Boltzmann brain paper, which establishes that physics alone cannot decide whether memories track a real past, makes this more than a speculative concern.</p>
+</section>
+
+<section>
+  <h2>7. The trilogy's specific touchpoints</h2>
+  <ul style="line-height:1.7;">
+    <li><em>Limen</em>'s rendering metaphor. The trilogy's companion volume treats the visible universe as the rendered surface of a deeper substrate with discrete addressable structure. LQG's spin-network architecture is the working physics proposal that makes this metaphor literal: the universe really is rendered at the Planck scale, where rendering means "a spin foam transitioning from one network state to another." See <a href="simulation-hypothesis.html#s10">simulation-hypothesis entry #10</a> for the holographic-storage limit, which Bekenstein's bound makes precise.</li>
+    <li><em>Numen</em>'s field cosmology &mdash; the augmented chord that responds, the phi-tuned architecture, the receiver as coupler &mdash; sits naturally inside a substrate that is informational at base (Wheeler) and quantized at base (LQG). The two together are the closest contemporary physics has to a substrate that has the structural properties the trilogy needs.</li>
+    <li>The Big Bang prehistory question is engaged most directly in the bouncing-cosmology scenarios. The trilogy is not committed to any specific cosmological model, but its receiver-model framework is internally consistent with cosmological histories longer than the visible universe and with field-patterns that predate the local Big Bang.</li>
+    <li>Bodhi in <em>Fragile Light</em> &mdash; a hybrid intelligence whose neuromorphic substrate generates genuine indeterminacy &mdash; is one of the trilogy's working hypotheses about what a receiver configured to engage the substrate at the level closest to its Planck-scale architecture might look like. The framework is not committed to that engineering claim being correct, but it is committed to the architectural claim that some receivers can engage the substrate more directly than ordinary biological brains do.</li>
+  </ul>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>Reading list</h2>
+  <p><strong>The problem stated</strong></p>
+  <p style="margin-top:0.4em;">Lee Smolin, <em>Three Roads to Quantum Gravity</em> (Basic Books, 2001). The accessible synthesis, comparing string theory, LQG, and a third approach.</p>
+
+  <p style="margin-top:0.6em;"><strong>Loop quantum gravity</strong></p>
+  <p style="margin-top:0.4em;">Carlo Rovelli, <em>Quantum Gravity</em> (Cambridge, 2004). The technical monograph.</p>
+  <p>Carlo Rovelli, <em>Reality Is Not What It Seems: The Journey to Quantum Gravity</em> (Riverhead, 2017). The popular synthesis, the most reader-friendly entry.</p>
+  <p>Roger Penrose, original spin-network papers (1971), reprinted in various collections. Foundational.</p>
+
+  <p style="margin-top:0.6em;"><strong>String theory</strong></p>
+  <p style="margin-top:0.4em;">Brian Greene, <em>The Elegant Universe</em> (Norton, 1999). The popular synthesis, still useful.</p>
+  <p>Joseph Polchinski, <em>String Theory</em>, 2 vols (Cambridge, 1998). The technical standard.</p>
+
+  <p style="margin-top:0.6em;"><strong>The string-theory critique</strong></p>
+  <p style="margin-top:0.4em;">Lee Smolin, <em>The Trouble with Physics</em> (Houghton Mifflin, 2006). The most prominent critique from inside the field.</p>
+  <p>Peter Woit, <em>Not Even Wrong: The Failure of String Theory and the Search for Unity in Physical Law</em> (Basic Books, 2006).</p>
+
+  <p style="margin-top:0.6em;"><strong>Other approaches</strong></p>
+  <p style="margin-top:0.4em;">Erik Verlinde, <em>On the origin of gravity and the laws of Newton</em>, JHEP 04 (2011): 029. The emergent-gravity proposal.</p>
+  <p>Renate Loll, <em>Quantum Gravity from Causal Dynamical Triangulations: A Review</em>, Classical and Quantum Gravity 37 (2020): 013002.</p>
+  <p>Rafael Sorkin, <em>Causal sets: Discrete gravity</em>, in Gomberoff &amp; Marolf (eds), Lectures on Quantum Gravity (Springer, 2005).</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">This page is part of the <a href="reading.html">Reading</a> companion essays. For the Planck-scale floor in detail, see <a href="planck-scale.html">The Planck scale</a>; for Rovelli's broader work on time and memory, <a href="rovelli-order-of-time.html">Rovelli's Order of Time</a>; for the holographic-bound architectural fingerprint, <a href="simulation-hypothesis.html#s10">simulation-hypothesis entry #10</a>; for the universal-quantization table the LQG picture extends downward, <a href="music-and-consciousness.html#s9">music and consciousness §9</a>; for the synthesis, <a href="the-evidence.html">The Evidence</a>.</p>
+  <a href="reading.html" class="read-more">← Reading &amp; References</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Reader's tools:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Start here</a> &middot;
+      <a href="glossary.html">Glossary</a> &middot;
+      <a href="the-evidence.html">Synthesis</a> &middot;
+      <a href="explore.html">Explore</a> &middot;
+      <a href="sitemap.html">Site map</a> &middot;
+      <a href="search.html">Search</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
