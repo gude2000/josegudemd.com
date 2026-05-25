@@ -87,6 +87,24 @@
       object-fit: cover;
       box-shadow: 0 1px 3px rgba(0,0,0,0.5);
     }
+    .explore-card.has-icon {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .explore-card.has-icon .card-image {
+      width: 132px;
+      height: 132px;
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+    .explore-card.has-icon .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
   </style>
 </head>
 <body>
@@ -144,12 +162,14 @@
       <p>La estructura triangular recursiva en el corazón de <em>Numen</em>, renderizada en 3-D. Arrastra para rotar, desplaza para hacer zoom, alterna la profundidad para ver el anidamiento autosemejante. El análogo visual de la afirmación de la trilogía de que el mismo patrón aparece a toda escala.</p>
       <span class="visit">rotar el fractal →</span>
     </a>
-    <a class="explore-card" href="https://dronemeditations.com" target="_blank" rel="noopener">
+    <a class="explore-card has-icon" href="https://dronemeditations.com" target="_blank" rel="noopener">
       <img class="card-image" src="../assets/img/drone-meditations-icon.png" alt="Icono de la app Drone Meditations &mdash; un patrón cimático de Chladni a 266,67 Hz" loading="lazy" onerror="this.style.display='none'">
-      <span class="tag">App iOS &middot; sintetizador cimático</span>
-      <h2>Drone Meditations</h2>
-      <p>Un sintetizador de drone de cuatro osciladores y app de meditación con visualización Chladni en vivo. Ajusta las frecuencias, observa la geometría de onda estacionaria que los tonos generan sobre la placa, deja que se desarrolle el campo cimático. El do afinado en φ propio de la trilogía &mdash; 266,67 Hz &mdash; es la onda estacionaria sobre la que está construido el icono de la app. Compañera para iPhone de la página de afinaciones y del explicador sobre Chladni de este sitio, por el autor.</p>
-      <span class="visit">abrir la app →</span>
+      <div class="card-body">
+        <span class="tag">App iOS &middot; sintetizador cimático</span>
+        <h2>Drone Meditations</h2>
+        <p>Un sintetizador de drone de cuatro osciladores y app de meditación con visualización Chladni en vivo. Ajusta las frecuencias, observa la geometría de onda estacionaria que los tonos generan sobre la placa, deja que se desarrolle el campo cimático. El do afinado en φ propio de la trilogía &mdash; 266,67 Hz &mdash; es la onda estacionaria sobre la que está construido el icono de la app. Compañera para iPhone de la página de afinaciones y del explicador sobre Chladni de este sitio, por el autor.</p>
+        <span class="visit">abrir la app →</span>
+      </div>
     </a>
   </div>
 </section>
