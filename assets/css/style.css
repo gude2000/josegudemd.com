@@ -184,12 +184,12 @@ blockquote cite {
 .hero h1 {
   font-size: clamp(30px, 5vw, 48px);
   line-height: 1.1;
-  white-space: nowrap;
+  text-wrap: balance;
 }
 .hero .lede { font-size: 23px; max-width: 32em; }
 @media (max-width: 640px) {
   .hero { padding: 60px 0 40px 0; }
-  .hero h1 { font-size: 28px; white-space: normal; }  /* allow wrap on small screens */
+  .hero h1 { font-size: 28px; }  /* wrap inherited; text-wrap: balance keeps lines even */
   .hero .lede { font-size: 18px; }
 }
 
