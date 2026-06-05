@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Business cards (10-up sheet) &mdash; José Gude MD</title>
+  <style>
+    /* ----------  Page setup ----------
+       US Letter, no browser-added margins.  The grid below handles the
+       layout inside the 8.5 x 11 page.                                  */
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    /* ----------  Screen view (preview) ---------- */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ececec;
+      font-family: 'Libre Baskerville', 'Iowan Old Style', Georgia, serif;
+      color: #1a1a1a;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px;
+      box-sizing: border-box;
+    }
+    .preview-note {
+      font-family: 'Helvetica Neue', -apple-system, sans-serif;
+      font-size: 12px;
+      color: #5a5a5a;
+      letter-spacing: 0.06em;
+      max-width: 38em;
+      line-height: 1.55;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+    .preview-note strong { color: #a86b1d; }
+    .preview-note .hint { display: block; font-style: italic; margin-top: 6px; color: #6a6a6a; }
+
+    /* ----------  The sheet itself  ---------- */
+    /* 8.5 x 11 page, white background.  The 10 cards sit in a 2×5 grid
+       with NO gap between them — adjacent cards share their cut line,
+       so a single straight cut separates two cards.                      */
+    .sheet {
+      width: 8.5in;
+      height: 11in;
+      background: #ffffff;
+      box-sizing: border-box;
+      padding: 0.5in 0.75in;
+      display: grid;
+      grid-template-columns: repeat(2, 3.5in);
+      grid-template-rows: repeat(5, 2in);
+      gap: 0;
+      box-shadow: 0 10px 36px rgba(0,0,0,0.16);
+      page-break-after: avoid;
+    }
+
+    /* ----------  One card ---------- */
+    .card {
+      width: 3.5in;
+      height: 2in;
+      background: #ffffff;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      padding: 0.22in 0.28in;
+      /* Hairline cut guide — barely visible on printed paper,
+         enough to follow with scissors or a paper cutter. */
+      outline: 0.25pt dashed #b9b9b9;
+      outline-offset: -0.25pt;
+      page-break-inside: avoid;
+    }
+
+    .triangle {
+      width: 1.05in;
+      height: 1.55in;
+      flex-shrink: 0;
+      margin-right: 0.22in;
+      display: block;
+    }
+
+    .text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .name {
+      font-style: italic;
+      font-size: 18pt;
+      line-height: 1.05;
+      color: #1a1a1a;
+      margin: 0;
+      letter-spacing: 0.005em;
+    }
+    .tagline {
+      font-family: 'Helvetica Neue', -apple-system, sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a86b1d;
+      margin: 0.10in 0 0.16in 0;
+      font-weight: 400;
+    }
+    .url {
+      font-family: 'Helvetica Neue', -apple-system, sans-serif;
+      font-size: 10pt;
+      color: #1a1a1a;
+      letter-spacing: 0.03em;
+      margin: 0;
+      font-weight: 500;
+    }
+    .quote {
+      font-style: italic;
+      font-size: 6.8pt;
+      color: #5a5a5a;
+      line-height: 1.35;
+      margin: 0.12in 0 0 0;
+      max-width: 100%;
+    }
+    .quote .cite {
+      font-style: normal;
+      color: #a86b1d;
+      font-size: 6.2pt;
+      letter-spacing: 0.12em;
+      margin-left: 0.3em;
+    }
+
+    /* ----------  Print rules  ---------- */
+    @media print {
+      html, body {
+        background: #ffffff;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        padding: 0;
+        display: block;
+      }
+      .preview-note { display: none; }
+      .sheet {
+        box-shadow: none;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="preview-note">
+    <strong>Print one sheet = ten cards.</strong> US Letter, 2 columns × 5 rows. Press <strong>Cmd-P</strong> (or Ctrl-P), confirm the paper size is <em>Letter (8.5 × 11 in)</em>, set scale to <em>100 %</em> (not "Fit to page"), and uncheck <em>Headers and footers</em>.
+    <span class="hint">Adjacent cards share their cut lines — one horizontal cut separates two rows, one vertical cut separates the two columns. The faint dashed border on each card is the cut guide; it prints barely visible and disappears once trimmed.</span>
+  </p>
+
+  <div class="sheet">
+
+    <!-- Repeat the same card 10 times.
+         Editing the SVG geometry or text in one card requires editing all ten;
+         that is the price of keeping this file self-contained.            -->
+
+    <!-- 1 -->
+    <div class="card">
+      <svg class="triangle" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-label="Webb fractal triangle">
+        <path d="M 8 92 L 62.6 92 L 8 12 Z" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round" />
+        <circle cx="8" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="62.6" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="8" cy="12" r="2.0" fill="#daa055" />
+        <text x="8" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">C</text>
+        <text x="62.6" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">E</text>
+        <text x="8" y="7" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">G♯</text>
+      </svg>
+      <div class="text">
+        <p class="name">José Gude MD</p>
+        <p class="tagline">The Field Trilogy</p>
+        <p class="url">josegudemd.com</p>
+        <p class="quote">&ldquo;You are not a drop in the ocean &mdash; you are the entire ocean in a drop.&rdquo;<span class="cite">&mdash; Rumi</span></p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card">
+      <svg class="triangle" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-label="Webb fractal triangle">
+        <path d="M 8 92 L 62.6 92 L 8 12 Z" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round" />
+        <circle cx="8" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="62.6" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="8" cy="12" r="2.0" fill="#daa055" />
+        <text x="8" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">C</text>
+        <text x="62.6" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">E</text>
+        <text x="8" y="7" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">G♯</text>
+      </svg>
+      <div class="text">
+        <p class="name">José Gude MD</p>
+        <p class="tagline">The Field Trilogy</p>
+        <p class="url">josegudemd.com</p>
+        <p class="quote">&ldquo;You are not a drop in the ocean &mdash; you are the entire ocean in a drop.&rdquo;<span class="cite">&mdash; Rumi</span></p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card">
+      <svg class="triangle" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-label="Webb fractal triangle">
+        <path d="M 8 92 L 62.6 92 L 8 12 Z" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round" />
+        <circle cx="8" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="62.6" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="8" cy="12" r="2.0" fill="#daa055" />
+        <text x="8" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">C</text>
+        <text x="62.6" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">E</text>
+        <text x="8" y="7" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">G♯</text>
+      </svg>
+      <div class="text">
+        <p class="name">José Gude MD</p>
+        <p class="tagline">The Field Trilogy</p>
+        <p class="url">josegudemd.com</p>
+        <p class="quote">&ldquo;You are not a drop in the ocean &mdash; you are the entire ocean in a drop.&rdquo;<span class="cite">&mdash; Rumi</span></p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <svg class="triangle" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-label="Webb fractal triangle">
+        <path d="M 8 92 L 62.6 92 L 8 12 Z" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round" />
+        <circle cx="8" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="62.6" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="8" cy="12" r="2.0" fill="#daa055" />
+        <text x="8" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">C</text>
+        <text x="62.6" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">E</text>
+        <text x="8" y="7" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">G♯</text>
+      </svg>
+      <div class="text">
+        <p class="name">José Gude MD</p>
+        <p class="tagline">The Field Trilogy</p>
+        <p class="url">josegudemd.com</p>
+        <p class="quote">&ldquo;You are not a drop in the ocean &mdash; you are the entire ocean in a drop.&rdquo;<span class="cite">&mdash; Rumi</span></p>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <svg class="triangle" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-label="Webb fractal triangle">
+        <path d="M 8 92 L 62.6 92 L 8 12 Z" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round" />
+        <circle cx="8" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="62.6" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="8" cy="12" r="2.0" fill="#daa055" />
+        <text x="8" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">C</text>
+        <text x="62.6" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">E</text>
+        <text x="8" y="7" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">G♯</text>
+      </svg>
+      <div class="text">
+        <p class="name">José Gude MD</p>
+        <p class="tagline">The Field Trilogy</p>
+        <p class="url">josegudemd.com</p>
+        <p class="quote">&ldquo;You are not a drop in the ocean &mdash; you are the entire ocean in a drop.&rdquo;<span class="cite">&mdash; Rumi</span></p>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="card">
+      <svg class="triangle" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-label="Webb fractal triangle">
+        <path d="M 8 92 L 62.6 92 L 8 12 Z" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round" />
+        <circle cx="8" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="62.6" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="8" cy="12" r="2.0" fill="#daa055" />
+        <text x="8" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">C</text>
+        <text x="62.6" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">E</text>
+        <text x="8" y="7" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">G♯</text>
+      </svg>
+      <div class="text">
+        <p class="name">José Gude MD</p>
+        <p class="tagline">The Field Trilogy</p>
+        <p class="url">josegudemd.com</p>
+        <p class="quote">&ldquo;You are not a drop in the ocean &mdash; you are the entire ocean in a drop.&rdquo;<span class="cite">&mdash; Rumi</span></p>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="card">
+      <svg class="triangle" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-label="Webb fractal triangle">
+        <path d="M 8 92 L 62.6 92 L 8 12 Z" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round" />
+        <circle cx="8" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="62.6" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="8" cy="12" r="2.0" fill="#daa055" />
+        <text x="8" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">C</text>
+        <text x="62.6" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">E</text>
+        <text x="8" y="7" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">G♯</text>
+      </svg>
+      <div class="text">
+        <p class="name">José Gude MD</p>
+        <p class="tagline">The Field Trilogy</p>
+        <p class="url">josegudemd.com</p>
+        <p class="quote">&ldquo;You are not a drop in the ocean &mdash; you are the entire ocean in a drop.&rdquo;<span class="cite">&mdash; Rumi</span></p>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="card">
+      <svg class="triangle" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-label="Webb fractal triangle">
+        <path d="M 8 92 L 62.6 92 L 8 12 Z" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round" />
+        <circle cx="8" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="62.6" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="8" cy="12" r="2.0" fill="#daa055" />
+        <text x="8" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">C</text>
+        <text x="62.6" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">E</text>
+        <text x="8" y="7" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">G♯</text>
+      </svg>
+      <div class="text">
+        <p class="name">José Gude MD</p>
+        <p class="tagline">The Field Trilogy</p>
+        <p class="url">josegudemd.com</p>
+        <p class="quote">&ldquo;You are not a drop in the ocean &mdash; you are the entire ocean in a drop.&rdquo;<span class="cite">&mdash; Rumi</span></p>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="card">
+      <svg class="triangle" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-label="Webb fractal triangle">
+        <path d="M 8 92 L 62.6 92 L 8 12 Z" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round" />
+        <circle cx="8" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="62.6" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="8" cy="12" r="2.0" fill="#daa055" />
+        <text x="8" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">C</text>
+        <text x="62.6" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">E</text>
+        <text x="8" y="7" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">G♯</text>
+      </svg>
+      <div class="text">
+        <p class="name">José Gude MD</p>
+        <p class="tagline">The Field Trilogy</p>
+        <p class="url">josegudemd.com</p>
+        <p class="quote">&ldquo;You are not a drop in the ocean &mdash; you are the entire ocean in a drop.&rdquo;<span class="cite">&mdash; Rumi</span></p>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="card">
+      <svg class="triangle" viewBox="0 0 70 100" xmlns="http://www.w3.org/2000/svg" aria-label="Webb fractal triangle">
+        <path d="M 8 92 L 62.6 92 L 8 12 Z" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round" />
+        <circle cx="8" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="62.6" cy="92" r="2.0" fill="#daa055" />
+        <circle cx="8" cy="12" r="2.0" fill="#daa055" />
+        <text x="8" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">C</text>
+        <text x="62.6" y="100" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">E</text>
+        <text x="8" y="7" text-anchor="middle" font-family="Helvetica Neue, sans-serif" font-size="4.2" letter-spacing="0.5" fill="#8a8a8a">G♯</text>
+      </svg>
+      <div class="text">
+        <p class="name">José Gude MD</p>
+        <p class="tagline">The Field Trilogy</p>
+        <p class="url">josegudemd.com</p>
+        <p class="quote">&ldquo;You are not a drop in the ocean &mdash; you are the entire ocean in a drop.&rdquo;<span class="cite">&mdash; Rumi</span></p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
