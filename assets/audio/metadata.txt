@@ -1,0 +1,84 @@
+;FFMETADATA1
+title=What the Evidence Shows So Far — The Field Trilogy
+artist=José Gude MD
+album=The Field Trilogy — Synthesis
+genre=Spoken Word
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=0
+END=147000
+title=1. The question that production models cannot answer
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=147000
+END=272000
+title=2. How we got here: the rise and crack of materialism
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=272000
+END=660000
+title=3. The anomalies the production model cannot absorb
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=660000
+END=804000
+title=4. Physics I: the world is not locally real
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=804000
+END=1008000
+title=5. Physics II: spacetime is not the bottom layer
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=1008000
+END=1210000
+title=6. Physics III: the universe has a finite resolution
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=1210000
+END=1375000
+title=7. Physics IV: retrocausality and the death of unitarity-as-fundamental
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=1375000
+END=1563000
+title=8. Computation: the simulation argument matures
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=1563000
+END=2168000
+title=9. The new ontology being constructed
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=2168000
+END=2826000
+title=10. Biology: the body as antenna
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=2826000
+END=3045000
+title=11. Where the trilogy stands
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=3045000
+END=3221000
+title=12. Three paradigm shifts, one convergence
+
+[CHAPTER]
+TIMEBASE=1/1000
+START=3221000
+END=3350000
+title=13. The wager
+

@@ -126,7 +126,30 @@
     let index = null;
     let pendingQuery = null;
 
-    fetch(cfg.indexUrl).then(r => r.json()).then(data => {
+    // Detect the file:// case early — browsers block fetch() from file:// origins
+    // for CORS reasons, so search will never work when previewing by double-clicking
+    // an HTML file. Show a helpful message instead of letting the cryptic CORS error
+    // fire through.
+    if (window.location.protocol === 'file:') {
+      $meta.innerHTML = 'search needs a local web server when previewing on disk &mdash; ' +
+        'CORS blocks fetch() from file:// URLs. From this folder run ' +
+        '<code>python3 -m http.server 8000</code> and open ' +
+        '<code>http://localhost:8000/search.html</code>. (The deployed live site works fine.)';
+      return;
+    }
+
+    fetch(cfg.indexUrl).then(r => {
+      if (!r.ok) {
+        throw new Error('HTTP ' + r.status + ' ' + r.statusText + ' for ' + cfg.indexUrl);
+      }
+      return r.text().then(txt => {
+        try {
+          return JSON.parse(txt);
+        } catch (parseErr) {
+          throw new Error('JSON parse failed for ' + cfg.indexUrl + ': ' + parseErr.message + ' (first 80 chars: ' + JSON.stringify(txt.slice(0, 80)) + ')');
+        }
+      });
+    }).then(data => {
       index = data;
       if (pendingQuery !== null) doSearch(pendingQuery);
       // also seed from URL ?q=
@@ -137,7 +160,7 @@
         doSearch(qParam);
       }
     }).catch(err => {
-      $meta.textContent = 'index load failed';
+      $meta.textContent = 'index load failed — ' + (err.message || err);
       console.error('search index load failed', err);
     });
 
