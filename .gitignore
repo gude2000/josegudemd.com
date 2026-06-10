@@ -3,3 +3,9 @@
 
 # Backup originals (kept locally, not pushed)
 **/*.original.mp4
+
+# Local audio backups (not deployed)
+**/*.orig-*.mp3
+
+# ffmpeg concat manifest (temp)
+assets/audio/concat_list.txt
