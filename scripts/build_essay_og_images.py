@@ -194,6 +194,28 @@ ESSAYS = [
         "accent": GOLD,
         "mark": "anomaly",
     },
+    # The Idealist Tradition
+    {
+        "out": "og-idealist-tradition.jpg",
+        "eyebrow": "T H E   F I E L D   T R I L O G Y   ·   R E A D I N G",
+        "title": "The Idealist Tradition",
+        "subtitle": "Berkeley to the contemporary analytic-idealism revival",
+        "tag1": "Berkeley · William James · Whitehead",
+        "tag2": "Chalmers · Kastrup · Hoffman · Goff",
+        "accent": CREAM,
+        "mark": "wave",
+    },
+    # Physics and Consciousness as Fundamental
+    {
+        "out": "og-physics-consciousness-fundamental.jpg",
+        "eyebrow": "T H E   F I E L D   T R I L O G Y   ·   R E A D I N G",
+        "title": "Physics and Consciousness as Fundamental",
+        "subtitle": "The working physicists who said so",
+        "tag1": "Planck · Schrödinger · Heisenberg · Pauli",
+        "tag2": "Eddington · Jeans · Wheeler · Wigner",
+        "accent": TEAL,
+        "mark": "grid",
+    },
 ]
 
 FONT_CANDIDATES_SERIF_ITALIC = [
