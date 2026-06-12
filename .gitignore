@@ -9,3 +9,6 @@
 
 # ffmpeg concat manifest (temp)
 assets/audio/concat_list.txt
+
+# Sales products (kept locally, distributed via secure channel)
+products/
