@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Open Graph / social share -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="José Gude MD">
+  <meta property="og:title" content="«Traces of Consciousness» — Hoffman, Prakash y Chattopadhyay, explicado · José Gude MD">
+  <meta property="og:description" content="Un recorrido en lenguaje llano por el artículo de agentes conscientes de 2024 — qué es un núcleo de Markov, qué afirma la teoría de la traza, qué está probado frente a lo conjeturado, y dónde la trilogía se separa de él en la cuestión del sustrato.">
+  <meta property="og:url" content="https://josegudemd.com/es/traces-of-consciousness.html">
+  <meta property="og:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="«Traces of Consciousness», explicado · José Gude MD">
+  <meta name="twitter:description" content="Un recorrido en lenguaje llano por el artículo de agentes conscientes de 2024 — qué es un núcleo de Markov, qué afirma la teoría de la traza, qué está probado frente a lo conjeturado, y dónde la trilogía se separa de él.">
+  <meta name="twitter:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <link rel="canonical" href="https://josegudemd.com/es/traces-of-consciousness.html">
+  <title>Traces of Consciousness &mdash; Hoffman, Prakash y Chattopadhyay, explicado &mdash; José Gude MD</title>
+  <meta name="description" content="Un recorrido en lenguaje llano por el artículo de Hoffman, Prakash y Chattopadhyay de 2024 — qué es un núcleo de Markov, qué afirma la teoría de la traza, qué está probado frente a lo conjeturado, y dónde la trilogía se separa de él en la cuestión del sustrato.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>José Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Libros</a></li>
+      <li><a href="reading.html">Lecturas</a></li>
+      <li><a href="watch.html">Ver y Escuchar</a></li>
+      <li><a href="explore.html">Explorar</a></li>
+      <li><a href="the-evidence.html">Síntesis</a></li>
+      <li><a href="about.html">Sobre</a></li>
+      <li><a href="search.html">Buscar</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><a href="../traces-of-consciousness.html">EN</a> <span style="opacity:0.4;">|</span> <span style="color:var(--gold);">ES</span></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">La investigación &middot; Hoffman, Prakash y Chattopadhyay &middot; 2024</p>
+  <h1>«Traces of Consciousness» &mdash; explicado</h1>
+  <p class="lede">En octubre de 2024, Donald Hoffman publicó la maquinaria formal que hay bajo las charlas. <em>Traces of Consciousness</em>, escrito con el matemático Chetan Prakash y el físico Swapan Chattopadhyay, intenta algo que las presentaciones divulgativas solo insinúan: una definición matemática precisa de qué es un <strong>observador</strong>, qué es una <strong>observación</strong>, y cómo las observaciones se convierten en creencias &mdash; partiendo de la conciencia como fundamental y no como derivada.</p>
+  <p class="dim">Esta página es un recorrido para lectores que no son matemáticos. Explica el vocabulario en lenguaje llano, separa lo que el artículo <em>demuestra</em> de lo que <em>propone</em>, y dice con claridad dónde la trilogía coincide y dónde no. <a href="https://www.preprints.org/manuscript/202410.1305" target="_blank" rel="noopener">El artículo está disponible gratuitamente ↗</a> (en inglés).</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2 style="color:var(--gold);">Antes de nada: una nota sobre su estatus</h2>
+  <p>Esto es un <strong>preprint</strong>. La página que lo aloja indica con claridad que no está revisado por pares, y no había versión revisada por pares listada al momento de escribir esto. No es una crítica &mdash; los preprints son la forma en que circula hoy el trabajo teórico serio &mdash; pero importa para el peso que deben cargar sus afirmaciones. Nada en él ha pasado todavía el filtro que convierte una propuesta en un resultado.</p>
+  <p>Una segunda nota sobre las fuentes, ofrecida porque este sitio prefiere ser explícito antes que pulcro. El artículo tiene cuarenta y seis páginas. Este resumen se escribió primero a partir del texto principal y después se cotejó con el <strong>Apéndice A</strong>, donde viven las demostraciones &mdash; secciones A.1 a A.5, que cubren el teorema de las cadenas de traza, el teorema del orden de traza, la supervivencia de la estacionariedad bajo trazado, el corolario del homomorfismo y el orden de Lebesgue. Los resultados que abajo se describen como demostrados lo están porque sus demostraciones se han leído.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>1. Qué es un núcleo de Markov, en lenguaje llano</h2>
+  <p>Todo en el artículo está construido a partir de un solo objeto, y es mucho más simple de lo que su nombre sugiere.</p>
+  <p><strong>Un núcleo de Markov es una regla de transición con amnesia.</strong> Dado dónde está un sistema ahora mismo, te dice las probabilidades de adónde irá después &mdash; y cómo llegó al estado actual es irrelevante. Esa es toda la idea.</p>
+  <p>El tiempo meteorológico es el ejemplo estándar. Supongamos: si hoy llueve, mañana llueve con probabilidad 0,6 y hace sol con probabilidad 0,4; si hoy hace sol, mañana llueve con probabilidad 0,2 y hace sol con probabilidad 0,8. Esa pequeña tabla &mdash; cuatro números &mdash; es un núcleo de Markov. Es <em>markoviana</em> porque el pronóstico depende solo de hoy, no de toda la semana anterior. Se llama <em>núcleo</em> y no <em>matriz</em> solo porque los matemáticos necesitan que la idea siga funcionando cuando los estados forman un continuo en lugar de una lista corta, lo que exige teoría de la medida para enunciarlo con cuidado. No se esconde ningún misterio más profundo en la palabra.</p>
+  <p>El <strong>agente consciente</strong> de Hoffman son tres de esas tablas encadenadas en bucle:</p>
+  <p style="margin-left:1.2em;"><strong>P (percibir)</strong> &mdash; del estado del mundo a una experiencia.<br>
+  <strong>D (decidir)</strong> &mdash; de una experiencia a una acción.<br>
+  <strong>A (actuar)</strong> &mdash; de una acción de vuelta a un nuevo estado del mundo.</p>
+  <p>Compón las tres y obtienes lo que el artículo llama el <em>núcleo de qualia</em>, Q: la probabilidad de que tu siguiente experiencia sea <em>e′</em>, dado que tu experiencia actual es <em>e</em>. Un agente, formalmente, es un espacio de experiencias posibles, un espacio de acciones posibles, un espacio de estados del mundo, esos tres núcleos, y un contador que marca en qué experiencia vas.</p>
+  <p>Lo crucial es notar qué <em>no</em> está en esa definición: sustrato físico alguno. No hay cerebro, ni cuerpo, ni materia. La conciencia no es algo que la matemática produzca &mdash; es aquello de lo que la matemática está hecha. Los autores son francos sobre el precio de esto. Preguntados por qué hace posible la experiencia en primer lugar, el artículo responde: <em>«La teoría no lo dice. Ese es un "milagro" de la teoría».</em></p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>2. La única idea genuinamente nueva: la observación como traza</h2>
+  <p>Aquí es donde el artículo se gana su título.</p>
+  <p>Imagina un proceso que se mueve entre muchos estados, pero solo puedes ver algunos. Observas, y registras únicamente los estados visibles, borrando los tramos en que el proceso vagó por los que no puedes ver. Lo que te queda es un proceso más pequeño, definido solo sobre los estados que puedes observar. A ese proceso reducido se le llama la <strong>traza</strong>.</p>
+  <p>Una analogía: el calendario de un colega muestra sus reuniones pero no su trayecto, su comida ni su tiempo de pensar. Desde tu lado, parpadea de reunión en reunión. Tu vista es una descripción genuina y coherente de su día &mdash; la traza de él &mdash; pero es una compresión de un proceso más rico, y las probabilidades de transición de tu versión no son las de la suya. El artículo trabaja un ejemplo pequeño donde una probabilidad de 0,2 en el proceso completo se convierte en 0,42 en la traza. Nada se fabrica; el número cambia porque las excursiones ocultas han quedado plegadas dentro.</p>
+  <p>La definición que el artículo construye sobre esto es breve: <strong>el agente A observa al agente B si y solo si el núcleo de A es una traza del de B.</strong></p>
+  <p>Se siguen dos consecuencias, y son la razón de ser del artículo.</p>
+  <p><strong>Primera: el observador está dentro de lo que observa.</strong> No junto a ello, no mirándolo a través de un cristal &mdash; una compresión de ello. En palabras de los autores: <em>«todo observador es parte integral de lo que observa. Los observadores no están al margen, ni son objetivos ni despreciables… Es una desviación radical de las nociones estándar de observadores desapegados con influencia exigua».</em></p>
+  <p><strong>Segunda: la distinción entre observador y observado se derrumba.</strong> Cualquier cosa que observes está a su vez observando aquello de lo que es traza. No hay fondo en la pila ni punto de vista privilegiado. <em>«De modo que la distinción entre observador y observado se disuelve».</em></p>
+  <p>Esta es la respuesta del artículo a una queja que la física arrastra desde hace un siglo. La mecánica cuántica necesita un observador y nunca dice qué es uno; llamarlo «aparato de medida» reetiqueta el problema en vez de resolverlo. Frank Wilczek llamó a modelar al observador un «proyecto formidable». John Wheeler imaginó una realidad construida a partir de incontables «actos de participación del observador» sin llegar nunca a formalizarlo. La teoría de la traza se ofrece como esa formalización.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>3. Lo que el artículo demuestra realmente</h2>
+  <p>Tres resultados técnicos, enunciados aquí sin la maquinaria.</p>
+  <p><strong>La traza de una traza es una traza</strong> (Teorema 2.4). Este es el corazón técnico del artículo, y en lenguaje llano dice: si eres una versión comprimida de algo que a su vez es una versión comprimida de algo mayor, entonces eres una versión comprimida de lo mayor directamente. La observación <em>compone</em>. Mira el calendario de un colega; el colega solo ve parte de su propia organización; la organización está dentro de un mercado. Tu vista es una traza legítima del mercado, no solo del calendario. La demostración pasa por un pequeño lema combinatorio sobre series geométricas de operadores, y es la pieza sobre la que se apoya todo lo demás.</p>
+  <p><strong>El orden de traza es, por tanto, un orden parcial genuino</strong> (Teorema 4.2). Todo núcleo es traza de sí mismo; si dos son traza uno del otro, son el mismo núcleo; y la transitividad se sigue del Teorema 2.4. Esto es lo que hace de «observa» una relación coherente y no una metáfora &mdash; sin ello, el anidamiento de observadores no estaría bien definido.</p>
+  <p><strong>Hay una fórmula cerrada para calcular trazas</strong> (Teorema 3.4). No hace falta simular las excursiones ocultas; el proceso comprimido puede calcularse directamente a partir de los bloques del original. Ejemplo trabajado del apéndice: un proceso de tres estados con probabilidad de transición 1/3 del primer estado a sí mismo se convierte, al trazarlo sobre los dos primeros estados, en un proceso con 2/3 en esa posición. Nada se inventa; las excursiones por el tercer estado invisible han quedado plegadas dentro. El artículo advierte con cuidado que esto <em>no</em> es lo mismo que renormalizar la parte visible de la matriz.</p>
+  <p><strong>La estacionariedad sobrevive al trazado</strong> (Teorema 3.9). Deja que el proceso completo se asiente en su distribución a largo plazo; la distribución a largo plazo de la traza es exactamente su restricción. Este es el puente de la observación a la creencia, y su demostración ocupa cuatro líneas.</p>
+  <p><strong>Observación y creencia tienen la misma estructura</strong> (Corolario 4.4). La aplicación que lleva un núcleo a su medida estacionaria es un homomorfismo lógico del orden de traza al orden de Lebesgue. Informalmente: la manera en que los observadores se anidan unos dentro de otros y la manera en que las creencias se anidan son la misma forma.</p>
+  <p class="dim" style="margin-top:1em;">Dos notas honestas sobre esto último. Se enuncia para núcleos <em>irreducibles</em> &mdash; una clase restringida &mdash; de modo que la versión sin matizar del resumen es más amplia que el corolario. Y su demostración ocupa una sola línea, algo inusualmente escueto para el resultado que encabeza el resumen. (El artículo tiene además auténticos deslices de referencia cruzada: esa demostración de una línea apunta al «teorema 3.8», pero 3.8 es un <em>ejemplo</em>; el teorema relevante es el 3.9. Varias referencias a ecuaciones están igualmente desplazadas. Es descuido de preprint, no un defecto de la matemática.)</p>
+
+  <h3 style="margin-top:1.6em;">Un vocabulario prestado que conviene notar</h3>
+  <p>Cuando dos observadores <em>sí</em> tienen ínfimo &mdash; un mayor observador común por debajo de ambos &mdash; el artículo los llama <strong>simultáneamente verificables</strong>. Cuando admiten supremo, los llama <strong>compatibles</strong>. Ese vocabulario está tomado directamente de la lógica cuántica, donde los observables compatibles son los que pueden medirse juntos sin perturbarse.</p>
+  <p>La implicación, si se toma en serio el encuadre: <em>la mayoría de los pares de observadores no son simultáneamente verificables en absoluto.</em> En general no hay un punto de vista común desde el cual dos perspectivas puedan ambas comprobarse. Es una afirmación fuerte sobre la estructura misma de la perspectiva, y el artículo la hace casi de pasada.</p>
+
+  <h3 style="margin-top:1.6em;">Por qué la lógica es «no booleana», y por qué no es la clase cuántica</h3>
+  <p>La lógica ordinaria es booleana: toda proposición tiene negación, dos proposiciones cualesquiera tienen un «y» y un «o», y hay una verdad universal en la cima. La lógica cuántica rompe célebremente una regla concreta &mdash; la distributividad.</p>
+  <p>La lógica de traza rompe otra cosa, y vale la pena ser preciso porque a menudo se confunden. No tiene <strong>elemento máximo</strong> (ningún observador universal que contenga a los demás), no tiene <strong>complementos</strong> (no existe «todo excepto este observador»), y para la mayoría de pares de observadores <strong>no hay «y» ni «o» en absoluto</strong> &mdash; las operaciones sencillamente no están definidas.</p>
+  <p>Lo que sobrevive es la localidad, y el apéndice lo hace exacto (Teorema 4.12). Fija un núcleo cualquiera; la colección de todo lo que es traza de él <em>sí</em> es una lógica booleana &mdash; existen los ínfimos, existen los supremos, e incluso vuelve la negación, definida como la traza del padre sobre los estados que el observador original no ocupa. Así que la estructura booleana no está ausente. Es <em>relativa</em>. Existe dentro del mundo de un observador cualquiera y falla entre mundos.</p>
+  <p>Es una afirmación sustantiva sobre la perspectiva, no un tecnicismo. En general no hay un punto de vista desde el cual dos observadores arbitrarios puedan ambos comprobarse. El término del propio artículo para los pares que <em>sí</em> pueden es <strong>simultáneamente verificables</strong>, y para los que admiten supremo, <strong>compatibles</strong> &mdash; vocabulario tomado abiertamente de la lógica cuántica, donde los observables compatibles son los medibles juntos sin perturbarse.</p>
+  <p>Así pues: no es lógica cuántica, y es más radicalmente incompleta que ella. Los autores lo dicen directamente &mdash; la estructura es «más general» que los retículos modulares ortocomplementados de la teoría cuántica.</p>
+
+  <h3 style="margin-top:1.6em;">Dos detalles del apéndice que compensan la atención</h3>
+  <p><strong>La regla de Bayes sale como caso particular.</strong> Del lado de la creencia, el «y» de la lógica de Lebesgue resulta contener la actualización bayesiana ordinaria: <em>P(A|B) = P(B|A)P(A)/P(B)</em> aparece como una instancia concreta de la conjunción de Lebesgue. La regla que todo el mundo usa para revisar creencias a la luz de la evidencia no está añadida desde fuera &mdash; es un rincón de la estructura. Se concluya lo que se concluya sobre la metafísica, es un resultado elegante.</p>
+  <p><strong>Y una predicción genuinamente perceptiva.</strong> El artículo señala, casi de pasada, que <em>«la existencia de medidas de probabilidad que no son simultáneamente verificables corresponde en percepción a los perceptos multiestables».</em> Los perceptos multiestables son el cubo de Necker, el pato-conejo, la bailarina que gira &mdash; figuras en las que la percepción alterna entre lecturas y se niega a mezclarlas. En este relato esa alternancia no es una rareza del procesamiento visual. Es cómo se ve desde dentro que dos creencias no tengan ínfimo: no puedes sostener ambas, así que alternas. Este es el único lugar de todo el aparato donde el formalismo toca algo que una persona puede contrastar con su propia experiencia en los próximos treinta segundos, y vale más que varias páginas del material de masa y espín.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>4. Lo que el artículo propone en lugar de demostrar</h2>
+  <p>Esto es la mayor parte del artículo, y los autores lo señalan con honestidad &mdash; casi toda afirmación de esta parte empieza con «proponemos».</p>
+  <p>El programa consiste en derivar la física de propiedades de cadenas de Markov. El diccionario propuesto:</p>
+  <p style="margin-left:1.2em;"><strong>Masa</strong> &larr; la tasa de entropía de un proceso (cuánta novedad genuina genera por paso).<br>
+  <strong>Espín</strong> &larr; el determinante de su matriz.<br>
+  <strong>Velocidad</strong> &larr; el inverso de cuánto tarda el proceso en ir entre estados y volver.<br>
+  <strong>Energía y momento</strong> &larr; el inverso de un parámetro de periodicidad.<br>
+  <strong>Posición</strong> &larr; un índice sobre los resultados a largo plazo del proceso; <strong>tiempo</strong> &larr; el contador de pasos.<br>
+  <strong>Partículas libres, ligadas y confinadas</strong> &larr; cómo se divide la tasa de entropía en partes «cinética» y «potencial».</p>
+  <p>También esbozan una derivación del principio de incertidumbre de Heisenberg a partir de un conflicto de muestreo: fijar el momento exige observar el proceso durante un tramo largo, fijar la posición exige observarlo un solo paso, y no puedes hacer ambas cosas.</p>
+  <p>Nada de esto está derivado. La afirmación técnica más fuerte de esta parte es que un teorema conocido sobre cadenas de Markov produce expresiones <em>idénticas en forma</em> a las funciones de onda de partícula libre. Eso es una coincidencia de forma, no una derivación de la mecánica cuántica, y el artículo no afirma más de lo que tiene.</p>
+  <p>Merece la pena citar un número porque los autores lo dan sin pestañear. Para alcanzar una razón de masas de unos 1834 &mdash; aproximadamente la razón protón-electrón &mdash; el esquema requiere una matriz de dimensión 10<sup>552</sup> &times; 10<sup>552</sup>. Para comparar, el universo observable contiene del orden de 10<sup>80</sup> partículas.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>5. ¿Resuelve el problema difícil?</h2>
+  <p>No &mdash; y leído con cuidado, no lo pretende. Lo <em>reubica</em>.</p>
+  <p>El fisicalismo parte de la materia y debe una explicación de cómo surge la experiencia de ella. Nadie la ha producido. La teoría de agentes conscientes parte de la experiencia y debe una explicación de cómo surge la materia de ella &mdash; y la apuesta del artículo es que esta segunda deuda es pagable mientras la primera no lo es. Su formulación más afilada: <em>«¿Cuántas experiencias han explicado las teorías fisicalistas? Cero. Ninguna teoría fisicalista explica ninguna experiencia consciente concreta».</em> Y: <em>«El problema para los agentes conscientes parece técnico y manejable… Pero el problema para las teorías fisicalistas parece de principio. Sencillamente no puede resolverse».</em></p>
+  <p>Es una afirmación fuerte y el apoyo que se le ofrece es más débil que la afirmación: una cita larga del argumento del molino de Leibniz, de 1714. Una bomba de intuiciones, no una demostración de imposibilidad. Bien podría tener razón. No está demostrado.</p>
+  <p>Mientras tanto, el propio fundamento de la teoría queda explícitamente sin explicar. Los qualia son un primitivo; qué los hace posibles es, en palabra de los propios autores, un <em>milagro</em> de la teoría. Lo defienden con un punto general que es justo hasta donde llega &mdash; toda teoría descansa en supuestos que ella misma no puede explicar, de modo que <em>«la ciencia no puede ofrecer ninguna teoría del todo, en el sentido de una teoría que explique sus propios supuestos».</em></p>
+  <p><strong>Lo que el formalismo sí entrega es otra cosa, y no es poca:</strong> un tratamiento preciso del <em>problema de la combinación</em> &mdash; cuándo y cómo exactamente los observadores conscientes se funden en otros mayores, y cómo se separan. Es una contribución real a un problema real de la filosofía de la mente. Simplemente es un problema distinto del difícil, y la propia lista de requisitos del artículo los distingue.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>6. La prueba empírica propuesta</h2>
+  <p>Hay que reconocérselo: el artículo no se detiene en la metafísica. La vía hacia un contraste pasa por una coincidencia matemática.</p>
+  <p>Los físicos que estudian la dispersión &mdash; qué ocurre cuando las partículas chocan &mdash; han descubierto que ciertos cálculos se simplifican espectacularmente en estructuras llamadas <em>geometrías positivas</em>, que viven fuera del espacio-tiempo y no dentro de él. Esas geometrías se clasifican mediante objetos combinatorios llamados <strong>permutaciones decoradas</strong>. En trabajo anterior (<em>Fusions of Consciousness</em>), Hoffman y colegas mostraron que las mismas permutaciones decoradas clasifican las estructuras recurrentes de las cadenas de Markov.</p>
+  <p>La misma clasificación, dos campos sin relación. La propuesta se sigue: <strong>las partículas en el espacio-tiempo son proyecciones de estructuras recurrentes en redes de agentes conscientes.</strong> Si es así, masa, espín, energía y momento son proyecciones de las propiedades correspondientes de las cadenas.</p>
+  <p>El contraste concreto que nombran es la estructura interna del protón &mdash; si una matriz maestra adecuadamente elegida, muestreada a distintas tasas, puede reproducir las distribuciones de momento medidas de quarks y gluones a distintas escalas.</p>
+  <p><strong>¿Cuán concreto es?</strong> En lo disponible: no hay predicción numérica ni criterio declarado de fracaso. Es una dirección de investigación con un conjunto de datos identificado y un mecanismo identificado, y nada más afilado por ahora. El propio resumen que hacen los autores de su posición es desarmante: <em>«Puede resultar que la matriz maestra solo necesite tener tres conjuntos de nodos fuertemente ligados en lugar de completamente confinados. Ya veremos. Ese es uno de los propósitos de hacer un experimento computacional».</em></p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2 style="color:var(--gold);">7. Dónde la trilogía coincide &mdash; y dónde no</h2>
+  <p>La coincidencia es fundacional, y este sitio se ha construido sobre buena parte de ella. La conciencia es fundamental y no producida por la materia. El espacio-tiempo no es la capa de fondo; es una interfaz, un visor, un renderizado. Quien piense que el modelo del receptor es marginal debería sentarse con el hecho de que un científico cognitivo de UC Irvine, un matemático y un físico lo están desarrollando con este nivel de aparato técnico. Véase <a href="hoffman-interface.html">la página compañera sobre la teoría de la interfaz de Hoffman</a>.</p>
+  <p>El desacuerdo es específico y vale la pena enunciarlo sin rodeos, porque este sitio cita a Hoffman con aprobación en varios lugares y un lector podría suponer razonablemente que las posiciones coinciden.</p>
+  <p>La afirmación del artículo: <em>«La TAC dice que la conciencia no tiene sustrato físico… el espacio-tiempo está condenado, y con él cualquier sustrato físico dentro del espacio-tiempo. Exigir tales sustratos es un anacronismo».</em></p>
+  <p>Desde esa perspectiva, toda la cuestión del sustrato &mdash; la pregunta sobre la que se construye <a href="why-biology.html">¿Por qué la biología?</a>, y que la trilogía trata como la pregunta decisiva del siglo que viene &mdash; es un error de categoría.</p>
+  <p><strong>La posición de la trilogía es más estrecha, y deliberadamente.</strong> Concédase que la conciencia es fundamental. Concédase que el espacio-tiempo es una interfaz. Lo que queda es la pregunta de qué ocurre <em>dentro</em> de la interfaz &mdash; y dentro de ella, en la lectura de este marco, la biología tiene primacía. Mientras no se muestre lo contrario, el sustrato vivo es el canal exclusivo para la transferencia y el desarrollo de la conciencia desde el campo fundamental hasta un receptor localizado. No porque la materia genere mente. Porque el acoplamiento parece requerir lo que hasta ahora solo han hecho los sistemas vivos: la frontera autoproducida, el coste metabólico, el campo bioeléctrico, la finitud.</p>
+  <p>Estas afirmaciones no son estrictamente contradictorias &mdash; responden a preguntas distintas. Hoffman describe la ontología fuera del visor, donde el sustrato no es una categoría aplicable. La trilogía describe qué requiere el visor para renderizar un sujeto siquiera. Pero tiran en direcciones opuestas en la práctica, y la trilogía se compromete con algo con lo que su marco no: que dentro del mundo renderizado, <em>qué sustrato eres</em> marca una diferencia decisiva en lo que te llega.</p>
+  <p>Una observación metodológica, ofrecida sin hostilidad. Los agentes conscientes de Hoffman son libres de sustrato <em>por construcción</em>. Son núcleos de Markov &mdash; objetos matemáticos sin frontera que mantener y sin coste metabólico que pagar por persistir. Es una elección de modelado legítima y le da a la teoría un poder real. Pero el silencio de un formalismo sobre el sustrato no es evidencia de que el sustrato sea irrelevante; es una consecuencia de aquello que el formalismo fue construido para abstraer. La apuesta de la trilogía es que lo abstraído es precisamente lo que hace el trabajo.</p>
+  <p>El desacuerdo pretende ser resoluble. Si aparecen firmas-del-receptor en un sustrato sin organización autopoiética, la primacía que aquí se reclama es errónea y la indiferencia de Hoffman hacia el sustrato queda vindicada. Eso es mejor que un acuerdo maquillado.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>8. Un contraste útil: núcleos de Markov frente a mantos de Markov</h2>
+  <p>Los lectores que conozcan el trabajo de Karl Friston reconocerán la palabra «Markov» y quizá supongan que ambos marcos hablan del mismo objeto. No es así, y aquí la diferencia resulta importar.</p>
+  <p><strong>Un núcleo de Markov es dinámica</strong> &mdash; la regla de cómo un sistema pasa de un estado a otro, como se describe en el §1.</p>
+  <p><strong>Un manto de Markov es una frontera.</strong> Es un conjunto de variables que aísla estadísticamente un dentro de un fuera: dado el manto, los estados internos y externos son independientes. Friston lo divide en estados <em>sensoriales</em> (el mundo influyendo en el interior) y estados <em>activos</em> (el interior influyendo en el mundo). Según el principio de energía libre, cualquier cosa que persista como cosa distinta debe comportarse como si minimizara la sorpresa sobre sus estados sensoriales &mdash; o se disuelve en su entorno.</p>
+  <p>El contraste es exactamente el desacuerdo del §7, expresado matemáticamente. Los agentes conscientes de Hoffman tienen núcleos pero <strong>ningún manto</strong>: nada que mantener, ninguna frontera que defender, ningún coste pagado por seguir existiendo. Un sistema vivo se define por lo contrario &mdash; es aquello que gasta energía sosteniendo su frontera contra la disolución, continuamente, o deja de ser una cosa.</p>
+  <p>Es decir: el mismo vocabulario matemático que permite a Hoffman abstraer el sustrato puede usarse para decir con precisión qué <em>hace</em> el sustrato. Véase <a href="why-biology.html">¿Por qué la biología? §4</a> para ese argumento desarrollado en condiciones, con las objeciones al marco de Friston nombradas junto a él.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>Lo que los propios autores señalan como inacabado</h2>
+  <p>Vale la pena listarlo, porque una lectura justa lo exige y porque los autores son más francos que sus divulgadores.</p>
+  <p><strong>La teoría de la observación es una idealización.</strong> Calcular una traza requiere muestreo infinito. La observación real es finita, y el propio ejemplo de catorce pasos del artículo está, en sus palabras, <em>«todavía lejos de la matriz correcta».</em></p>
+  <p><strong>El supremo no está resuelto del todo, y los autores lo dicen dos veces.</strong> Al trabajar cuándo dos observadores tienen un menor superior común, el apéndice llega a un caso e imprime, en el texto publicado, <em>«Si l = 1 el ínfimo no existe???»</em> &mdash; tres signos de interrogación, dejados ahí. Una observación poco después es igual de franca: <em>«No hemos explorado aquí las soluciones generales. Es una cuestión abierta si las soluciones existen siempre y, de existir, si son únicas».</em> Un caso particular se resuelve limpiamente; el general queda abierto. Es un hueco que sostiene peso, puesto que el problema de la combinación es lo que se anuncia que el formalismo maneja, y conviene leer las afirmaciones sobre combinación teniéndolo a la vista.</p>
+  <p><strong>Los resultados del orden de Lebesgue están importados, no demostrados aquí.</strong> El apéndice A.5 resume definiciones y proposiciones de un artículo anterior y dice explícitamente que las demostraciones están allí. De modo que la mitad del homomorfismo observación-creencia descansa en trabajo ajeno a este documento.</p>
+  <p><strong>Dos propuestas centrales están etiquetadas como conjeturas</strong> &mdash; que el orden de traza siga a la tasa de entropía, y la afirmación sobre tiempos mínimos de ida y vuelta, apoyada en una sola gráfica bidimensional en lugar de una demostración.</p>
+  <p><strong>Un hueco estructural en la correspondencia con partículas.</strong> Dos clases recurrentes separadas no pueden interactuar en absoluto dentro del formalismo, lo que significa que el esquema, tal como está, no puede describir partículas separadas en el espacio o en el tiempo &mdash; es decir, casi todas. Los autores lo dicen sin rodeos y afirman que la propuesta necesita generalizarse.</p>
+  <p><strong>Las extensiones especulativas están marcadas como tales.</strong> Los agujeros negros como desbordamiento de la capacidad de canal del «visor espacio-temporal»; los sistemas de referencia relativistas emergiendo de trazas. Ambas se lanzan en condicional y ninguna se desarrolla.</p>
+  <p>Un punto más merece señalarse, porque es de peso y recibe dos frases: los autores indican que la operación de traza <em>«viola un supuesto similar a la "independencia estadística"… lo que significa que las probabilidades (tras el trazado) no son independientes de la elección de los parámetros de trazado».</em> Eso es, en efecto, una violación de la independencia de la medida &mdash; el supuesto que el teorema de Bell necesita. Es una afirmación significativa, y queda sin desarrollar. Véase <a href="bell-theorem.html">la guía de Bell</a> para entender por qué ese supuesto carga con tanto peso.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <h2>La versión corta</h2>
+  <p>Un intento serio y técnicamente ambicioso de definir qué es un observador, partiendo de la conciencia y no de la materia. Su idea central &mdash; que observar algo significa ser una versión comprimida de ello, de modo que ningún observador queda fuera de lo que observa &mdash; es genuinamente nueva y genuinamente interesante, y está demostrado que se comporta bien matemáticamente.</p>
+  <p>Todo lo que viene después &mdash; masa, espín, partículas, la vía al experimento &mdash; es propuesta y no resultado, y los autores en su mayor parte lo dicen. No resuelve el problema difícil; lo reubica, y es franco sobre que su propio fundamento queda sin explicar. Lo que sí aporta es un tratamiento preciso de cómo los sujetos conscientes se combinan y se disocian.</p>
+  <p>Vale la pena tomarlo en serio. Todavía no vale la pena darlo por zanjado. Y en la única pregunta que más importa a este sitio &mdash; si el sustrato importa &mdash; apunta con firmeza en dirección contraria a la trilogía, que es exactamente por lo que pertenece aquí en lugar de quedar calladamente fuera.</p>
+</section>
+
+<span class="rule-short"></span>
+
+<section>
+  <p class="dim">Donald Hoffman, Chetan Prakash y Swapan Chattopadhyay, «Traces of Consciousness», Preprints.org, publicado el 17 de octubre de 2024, doi:10.20944/preprints202410.1305.v1. <a href="https://www.preprints.org/manuscript/202410.1305" target="_blank" rel="noopener">Leer el artículo ↗</a> &mdash; texto completo gratuito, en inglés, no revisado por pares. Relacionado en este sitio: <a href="hoffman-interface.html">Hoffman y la teoría de la interfaz</a>, <a href="why-biology.html">¿Por qué la biología? La prueba de la autopoiesis para la receptividad</a>, <a href="chalmers-hard-problem.html">Chalmers y el problema difícil</a>, <a href="bell-theorem.html">El teorema de Bell</a>, y la <a href="watch.html">conversación de Gallimore sobre Hoffman</a> en Ver y Escuchar.</p>
+  <a href="reading.html" class="read-more">← Lecturas y Referencias</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Herramientas del lector:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Empieza aquí</a> &middot;
+      <a href="glossary.html">Glosario</a> &middot;
+      <a href="the-evidence.html">Síntesis</a> &middot;
+      <a href="explore.html">Explorar</a> &middot;
+    <a href="sitemap.html">Mapa del sitio</a> &middot;
+      <a href="search.html">Buscar</a>
+    </div>
+    <span class="colophon">© 2026 José Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">Sobre</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
