@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Build PDF and EPUB editions of the Synthesis essay from the-evidence.html.
-Output goes into /Users/josegudem2/Desktop/josegudemd_website/dist/
+Output goes into dist/ next to this script.
 """
 import os
 import re
@@ -99,6 +99,13 @@ a { color: #a86b1d; text-decoration: none; border-bottom: 1px dotted #c19056; }
 a:hover { color: #6a4413; }
 ul { padding-left: 1.2em; margin: 0.6em 0; }
 li { margin-bottom: 0.55em; }
+
+
+/* status labels (Oct 2026) */
+.status { display:inline-block; font-family:'Inter',sans-serif; font-size:6.5pt; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:0 4pt; border:0.6pt solid currentColor; border-radius:2pt; margin-right:3pt; line-height:1.5; }
+.status.est { color:#2f7f6d; } .status.hyp { color:#a86b1d; } .status.spec { color:#6a52a8; } .status.open { color:#5d584b; } .status.prem { color:#b0503c; }
+.status-key { border:0.6pt solid #cfc6b0; padding:6pt 9pt; margin:0.8em 0; font-size:9.5pt; }
+.status-key p { margin:0.2em 0; text-align:left; }
 
 h1.book-title {
   font-family: 'Libre Baskerville', serif;
@@ -250,6 +257,8 @@ def build_print_html(chapters, hero_html, closing_html, base_url, cfg):
     half = len(title_words) // 2
     title_line1 = " ".join(title_words[:half])
     title_line2 = " ".join(title_words[half:])
+    if cfg.get("title_lines"):
+        title_line1, title_line2 = cfg["title_lines"]
     parts.append(f'''
       <div class="title-page">
         <h1 class="book-title">{title_line1}<br>{title_line2}</h1>
@@ -276,6 +285,9 @@ def build_print_html(chapters, hero_html, closing_html, base_url, cfg):
     # Hero / preface
     hero_clean = rewrite_relative_links(hero_html, base_url)
     # adapt classes for print: eyebrow → .eyebrow, h1 → .hero-h1, p.lede → .lede
+    hero_clean = re.sub(r'<div class="audio-full"[^>]*></div>', '', hero_clean)
+    hero_clean = re.sub(r'<div class="intro-video".*?</video>\s*</div>', '', hero_clean, flags=re.S)
+    hero_clean = re.sub(r'<p class="dim" style="font-size:13px;font-style:italic;">.*?</p>', '', hero_clean, flags=re.S)
     hero_clean = re.sub(r'<p class="eyebrow"[^>]*>', '<p class="eyebrow">', hero_clean)
     hero_clean = re.sub(r'<h1[^>]*>', '<h1 class="hero-h1">', hero_clean)
     hero_clean = re.sub(r'<p class="lede"[^>]*>', '<p class="lede">', hero_clean)
@@ -316,7 +328,7 @@ def build_print_html(chapters, hero_html, closing_html, base_url, cfg):
         <p>{cfg["colophon_set"]}</p>
         <p>{cfg["colophon_hdr"]}</p>
         <p>{cfg["colophon_companion"]}</p>
-        <p style="margin-top:1.5em;">© {date.today().year} José Gude, MD · Boise, Idaho</p>
+        <p style="margin-top:1.5em;">© {date.today().year} Jose Gude, MD · Boise, Idaho</p>
       </div>
     ''')
     parts.append("</body></html>")
@@ -363,12 +375,12 @@ def build_epub(chapters, hero_html, closing_html, base_url, out_path: Path, cfg)
     full_title = f'{cfg["title"]} — {("The Field Trilogy Synthesis" if cfg["lang_iso"]=="en" else "La Trilogía del Campo · Síntesis")}'
     book.set_title(full_title)
     book.set_language(cfg["lang_iso"])
-    book.add_author("José Gude, MD")
+    book.add_author("Jose Gude, MD")
     book.add_metadata("DC", "description", cfg["metadata_desc"])
     book.add_metadata("DC", "subject", "Consciousness studies")
     book.add_metadata("DC", "subject", "Philosophy of mind")
     book.add_metadata("DC", "subject", "Quantum foundations")
-    book.add_metadata("DC", "rights", f"© {date.today().year} José Gude MD")
+    book.add_metadata("DC", "rights", f"© {date.today().year} Jose Gude MD")
 
     css = epub.EpubItem(uid="style", file_name="style/main.css",
                        media_type="text/css", content=EPUB_CSS)
@@ -470,10 +482,11 @@ EDITIONS = {
         "pdf_name": "field-trilogy-synthesis.pdf",
         "epub_name": "field-trilogy-synthesis.epub",
         "html_name": "field-trilogy-synthesis.print.html",
-        "title": "What the Evidence Shows So Far",
-        "subtitle": "— in the Context of <em>The Field Trilogy</em>",
-        "byline": "José Gude, MD",
-        "tagline": "A synthesis essay · physics · biology · computation",
+        "title": "What the Evidence Does and Does Not Show",
+        "title_lines": ["What the Evidence", "Does and Does Not Show"],
+        "subtitle": "— the science around <em>The Field Trilogy</em>, graded",
+        "byline": "Jose Gude, MD",
+        "tagline": "A synthesis essay · physics · biology · consciousness",
         "toc_label": "Contents",
         "section_label": "Section",
         "colophon_intro": 'This pamphlet collects the synthesis essay from <a href="{base}/the-evidence.html">josegudemd.com</a> in a single typeset volume.',
@@ -485,7 +498,7 @@ EDITIONS = {
         "lang_iso": "en",
         "preface_title": "Preface",
         "closing_title": "If you have read this far",
-        "metadata_desc": "A synthesis essay: how quantum foundations, Planck-scale physics, anomalous neurology, and information theory converge on the central thesis of The Field Trilogy.",
+        "metadata_desc": "A graded synthesis of the science around The Field Trilogy: what quantum physics, quantum gravity, anomalous neurology and biology do and do not show about consciousness.",
     },
     "es": {
         "source": "es/the-evidence.html",
@@ -493,10 +506,11 @@ EDITIONS = {
         "pdf_name": "trilogia-del-campo-sintesis.pdf",
         "epub_name": "trilogia-del-campo-sintesis.epub",
         "html_name": "trilogia-del-campo-sintesis.print.html",
-        "title": "Lo que la evidencia muestra hasta ahora",
-        "subtitle": "— en el contexto de <em>La Trilogía del Campo</em>",
-        "byline": "José Gude, MD",
-        "tagline": "Un ensayo de síntesis · física · biología · computación",
+        "title": "Lo que la evidencia muestra y lo que no muestra",
+        "title_lines": ["Lo que la evidencia muestra", "y lo que no muestra"],
+        "subtitle": "— la ciencia en torno a <em>La Trilogía del Campo</em>, graduada",
+        "byline": "Jose Gude, MD",
+        "tagline": "Un ensayo de síntesis · física · biología · conciencia",
         "toc_label": "Índice",
         "section_label": "Sección",
         "colophon_intro": 'Este folleto reúne el ensayo de síntesis publicado en <a href="{base}/the-evidence.html">josegudemd.com</a> en un único volumen tipográfico.',
@@ -508,7 +522,7 @@ EDITIONS = {
         "lang_iso": "es",
         "preface_title": "Prefacio",
         "closing_title": "Si has llegado hasta aquí",
-        "metadata_desc": "Un ensayo de síntesis: cómo los fundamentos cuánticos, la física a escala de Planck, la neurología anómala y la teoría de la información convergen en la tesis central de La Trilogía del Campo.",
+        "metadata_desc": "Una síntesis graduada de la ciencia en torno a La Trilogía del Campo: lo que la física cuántica, la gravedad cuántica, la neurología anómala y la biología muestran y no muestran sobre la conciencia.",
     }
 }
 

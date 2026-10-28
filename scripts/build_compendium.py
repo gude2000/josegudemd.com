@@ -283,7 +283,7 @@ def build(lang: str):
         topMargin=0.85 * inch,
         bottomMargin=0.85 * inch,
         title=cfg["doc_title"],
-        author="José Gude MD",
+        author="Jose Gude MD",
         subject=cfg["doc_subject"],
     )
 

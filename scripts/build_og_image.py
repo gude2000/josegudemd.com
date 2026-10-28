@@ -120,7 +120,7 @@ def build():
     draw.text((90, 110), "T H E   F I E L D   T R I L O G Y", fill=GOLD, font=small_font)
 
     # Author name
-    draw.text((90, 170), "José Gude MD", fill=CREAM, font=name_font)
+    draw.text((90, 170), "Jose Gude MD", fill=CREAM, font=name_font)
 
     # Series titles
     draw.text((90, 270), "Anima · Numen · Limen", fill=CREAM_DIM, font=sub_font)

@@ -37,7 +37,7 @@ def extract_meta(html: str):
     """Pull <title>, <meta description>, hero <h1>, eyebrow, and the first ~600 chars of <main>."""
     title_m = re.search(r"<title>(.*?)</title>", html, re.S)
     title = strip_html(title_m.group(1)) if title_m else ""
-    title = title.replace(" — José Gude MD", "").replace(" &mdash; José Gude MD", "").strip()
+    title = title.replace(" — Jose Gude MD", "").replace(" &mdash; Jose Gude MD", "").strip()
 
     desc_m = re.search(r'<meta\s+name="description"\s+content="([^"]+)"', html)
     desc = desc_m.group(1).replace("&mdash;", "—") if desc_m else ""
