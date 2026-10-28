@@ -506,10 +506,11 @@ EDITIONS = {
         "pdf_name": "trilogia-del-campo-sintesis.pdf",
         "epub_name": "trilogia-del-campo-sintesis.epub",
         "html_name": "trilogia-del-campo-sintesis.print.html",
-        "title": "Lo que la evidencia muestra hasta ahora",
-        "subtitle": "— en el contexto de <em>La Trilogía del Campo</em>",
+        "title": "Lo que la evidencia muestra y lo que no muestra",
+        "title_lines": ["Lo que la evidencia muestra", "y lo que no muestra"],
+        "subtitle": "— la ciencia en torno a <em>La Trilogía del Campo</em>, graduada",
         "byline": "Jose Gude, MD",
-        "tagline": "Un ensayo de síntesis · física · biología · computación",
+        "tagline": "Un ensayo de síntesis · física · biología · conciencia",
         "toc_label": "Índice",
         "section_label": "Sección",
         "colophon_intro": 'Este folleto reúne el ensayo de síntesis publicado en <a href="{base}/the-evidence.html">josegudemd.com</a> en un único volumen tipográfico.',
@@ -521,7 +522,7 @@ EDITIONS = {
         "lang_iso": "es",
         "preface_title": "Prefacio",
         "closing_title": "Si has llegado hasta aquí",
-        "metadata_desc": "Un ensayo de síntesis: cómo los fundamentos cuánticos, la física a escala de Planck, la neurología anómala y la teoría de la información convergen en la tesis central de La Trilogía del Campo.",
+        "metadata_desc": "Una síntesis graduada de la ciencia en torno a La Trilogía del Campo: lo que la física cuántica, la gravedad cuántica, la neurología anómala y la biología muestran y no muestran sobre la conciencia.",
     }
 }
 
