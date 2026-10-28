@@ -612,4 +612,18 @@ footer ul {
 }
 .wip-themes { columns: 2; column-gap: 28px; padding-left: 1.1em; }
 .wip-themes li { break-inside: avoid; margin-bottom: .35em; }
-@media (max-width: 640px) { .wip-themes { columns: 1; } .wip-card { padding: 18px 16px 6px; } }
+/* A book's cover, beside its synopsis; above it on a phone. */
+.wip-card { display: flow-root; }
+.wip-cover {
+  float: right;
+  width: 170px;
+  height: auto;
+  margin: 4px 0 16px 26px;
+  border-radius: 2px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.45);
+}
+@media (max-width: 640px) {
+  .wip-themes { columns: 1; }
+  .wip-card { padding: 18px 16px 6px; }
+  .wip-cover { float: none; display: block; width: 56%; margin: 0 auto 16px; }
+}
