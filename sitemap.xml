@@ -959,4 +959,20 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/works-in-progress.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/works-in-progress.html" />
   </url>
+  <url>
+    <loc>https://josegudemd.com/apps.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/apps.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/apps.html" />
+  </url>
+  <url>
+    <loc>https://josegudemd.com/es/apps.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/apps.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/apps.html" />
+  </url>
 </urlset>

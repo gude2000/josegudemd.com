@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Open Graph / social share -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Jose Gude MD">
+  <meta property="og:title" content="Apps — Jose Gude MD">
+  <meta property="og:description" content="Apps de Jose Gude MD: Drone Meditations (sintetizador de drones con cimática), Symposium (una mesa de filósofos) y AdmitNote (documentación clínica).">
+  <meta property="og:url" content="https://josegudemd.com/es/apps.html">
+  <meta property="og:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Apps — Jose Gude MD">
+  <meta name="twitter:description" content="Apps de Jose Gude MD: Drone Meditations (sintetizador de drones con cimática), Symposium (una mesa de filósofos) y AdmitNote (documentación clínica).">
+  <meta name="twitter:image" content="https://josegudemd.com/assets/img/og-default.jpg">
+  <link rel="canonical" href="https://josegudemd.com/es/apps.html">
+  <title>Apps — Jose Gude MD</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .explore-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+      margin: 32px 0;
+    }
+    @media (min-width: 760px) {
+      .explore-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .explore-card {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 24px 26px;
+      transition: border-color .2s ease, transform .2s ease, background .2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .explore-card:hover {
+      border-color: var(--gold);
+      background: var(--bg-soft);
+      transform: translateY(-2px);
+    }
+    .explore-card .tag {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .explore-card h2 {
+      font-size: 20px;
+      color: var(--cream);
+      margin: 0;
+      letter-spacing: 0.01em;
+      line-height: 1.25;
+    }
+    .explore-card p {
+      color: var(--cream-dim);
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .explore-card .visit {
+      margin-top: auto;
+      padding-top: 12px;
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .explore-card .card-image {
+      display: block;
+      width: 88px;
+      height: 88px;
+      border-radius: 12px;
+      margin-bottom: 4px;
+      background: #000;
+      object-fit: cover;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    .explore-card.has-icon {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .explore-card.has-icon .card-image {
+      width: 132px;
+      height: 132px;
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+    .explore-card.has-icon .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+    @media (max-width: 560px) {
+      .explore-card.has-icon { flex-direction: column; }
+      .explore-card.has-icon .card-image { width: 96px; height: 96px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="brand"><em>Jose Gude MD</em></a>
+    <ul>
+      <li><a href="index.html">Libros</a></li>
+      <li><a href="works-in-progress.html">En curso</a></li>
+      <li><a href="reading.html">Lecturas</a></li>
+      <li><a href="watch.html">Ver y Escuchar</a></li>
+      <li><a href="explore.html">Explorar</a></li>
+      <li><a href="apps.html" class="active">Apps</a></li>
+      <li><a href="the-evidence.html">Síntesis</a></li>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="search.html">Buscar</a></li>
+      <li class="lang-toggle" style="margin-left:1em;opacity:0.85;"><a href="../apps.html">EN</a> <span style="opacity:0.4;">|</span> <span style="color:var(--gold);">ES</span></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <p class="eyebrow">Apps</p>
+  <h1><em>Herramientas hechas junto a los libros.</em></h1>
+  <p class="lede">Programas que he construido junto a la escritura y la medicina: un sintetizador de drones con cimática, una mesa de filósofos y una herramienta clínica de mi trabajo diario.</p>
+</section>
+
+<section>
+  <div class="explore-grid">
+    <a class="explore-card has-icon" href="https://dronemeditations.com" target="_blank" rel="noopener">
+      <img class="card-image" src="../assets/img/drone-meditations-icon.png" alt="Icono de Drone Meditations — un patrón de onda estacionaria de Chladni a 266,67 Hz" loading="lazy" onerror="this.style.display='none'">
+      <div class="card-body">
+        <span class="tag">App web &middot; sintetizador de drones y cimática</span>
+        <h2>Drone Meditations</h2>
+        <p>Un sintetizador de drones de cuatro osciladores para meditar, con una visualización de Chladni en vivo: eliges los tonos y ves la geometría de ondas estacionarias que producen sobre la placa. Distintos sistemas de afinación, pulsos binaurales (con auriculares), recorridos de meditación que encadenan escenas y transiciones entre preajustes. Funciona en el navegador, también en el iPhone.</p>
+        <span class="visit">abrir la app &rarr;</span>
+      </div>
+    </a>
+    <a class="explore-card" href="https://gude2000.github.io/symposium-manual/" target="_blank" rel="noopener">
+      <span class="tag">App para iOS &middot; filosofía</span>
+      <h2>Symposium</h2>
+      <p>Una mesa de filósofos que discuten en voz alta, cada uno con su propio ritmo, y que solo pueden citar lo que realmente escribieron. Tú eres el anfitrión: eliges quién se sienta, planteas la pregunta e interrumpes cuando quieres. Más de ciento cincuenta pensadores de muchas tradiciones y épocas.</p>
+      <p class="dim" style="font-size:13px;">Las intervenciones las genera una inteligencia artificial a partir de las obras de cada filósofo; no son palabras que dijeran realmente. Las citas se limitan a obras que existen.</p>
+      <span class="visit">leer el manual &rarr;</span>
+    </a>
+    <a class="explore-card" href="https://admitnote.com" target="_blank" rel="noopener">
+      <span class="tag">iOS y web &middot; documentación clínica</span>
+      <h2>AdmitNote</h2>
+      <p>Convierte el encuentro clínico hablado en una historia clínica estructurada (H&amp;P) para medicina hospitalaria, con evaluación y plan, códigos y calculadoras clínicas. La escribe la inteligencia artificial; la revisa el médico. Construida por un hospitalista en ejercicio para el trabajo que hace cada noche. En inglés.</p>
+      <span class="visit">admitnote.com &rarr;</span>
+    </a>
+  </div>
+  <p class="dim" style="margin-top:1.2em;">AdmitNote también está en la <a href="https://apps.apple.com/app/admitnote/id6762265910" target="_blank" rel="noopener">App Store</a>. Los diálogos filosóficos de <a href="https://www.youtube.com/@symposium-youtube" target="_blank" rel="noopener">Symposium en YouTube</a> nacen de la misma idea; <a href="watch.html#symposium">qué son esos vídeos</a>.</p>
+</section>
+
+<section>
+  <a href="index.html" class="read-more">&larr; Todos los libros</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-tools" style="margin-bottom:1.2em;font-size:14px;opacity:0.85;">
+      <strong style="color:var(--gold);">Herramientas del lector:</strong>
+      <a href="start-here.html" style="margin-left:0.5em;">Por dónde empezar</a> &middot;
+      <a href="glossary.html">Glosario</a> &middot;
+      <a href="the-evidence.html">Síntesis</a> &middot;
+      <a href="explore.html">Explorar</a> &middot;
+    <a href="sitemap.html">Mapa del sitio</a> &middot;
+      <a href="search.html">Buscar</a>
+    </div>
+    <span class="colophon">© 2026 Jose Gude MD &middot; Boise, Idaho</span>
+    <ul>
+      <li><a href="about.html">Autor</a></li>
+      <li><a href="mailto:contact@josegudemd.com">Contacto</a></li>
+      <li><a href="https://www.youtube.com/@symposium-youtube" target="_blank" rel="noopener">YouTube</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
