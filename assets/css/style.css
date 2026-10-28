@@ -551,3 +551,55 @@ footer ul {
 .audio-full .progress { flex: 1 1 200px; height: 5px; background: var(--rule); border-radius: 3px; cursor: pointer; position: relative; }
 .audio-full .progress-fill { height: 100%; background: var(--gold); border-radius: 3px; width: 0%; pointer-events: none; }
 .audio-full .time { font-size: 12px; color: var(--cream-dim); letter-spacing: 0.06em; font-variant-numeric: tabular-nums; min-width: 80px; text-align: right; }
+
+/* ========================  Evidence status labels (Oct 2026)  ========================
+   Same vocabulary as Biological Individuation Theory: ESTABLISHED, HYPOTHESIS,
+   SPECULATIVE, OPEN — plus PREMISE for claims that belong to the novels. */
+.status {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  padding: 0 7px;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: 2px;
+  white-space: nowrap;
+}
+.status.est  { color: var(--teal); }
+.status.hyp  { color: var(--gold); }
+.status.spec { color: var(--violet); }
+.status.open { color: var(--cream-dim); }
+.status.prem { color: #e48f7a; }
+.status-key {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin: 1.4em 0;
+  background: var(--bg-soft);
+  font-size: 15px;
+}
+.status-key p { margin: .35em 0; }
+.wip-card {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 22px 24px 10px;
+  margin: 0 0 28px;
+  background: var(--bg-card);
+}
+.wip-card h2 { margin-top: 0; }
+.wip-meta {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+  margin: -.4em 0 1em;
+}
+.wip-themes { columns: 2; column-gap: 28px; padding-left: 1.1em; }
+.wip-themes li { break-inside: avoid; margin-bottom: .35em; }
+@media (max-width: 640px) { .wip-themes { columns: 1; } .wip-card { padding: 18px 16px 6px; } }

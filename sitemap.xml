@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://josegudemd.com/about.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/about.html" />
@@ -131,7 +131,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/es/about.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/about.html" />
@@ -275,7 +275,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/es/field-trilogy.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/field-trilogy.html" />
@@ -299,7 +299,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/es/glossary.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/glossary.html" />
@@ -499,7 +499,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/es/start-here.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/start-here.html" />
@@ -531,7 +531,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/es/the-evidence.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/the-evidence.html" />
@@ -571,7 +571,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/es/watch.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/watch.html" />
@@ -615,7 +615,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/field-trilogy.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/field-trilogy.html" />
@@ -639,7 +639,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/glossary.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/glossary.html" />
@@ -857,7 +857,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/start-here.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/start-here.html" />
@@ -889,7 +889,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/the-evidence.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/the-evidence.html" />
@@ -929,7 +929,7 @@
   </url>
   <url>
     <loc>https://josegudemd.com/watch.html</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/watch.html" />
@@ -942,5 +942,21 @@
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/wheeler-delayed-choice.html" />
     <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/wheeler-delayed-choice.html" />
+  </url>
+  <url>
+    <loc>https://josegudemd.com/works-in-progress.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/works-in-progress.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/works-in-progress.html" />
+  </url>
+  <url>
+    <loc>https://josegudemd.com/es/works-in-progress.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://josegudemd.com/works-in-progress.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://josegudemd.com/es/works-in-progress.html" />
   </url>
 </urlset>

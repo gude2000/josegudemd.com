@@ -315,7 +315,7 @@ def build_one(essay: dict) -> None:
     # Footer — author + URL
     foot_font = pick_font(FONT_CANDIDATES_SERIF_ITALIC, 26)
     url_font  = pick_font(FONT_CANDIDATES_SANS, 20)
-    draw.text((80, H - 90), "José Gude MD", fill=CREAM, font=foot_font)
+    draw.text((80, H - 90), "Jose Gude MD", fill=CREAM, font=foot_font)
     draw.text((80, H - 55), "josegudemd.com", fill=accent, font=url_font)
 
     out_path = OUT_DIR / essay["out"]
