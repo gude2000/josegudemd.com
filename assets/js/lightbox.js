@@ -1,6 +1,8 @@
 // Click-to-enlarge for any image marked .cover-large (originally for book
 // covers) or .zoomable (the general opt-in used elsewhere on the site —
-// e.g. the Dalí painting thumbnails in the golden-ratio explainer).
+// e.g. the Dalí painting thumbnails in the golden-ratio explainer, and the
+// covers on Works in Progress). An image may name a larger file in
+// data-full, which the overlay shows instead of the page-sized one.
 // On click, opens the image in a full-screen overlay. Close by clicking
 // the backdrop, the × button, or pressing Escape.
 (function () {
@@ -47,9 +49,16 @@
     });
 
     covers.forEach(function (c) {
+      // A larger file for the enlarged view, when the page names one.
+      var full = c.getAttribute('data-full') || '';
+      function show() { open(full || c.currentSrc || c.src, c.alt); }
       c.style.cursor = 'zoom-in';
-      c.addEventListener('click', function () {
-        open(c.src, c.alt);
+      c.addEventListener('click', show);
+      // Reachable from the keyboard too: Tab to the image, Enter or Space.
+      if (!c.hasAttribute('tabindex')) c.setAttribute('tabindex', '0');
+      c.setAttribute('role', 'button');
+      c.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(); }
       });
     });
   });
