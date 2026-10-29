@@ -612,6 +612,21 @@ footer ul {
 }
 .wip-themes { columns: 2; column-gap: 28px; padding-left: 1.1em; }
 .wip-themes li { break-inside: avoid; margin-bottom: .35em; }
+/* An expandable note inside a book's card (e.g. the AI panel on BIT). */
+.wip-review { clear: both; margin: 4px 0 18px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.wip-review summary {
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1.6;
+}
+.wip-review summary:hover { color: var(--cream); }
+.wip-review[open] summary { margin-bottom: 12px; }
+.wip-review blockquote { font-size: 15.5px; font-style: normal; color: var(--cream-dim); margin: 18px 0; }
+.wip-review blockquote p { margin: 0; }
 /* A book's cover, beside its synopsis; above it on a phone. */
 .wip-card { display: flow-root; }
 .wip-cover {
