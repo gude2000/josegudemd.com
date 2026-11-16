@@ -627,6 +627,22 @@ footer ul {
 .wip-review[open] summary { margin-bottom: 12px; }
 .wip-review blockquote { font-size: 15.5px; font-style: normal; color: var(--cream-dim); margin: 18px 0; }
 .wip-review blockquote p { margin: 0; }
+/* AI readers' responses on a book page: one collapsible entry each,
+   titled in the body face rather than as a small-caps label. */
+.wip-review.ai-response { margin: 0; padding: 14px 0 4px; }
+.wip-review.ai-response summary {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--cream);
+  padding-bottom: 8px;
+}
+.wip-review.ai-response summary:hover { color: var(--gold); }
+.wip-review.ai-response p { color: var(--cream-dim); }
+#insights > .wip-review.ai-response:last-of-type { border-bottom: 1px solid var(--rule); margin-bottom: 8px; }
+
 /* A book's cover, beside its synopsis; above it on a phone. */
 .wip-card { display: flow-root; }
 .wip-cover {
